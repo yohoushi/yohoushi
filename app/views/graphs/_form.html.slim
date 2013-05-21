@@ -1,0 +1,15 @@
+= form_for @graph do |f|
+  - if @graph.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@graph.errors.count, "error")} prohibited this graph from being saved:"
+      ul
+        - @graph.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :path
+    = f.text_field :path
+  .field
+    = f.label :gfuri
+    = f.text_field :gfuri
+  .actions = f.submit 'Save'

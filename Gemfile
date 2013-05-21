@@ -41,6 +41,8 @@ end
 gem 'unicorn'
 
 ruby '2.0.0'
+gem 'slim', :require => 'slim-rails'
+gem "slim-rails", "~> 1.1.0"
 
 group :development do
   gem 'capistrano'

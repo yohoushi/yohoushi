@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130521064543) do
+ActiveRecord::Schema.define(version: 20130521100255) do
 
   create_table "graphs", force: true do |t|
     t.string   "path"

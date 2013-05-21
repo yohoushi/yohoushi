@@ -171,6 +171,14 @@ GEM
     simplecov-html (0.7.1)
     simplecov-rcov (0.2.3)
       simplecov (>= 0.4.1)
+    slim (1.3.9)
+      temple (~> 0.6.3)
+      tilt (~> 1.3, >= 1.3.3)
+    slim-rails (1.1.1)
+      actionpack (>= 3.0, < 4.1)
+      activesupport (>= 3.0, < 4.1)
+      railties (>= 3.0, < 4.1)
+      slim (~> 1.3)
     slop (3.4.5)
     spring (0.0.8)
     sprockets (2.9.3)
@@ -184,6 +192,7 @@ GEM
       sprockets (~> 2.8)
     tapp (1.4.0)
       thor
+    temple (0.6.5)
     therubyracer (0.11.4)
       libv8 (~> 3.11.8.12)
       ref
@@ -229,6 +238,8 @@ DEPENDENCIES
   sass-rails (~> 4.0.0.rc1)
   sdoc
   simplecov-rcov
+  slim
+  slim-rails (~> 1.1.0)
   spring
   tapp
   therubyracer

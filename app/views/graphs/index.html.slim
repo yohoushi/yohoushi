@@ -1,0 +1,21 @@
+h1 Listing graphs
+
+table
+  tr
+    th Path
+    th Gfuri
+    th
+    th
+    th
+
+  - @graphs.each do |graph|
+    tr
+      td = graph.path
+      td = graph.gfuri
+      td = link_to 'Show', graph
+      td = link_to 'Edit', edit_graph_path(graph)
+      td = link_to 'Destroy', graph, :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New Graph', new_graph_path
