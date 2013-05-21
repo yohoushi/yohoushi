@@ -14,7 +14,12 @@ mysql
 
 ## Database creation
 
+    rake db:create
+
 ## Database initialization
+
+    rake db:migrate
+    rake db:seed
 
 ## How to run the test suite
 
