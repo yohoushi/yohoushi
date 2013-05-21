@@ -1,3 +1,10 @@
+GIT
+  remote: git@github.dena.jp:dena/mgclient.git
+  revision: 418a427148daf665011920d5a0c3da1b1fb44a28
+  specs:
+    mgclient (0.1.0)
+      growthforecast-client
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -65,6 +72,9 @@ GEM
       thor (>= 0.13.6)
     formatador (0.2.4)
     gem-open (0.1.6)
+    growthforecast-client (0.0.6)
+      httpclient
+      thor
     guard (1.8.0)
       formatador (>= 0.2.4)
       listen (>= 1.0.0)
@@ -76,6 +86,7 @@ GEM
       rspec (~> 2.11)
     highline (1.6.19)
     hike (1.2.2)
+    httpclient (2.3.3)
     i18n (0.6.4)
     ir_b (1.5.0)
     jbuilder (1.4.1)
@@ -230,6 +241,7 @@ DEPENDENCIES
   ir_b
   jbuilder (~> 1.2)
   jquery-rails
+  mgclient!
   mysql2
   pry
   pry-nav

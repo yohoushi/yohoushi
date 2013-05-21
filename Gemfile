@@ -43,6 +43,7 @@ gem 'unicorn'
 ruby '2.0.0'
 gem 'slim', :require => 'slim-rails'
 gem "slim-rails", "~> 1.1.0"
+gem 'mgclient', git: 'git@github.dena.jp:dena/mgclient.git'
 
 group :development do
   gem 'capistrano'

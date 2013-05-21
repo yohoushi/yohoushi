@@ -1,10 +1,13 @@
+$mgclient = Mg::Client.new({'' => 'http://localhost:5125'})
+
 class GraphsController < ApplicationController
   before_action :set_graph, only: [:show, :edit, :update, :destroy]
 
   # GET /graphs
   # GET /graphs.json
   def index
-    @graphs = Graph.all
+    # @graphs = Graph.all
+    @graphs = $mgclient.list_graph
   end
 
   # GET /graphs/1
