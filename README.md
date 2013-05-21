@@ -23,6 +23,9 @@ mysql
 
 ## How to run the test suite
 
+    rake db:migrate RAILS_ENV=test
+    rspec
+
 ## Services (job queues, cache servers, search engines, etc.)
 
 ## Deployment instructions

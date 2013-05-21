@@ -13,13 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20130521064543) do
 
-  create_table "books", force: true do |t|
-    t.string   "title"
-    t.integer  "price"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "graphs", force: true do |t|
     t.string   "path"
     t.string   "gfuri"
