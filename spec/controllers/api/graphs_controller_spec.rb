@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Api::GraphsController do
-  include_context "setup_mgclient"
+  include_context "setup_graph"
   let(:graphs) { mgclient.list_graph }
   let(:graph)  { mgclient.get_graph(graphs.first['path']) }
 

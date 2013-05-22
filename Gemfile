@@ -58,6 +58,7 @@ group :development, :test do
   gem 'guard'
   gem 'guard-rspec'
   gem 'fabrication'
+  gem 'webmock'
 
   # for debug
   gem 'debugger2', '~> 1.0.0.beta1'
