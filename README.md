@@ -1,6 +1,8 @@
 # Yohoushi
 
-yet another GrowthForecast like Graphing / Visualization tool
+yet another GrowthForecast like Graphing / Visualization tool.
+
+This is a collaborative project of NOC (@nikushi) and PlaSys (@sonots). 
 
 ## Ruby version
 
