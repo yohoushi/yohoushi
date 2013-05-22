@@ -11,7 +11,7 @@ class GraphsController < ApplicationController
     @graph = $mgclient.get_graph(params[:path])
   end
 
-  # POST /graphs
+  # POST /graphs/:path
   def create
     @graph = $mgclient.post_graph(params[:path], create_params)
     render action: 'show', status: :created
@@ -19,14 +19,14 @@ class GraphsController < ApplicationController
 
   # PUT /graphs/:path
   def update
-    @graph = @mgclient.edit_graph(params[:path], update_params)
+    @graph = $mgclient.edit_graph(params[:path], update_params)
     render action: 'show', status: :updated
   end
 
   # DELETE /graphs/:path
   def destroy
     @graph = $mgclient.delete_graph(params[:path])
-    render action: 'show', status: :updated
+    render action: 'show', status: :no_content
   end
 
   private
