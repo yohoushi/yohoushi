@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe GraphsController do
+describe Api::GraphsController do
   include_context "setup_mgclient"
   let(:graphs) { mgclient.list_graph }
   let(:graph)  { mgclient.get_graph(graphs.first['path']) }
@@ -63,7 +63,7 @@ describe GraphsController do
         'color'  => "#000000"
       }
       it "assigns the requested graph as @graph" do
-        put :update, {:path => graph['path']}.merge(params), valid_session
+        put :update, {:path => graph['path'], :format => 'json'}.merge(params), valid_session
         assigns(:graph).should eq({'error'=>0})
       end
     end

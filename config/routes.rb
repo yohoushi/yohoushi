@@ -1,10 +1,12 @@
 Yohoushi::Application.routes.draw do
-  resources :graphs, :only => %w[index], :constraints => { :path => /.+/ }, :defaults => {:format => 'json'} do
-    collection do
-      post   ':path' => 'graphs#create'
-      get    ':path' => 'graphs#show'
-      put    ':path' => 'graphs#update'
-      delete ':path' => 'graphs#destroy'
+  namespace :api do
+    resources :graphs, :only => %w[index], :constraints => { :path => /.+/ }, :defaults => {:format => 'json'} do
+      collection do
+        post   ':path' => 'graphs#create'
+        get    ':path' => 'graphs#show'
+        put    ':path' => 'graphs#update'
+        delete ':path' => 'graphs#destroy'
+      end
     end
   end
 
