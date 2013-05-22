@@ -41,6 +41,7 @@ end
 gem 'unicorn'
 
 ruby '2.0.0'
+gem "settingslogic"
 gem 'slim', :require => 'slim-rails'
 gem "slim-rails", "~> 1.1.0"
 gem 'growthforecast-client', git: 'https://github.com/sonots/growthforecast-client.git', branch: 'more_api'

@@ -6,8 +6,6 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
 
-$mgclient = Mg::Client.new({'' => 'http://localhost:5125'})
-
 module Yohoushi
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

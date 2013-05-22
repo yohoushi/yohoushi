@@ -1,0 +1,16 @@
+# config/application.yml
+defaults: &defaults
+  growthforecasts:
+    -
+      dir: ''
+      gfuri: 'http://localhost:5125'
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+
