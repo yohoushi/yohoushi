@@ -1,4 +1,11 @@
 GIT
+  remote: git@github.dena.jp:dena/mgclient.git
+  revision: a6c24995e1a5106eb0c97360b4d47af50f195e4a
+  specs:
+    mgclient (0.1.1)
+      growthforecast-client
+
+GIT
   remote: https://github.com/sonots/growthforecast-client.git
   revision: 091b69ee515fe3b41459018a54e3cd9e10217f6d
   branch: more_api
@@ -6,12 +13,6 @@ GIT
     growthforecast-client (0.0.6)
       httpclient
       thor
-
-PATH
-  remote: ../mgclient
-  specs:
-    mgclient (0.1.1)
-      growthforecast-client
 
 GEM
   remote: https://rubygems.org/
