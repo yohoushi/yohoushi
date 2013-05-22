@@ -1,6 +1,6 @@
 GIT
   remote: git@github.dena.jp:dena/mgclient.git
-  revision: ba648c5fbd7fed65e5e9b532d0d71cbd8421f9cc
+  revision: 028c47fff43306914da64877eeb1641a55093b9f
   specs:
     mgclient (0.1.1)
       growthforecast-client

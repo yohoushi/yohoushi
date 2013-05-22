@@ -9,7 +9,7 @@ describe Api::ComplexesController do
   describe "before create" do
     include_context "setup_graph"
     include_context "let_complex"
-    include_context "stub_post_complex" if ENV['MOCK'] == 'on'
+    include_context "stub_create_complex" if ENV['MOCK'] == 'on'
     include_context "stub_delete_complex" if ENV['MOCK'] == 'on'
 
     describe "POST create" do
