@@ -1,5 +1,12 @@
 Yohoushi::Application.routes.draw do
-  resources :graphs
+  resources :graphs, :only => %w[index], :constraints => { :path => /.+/ }, :defaults => {:format => 'json'} do
+    collection do
+      post   ':path' => 'graphs#create'
+      get    ':path' => 'graphs#show'
+      put    ':path' => 'graphs#update'
+      delete ':path' => 'graphs#destroy'
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

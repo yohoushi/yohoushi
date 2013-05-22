@@ -41,8 +41,11 @@ end
 gem 'unicorn'
 
 ruby '2.0.0'
+gem "settingslogic"
 gem 'slim', :require => 'slim-rails'
 gem "slim-rails", "~> 1.1.0"
+gem 'growthforecast-client', git: 'https://github.com/sonots/growthforecast-client.git', branch: 'more_api'
+gem 'mgclient', git: 'git@github.dena.jp:dena/mgclient.git'
 
 group :development do
   gem 'capistrano'
@@ -51,7 +54,6 @@ end
 
 group :development, :test do
   gem 'spring'
-  gem 'capybara'
   gem 'rspec-rails'
   gem 'guard'
   gem 'guard-rspec'
