@@ -1,9 +1,11 @@
 require 'spec_helper'
 
 describe Api::GraphsController do
-  include_context "setup_mgclient"
+  include_context "setup_graph"
+  include_context "stub_list_graph" if ENV['MOCK'] == 'on'
+  include_context "stub_get_graph" if ENV['MOCK'] == 'on'
   let(:graphs) { mgclient.list_graph }
-  let(:graph)  { mgclient.get_graph(graphs.first['path']) }
+  let(:graph)  { graphs.first }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -11,7 +13,6 @@ describe Api::GraphsController do
   let(:valid_session) { {} }
 
   describe "GET index" do
-    include_context "stub_list_graph" if ENV['MOCK'] == 'on'
     it "assigns all graphs as @graphs" do
       get :index, {:format => 'json'}, valid_session
       assigns(:graphs).should eq(graphs)
@@ -19,10 +20,10 @@ describe Api::GraphsController do
   end
 
   describe "GET show" do
-    include_context "stub_get_graph" if ENV['MOCK'] == 'on'
     it "assigns the requested graph as @graph" do
       get :show, {:path => graph["path"], :format => 'json'}, valid_session
-      assigns(:graph).should eq(graph)
+      expected = mgclient.get_graph(graph['path'])
+      assigns(:graph).should eq(expected)
     end
   end
 

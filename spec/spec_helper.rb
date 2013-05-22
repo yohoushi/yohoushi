@@ -1,9 +1,13 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
+ENV['MOCK'] ||= 'on'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
-require 'mgclient/mock'
+require 'mgclient'
+require 'mgclient/shared_context'
+require 'webmock/rspec'
+WebMock.allow_net_connect! if ENV['MOCK'] == 'off'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
