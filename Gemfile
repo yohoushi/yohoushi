@@ -46,8 +46,12 @@ gem 'slim', :require => 'slim-rails'
 gem "slim-rails", "~> 1.1.0"
 gem 'growthforecast-client', git: 'https://github.com/sonots/growthforecast-client.git', branch: 'more_api'
 gem 'mgclient', git: 'git@github.dena.jp:dena/mgclient.git'
+# http://d.hatena.ne.jp/sandmark/20120321/1332292995
+gem 'bootstrap-sass'
+gem 'bootswatch-rails'
 
 group :development do
+  gem 'twitter-bootstrap-rails'
   gem 'capistrano'
   gem 'foreman'
 end

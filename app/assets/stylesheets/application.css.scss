@@ -11,3 +11,20 @@
  *= require_self
  *= require_tree .
  */
+// First import spacelab variables
+@import "bootswatch/spacelab/variables";
+
+// Then bootstrap itself
+@import "bootstrap";
+
+// Bootstrap body padding for fixed navbar
+body { padding-top: 60px; }
+
+// Responsive styles go here in case you want them
+@import "bootstrap-responsive";
+
+// And finally bootswatch style itself
+@import "bootswatch/spacelab/bootswatch";
+
+// Whatever application styles you have go last
+// @import "base";

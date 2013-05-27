@@ -1,0 +1,19 @@
+- model_class = Graph
+div class="page-header"
+  h1=t '.title', :default => model_class.model_name.human
+
+p
+  strong= model_class.human_attribute_name(:path) + ':'
+  br
+  = @graph.path
+p
+  strong= model_class.human_attribute_name(:gfuri) + ':'
+  br
+  = @graph.gfuri
+
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), graphs_path, :class => 'btn'
+  '
+  = link_to t('.edit', :default => t("helpers.links.edit")), edit_graph_path(@graph), :class => 'btn'
+  '
+  = link_to t('.destroy', :default => t("helpers.links.destroy")), graph_path(@graph), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
