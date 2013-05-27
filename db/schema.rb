@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(version: 20130527074759) do
 
   create_table "graphs", force: true do |t|
-    t.string   "path",       limit: 2048
+    t.string   "path",       limit: 2048, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
