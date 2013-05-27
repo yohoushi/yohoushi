@@ -1,21 +1,25 @@
-h1 Listing graphs
-
-table
-  tr
-    th Path
-    th Gfuri
-    th
-    th
-    th
-
-  - @graphs.each do |graph|
+- model_class = Graph
+div class="page-header"
+  h1=t '.title', :default => model_class.model_name.human.pluralize
+table class="table table-striped"
+  thead
     tr
-      td = graph.path
-      td = graph.gfuri
-      td = link_to 'Show', graph
-      td = link_to 'Edit', edit_graph_path(graph)
-      td = link_to 'Destroy', graph, :confirm => 'Are you sure?', :method => :delete
+      th= model_class.human_attribute_name(:id)
+      th= model_class.human_attribute_name(:path)
+      th= model_class.human_attribute_name(:gfuri)
+      th= model_class.human_attribute_name(:created_at)
+      th=t '.actions', :default => t("helpers.actions")
+  tbody
+    - @graphs.each do |graph|
+      tr
+        td= link_to graph.id, graph_path(graph)
+        td= graph.path
+        td= graph.gfuri
+        td=l graph.created_at
+        td
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_graph_path(graph), :class => 'btn btn-mini'
+          '
+          = link_to t('.destroy', :default => t("helpers.links.destroy")), graph_path(graph), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
 
-br
+= link_to t('.new', :default => t("helpers.links.new")), new_graph_path, :class => 'btn btn-primary'
 
-= link_to 'New Graph', new_graph_path
