@@ -1,4 +1,5 @@
 Yohoushi::Application.routes.draw do
+  root 'graphs#index'
   resources :graphs
 
   namespace :api do
