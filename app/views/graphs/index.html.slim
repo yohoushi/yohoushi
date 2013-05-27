@@ -6,7 +6,6 @@ table class="table table-striped"
     tr
       th= model_class.human_attribute_name(:id)
       th= model_class.human_attribute_name(:path)
-      th= model_class.human_attribute_name(:gfuri)
       th= model_class.human_attribute_name(:created_at)
       th=t '.actions', :default => t("helpers.actions")
   tbody
@@ -14,7 +13,6 @@ table class="table table-striped"
       tr
         td= link_to graph.id, graph_path(graph)
         td= graph.path
-        td= graph.gfuri
         td=l graph.created_at
         td
           = link_to t('.edit', :default => t("helpers.links.edit")), edit_graph_path(graph), :class => 'btn btn-mini'

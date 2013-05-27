@@ -4,7 +4,6 @@ describe "graphs/show" do
   before(:each) do
     @graph = assign(:graph, stub_model(Graph,
       :path => "Path",
-      :gfuri => "Gfuri"
     ))
   end
 
@@ -12,6 +11,5 @@ describe "graphs/show" do
     render
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     rendered.should match(/Path/)
-    rendered.should match(/Gfuri/)
   end
 end

@@ -6,10 +6,6 @@ p
   strong= model_class.human_attribute_name(:path) + ':'
   br
   = @graph.path
-p
-  strong= model_class.human_attribute_name(:gfuri) + ':'
-  br
-  = @graph.gfuri
 
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), graphs_path, :class => 'btn'
