@@ -1,4 +1,6 @@
 Yohoushi::Application.routes.draw do
+  resources :graphs
+
   namespace :api do
     resources :graphs, :only => %w[index], :constraints => { :path => /.+/ }, :defaults => {:format => 'json'} do
       collection do
