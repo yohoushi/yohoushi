@@ -62,7 +62,7 @@ group :development, :test do
   gem 'guard'
   gem 'guard-rspec'
   gem 'fabrication'
-  gem 'webmock'
+  gem 'webmock', :require => false
 
   # for debug
   gem 'debugger2', '~> 1.0.0.beta1'
