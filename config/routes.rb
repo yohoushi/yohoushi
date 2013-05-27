@@ -1,8 +1,11 @@
 Yohoushi::Application.routes.draw do
   resources :tags
-
-  root 'graphs#index'
   resources :graphs
+
+  root 'graphs#list_graph'
+  get 'list_graph' => 'graphs#list_graph'
+  get 'list_graph/:path' => 'graphs#list_graph', :constraints => { :path => /.+/ }
+  get 'view_graph/:path' => 'graphs#view_graph', :constraints => { :path => /.+/ }
 
   namespace :api do
     resources :graphs, :only => %w[index], :constraints => { :path => /.+/ }, :defaults => {:format => 'json'} do
