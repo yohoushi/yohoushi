@@ -11,13 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130527070142) do
+ActiveRecord::Schema.define(version: 20130527074759) do
 
   create_table "graphs", force: true do |t|
     t.string   "path",       limit: 2048
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "graphs_tags", id: false, force: true do |t|
+    t.integer "graph_id", null: false
+    t.integer "tag_id",   null: false
+  end
+
+  add_index "graphs_tags", ["graph_id", "tag_id"], name: "index_graphs_tags_on_graph_id_and_tag_id", unique: true, using: :btree
 
   create_table "tags", force: true do |t|
     t.string   "tag"
