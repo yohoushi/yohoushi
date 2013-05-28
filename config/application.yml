@@ -3,7 +3,7 @@ defaults: &defaults
   growthforecasts:
     -
       dir: ''
-      gfuri: 'http://localhost:5125'
+      gfuri: 'http://10.33.49.163:5125'
 
 development:
   <<: *defaults

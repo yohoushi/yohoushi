@@ -5,7 +5,7 @@ Yohoushi::Application.routes.draw do
   root 'graphs#list_graph'
   get 'list_graph' => 'graphs#list_graph'
   get 'list_graph/:path' => 'graphs#list_graph', :constraints => { :path => /.+/ }
-  get 'view_graph/:path' => 'graphs#view_graph', :constraints => { :path => /.+/ }
+  get 'view_graph/:path' => 'graphs#view_graph', :constraints => { :path => /.+/ }, :as => 'view_graph'
 
   namespace :api do
     resources :graphs, :only => %w[index], :constraints => { :path => /.+/ }, :defaults => {:format => 'json'} do
