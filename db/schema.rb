@@ -11,14 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130605091736) do
-
-  create_table "graphs_tags", id: false, force: true do |t|
-    t.integer "graph_id", null: false
-    t.integer "tag_id",   null: false
-  end
-
-  add_index "graphs_tags", ["graph_id", "tag_id"], name: "index_graphs_tags_on_graph_id_and_tag_id", unique: true, using: :btree
+ActiveRecord::Schema.define(version: 20130605094841) do
 
   create_table "paths", force: true do |t|
     t.string   "type"
@@ -29,10 +22,21 @@ ActiveRecord::Schema.define(version: 20130605091736) do
     t.datetime "updated_at"
   end
 
-  create_table "tags", force: true do |t|
-    t.string   "tag"
+  create_table "taggings", force: true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context",       limit: 128
     t.datetime "created_at"
-    t.datetime "updated_at"
+  end
+
+  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
+
+  create_table "tags", force: true do |t|
+    t.string "name"
   end
 
 end

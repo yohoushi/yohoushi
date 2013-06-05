@@ -1,5 +1,4 @@
 Yohoushi::Application.routes.draw do
-  resources :tags
   resources :graphs
 
   root 'graphs#list_graph'
