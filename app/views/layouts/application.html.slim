@@ -29,7 +29,6 @@ html lang="en"
           .container.nav-collapse
             ul.nav
               li= link_to "Graph", "/list_graph"
-              li= link_to "Tag", "/tags"
 
     .container
 
@@ -39,11 +38,11 @@ html lang="en"
           = yield
         .span3
           .well.sidebar-nav
-            h3 Sidebar
+            h3 Tag Cloud
             ul.nav.nav-list
-              li.nav-header Sidebar
-              li= link_to "Graph", "/list_graph"
-              li= link_to "Tag", "/tags"
+              - tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class|
+                = link_to tag.name, "#{list_graph_path}?tag=#{tag.name}", :class => css_class
+                | &nbsp;
     
       footer
         p &copy; DeNA Co., Ltd. 2013

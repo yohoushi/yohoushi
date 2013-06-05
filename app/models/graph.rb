@@ -1,3 +1,3 @@
-class Graph < ActiveRecord::Base
-  has_and_belongs_to_many :tags
+class Graph < Path
+  acts_as_taggable_on :tags
 end

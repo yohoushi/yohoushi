@@ -1,0 +1,2 @@
+class Directory < Path
+end

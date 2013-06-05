@@ -49,6 +49,7 @@ gem 'mgclient', git: 'git@github.dena.jp:dena/mgclient.git'
 # http://d.hatena.ne.jp/sandmark/20120321/1332292995
 gem 'bootstrap-sass'
 gem 'bootswatch-rails'
+gem 'acts-as-taggable-on'
 
 group :development do
   gem 'twitter-bootstrap-rails'
