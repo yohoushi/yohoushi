@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130605094841) do
+ActiveRecord::Schema.define(version: 20130606035720) do
 
   create_table "paths", force: true do |t|
     t.string   "type"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20130605094841) do
     t.boolean  "hidden"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "ancestry",    limit: 4096, null: false
   end
 
   create_table "taggings", force: true do |t|
