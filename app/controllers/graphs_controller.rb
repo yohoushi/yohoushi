@@ -39,7 +39,7 @@ class GraphsController < ApplicationController
     success = ActiveRecord::Base.transaction do
       @graph = Graph.new(graph_params)
       @graph.save
-      $mgclient.post_graph(@graph.path, create_params)
+      $mgclient.post_graph(@graph.fullpath, create_params)
     end
 
     respond_to do |format|
@@ -58,7 +58,7 @@ class GraphsController < ApplicationController
   def update
     success = ActiveRecord::Base.transaction do
       @graph.update(graph_params)
-      $mgclient.edit_graph(@graph.path, update_params)
+      $mgclient.edit_graph(@graph.fullpath, update_params)
     end
 
     respond_to do |format|
@@ -77,7 +77,7 @@ class GraphsController < ApplicationController
   def destroy
     success = ActiveRecord::Base.transaction do
       @graph.destroy
-      @graph = $mgclient.delete_graph(@graph.path) rescue nil
+      @graph = $mgclient.delete_graph(@graph.fullpath) rescue nil
     end
     respond_to do |format|
       format.html { redirect_to graphs_url }
@@ -103,8 +103,8 @@ class GraphsController < ApplicationController
     case
     when params[:tag]
       @graphs = Graph.tagged_with(params[:tag])
-    when params[:path]
-      @graphs = Graph.where("path LIKE ?", "#{params[:path]}%")
+    when params[:fullpath]
+      @graphs = Graph.where("path LIKE ?", "#{params[:fullpath]}%")
     else
       @graphs = Graph.all
     end
@@ -112,11 +112,11 @@ class GraphsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_graph
-    @graph = params[:id] ? Graph.find(params[:id]) : Graph.find_by(path: params[:path])
+    @graph = params[:id] ? Graph.find(params[:id]) : Graph.find_by(fullpath: params[:fullpath])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def graph_params
-    params.require(:graph).permit(:path, :tag_list)
+    params.require(:graph).permit(:fullpath, :tag_list)
   end
 end

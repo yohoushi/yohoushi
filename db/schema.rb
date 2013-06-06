@@ -15,12 +15,12 @@ ActiveRecord::Schema.define(version: 20130606035720) do
 
   create_table "paths", force: true do |t|
     t.string   "type"
-    t.string   "path",        limit: 2048, null: false
+    t.string   "fullpath",    limit: 4096, null: false
     t.string   "description"
     t.boolean  "hidden"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "ancestry",    limit: 4096, null: false
+    t.string   "ancestry",    limit: 4096
   end
 
   create_table "taggings", force: true do |t|

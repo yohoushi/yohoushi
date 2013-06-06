@@ -7,26 +7,26 @@ module Api
       @graphs = $mgclient.list_graph
     end
 
-    # GET /graphs/:path
+    # GET /graphs/:fullpath
     def show
-      @graph = $mgclient.get_graph(params[:path])
+      @graph = $mgclient.get_graph(params[:fullpath])
     end
 
-    # POST /graphs/:path
+    # POST /graphs/:fullpath
     def create
-      @graph = $mgclient.post_graph(params[:path], create_params)
+      @graph = $mgclient.post_graph(params[:fullpath], create_params)
       render action: 'show', status: :created
     end
 
-    # PUT /graphs/:path
+    # PUT /graphs/:fullpath
     def update
-      @graph = $mgclient.edit_graph(params[:path], update_params)
+      @graph = $mgclient.edit_graph(params[:fullpath], update_params)
       render action: 'show', status: :updated
     end
 
-    # DELETE /graphs/:path
+    # DELETE /graphs/:fullpath
     def destroy
-      @graph = $mgclient.delete_graph(params[:path])
+      @graph = $mgclient.delete_graph(params[:fullpath])
       render action: 'show', status: :no_content
     end
 
