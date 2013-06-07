@@ -15,9 +15,9 @@ describe Api::ComplexesController do
     describe "POST create" do
       describe "with valid params" do
         it "creates a new complex" do
-          mgclient.delete_complex(to_complex['path']) rescue nil
+          mfclient.delete_complex(to_complex['path']) rescue nil
           post :create, {:format => 'json'}.merge(to_complex).merge({'data'=>from_graphs}), valid_session
-          mgclient.delete_complex(to_complex['path']) rescue nil
+          mfclient.delete_complex(to_complex['path']) rescue nil
           response.should be_success
         end
       end
@@ -26,7 +26,7 @@ describe Api::ComplexesController do
     describe "DELETE destroy" do
       it "destroys the requested complex" do
         post :create, {:format => 'json'}.merge(to_complex).merge({'data'=>from_graphs}), valid_session
-        delete :destroy, {:fullpath => to_complex["fullpath"], :format => 'json'}, valid_session
+        delete :destroy, {:fullpath => to_complex["path"], :format => 'json'}, valid_session
         response.should be_success
       end
     end
@@ -37,7 +37,7 @@ describe Api::ComplexesController do
 
     describe "GET index" do
       include_context "stub_list_complex" if ENV['MOCK'] == 'on'
-      let(:complexes) { mgclient.list_complex }
+      let(:complexes) { mfclient.list_complex }
       it "assigns all complexes as @complexes" do
         get :index, {:format => 'json'}, valid_session
         assigns(:complexes).should eq(complexes)
@@ -46,9 +46,9 @@ describe Api::ComplexesController do
 
     describe "GET show" do
       include_context "stub_get_complex" if ENV['MOCK'] == 'on'
-      let(:complex) { mgclient.get_complex(to_complex["fullpath"]) }
+      let(:complex) { mfclient.get_complex(to_complex["path"]) }
       it "assigns the requested complex as @complex" do
-        get :show, {:fullpath => to_complex["fullpath"], :format => 'json'}, valid_session
+        get :show, {:fullpath => to_complex["path"], :format => 'json'}, valid_session
         assigns(:complex).should eq(complex)
       end
     end

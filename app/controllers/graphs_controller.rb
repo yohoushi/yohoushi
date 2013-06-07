@@ -38,7 +38,7 @@ class GraphsController < ApplicationController
   def create
     success = ActiveRecord::Base.transaction do
       @graph = Graph.find_or_create(graph_params)
-      $mgclient.post_graph(@graph.fullpath, post_params)
+      $mfclient.post_graph(@graph.fullpath, post_params)
     end
 
     respond_to do |format|
@@ -57,7 +57,7 @@ class GraphsController < ApplicationController
   def update
     success = ActiveRecord::Base.transaction do
       @graph.update(graph_params)
-      $mgclient.edit_graph(@graph.fullpath, update_params)
+      $mfclient.edit_graph(@graph.fullpath, update_params)
     end
 
     respond_to do |format|
@@ -76,7 +76,7 @@ class GraphsController < ApplicationController
   def destroy
     success = ActiveRecord::Base.transaction do
       @graph.destroy
-      @graph = $mgclient.delete_graph(@graph.fullpath) rescue nil
+      @graph = $mfclient.delete_graph(@graph.fullpath) rescue nil
     end
     respond_to do |format|
       format.html { redirect_to graphs_url }

@@ -1,8 +1,8 @@
 GIT
-  remote: git@github.dena.jp:dena/mgclient.git
-  revision: 3f502e526c40afc629495ba67a0389226990f0c2
+  remote: git@github.dena.jp:dena/multiforecast-client.git
+  revision: 0bb1c9f2801eda13e263f7e5f6e4bb47082e22c6
   specs:
-    mgclient (0.1.1)
+    multiforecast-client (0.1.1)
       growthforecast-client
 
 GIT
@@ -260,7 +260,7 @@ DEPENDENCIES
   ir_b
   jbuilder (~> 1.2)
   jquery-rails
-  mgclient!
+  multiforecast-client!
   mysql2
   pry
   pry-nav
