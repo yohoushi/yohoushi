@@ -3,7 +3,7 @@ div class="page-header"
   h1=t '.title', :default => model_class.model_name.human.pluralize
 
 div class="tree"
-  == tree Path.all.first
+  == tree @root
 
 table class="table table-striped"
   thead

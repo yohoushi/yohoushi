@@ -1,6 +1,6 @@
 class GraphsController < ApplicationController
   before_action :set_graph, only: [:show, :edit, :update, :destroy, :view_graph]
-  before_action :set_graphs, only: [:list_graph]
+  before_action :set_graphs, :set_root, only: [:list_graph]
   before_action :set_tags
 
   # GET /list_graph
@@ -98,6 +98,14 @@ class GraphsController < ApplicationController
 
   def set_tags
     @tags = Graph.tag_counts_on(:tags).order('count DESC')
+  end
+
+  def set_root
+    if params[:fullpath]
+      @root = Path.where(fullpath: params[:fullpath]).first
+    else
+      @root = Path.where(fullpath: '/').first
+    end
   end
 
   def set_graphs
