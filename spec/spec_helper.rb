@@ -4,8 +4,8 @@ ENV['MOCK'] ||= 'on'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
-require 'mgclient'
-require 'mgclient/shared_context'
+require 'multiforecast-client'
+require 'multiforecast/shared_context'
 require 'webmock/rspec'
 WebMock.allow_net_connect! if ENV['MOCK'] == 'off'
 
@@ -46,6 +46,6 @@ RSpec.configure do |config|
   config.order = "random"
 end
 
-def mgclient
-  Mg::Client.new(Settings.growthforecasts)
+def mfclient
+  MultiForecast::Client.new(Settings.growthforecasts)
 end

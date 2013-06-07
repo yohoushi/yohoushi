@@ -7,7 +7,7 @@ p
   br
   = @graph.fullpath
 
-img src="#{$mgclient.get_graph_uri(@graph.fullpath)}"
+img src="#{$mfclient.get_graph_uri(@graph.fullpath)}"
 
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), graphs_path, :class => 'btn'
