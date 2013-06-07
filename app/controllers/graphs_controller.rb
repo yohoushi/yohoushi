@@ -105,7 +105,7 @@ class GraphsController < ApplicationController
     when params[:tag]
       @graphs = Graph.tagged_with(params[:tag])
     when params[:fullpath]
-      @graphs = Graph.where("path LIKE ?", "#{params[:fullpath]}%")
+      @graphs = Graph.where("fullpath LIKE ?", "#{params[:fullpath]}%")
     else
       @graphs = Graph.all
     end

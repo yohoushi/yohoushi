@@ -28,7 +28,7 @@ html lang="en"
           a.brand href="/"Yohoushi
           .container.nav-collapse
             ul.nav
-              li= link_to "Graph", "/list_graph"
+              li= link_to "Graph", list_graph_root_path
 
     .container
 
@@ -41,7 +41,7 @@ html lang="en"
             h3 Tag Cloud
             ul.nav.nav-list
               - tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class|
-                = link_to tag.name, "#{list_graph_path}?tag=#{tag.name}", :class => css_class
+                = link_to tag.name, "#{list_graph_root_path}?tag=#{tag.name}", :class => css_class
                 | &nbsp;
     
       footer

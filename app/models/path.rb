@@ -1,6 +1,18 @@
 class Path < ActiveRecord::Base
   has_ancestry
 
+  def root?
+    fullpath == "/"
+  end
+
+  def graph?
+    type == "Graph"
+  end
+
+  def directory?
+    type == "Directory"
+  end
+
   # @return id of the direct parent
   def self.create_parents(fullpath)
     if (dirname = File.dirname(fullpath)) == '.'

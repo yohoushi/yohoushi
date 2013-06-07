@@ -2,8 +2,8 @@ Yohoushi::Application.routes.draw do
   resources :graphs
 
   root 'graphs#list_graph'
-  get 'list_graph' => 'graphs#list_graph'
-  get 'list_graph/:fullpath' => 'graphs#list_graph', :constraints => { :fullpath => /.+/ }
+  get 'list_graph' => 'graphs#list_graph', :as => 'list_graph_root'
+  get 'list_graph/:fullpath' => 'graphs#list_graph', :constraints => { :fullpath => /.+/ }, :as => 'list_graph'
   get 'view_graph/:fullpath' => 'graphs#view_graph', :constraints => { :fullpath => /.+/ }, :as => 'view_graph'
 
   namespace :api do
