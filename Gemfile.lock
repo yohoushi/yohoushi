@@ -44,6 +44,8 @@ GEM
     acts-as-taggable-on (2.4.1)
       rails (>= 3, < 5)
     addressable (2.3.4)
+    ancestry (2.0.0)
+      activerecord (>= 3.0.0)
     arel (4.0.0)
     atomic (1.1.9)
     bootstrap-sass (2.3.1.2)
@@ -243,6 +245,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on
+  ancestry
   bootstrap-sass
   bootswatch-rails
   capistrano

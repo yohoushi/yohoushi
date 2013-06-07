@@ -50,6 +50,7 @@ gem 'mgclient', git: 'git@github.dena.jp:dena/mgclient.git'
 gem 'bootstrap-sass'
 gem 'bootswatch-rails'
 gem 'acts-as-taggable-on'
+gem 'ancestry'
 
 group :development do
   gem 'twitter-bootstrap-rails'

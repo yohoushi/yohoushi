@@ -6,14 +6,14 @@ table class="table table-striped"
   thead
     tr
       th= model_class.human_attribute_name(:id)
-      th= model_class.human_attribute_name(:path)
+      th= model_class.human_attribute_name(:fullpath)
       th= model_class.human_attribute_name(:created_at)
       th=t '.actions', :default => t("helpers.actions")
   tbody
     - @graphs.each do |graph|
       tr
         td= link_to graph.id, graph_path(graph)
-        td= link_to graph.path, view_graph_path(graph.path)
+        td= link_to graph.fullpath, view_graph_path(graph.fullpath)
         td=l graph.created_at
         td
           = link_to t('.edit', :default => t("helpers.links.edit")), edit_graph_path(graph), :class => 'btn btn-mini'

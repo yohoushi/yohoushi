@@ -3,11 +3,11 @@ div class="page-header"
   h1=t '.title', :default => model_class.model_name.human
 
 p
-  strong= model_class.human_attribute_name(:path) + ':'
+  strong= model_class.human_attribute_name(:fullpath) + ':'
   br
-  = @graph.path
+  = @graph.fullpath
 
-img src="#{$mgclient.get_graph_uri(@graph.path)}"
+img src="#{$mgclient.get_graph_uri(@graph.fullpath)}"
 
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), graphs_path, :class => 'btn'
