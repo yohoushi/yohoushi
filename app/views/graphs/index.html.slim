@@ -3,16 +3,7 @@ div class="page-header"
   h1=t '.title', :default => model_class.model_name.human.pluralize
 
 div class="tree"
-  ul
-    li
-      =link_to root_url
-      ul
-        - @graphs.each do |graph|
-          li
-            =link_to graph.fullpath, view_graph_path(graph.fullpath)
-            ul
-              li
-                =link_to root_url
+  == tree Path.all.first
 
 table class="table table-striped"
   thead
