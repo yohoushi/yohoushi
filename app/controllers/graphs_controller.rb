@@ -37,9 +37,8 @@ class GraphsController < ApplicationController
   # POST /graphs.json
   def create
     success = ActiveRecord::Base.transaction do
-      @graph = Graph.new(graph_params)
-      @graph.save
-      $mgclient.post_graph(@graph.fullpath, create_params)
+      @graph = Graph.find_or_create(graph_params)
+      $mgclient.post_graph(@graph.fullpath, post_params)
     end
 
     respond_to do |format|
@@ -87,11 +86,13 @@ class GraphsController < ApplicationController
 
   private
 
-  def create_params
+  def post_params
+    # ToDo
     {:number => 0}
   end
 
   def update_params
+    # ToDo
     {}
   end
 

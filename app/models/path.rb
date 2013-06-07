@@ -1,10 +1,6 @@
 class Path < ActiveRecord::Base
   has_ancestry
 
-  def create_parents
-    Directory.create_parents(self.fullpath)
-  end
-
   # @return id of the direct parent
   def self.create_parents(fullpath)
     return nil if (dirname = File.dirname(fullpath)) == '.'
