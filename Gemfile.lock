@@ -6,6 +6,14 @@ GIT
       growthforecast-client
 
 GIT
+  remote: https://github.com/sonots/ancestry.git
+  revision: 9df1ee82cadd8e7446d4dac21eae1b20736a6bb1
+  branch: master
+  specs:
+    ancestry (2.0.0)
+      activerecord (>= 3.0.0)
+
+GIT
   remote: https://github.com/sonots/growthforecast-client.git
   revision: b2564ec18344393f888556a74f0a966c44b04735
   branch: more_api
@@ -44,8 +52,6 @@ GEM
     acts-as-taggable-on (2.4.1)
       rails (>= 3, < 5)
     addressable (2.3.4)
-    ancestry (2.0.0)
-      activerecord (>= 3.0.0)
     arel (4.0.0)
     atomic (1.1.9)
     bootstrap-sass (2.3.1.2)
@@ -119,7 +125,7 @@ GEM
     method_source (0.8.1)
     mime-types (1.23)
     minitest (4.7.4)
-    multi_json (1.7.3)
+    multi_json (1.7.6)
     mysql2 (0.3.11)
     net-scp (1.1.1)
       net-ssh (>= 2.6.5)
@@ -245,7 +251,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on
-  ancestry
+  ancestry!
   bootstrap-sass
   bootswatch-rails
   capistrano

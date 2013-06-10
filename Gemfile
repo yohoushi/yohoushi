@@ -50,7 +50,7 @@ gem 'multiforecast-client', git: 'git@github.dena.jp:dena/multiforecast-client.g
 gem 'bootstrap-sass'
 gem 'bootswatch-rails'
 gem 'acts-as-taggable-on'
-gem 'ancestry'
+gem 'ancestry', git: 'https://github.com/sonots/ancestry.git', branch: 'master'
 
 group :development do
   gem 'twitter-bootstrap-rails'
