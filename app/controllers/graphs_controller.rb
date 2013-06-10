@@ -38,7 +38,7 @@ class GraphsController < ApplicationController
   def create
     success = ActiveRecord::Base.transaction do
       @graph = Graph.find_or_create(graph_params)
-      $mfclient.post_graph(@graph.fullpath, post_params)
+      $mfclient.post_graph(@graph.path, post_params)
     end
 
     respond_to do |format|
@@ -57,7 +57,7 @@ class GraphsController < ApplicationController
   def update
     success = ActiveRecord::Base.transaction do
       @graph.update(graph_params)
-      $mfclient.edit_graph(@graph.fullpath, update_params)
+      $mfclient.edit_graph(@graph.path, update_params)
     end
 
     respond_to do |format|
@@ -76,7 +76,7 @@ class GraphsController < ApplicationController
   def destroy
     success = ActiveRecord::Base.transaction do
       @graph.destroy
-      @graph = $mfclient.delete_graph(@graph.fullpath) rescue nil
+      @graph = $mfclient.delete_graph(@graph.path) rescue nil
     end
     respond_to do |format|
       format.html { redirect_to graphs_url }
@@ -101,10 +101,10 @@ class GraphsController < ApplicationController
   end
 
   def set_root
-    if params[:fullpath]
-      @root = Path.where(fullpath: params[:fullpath]).first
+    if params[:path]
+      @root = Path.where(path: params[:path]).first
     else
-      @root = Path.where(fullpath: '/').first
+      @root = Path.where(path: '/').first
     end
   end
 
@@ -112,8 +112,8 @@ class GraphsController < ApplicationController
     case
     when params[:tag]
       @graphs = Graph.tagged_with(params[:tag])
-    when params[:fullpath]
-      @graphs = Graph.where("fullpath LIKE ?", "#{params[:fullpath]}%")
+    when params[:path]
+      @graphs = Graph.where("path LIKE ?", "#{params[:path]}%")
     else
       @graphs = Graph.all
     end
@@ -121,11 +121,11 @@ class GraphsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_graph
-    @graph = params[:id] ? Graph.find(params[:id]) : Graph.find_by(fullpath: params[:fullpath])
+    @graph = params[:id] ? Graph.find(params[:id]) : Graph.find_by(path: params[:path])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def graph_params
-    params.require(:graph).permit(:fullpath, :tag_list)
+    params.require(:graph).permit(:path, :tag_list)
   end
 end

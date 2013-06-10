@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "graphs/new" do
   before(:each) do
     assign(:graph, stub_model(Graph,
-      :fullpath => "MyString",
+      :path => "MyString",
     ).as_new_record)
   end
 
@@ -12,7 +12,7 @@ describe "graphs/new" do
 
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     assert_select "form[action=?][method=?]", graphs_path, "post" do
-      assert_select "input#graph_path[fullpath=?]", "graph[fullpath]"
+      assert_select "input#graph_path[path=?]", "graph[path]"
     end
   end
 end

@@ -21,7 +21,7 @@ describe Api::GraphsController do
 
   describe "GET show" do
     it "assigns the requested graph as @graph" do
-      get :show, {:fullpath => graph["path"], :format => 'json'}, valid_session
+      get :show, {:path => graph["path"], :format => 'json'}, valid_session
       expected = mfclient.get_graph(graph['path'])
       assigns(:graph).should eq(expected)
     end
@@ -34,7 +34,7 @@ describe Api::GraphsController do
 
     describe "with valid params" do
       it "creates a new Graph" do
-        post :create, {:fullpath => graph["path"], :number => 0, :format => 'json'}, valid_session
+        post :create, {:path => graph["path"], :number => 0, :format => 'json'}, valid_session
         response.should be_success
         mfclient.delete_graph(graph['path'])
       end
@@ -47,8 +47,8 @@ describe Api::GraphsController do
     let(:graph) { { 'path' => "app name/host name/delete:test" } }
 
     it "destroys the requested graph" do
-      post :create, {:fullpath => graph["path"], :number => 0, :format => 'json'}, valid_session
-      delete :destroy, {:fullpath => graph["path"], :format => 'json'}, valid_session
+      post :create, {:path => graph["path"], :number => 0, :format => 'json'}, valid_session
+      delete :destroy, {:path => graph["path"], :format => 'json'}, valid_session
       response.should be_success
     end
   end
@@ -64,7 +64,7 @@ describe Api::GraphsController do
         'color'  => "#000000"
       }
       it "assigns the requested graph as @graph" do
-        put :update, {:fullpath => graph['path'], :format => 'json'}.merge(params), valid_session
+        put :update, {:path => graph['path'], :format => 'json'}.merge(params), valid_session
         assigns(:graph).should eq({'error'=>0})
       end
     end

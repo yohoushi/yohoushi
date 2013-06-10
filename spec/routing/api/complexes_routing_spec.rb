@@ -8,19 +8,19 @@ describe Api::ComplexesController do
     end
 
     it "routes to #show" do
-      get("/api/complexes/1").should route_to("api/complexes#show", :fullpath => "1", :format => "json")
+      get("/api/complexes/1").should route_to("api/complexes#show", :path => "1", :format => "json")
     end
 
     it "routes to #create" do
-      post("/api/complexes/1").should route_to("api/complexes#create", :fullpath => "1", :format => "json")
+      post("/api/complexes/1").should route_to("api/complexes#create", :path => "1", :format => "json")
     end
 
     it "routes to #update" do
-      put("/api/complexes/1").should route_to("api/complexes#update", :fullpath => "1", :format => "json")
+      put("/api/complexes/1").should route_to("api/complexes#update", :path => "1", :format => "json")
     end
 
     it "routes to #destroy" do
-      delete("/api/complexes/1").should route_to("api/complexes#destroy", :fullpath => "1", :format => "json")
+      delete("/api/complexes/1").should route_to("api/complexes#destroy", :path => "1", :format => "json")
     end
 
   end

@@ -4,10 +4,10 @@ describe "graphs/index" do
   before(:each) do
     assign(:graphs, [
       stub_model(Graph,
-        :fullpath => "Path",
+        :path => "Path",
       ),
       stub_model(Graph,
-        :fullpath => "Path",
+        :path => "Path",
       )
     ])
   end

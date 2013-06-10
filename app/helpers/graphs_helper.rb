@@ -3,11 +3,11 @@ module GraphsHelper
 
   def link(path)
     if path.root?
-      link_to(path.fullpath, root_url)
+      link_to(path.path, root_url)
     elsif path.directory?
-      link_to(path.fullpath, list_graph_path(path.fullpath))
+      link_to(path.path, list_graph_path(path.path))
     else
-      link_to(path.fullpath, view_graph_path(path.fullpath))
+      link_to(path.path, view_graph_path(path.path))
     end
   end
 
