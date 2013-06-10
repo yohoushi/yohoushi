@@ -5,9 +5,9 @@ module GraphsHelper
     if path.root?
       link_to(path.path, root_url)
     elsif path.directory?
-      link_to(path.path, list_graph_path(path.path))
+      link_to(File.basename(path.path), list_graph_path(path.path))
     else
-      link_to(path.path, view_graph_path(path.path))
+      link_to(File.basename(path.path), view_graph_path(path.path))
     end
   end
 

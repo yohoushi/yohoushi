@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20130606035720) do
 
-  create_table "paths", force: true do |t|
+  create_table "nodes", force: true do |t|
     t.string   "type"
     t.string   "path",        limit: 4096, null: false
     t.string   "description"
