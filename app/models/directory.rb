@@ -1,2 +1,2 @@
-class Directory < Path
+class Directory < Node
 end

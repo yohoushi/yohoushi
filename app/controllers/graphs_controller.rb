@@ -102,9 +102,9 @@ class GraphsController < ApplicationController
 
   def set_root
     if params[:path]
-      @root = Path.where(path: params[:path]).first
+      @root = Node.where(path: params[:path]).first
     else
-      @root = Path.where(path: '/').first
+      @root = Node.where(path: '/').first
     end
   end
 

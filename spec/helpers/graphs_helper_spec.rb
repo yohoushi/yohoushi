@@ -11,5 +11,11 @@ require 'spec_helper'
 #   end
 # end
 describe GraphsHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "#link" do
+    pending "todo"
+  end
+
+  describe "#tree" do
+    pending "todo"
+  end
 end

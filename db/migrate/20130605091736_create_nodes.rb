@@ -1,6 +1,6 @@
-class CreatePaths < ActiveRecord::Migration
+class CreateNodes < ActiveRecord::Migration
   def change
-    create_table :paths do |t|
+    create_table :nodes do |t|
       t.string :type # STI
       t.string :path, limit: 4096, index: true, null: false
       t.string :description
