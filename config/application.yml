@@ -10,6 +10,10 @@ development:
 
 test:
   <<: *defaults
+  growthforecasts:
+    -
+      dir: ''
+      gfuri: 'http://localhost:5125'
 
 production:
   <<: *defaults

@@ -1,1 +1,1 @@
-json.extract! @graph, :fullpath, :created_at, :updated_at
+json.extract! @graph, :path, :created_at, :updated_at

@@ -23,7 +23,7 @@ describe GraphsController do
   # This should return the minimal set of attributes required to create a valid
   # Graph. As you add validations to Graph, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "fullpath" => "MyString" } }
+  let(:valid_attributes) { { "path" => "MyString" } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -85,14 +85,14 @@ describe GraphsController do
       it "assigns a newly created but unsaved graph as @graph" do
         # Trigger the behavior that occurs when invalid params are submitted
         Graph.any_instance.stub(:save).and_return(false)
-        post :create, {:graph => { "fullpath" => "invalid value" }}, valid_session
+        post :create, {:graph => { "path" => "invalid value" }}, valid_session
         assigns(:graph).should be_a_new(Graph)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Graph.any_instance.stub(:save).and_return(false)
-        post :create, {:graph => { "fullpath" => "invalid value" }}, valid_session
+        post :create, {:graph => { "path" => "invalid value" }}, valid_session
         response.should render_template("new")
       end
     end
@@ -106,8 +106,8 @@ describe GraphsController do
         # specifies that the Graph created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Graph.any_instance.should_receive(:update).with({ "fullpath" => "MyString" })
-        put :update, {:id => graph.to_param, :graph => { "fullpath" => "MyString" }}, valid_session
+        Graph.any_instance.should_receive(:update).with({ "path" => "MyString" })
+        put :update, {:id => graph.to_param, :graph => { "path" => "MyString" }}, valid_session
       end
 
       it "assigns the requested graph as @graph" do
@@ -128,7 +128,7 @@ describe GraphsController do
         graph = Graph.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Graph.any_instance.stub(:save).and_return(false)
-        put :update, {:id => graph.to_param, :graph => { "fullpath" => "invalid value" }}, valid_session
+        put :update, {:id => graph.to_param, :graph => { "path" => "invalid value" }}, valid_session
         assigns(:graph).should eq(graph)
       end
 
@@ -136,7 +136,7 @@ describe GraphsController do
         graph = Graph.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Graph.any_instance.stub(:save).and_return(false)
-        put :update, {:id => graph.to_param, :graph => { "fullpath" => "invalid value" }}, valid_session
+        put :update, {:id => graph.to_param, :graph => { "path" => "invalid value" }}, valid_session
         response.should render_template("edit")
       end
     end

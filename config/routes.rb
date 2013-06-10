@@ -3,24 +3,24 @@ Yohoushi::Application.routes.draw do
 
   root 'graphs#list_graph'
   get 'list_graph' => 'graphs#list_graph', :as => 'list_graph_root'
-  get 'list_graph/:fullpath' => 'graphs#list_graph', :constraints => { :fullpath => /.+/ }, :as => 'list_graph'
-  get 'view_graph/:fullpath' => 'graphs#view_graph', :constraints => { :fullpath => /.+/ }, :as => 'view_graph'
+  get 'list_graph/:path' => 'graphs#list_graph', :constraints => { :path => /.+/ }, :as => 'list_graph'
+  get 'view_graph/:path' => 'graphs#view_graph', :constraints => { :path => /.+/ }, :as => 'view_graph'
 
   namespace :api do
-    resources :graphs, :only => %w[index], :constraints => { :fullpath => /.+/ }, :defaults => {:format => 'json'} do
+    resources :graphs, :only => %w[index], :constraints => { :path => /.+/ }, :defaults => {:format => 'json'} do
       collection do
-        post   ':fullpath' => 'graphs#create'
-        get    ':fullpath' => 'graphs#show'
-        put    ':fullpath' => 'graphs#update'
-        delete ':fullpath' => 'graphs#destroy'
+        post   ':path' => 'graphs#create'
+        get    ':path' => 'graphs#show'
+        put    ':path' => 'graphs#update'
+        delete ':path' => 'graphs#destroy'
       end
     end
-    resources :complexes, :only => %w[index], :constraints => { :fullpath => /.+/ }, :defaults => {:format => 'json'} do
+    resources :complexes, :only => %w[index], :constraints => { :path => /.+/ }, :defaults => {:format => 'json'} do
       collection do
-        post   ':fullpath' => 'complexes#create'
-        get    ':fullpath' => 'complexes#show'
-        put    ':fullpath' => 'complexes#update'
-        delete ':fullpath' => 'complexes#destroy'
+        post   ':path' => 'complexes#create'
+        get    ':path' => 'complexes#show'
+        put    ':path' => 'complexes#update'
+        delete ':path' => 'complexes#destroy'
       end
     end
   end

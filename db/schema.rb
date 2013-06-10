@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20130606035720) do
 
   create_table "paths", force: true do |t|
     t.string   "type"
-    t.string   "fullpath",    limit: 4096, null: false
+    t.string   "path",        limit: 4096, null: false
     t.string   "description"
     t.boolean  "hidden"
     t.datetime "created_at"

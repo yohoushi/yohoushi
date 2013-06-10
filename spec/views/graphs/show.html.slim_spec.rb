@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "graphs/show" do
   before(:each) do
     @graph = assign(:graph, stub_model(Graph,
-      :fullpath => "Path",
+      :path => "Path",
     ))
   end
 
