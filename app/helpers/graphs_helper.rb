@@ -12,6 +12,7 @@ module GraphsHelper
   end
 
   def tree(root)
+    return '' unless root
     html = ''
     open_ul = 0
     prev_depth = root.depth - 1
