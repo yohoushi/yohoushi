@@ -10,6 +10,10 @@ class GraphsController < ApplicationController
 
   # GET /view_graph
   def view_graph
+    @from = params[:from].present? ? Time.parse(params[:from]) : 1.day.ago.localtime
+    @to   = params[:to].present?   ? Time.parse(params[:to])   : Time.now.localtime  
+    @width  = 640
+    @height = 396
     render action: 'show'
   end
 

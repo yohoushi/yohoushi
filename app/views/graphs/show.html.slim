@@ -17,7 +17,7 @@ p
         i data-time-icon="icon-time" data-date-icon="icon-calendar"
     = button_tag 'Submit', :class => 'btn'
 
-img src="#{$mfclient.get_custom_graph_uri(@graph.path, 3.days.ago.localtime, Time.now, 640, 396)}"
+img src="#{$mfclient.get_custom_graph_uri(@graph.path, @from, @to, @width, @height)}"
 
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), graphs_path, :class => 'btn'
