@@ -5,17 +5,17 @@ p
   br
   = @graph.path
 
-div class='well'
-  = form_tag({:action => :view_graph}, :method => 'get') do
-    div id="datetimepicker_from" class="input-append date"
+.well
+  = form_tag({:action => :view_graph}, :method => 'get', :class => 'form-inline') do
+    #datetimepicker_from.input-append.date
       = text_field_tag :from, params[:from], :class => "input-medium", :"data-format" => "dd/MM/yyyy hh:mm:ss", :placeholder => "from"
-      span class="add-on"
+      span.add-on
         i data-time-icon="icon-time" data-date-icon="icon-calendar"
-    div id="datetimepicker_to" class="input-append date"
+    #datetimepicker_to.input-append.date
       = text_field_tag :to,  params[:to], :class => "input-medium", :"data-format" => "dd/MM/yyyy hh:mm:ss", :placeholder => "to"
-      span class="add-on"
+      span.add-on
         i data-time-icon="icon-time" data-date-icon="icon-calendar"
-    = submit_tag  'Submit'
+    = button_tag 'Submit', :class => 'btn'
 
 img src="#{$mfclient.get_custom_graph_uri(@graph.path, 3.days.ago.localtime, Time.now, 640, 396)}"
 
