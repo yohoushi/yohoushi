@@ -5,7 +5,7 @@ p
   br
   = @graph.path
 
-img src="#{$mfclient.get_graph_uri(@graph.path)}"
+img src="#{$mfclient.get_custom_graph_uri(@graph.path, 3.days.ago.localtime, Time.now, 640, 396)}"
 
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), graphs_path, :class => 'btn'
