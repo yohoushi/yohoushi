@@ -23,3 +23,12 @@ table class="table table-striped"
 
 = link_to t('.new', :default => t("helpers.links.new")), new_graph_path, :class => 'btn btn-primary'
 
+- @graphs.each do |graph|
+  h3 #{link_to File.basename(graph.path), view_graph_path(graph.path)}
+  .row-fluid
+    .span6
+      a href="#{view_graph_path(graph.path)}"
+        img src="#{$mfclient.get_graph_uri(graph.path, 'h')}"
+    .span6
+      a href="#{view_graph_path(graph.path)}"
+        img src="#{$mfclient.get_graph_uri(graph.path, 'n')}"
