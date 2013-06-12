@@ -1,9 +1,9 @@
 - model_class = Graph
 
-= form_for @root, method: 'get', url: list_graph_root_path do |f|
-  - (1..Settings.graph.max_depth).each do |depth|
-    = f.autocomplete_field :path, autocomplete_graph_path('a/'), class: 'input-small'
-    |  / 
+form class="form-search"
+  input type="text" class="input-xxlarge" id="autocomplete" data-autocomplete="/autocomplete_graph" placeholder="Path" value= @root.try(:path)
+  button type="submit" class="btn"
+    | Go
 
 div class="tree"
   == tree @root, Settings.graph.tree.depth

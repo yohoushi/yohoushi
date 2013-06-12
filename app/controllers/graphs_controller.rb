@@ -2,10 +2,10 @@ class GraphsController < ApplicationController
   before_action :set_graph, only: [:show, :edit, :update, :destroy, :view_graph]
   before_action :set_graphs, :set_root, only: [:list_graph]
   before_action :set_tags
+  before_action :set_nodes, only: [:autocomplete_graph]
 
   def autocomplete_graph
-    set_root
-    render :json => @root.subtree.map(&:path)
+    render :json => @nodes.map(&:path)
   end
 
   # GET /list_graph
@@ -119,6 +119,16 @@ class GraphsController < ApplicationController
       @root = Node.where(path: params[:path]).first
     else
       @root = Node.root.first
+    end
+  end
+
+  def set_nodes
+    case
+    when params[:term]
+      term = params[:term].gsub(/ /, '%')
+      @nodes = Node.where("path LIKE ?", "#{term}%")
+    else
+      @nodes = Node.all
     end
   end
 
