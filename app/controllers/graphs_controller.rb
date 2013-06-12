@@ -3,8 +3,9 @@ class GraphsController < ApplicationController
   before_action :set_graphs, :set_root, only: [:list_graph]
   before_action :set_tags
 
-  def autocomplete_graph_path
-    render :json => Node.find_by(path: '/').subtree.map(&:path)
+  def autocomplete_graph
+    set_root
+    render :json => @root.subtree.map(&:path)
   end
 
   # GET /list_graph

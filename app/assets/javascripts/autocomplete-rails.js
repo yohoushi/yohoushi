@@ -58,7 +58,7 @@ $(document).ready(function(){
 				search: function() {
 					// custom minLength
 					var term = extractLast( this.value );
-					if ( term.length < 1 ) {
+					if ( term.length < 0 ) {
 						return false;
 					}
 				},
