@@ -1,10 +1,12 @@
 class GraphsController < ApplicationController
-  before_action :set_graph, only: [:show, :edit, :update, :destroy, :view_graph]
-  before_action :redirect, only: [:list_graph]
-  before_action :set_graphs, only: [:list_graph]
   before_action :set_tags, :set_root
+  before_action :set_graph, only: [:show, :edit, :update, :destroy, :view_graph]
+  before_action :set_view_options, only: [:show, :view_graph]
+  before_action :redirect, :set_graphs, only: [:list_graph]
   before_action :autocomplete_search, only: [:autocomplete_graph]
 
+  # GET /autocomplete_graph?term=xxx
+  # for ajax autocomplete
   def autocomplete_graph
     render :json => @nodes.map {|node|
       description = node.description ? " (#{node.description})" : ""
@@ -19,10 +21,6 @@ class GraphsController < ApplicationController
 
   # GET /view_graph
   def view_graph
-    @from = params[:from].present? ? Time.parse(params[:from]) : 1.day.ago.localtime
-    @to   = params[:to].present?   ? Time.parse(params[:to])   : Time.now.localtime  
-    @width  = Settings.graph.single_graph.width
-    @height = Settings.graph.single_graph.height
     render action: 'show'
   end
 
@@ -35,11 +33,6 @@ class GraphsController < ApplicationController
   # GET /graphs/1
   # GET /graphs/1.json
   def show
-    # @ToDo same code with #view_graph
-    @from = params[:from].present? ? Time.parse(params[:from]) : 1.day.ago.localtime
-    @to   = params[:to].present?   ? Time.parse(params[:to])   : Time.now.localtime  
-    @width  = Settings.graph.single_graph.width
-    @height = Settings.graph.single_graph.height
   end
 
   # GET /graphs/new
@@ -112,6 +105,13 @@ class GraphsController < ApplicationController
   def update_params
     # ToDo
     {}
+  end
+
+  def set_view_options
+    @from = params[:from].present? ? Time.parse(params[:from]) : 1.day.ago.localtime
+    @to   = params[:to].present?   ? Time.parse(params[:to])   : Time.now.localtime
+    @width  = Settings.graph.single_graph.width
+    @height = Settings.graph.single_graph.height
   end
 
   def redirect
