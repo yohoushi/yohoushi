@@ -12,8 +12,8 @@ class GraphsController < ApplicationController
   def view_graph
     @from = params[:from].present? ? Time.parse(params[:from]) : 1.day.ago.localtime
     @to   = params[:to].present?   ? Time.parse(params[:to])   : Time.now.localtime  
-    @width  = 640
-    @height = 396
+    @width  = Settings.graph.single_graph.width
+    @height = Settings.graph.single_graph.height
     render action: 'show'
   end
 
@@ -29,8 +29,8 @@ class GraphsController < ApplicationController
     # @ToDo same code with #view_graph
     @from = params[:from].present? ? Time.parse(params[:from]) : 1.day.ago.localtime
     @to   = params[:to].present?   ? Time.parse(params[:to])   : Time.now.localtime  
-    @width  = 640
-    @height = 396
+    @width  = Settings.graph.single_graph.width
+    @height = Settings.graph.single_graph.height
   end
 
   # GET /graphs/new
