@@ -1,5 +1,7 @@
 Yohoushi::Application.routes.draw do
-  resources :graphs
+  resources :graphs do
+    get :autocomplete_graph_path, :on => :collection
+  end
 
   root 'graphs#list_graph'
   get 'list_graph' => 'graphs#list_graph', :as => 'list_graph_root'
