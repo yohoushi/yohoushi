@@ -3,10 +3,13 @@ class GraphsController < ApplicationController
   before_action :redirect, only: [:list_graph]
   before_action :set_graphs, only: [:list_graph]
   before_action :set_tags, :set_root
-  before_action :set_nodes, only: [:autocomplete_graph]
+  before_action :autocomplete_search, only: [:autocomplete_graph]
 
   def autocomplete_graph
-    render :json => @nodes.map(&:path)
+    render :json => @nodes.map {|node|
+      description = node.description ? " (#{node.description})" : ""
+      {label: "#{node.path}#{description}", value: node.path}
+    }
   end
 
   # GET /list_graph
@@ -132,13 +135,13 @@ class GraphsController < ApplicationController
     end
   end
 
-  def set_nodes
+  def autocomplete_search
     case
     when params[:term]
       term = params[:term].gsub(/ /, '%')
-      @nodes = Node.where("path LIKE ?", "#{term}%")
+      @nodes = Node.select(:path, :description).where("path LIKE ?", "#{term}%")
     else
-      @nodes = Node.all
+      @nodes = Node.select(:path, :description).all
     end
   end
 
