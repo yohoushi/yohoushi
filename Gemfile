@@ -49,6 +49,7 @@ gem 'multiforecast-client', git: 'git@github.dena.jp:dena/multiforecast-client.g
 # http://d.hatena.ne.jp/sandmark/20120321/1332292995
 gem 'bootstrap-sass'
 gem 'bootswatch-rails'
+gem 'bootstrap-datetimepicker-rails'
 gem 'acts-as-taggable-on'
 gem 'ancestry', git: 'https://github.com/sonots/ancestry.git', branch: 'master'
 

@@ -26,5 +26,8 @@ body { padding-top: 60px; }
 // And finally bootswatch style itself
 @import "bootswatch/spacelab/bootswatch";
 
+// bootstrap-datetimepicker-rails gem requires follow line
+@import 'bootstrap-datetimepicker';
+
 // Whatever application styles you have go last
 // @import "base";
