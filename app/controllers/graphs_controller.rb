@@ -1,7 +1,8 @@
 class GraphsController < ApplicationController
   before_action :set_graph, only: [:show, :edit, :update, :destroy, :view_graph]
-  before_action :set_graphs, :set_root, only: [:list_graph]
-  before_action :set_tags
+  before_action :redirect, only: [:list_graph]
+  before_action :set_graphs, only: [:list_graph]
+  before_action :set_tags, :set_root
   before_action :set_nodes, only: [:autocomplete_graph]
 
   def autocomplete_graph
@@ -110,6 +111,15 @@ class GraphsController < ApplicationController
     {}
   end
 
+  def redirect
+    return unless request.query_parameters[:path]
+    if request.query_parameters[:path].present?
+      redirect_to list_graph_path(request.query_parameters[:path])
+    else
+      redirect_to list_graph_path(request.query_parameters[:path])
+    end
+  end
+
   def set_tags
     @tags = Graph.tag_counts_on(:tags).order('count DESC')
   end
@@ -134,9 +144,9 @@ class GraphsController < ApplicationController
 
   def set_graphs
     case
-    when params[:tag]
+    when params[:tag].present?
       @graphs = Graph.tagged_with(params[:tag])
-    when params[:path]
+    when params[:path].present?
       @graphs = Graph.where("path LIKE ?", "#{params[:path]}%")
     else
       @graphs = Graph.all

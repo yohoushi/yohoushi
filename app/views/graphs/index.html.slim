@@ -1,10 +1,5 @@
 - model_class = Graph
 
-form class="form-search"
-  input type="text" class="input-xxlarge" id="autocomplete" placeholder="Path" data-autocomplete=autocomplete_graph_path value=params[:path]
-  button type="submit" class="btn"
-    | Go
-
 div class="tree"
   == tree @root, Settings.graph.tree.depth
 
