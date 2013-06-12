@@ -22,7 +22,7 @@ $(document).ready(function(){
 {
 	var self = null;
 	jQuery.fn.railsAutocomplete = function() {
-		return this.live('focus',function() {
+		return this.on('focus',function() {
 			if (!this.railsAutoCompleter) {
 				this.railsAutoCompleter = new jQuery.railsAutocomplete(this);
 			}
@@ -58,12 +58,12 @@ $(document).ready(function(){
 				search: function() {
 					// custom minLength
 					var term = extractLast( this.value );
-					if ( term.length < 2 ) {
+					if ( term.length < 1 ) {
 						return false;
 					}
 				},
 				focus: function() {
-								// prevent value inserted on focus
+                                         // prevent value inserted on focus
 					return false;
 				},
 				select: function( event, ui ) {
