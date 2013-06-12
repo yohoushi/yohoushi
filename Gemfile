@@ -1,14 +1,14 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0.rc1'
+gem 'rails', '4.0.0.rc2'
 
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
 gem 'mysql2'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0.rc1'
+gem 'sass-rails', '~> 4.0.0.rc2'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -43,7 +43,7 @@ gem 'unicorn'
 ruby '2.0.0'
 gem "settingslogic"
 gem 'slim', :require => 'slim-rails'
-gem "slim-rails", "~> 1.1.0"
+gem "slim-rails"
 gem 'growthforecast-client', git: 'https://github.com/sonots/growthforecast-client.git', branch: 'more_api'
 gem 'multiforecast-client', git: 'git@github.dena.jp:dena/multiforecast-client.git'
 # http://d.hatena.ne.jp/sandmark/20120321/1332292995
