@@ -5,6 +5,8 @@ class GraphsController < ApplicationController
 
   # GET /list_graph
   def list_graph
+    @units = params[:nav].try(:split, '_') || ['d', 'w'] # default: day and week
+    @units = @units.to(1)
     render action: 'index'
   end
 
