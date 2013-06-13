@@ -8,7 +8,7 @@ class GraphsController < ApplicationController
   # GET /autocomplete_graph?term=xxx
   # for ajax autocomplete
   def autocomplete_graph
-    render :json => @nodes.map {|node|
+    render :json => @autocomplete.map {|node|
       description = node.description ? " (#{node.description})" : ""
       {label: "#{node.path}#{description}", value: node.path}
     }
@@ -139,11 +139,11 @@ class GraphsController < ApplicationController
     case
     when params[:term]
       term = params[:term].gsub(/ /, '%')
-      @nodes = Node.select(:path, :description).where("path LIKE ?", "%#{term}%")
+      @autocomplete = Node.select(:path, :description).where("path LIKE ?", "%#{term}%")
     else
-      @nodes = Node.select(:path, :description).all
+      @autocomplete = Node.select(:path, :description).all
     end
-    @nodes = @nodes.order('path ASC').limit(Settings.graph.autocomplete.limit)
+    @autocomplete = @autocomplete.without_root.order('path ASC').limit(Settings.graph.autocomplete.limit)
   end
 
   def set_graphs
