@@ -1,8 +1,10 @@
 class Node < ActiveRecord::Base
-  has_ancestry
+  has_ancestry cache_depth: true
+  scope :root, lambda { where(path: '') }
+  scope :without_root, lambda { where.not(path: '') }
 
   def root?
-    path == "/"
+    path == ""
   end
 
   def graph?
@@ -13,13 +15,21 @@ class Node < ActiveRecord::Base
     type == "Directory"
   end
 
+  def dirname
+    root? ? '' : File.dirname(path)
+  end
+
+  def basename
+    root? ? 'Home' : File.basename(path)
+  end
+
   # Create ancestors
   #
   # @param [path] create ancestors of this path
   # @return [Integer] id of the direct parent
   def self.create_ancestors(path)
     if (dirname = File.dirname(path)) == '.'
-      parent = Directory.select(:id).where(:path => '/').first || Directory.create(:path => '/')
+      parent = Directory.select(:id).root.first || Directory.create(:path => '')
     else
       parent_id = create_ancestors(dirname)
       # NOTE: where(:path, :parent_id).first_or_create can not be used since :parent_id is not a real column

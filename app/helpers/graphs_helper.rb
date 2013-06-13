@@ -1,23 +1,23 @@
 module GraphsHelper
   include ActsAsTaggableOn::TagsHelper
 
-  def link(path)
-    if path.root?
-      link_to(path.path, root_url)
-    elsif path.directory?
-      link_to(File.basename(path.path), list_graph_path(path.path))
+  def link_to_node(node)
+    if node.root?
+      link_to(node.basename, root_url)
+    elsif node.directory?
+      link_to(node.basename, list_graph_path(node.path))
     else
-      link_to(File.basename(path.path), view_graph_path(path.path))
+      link_to(node.basename, view_graph_path(node.path))
     end
   end
 
-  def tree(root)
+  def tree(root, depth = 5)
     return '' unless root
     html = ''
     open_ul = 0
     prev_depth = root.depth - 1
-    root.subtree.each do |path|
-      curr_depth = path.depth
+    root.subtree(to_depth: depth).each do |node|
+      curr_depth = node.depth
       diff = curr_depth - prev_depth
       if curr_depth > prev_depth
         html += '<ul><li style="list-style:none">' * (diff - 1).abs
@@ -31,7 +31,7 @@ module GraphsHelper
         open_ul -= diff
       end
       prev_depth = curr_depth
-      html += link(path)
+      html += link_to_node(node)
     end
     html += '</li></ul>' * open_ul.abs
     html
