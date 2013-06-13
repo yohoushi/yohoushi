@@ -36,6 +36,7 @@ table class="table table-striped"
             li = link_to(item[:name], {:nav => item[:short_name]})
   - @graphs.each do |graph|
     h3 #{link_to File.basename(graph.path), view_graph_path(graph.path)}
+    p.muted = graph.description
     p
       a.label.success.space-right href='#' = 'Setting'
       span.label.space-right = 'Complex Graph'
