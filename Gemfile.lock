@@ -1,11 +1,4 @@
 GIT
-  remote: git@github.dena.jp:dena/multiforecast-client.git
-  revision: 8f4f06b3bdfe52cff1a93e3b621ac5fd608ff14c
-  specs:
-    multiforecast-client (0.1.1)
-      growthforecast-client
-
-GIT
   remote: https://github.com/sonots/ancestry.git
   revision: 9df1ee82cadd8e7446d4dac21eae1b20736a6bb1
   branch: master
@@ -21,6 +14,13 @@ GIT
     growthforecast-client (0.0.6)
       httpclient
       thor
+
+GIT
+  remote: https://github.com/sonots/multiforecast-client.git
+  revision: 8f4f06b3bdfe52cff1a93e3b621ac5fd608ff14c
+  specs:
+    multiforecast-client (0.1.1)
+      growthforecast-client
 
 GEM
   remote: https://rubygems.org/

@@ -46,7 +46,7 @@ gem "settingslogic"
 gem 'slim', :require => 'slim-rails'
 gem "slim-rails"
 gem 'growthforecast-client', git: 'https://github.com/sonots/growthforecast-client.git', branch: 'more_api'
-gem 'multiforecast-client', git: 'git@github.dena.jp:dena/multiforecast-client.git'
+gem 'multiforecast-client', git: 'https://github.com/sonots/multiforecast-client.git'
 # http://d.hatena.ne.jp/sandmark/20120321/1332292995
 gem 'bootstrap-sass'
 gem 'bootswatch-rails'
