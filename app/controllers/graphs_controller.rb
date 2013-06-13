@@ -2,7 +2,7 @@ class GraphsController < ApplicationController
   before_action :set_tags, :set_root
   before_action :set_graph, only: [:show, :edit, :update, :destroy, :view_graph]
   before_action :set_view_options, only: [:show, :view_graph]
-  before_action :redirect, :set_graphs, only: [:list_graph]
+  before_action :path_redirect, :set_graphs, only: [:list_graph]
   before_action :autocomplete_search, only: [:autocomplete_graph]
 
   # GET /autocomplete_graph?term=xxx
@@ -114,7 +114,7 @@ class GraphsController < ApplicationController
     @height = Settings.graph.single_graph.height
   end
 
-  def redirect
+  def path_redirect
     return unless request.query_parameters[:path]
     if request.query_parameters[:path].present?
       redirect_to list_graph_path(request.query_parameters[:path])
@@ -133,6 +133,7 @@ class GraphsController < ApplicationController
     else
       @root = Node.root.first
     end
+    not_found unless @root
   end
 
   def autocomplete_search
@@ -155,11 +156,13 @@ class GraphsController < ApplicationController
     else
       @graphs = Graph.all
     end
+    not_found if @graphs.empty?
   end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_graph
     @graph = params[:id] ? Graph.find(params[:id]) : Graph.find_by(path: params[:path])
+    not_found unless @graph
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
