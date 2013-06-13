@@ -34,16 +34,7 @@ html lang="en"
 
       .row
         .span9
-          p style="font-size:x-large"
-            - @root.ancestors.each do |node|
-              = link_to_node(node)
-              font color="#bbb"
-                |  » 
-            = @root.basename
-          form class="form-search"
-            input type="text" class="input-xxlarge" id="autocomplete" placeholder="Path" data-autocomplete=autocomplete_graph_path name="path" value=params[:path]
-            button type="submit" class="btn"
-              | Go
+          = render template: 'layouts/_autocomplete'
           = bootstrap_flash
           = yield
         .span3
