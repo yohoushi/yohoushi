@@ -139,10 +139,11 @@ class GraphsController < ApplicationController
     case
     when params[:term]
       term = params[:term].gsub(/ /, '%')
-      @nodes = Node.select(:path, :description).where("path LIKE ?", "#{term}%")
+      @nodes = Node.select(:path, :description).where("path LIKE ?", "%#{term}%")
     else
       @nodes = Node.select(:path, :description).all
     end
+    @nodes = @nodes.order('path ASC').limit(Settings.graph.autocomplete.limit)
   end
 
   def set_graphs
