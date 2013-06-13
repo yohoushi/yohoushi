@@ -4,6 +4,13 @@ class ApplicationController < ActionController::Base
   # protect_from_forgery with: :exception
   protect_from_forgery with: :null_session
 
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
+  end
+
+#  rescue_from NotFound do |e|
+#    render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found
+#  end
   rescue_from GrowthForecast::Error do |e|
     render json: {'message' => e.message}, status: :unprocessable_entity
   end

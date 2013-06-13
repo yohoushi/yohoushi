@@ -1,7 +1,18 @@
 class GraphsController < ApplicationController
+  before_action :set_tags, :set_root
   before_action :set_graph, only: [:show, :edit, :update, :destroy, :view_graph]
-  before_action :set_graphs, :set_root, only: [:list_graph]
-  before_action :set_tags
+  before_action :set_view_options, only: [:show, :view_graph]
+  before_action :path_redirect, :set_graphs, only: [:list_graph]
+  before_action :autocomplete_search, only: [:autocomplete_graph]
+
+  # GET /autocomplete_graph?term=xxx
+  # for ajax autocomplete
+  def autocomplete_graph
+    render :json => @autocomplete.map {|node|
+      description = node.description ? " (#{node.description})" : ""
+      {label: "#{node.path}#{description}", value: node.path}
+    }
+  end
 
   # GET /list_graph
   def list_graph
@@ -17,10 +28,6 @@ class GraphsController < ApplicationController
 
   # GET /view_graph
   def view_graph
-    @from = params[:from].present? ? Time.parse(params[:from]) : 1.day.ago.localtime
-    @to   = params[:to].present?   ? Time.parse(params[:to])   : Time.now.localtime  
-    @width  = Settings.graph.single_graph.width
-    @height = Settings.graph.single_graph.height
     render action: 'show'
   end
 
@@ -33,11 +40,6 @@ class GraphsController < ApplicationController
   # GET /graphs/1
   # GET /graphs/1.json
   def show
-    # @ToDo same code with #view_graph
-    @from = params[:from].present? ? Time.parse(params[:from]) : 1.day.ago.localtime
-    @to   = params[:to].present?   ? Time.parse(params[:to])   : Time.now.localtime  
-    @width  = Settings.graph.single_graph.width
-    @height = Settings.graph.single_graph.height
   end
 
   # GET /graphs/new
@@ -112,6 +114,23 @@ class GraphsController < ApplicationController
     {}
   end
 
+  def set_view_options
+    @from = params[:from].present? ? Time.parse(params[:from]) : 1.day.ago.localtime
+    @to   = params[:to].present?   ? Time.parse(params[:to])   : Time.now.localtime
+    @width  = Settings.graph.single_graph.width
+    @height = Settings.graph.single_graph.height
+  end
+
+  def path_redirect
+    return unless (path = request.query_parameters[:path])
+    not_found unless (node = Node.find_by(path: path))
+    if node.directory?
+      redirect_to list_graph_path(path)
+    else
+      redirect_to view_graph_path(path)
+    end
+  end
+
   def set_tags
     @tags = Graph.tag_counts_on(:tags).order('count DESC')
   end
@@ -122,22 +141,36 @@ class GraphsController < ApplicationController
     else
       @root = Node.root.first
     end
+    not_found unless @root
+  end
+
+  def autocomplete_search
+    case
+    when params[:term]
+      term = params[:term].gsub(/ /, '%')
+      @autocomplete = Node.select(:path, :description).where("path LIKE ?", "%#{term}%")
+    else
+      @autocomplete = Node.select(:path, :description).all
+    end
+    @autocomplete = @autocomplete.without_root.order('path ASC').limit(Settings.graph.autocomplete.limit)
   end
 
   def set_graphs
     case
-    when params[:tag]
+    when params[:tag].present?
       @graphs = Graph.tagged_with(params[:tag])
-    when params[:path]
+    when params[:path].present?
       @graphs = Graph.where("path LIKE ?", "#{params[:path]}%")
     else
       @graphs = Graph.all
     end
+    not_found if @graphs.empty?
   end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_graph
     @graph = params[:id] ? Graph.find(params[:id]) : Graph.find_by(path: params[:path])
+    not_found unless @graph
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
