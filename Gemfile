@@ -53,6 +53,7 @@ gem 'bootswatch-rails'
 gem 'bootstrap-datetimepicker-rails'
 gem 'acts-as-taggable-on'
 gem 'ancestry', git: 'https://github.com/sonots/ancestry.git', branch: 'master'
+gem 'newrelic_rpm'
 
 group :development do
   gem 'twitter-bootstrap-rails'
