@@ -5,6 +5,8 @@ defaults: &defaults
       dir: ''
       gfuri: 'http://10.33.49.163:5125'
   graph:
+    tree:
+      depth: 1
     single_graph:
       width: 640
       height: 396

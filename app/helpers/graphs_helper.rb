@@ -11,12 +11,12 @@ module GraphsHelper
     end
   end
 
-  def tree(root)
+  def tree(root, depth = 5)
     return '' unless root
     html = ''
     open_ul = 0
     prev_depth = root.depth - 1
-    root.subtree.each do |path|
+    root.subtree(to_depth: depth).each do |path|
       curr_depth = path.depth
       diff = curr_depth - prev_depth
       if curr_depth > prev_depth

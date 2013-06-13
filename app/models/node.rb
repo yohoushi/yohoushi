@@ -1,5 +1,5 @@
 class Node < ActiveRecord::Base
-  has_ancestry
+  has_ancestry cache_depth: true
 
   def root?
     path == "/"
