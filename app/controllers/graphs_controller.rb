@@ -16,8 +16,7 @@ class GraphsController < ApplicationController
 
   # GET /list_graph
   def list_graph
-    @units = params[:nav].try(:split, '_') || ['d', 'w'] # default: day and week
-    @units = @units.to(1)
+    @preset = params[:preset].presence || 'd' # default: day
     if @root
       @display_graphs = @root.children.first.try(:graph?)
     else

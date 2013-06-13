@@ -8,26 +8,39 @@ defaults: &defaults
     depth: null
   autocomplete:
     limit: 10
-  single_graph:
-    width: 640
-    height: 396
-  list_graph_nav:
-    -
-      name: "hour・8hours"
-      short_name: "sh_s8h"
-    -
-      name: "day・3days"
-      short_name: "sd_s3d"
-    -
-      name: "hour・halfday"
-      short_name: "h_n"
-    -
-      name: "day・week"
-      short_name: "d_w"
-      active_default: true
-    -
-      name: "month・year"
-      short_name: "m_y"
+  graph:
+    single_graph:
+      width: 640
+      height: 396
+    date_period_presets:
+      -
+        name: 'hour(1min)'
+        short_name: 'sh'
+      -
+        name: '8hours(1min)'
+        short_name: 's8h'
+      -
+        name: '3days(1min)'
+        short_name: 's3d'
+      -
+        name: 'hour'
+        short_name: 'h'
+      -
+        name: 'halfday'
+        short_name: 'n'
+      -
+        name: 'day'
+        short_name: 'd'
+        active_default: true
+      -
+        name: 'week'
+        short_name: 'w'
+      -
+        name: 'month'
+        short_name: 'm'
+      -
+        name: 'year'
+        short_name: 'y'
 
 development:
   <<: *defaults
