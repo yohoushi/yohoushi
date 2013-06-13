@@ -1,6 +1,6 @@
 GIT
   remote: git@github.dena.jp:dena/multiforecast-client.git
-  revision: f6dca5ee4a7bda183730c57ef8156ad0e811020a
+  revision: 8f4f06b3bdfe52cff1a93e3b621ac5fd608ff14c
   specs:
     multiforecast-client (0.1.1)
       growthforecast-client

@@ -48,4 +48,4 @@ table class="table table-striped"
       - @units.each do |unit|
         .span6
           a href="#{view_graph_path(graph.path)}"
-            img src="#{$mfclient.get_graph_uri(graph.path, unit)}"
+            img src="#{$mfclient.get_graph_uri(graph.path, { t: unit })}"

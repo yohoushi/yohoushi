@@ -18,7 +18,7 @@ p
     = button_tag 'Submit', :class => 'btn'
     span.help-block Date time is treated as localtime.
 
-img src="#{$mfclient.get_custom_graph_uri(@graph.path, @from, @to, @width, @height)}"
+img src="#{$mfclient.get_fixedterm_graph_uri(@graph.path, @from, @to, { width: @width, height: @height })}"
 
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), graphs_path, :class => 'btn'
