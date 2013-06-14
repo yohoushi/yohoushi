@@ -4,31 +4,30 @@ defaults: &defaults
     -
       dir: ''
       gfuri: 'http://10.33.49.163:5125'
-  graph:
-    tree:
-      depth: 1
-    autocomplete:
-      limit: 10
-    single_graph:
-      width: 640
-      height: 396
+  tree:
+    depth: null
+  autocomplete:
+    limit: 10
+  single_graph:
+    width: 640
+    height: 396
   list_graph_nav:
-      -
-        name: "hour・8hours"
-        short_name: "sh_s8h"
-      -
-        name: "day・3days"
-        short_name: "sd_s3d"
-      -
-        name: "hour・halfday"
-        short_name: "h_n"
-      -
-        name: "day・week"
-        short_name: "d_w"
-        active_default: true
-      -
-        name: "month・year"
-        short_name: "m_y"
+    -
+      name: "hour・8hours"
+      short_name: "sh_s8h"
+    -
+      name: "day・3days"
+      short_name: "sd_s3d"
+    -
+      name: "hour・halfday"
+      short_name: "h_n"
+    -
+      name: "day・week"
+      short_name: "d_w"
+      active_default: true
+    -
+      name: "month・year"
+      short_name: "m_y"
 
 development:
   <<: *defaults
