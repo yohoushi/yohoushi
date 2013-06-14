@@ -13,10 +13,11 @@ module GraphsHelper
 
   def tree(root, depth = 5)
     return '' unless root
+    subtree = depth.present? ? root.subtree(to_depth: depth) : root.subtree
     html = ''
     open_ul = 0
     prev_depth = root.depth - 1
-    root.subtree(to_depth: depth).each do |node|
+    subtree.each do |node|
       curr_depth = node.depth
       diff = curr_depth - prev_depth
       if curr_depth > prev_depth

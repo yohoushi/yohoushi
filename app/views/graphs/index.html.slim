@@ -1,7 +1,7 @@
 - model_class = Graph
 
 div class="tree"
-  == tree @root, Settings.graph.tree.depth
+  == tree @root, Settings.try(:tree).try(:depth)
 
 table class="table table-striped"
   thead

@@ -117,8 +117,8 @@ class GraphsController < ApplicationController
   def set_view_options
     @from = params[:from].present? ? Time.parse(params[:from]) : 1.day.ago.localtime
     @to   = params[:to].present?   ? Time.parse(params[:to])   : Time.now.localtime
-    @width  = Settings.graph.single_graph.width
-    @height = Settings.graph.single_graph.height
+    @width  = Settings.try(:single_graph).try(:width)
+    @height = Settings.try(:single_graph).try(:height)
   end
 
   def path_redirect
@@ -152,7 +152,7 @@ class GraphsController < ApplicationController
     else
       @autocomplete = Node.select(:path, :description).all
     end
-    @autocomplete = @autocomplete.without_root.order('path ASC').limit(Settings.graph.autocomplete.limit)
+    @autocomplete = @autocomplete.without_root.order('path ASC').limit(Settings.try(:autocomplete).try(:limit))
   end
 
   def set_graphs
