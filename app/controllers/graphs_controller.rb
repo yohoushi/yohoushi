@@ -139,7 +139,7 @@ class GraphsController < ApplicationController
     if params[:path].present?
       @root = Node.where(path: params[:path]).first
     else
-      @root = Node.root.first
+      @root = Node.roots.first
     end
     not_found unless @root
   end
