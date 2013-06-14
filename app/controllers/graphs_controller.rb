@@ -139,9 +139,8 @@ class GraphsController < ApplicationController
     if params[:path].present?
       @root = Node.where(path: params[:path]).first
     else
-      @root = Node.root.first
+      @root = Node.roots.first
     end
-    not_found unless @root
   end
 
   def autocomplete_search
@@ -164,7 +163,6 @@ class GraphsController < ApplicationController
     else
       @graphs = Graph.all
     end
-    not_found if @graphs.empty?
   end
 
   # Use callbacks to share common setup or constraints between actions.
