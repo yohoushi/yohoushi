@@ -117,8 +117,10 @@ class GraphsController < ApplicationController
     @preset = params[:preset].presence || 'd' # default: day
     @from = params[:from].present? ? Time.parse(params[:from]) : nil
     @to   = params[:to].present?   ? Time.parse(params[:to])   : nil
-    @width  = Settings.graph.single_graph.width
-    @height = Settings.graph.single_graph.height
+    if params[:size].present?
+      @width  = Settings.graph.sizes.select{|s| s[:name] == params[:size]}.first.try(:width)
+      @height = Settings.graph.sizes.select{|s| s[:name] == params[:size]}.first.try(:height)
+    end
   end
 
   def set_image_uri_proc
@@ -128,7 +130,7 @@ class GraphsController < ApplicationController
       end
     else
       @image_uri_proc = Proc.new do |path|
-        $mfclient.get_graph_uri(path, { t: @preset })
+        $mfclient.get_graph_uri(path, { t: @preset, width: @width, height: @height })
       end
     end
   end

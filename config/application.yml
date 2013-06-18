@@ -41,6 +41,23 @@ defaults: &defaults
       -
         name: 'year'
         short_name: 'y'
+    sizes:
+      - 
+        name: 'thumbnail'
+        width: 370
+        height: 160
+      - 
+        name: 'M'
+        width: 462
+        height: 200
+      - 
+        name: 'L'
+        width: 640
+        height: 277
+      - 
+        name: 'LL'
+        width: 800
+        height: 346
 
 development:
   <<: *defaults
