@@ -151,7 +151,7 @@ class GraphsController < ApplicationController
     else
       @autocomplete = Node.select(:path, :description).all
     end
-    @autocomplete = @autocomplete.without_root.order('path ASC').limit(Settings.try(:autocomplete).try(:limit))
+    @autocomplete = @autocomplete.without_roots.order('path ASC').limit(Settings.try(:autocomplete).try(:limit))
   end
 
   def set_graphs
