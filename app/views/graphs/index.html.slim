@@ -37,4 +37,4 @@ table class="table table-striped"
       span.muted.small = graph.updated_at.localtime
     p
       a href="#{view_graph_path(graph.path)}"
-        img src="#{$mfclient.get_graph_uri(graph.path, { t: @preset })}"
+        img src="#{graph_image_uri_for(graph.path)}"

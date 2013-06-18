@@ -1,7 +1,8 @@
 class GraphsController < ApplicationController
   before_action :set_tags, :set_root
   before_action :set_graph, only: [:show, :edit, :update, :destroy, :view_graph]
-  before_action :set_view_options, only: [:show, :view_graph]
+  before_action :set_view_options, only: [:show, :list_graph, :view_graph]
+  before_action :set_image_uri_proc, only: [:show, :list_graph, :view_graph]
   before_action :path_redirect, :set_graphs, only: [:list_graph]
   before_action :autocomplete_search, only: [:autocomplete_graph]
 
@@ -16,7 +17,6 @@ class GraphsController < ApplicationController
 
   # GET /list_graph
   def list_graph
-    @preset = params[:preset].presence || 'd' # default: day
     if @root
       @display_graphs = @root.children.first.try(:graph?)
     else
@@ -114,10 +114,23 @@ class GraphsController < ApplicationController
   end
 
   def set_view_options
-    @from = params[:from].present? ? Time.parse(params[:from]) : 1.day.ago.localtime
-    @to   = params[:to].present?   ? Time.parse(params[:to])   : Time.now.localtime
-    @width  = Settings.try(:single_graph).try(:width)
-    @height = Settings.try(:single_graph).try(:height)
+    @preset = params[:preset].presence || 'd' # default: day
+    @from = params[:from].present? ? Time.parse(params[:from]) : nil
+    @to   = params[:to].present?   ? Time.parse(params[:to])   : nil
+    @width  = Settings.graph.single_graph.width
+    @height = Settings.graph.single_graph.height
+  end
+
+  def set_image_uri_proc
+    if @from.present? && @to.present?
+      @image_uri_proc = Proc.new do |path|
+        $mfclient.get_fixedterm_graph_uri(path, @from, @to, { width: @width, height: @height })
+      end
+    else
+      @image_uri_proc = Proc.new do |path|
+        $mfclient.get_graph_uri(path, { t: @preset })
+      end
+    end
   end
 
   def path_redirect

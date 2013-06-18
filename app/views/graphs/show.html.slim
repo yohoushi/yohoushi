@@ -7,7 +7,7 @@ p
 
 = render partial: 'graph_filters'
 
-img src="#{$mfclient.get_fixedterm_graph_uri(@graph.path, @from, @to, { width: @width, height: @height })}"
+img src="#{graph_image_uri_for(@graph.path)}"
 
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), graphs_path, :class => 'btn'
