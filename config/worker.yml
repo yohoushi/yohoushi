@@ -1,0 +1,13 @@
+# config/worker.yml
+defaults: &defaults
+  log: 'log/worker.log'
+  pid_path: 'log/worker.pid'
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

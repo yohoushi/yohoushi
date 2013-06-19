@@ -1,0 +1,101 @@
+#!/usr/bin/env ruby
+require 'bundler/setup'
+ENV['RAILS_ENV'] ||= 'development'
+Bundler.require(:bin, ENV['RAILS_ENV'])
+
+module YohoushiWorker
+  class CLI < Thor
+    class_option :config,    :aliases => ["-c"], :type => :string, :default => 'config/worker.yml'
+
+    def initialize(args = [], opts = [], config = {})
+      super(args, opts, config)
+
+      if options[:config] && File.exists?(options[:config])
+        @options = YAML.load_file(options[:config])[ENV['RAILS_ENV']].symbolize_keys.merge(@options.symbolize_keys)
+      end
+    end
+
+    desc "start", "Start processing jobs."
+    option :require,     :aliases => ["-r"], :type => :string
+    option :daemonize,   :aliases => ["-d"], :type => :boolean
+    def start
+      Bundler.require(:worker, ENV['RAILS_ENV'])
+      load_enviroment(options[:require]) # rails
+      opts = @options.symbolize_keys.except(:require)
+
+      se = ServerEngine.create(nil, Worker, opts)
+      se.run
+    end
+
+    desc "stop", "Stops a worker"
+    def stop
+      pid = File.read(@options[:pid_path]).to_i
+
+      begin
+        Process.kill("QUIT", pid)
+        puts "Stopped #{pid}"
+      rescue Errno::ESRCH
+        puts "Worker #{pid} not running"
+      end
+    end
+
+    desc "graceful_stop", "Gracefully stops a worker"
+    def graceful_stop
+      pid = File.read(@options[:pid_path]).to_i
+
+      begin
+        Process.kill("TERM", pid)
+        puts "Gracefully stopped #{pid}"
+      rescue Errno::ESRCH
+        puts "Worker #{pid} not running"
+      end
+    end
+
+    desc "restart", "Restarts a worker"
+    def restart
+      pid = File.read(@options[:pid_path]).to_i
+
+      begin
+        Process.kill("HUP", pid)
+        puts "Restarted #{pid}"
+      rescue Errno::ESRCH
+        puts "Worker #{pid} not running"
+      end
+    end
+
+    desc "graceful_restart", "Graceful restarts a worker"
+    def graceful_restart
+      pid = File.read(@options[:pid_path]).to_i
+
+      begin
+        Process.kill("USR1", pid)
+        puts "Gracefully restarted #{pid}"
+      rescue Errno::ESRCH
+        puts "Worker #{pid} not running"
+      end
+    end
+
+    protected
+
+      def load_enviroment(file = nil)
+        file ||= "."
+        if File.directory?(file) && File.exists?(File.expand_path("#{file}/config/environment.rb"))
+          require "rails"
+          require File.expand_path("#{file}/config/environment.rb")
+          if defined?(::Rails) && ::Rails.respond_to?(:application)
+            # Rails 3
+            ::Rails.application.eager_load!
+          elsif defined?(::Rails::Initializer)
+            # Rails 2.3
+            $rails_rake_task = false
+            ::Rails::Initializer.run :load_application_classes
+          end
+        elsif File.file?(file)
+          require File.expand_path(file)
+        end
+      end
+
+  end
+end
+
+YohoushiWorker::CLI.start(ARGV)
