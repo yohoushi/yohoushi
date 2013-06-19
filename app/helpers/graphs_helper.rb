@@ -57,4 +57,15 @@ module GraphsHelper
     )
   end
 
+  def select_tag_for_size
+    collection_select(
+      :filter,
+      :size,
+      Settings.graph.sizes,
+      :name,
+      :name,
+      {:selected => lambda {|s| s[:name] == @size}}
+    )
+  end
+
 end

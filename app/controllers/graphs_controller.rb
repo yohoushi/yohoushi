@@ -119,12 +119,17 @@ class GraphsController < ApplicationController
     rescue ActionController::ParameterMissing
       @preset = 'd'
     end
+
     @from = params[:from].present? ? Time.parse(params[:from]) : nil
     @to   = params[:to].present?   ? Time.parse(params[:to])   : nil
-    if params[:size].present?
-      @width  = Settings.graph.sizes.select{|s| s[:name] == params[:size]}.first.try(:width)
-      @height = Settings.graph.sizes.select{|s| s[:name] == params[:size]}.first.try(:height)
+
+    begin 
+      @size = params.require(:filter).require(:size)
+    rescue ActionController::ParameterMissing
+      @size = 'M'
     end
+    @width  = Settings.graph.sizes.select{|s| s[:name] == @size}.first.try(:width)
+    @height = Settings.graph.sizes.select{|s| s[:name] == @size}.first.try(:height)
   end
 
   def set_image_uri_proc

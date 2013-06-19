@@ -9,14 +9,8 @@
       span.add-on
         i data-time-icon="icon-time" data-date-icon="icon-calendar"
 
-    // @ToDo DRY and less logic here
     = select_tag_for_preset
-    select name="size"
-      - Settings.graph.sizes.each do |size|
-        - if size[:name] == params[:size]
-          option selected="selected" = size[:name]
-        - else
-          option = size[:name]
+    = select_tag_for_size
 
     = button_tag 'Submit', :class => 'btn'
     span.help-block Date time is treated as localtime.
