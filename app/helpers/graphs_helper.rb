@@ -39,10 +39,11 @@ module GraphsHelper
   end
 
   # determin graph image uri
-  # @param path is [String]      like 'a/b/c'
-  # @return full uri path as [String] like 'http://10.33.49.163:5125/graph/mfclient/a%252Fb%252Fc/d?t=d'
+  #
+  # @param path [String] like 'a/b/c'
+  # @return full uri path [String] like 'http://10.33.49.163:5125/graph/mfclient/a%252Fb%252Fc/d?t=d'
   def graph_image_uri_for(path)
-    # @img_src is [Proc], initialized at  app/controllers/graphs_controller.rb
+    # @image_uri_proc is initialized at app/controllers/graphs_controller.rb
     @image_uri_proc.call(path)
   end
 
