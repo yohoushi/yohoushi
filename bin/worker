@@ -1,8 +1,7 @@
 #!/usr/bin/env ruby
 require 'bundler/setup'
-Bundler.require(:default)
-Bundler.require(:development) if Rails.env == 'development'
-Bundler.require(:test) if Rails.env == 'test'
+ENV['RAILS_ENV'] ||= 'development'
+Bundler.require(:bin, ENV['RAILS_ENV'])
 
 module YohoushiWorker
   class CLI < Thor
@@ -12,7 +11,7 @@ module YohoushiWorker
       super(args, opts, config)
 
       if options[:config] && File.exists?(options[:config])
-        @options = YAML.load_file(options[:config])[Rails.env].symbolize_keys.merge(@options.symbolize_keys)
+        @options = YAML.load_file(options[:config])[ENV['RAILS_ENV']].symbolize_keys.merge(@options.symbolize_keys)
       end
     end
 
@@ -20,7 +19,8 @@ module YohoushiWorker
     option :require,     :aliases => ["-r"], :type => :string
     option :daemonize,   :aliases => ["-d"], :type => :boolean
     def start
-      load_enviroment(options[:require])
+      Bundler.require(:worker, ENV['RAILS_ENV'])
+      load_enviroment(options[:require]) # rails
       opts = @options.symbolize_keys.except(:require)
 
       se = ServerEngine.create(nil, Worker, opts)
