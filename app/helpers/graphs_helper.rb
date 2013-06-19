@@ -53,7 +53,8 @@ module GraphsHelper
       Settings.graph.date_period_presets,
       :short_name,
       :name,
-      {:selected => lambda {|p| p[:short_name] == @preset }}
+      {:selected => lambda {|p| p[:short_name] == @preset }},
+      {:class => 'span2'},
     )
   end
 
@@ -64,7 +65,8 @@ module GraphsHelper
       Settings.graph.sizes,
       :name,
       :name,
-      {:selected => lambda {|s| s[:name] == @size}}
+      {:selected => lambda {|s| s[:name] == @size}},
+      {:class => 'span2'},
     )
   end
 
