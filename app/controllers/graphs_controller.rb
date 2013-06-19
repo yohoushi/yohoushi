@@ -120,8 +120,13 @@ class GraphsController < ApplicationController
       @preset = 'd'
     end
 
-    @from = params[:from].present? ? Time.parse(params[:from]) : nil
-    @to   = params[:to].present?   ? Time.parse(params[:to])   : nil
+    begin
+      @from = Time.parse(params.require(:filter).require(:from))
+      @to   = Time.parse(params.require(:filter).require(:to))
+    rescue ActionController::ParameterMissing
+      @from = nil
+      @to   = nil
+    end
 
     begin 
       @size = params.require(:filter).require(:size)
