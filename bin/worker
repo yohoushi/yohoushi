@@ -5,21 +5,19 @@ Bundler.require(:development)
 
 module YohoushiWorker
   class CLI < Thor
-    class_option :config,    :aliases => ["-c"], :type => :string
+    class_option :config,    :aliases => ["-c"], :type => :string, :default => 'config/worker.yml'
 
     def initialize(args = [], opts = [], config = {})
       super(args, opts, config)
 
       if options[:config] && File.exists?(options[:config])
-        @options = YAML.load_file(options[:config]).symbolize_keys.merge(@options.symbolize_keys)
+        @options = YAML.load_file(options[:config])[Rails.env].symbolize_keys.merge(@options.symbolize_keys)
       end
     end
 
     desc "start", "Start processing jobs."
     option :require,     :aliases => ["-r"], :type => :string
-    option :daemonize,   :aliases => ["-d"], :type => :boolean, :default => true
-    option :log,         :aliases => ["-l"], :type => :string, :default => 'log/worker.log'
-    option :pid_path,    :aliases => ["-f"], :type => :string, :default => 'log/worker.pid'
+    option :daemonize,   :aliases => ["-d"], :type => :string, :default => true
     def start
       load_enviroment(options[:require])
       opts = @options.symbolize_keys.except(:require)
@@ -30,49 +28,49 @@ module YohoushiWorker
 
     desc "stop", "Stops a worker"
     def stop
-      pid = File.read('log/worker.pid').to_i
+      pid = File.read(@options[:pid_path]).to_i
 
       begin
         Process.kill("QUIT", pid)
         puts "Stopped #{pid}"
       rescue Errno::ESRCH
-        puts "worker #{pid} not running"
+        puts "Worker #{pid} not running"
       end
     end
 
     desc "graceful_stop", "Gracefully stops a worker"
     def graceful_stop
-      pid = File.read('log/worker.pid').to_i
+      pid = File.read(@options[:pid_path]).to_i
 
       begin
         Process.kill("TERM", pid)
         puts "Gracefully stopped #{pid}"
       rescue Errno::ESRCH
-        puts "worker #{pid} not running"
+        puts "Worker #{pid} not running"
       end
     end
 
     desc "restart", "Restarts a worker"
     def restart
-      pid = File.read('log/worker.pid').to_i
+      pid = File.read(@options[:pid_path]).to_i
 
       begin
         Process.kill("HUP", pid)
         puts "Restarted #{pid}"
       rescue Errno::ESRCH
-        puts "worker #{pid} not running"
+        puts "Worker #{pid} not running"
       end
     end
 
     desc "graceful_restart", "Graceful restarts a worker"
     def graceful_restart
-      pid = File.read('log/worker.pid').to_i
+      pid = File.read(@options[:pid_path]).to_i
 
       begin
         Process.kill("USR1", pid)
         puts "Gracefully restarted #{pid}"
       rescue Errno::ESRCH
-        puts "worker #{pid} not running"
+        puts "Worker #{pid} not running"
       end
     end
 
