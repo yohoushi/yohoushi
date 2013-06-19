@@ -31,7 +31,6 @@ defaults: &defaults
       -
         name: 'day'
         short_name: 'd'
-        active_default: true
       -
         name: 'week'
         short_name: 'w'

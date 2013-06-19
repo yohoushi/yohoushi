@@ -114,7 +114,11 @@ class GraphsController < ApplicationController
   end
 
   def set_view_options
-    @preset = params[:preset].presence || 'd' # default: day
+    begin 
+      @preset = params.require(:filter).require(:preset)
+    rescue ActionController::ParameterMissing
+      @preset = 'd'
+    end
     @from = params[:from].present? ? Time.parse(params[:from]) : nil
     @to   = params[:to].present?   ? Time.parse(params[:to])   : nil
     if params[:size].present?

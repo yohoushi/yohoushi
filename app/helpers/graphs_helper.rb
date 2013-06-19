@@ -46,4 +46,15 @@ module GraphsHelper
     @image_uri_proc.call(path)
   end
 
+  def select_tag_for_preset
+    collection_select(
+      :filter,
+      :preset,
+      Settings.graph.date_period_presets,
+      :short_name,
+      :name,
+      {:selected => lambda {|p| p[:short_name] == @preset }}
+    )
+  end
+
 end

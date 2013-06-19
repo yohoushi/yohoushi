@@ -10,14 +10,7 @@
         i data-time-icon="icon-time" data-date-icon="icon-calendar"
 
     // @ToDo DRY and less logic here
-    select name="preset"
-      - Settings.graph.date_period_presets.each do |preset|
-        - if preset[:active_default] && params[:preset].nil?
-          option [selected value="#{preset[:short_name]}"] = preset[:name]
-        - elsif preset[:short_name] == params[:preset]
-          option [selected value="#{preset[:short_name]}"] = preset[:name]
-        - else
-          option value="#{preset[:short_name]}" = preset[:name]
+    = select_tag_for_preset
     select name="size"
       - Settings.graph.sizes.each do |size|
         - if size[:name] == params[:size]
