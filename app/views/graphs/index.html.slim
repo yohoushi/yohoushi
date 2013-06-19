@@ -26,7 +26,7 @@ table class="table table-striped"
 - if @display_graphs
   = render partial: 'graph_filters' 
   - @graphs.each do |graph|
-    h3 #{link_to File.basename(graph.path), view_graph_path(graph.path)}
+    h3 #{link_to File.basename(graph.path), view_graph_path(graph.path, :filter => params[:filter])}
     p.muted = graph.description
     p
       a.label.success.space-right href='#' = 'Setting'
@@ -36,5 +36,5 @@ table class="table table-striped"
       span.label.space-right = 'updated_at'
       span.muted.small = graph.updated_at.localtime
     p
-      a href="#{view_graph_path(graph.path)}"
+      a href="#{view_graph_path(graph.path, :filter => params[:filter])}"
         img src="#{graph_image_uri_for(graph.path)}"
