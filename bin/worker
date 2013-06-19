@@ -1,7 +1,8 @@
 #!/usr/bin/env ruby
 require 'bundler/setup'
 Bundler.require(:default)
-Bundler.require(:development)
+Bundler.require(:development) if Rails.env == 'development'
+Bundler.require(:test) if Rails.env == 'test'
 
 module YohoushiWorker
   class CLI < Thor
