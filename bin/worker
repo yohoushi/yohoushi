@@ -18,7 +18,7 @@ module YohoushiWorker
 
     desc "start", "Start processing jobs."
     option :require,     :aliases => ["-r"], :type => :string
-    option :daemonize,   :aliases => ["-d"], :type => :string, :default => true
+    option :daemonize,   :aliases => ["-d"], :type => :boolean
     def start
       load_enviroment(options[:require])
       opts = @options.symbolize_keys.except(:require)
