@@ -61,9 +61,9 @@ module GraphsHelper
   def select_tag_for_size
     html = ''
     html += '<select name="size">'
-    Settings.graph.sizes.each do |size|
-      selected = (size[:name] == @size) ? 'selected="selected"' : ''
-      html += %!<option class="span2" value="#{size[:name]}" #{selected}>#{size[:name]}</option>!
+    Settings.graph.sizes.sort{|(k1, v1), (k2, v2)| v1['width'] <=> v2['width']}.each do |size, v|
+      selected = (size == @size) ? 'selected="selected"' : ''
+      html += %!<option class="span2" value="#{size}" #{selected}>#{size}</option>!
     end
     html += '</select>'
     html

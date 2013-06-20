@@ -9,9 +9,6 @@ defaults: &defaults
   autocomplete:
     limit: 10
   graph:
-    single_graph:
-      width: 640
-      height: 396
     date_period_terms:
       -
         name: 'hour(1min)'
@@ -41,20 +38,16 @@ defaults: &defaults
         name: 'year'
         short_name: 'y'
     sizes:
-      - 
-        name: 'thumbnail'
+      thumbnail:
         width: 370
         height: 160
-      - 
-        name: 'M'
+      M:
         width: 462
         height: 200
-      - 
-        name: 'L'
+      L: 
         width: 640
         height: 277
-      - 
-        name: 'LL'
+      LL:
         width: 800
         height: 346
 

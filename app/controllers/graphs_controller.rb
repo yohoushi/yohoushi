@@ -119,8 +119,8 @@ class GraphsController < ApplicationController
     @from = params[:from].present? ? Time.parse(params[:from]) : nil
     @to   = params[:to].present?   ? Time.parse(params[:to])   : nil
     @size = params[:size].presence || 'M'
-    @width  = Settings.graph.sizes.select{|s| s[:name] == @size}.first.try(:width)
-    @height = Settings.graph.sizes.select{|s| s[:name] == @size}.first.try(:height)
+    @width  = Settings.graph.sizes[@size]['width']
+    @height = Settings.graph.sizes[@size]['height']
   end
 
   def set_image_uri_proc
