@@ -7,7 +7,7 @@ gem "settingslogic"
 gem 'growthforecast-client', git: 'https://github.com/sonots/growthforecast-client.git', branch: 'more_api'
 gem 'multiforecast-client', git: 'https://github.com/sonots/multiforecast-client.git'
 gem 'acts-as-taggable-on'
-gem 'ancestry', git: 'https://github.com/sonots/ancestry.git', branch: 'master'
+gem 'ancestry', git: 'https://github.com/sonots/ancestry.git', branch: 'sonots'
 gem 'sass-rails', '~> 4.0.0.rc2'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'

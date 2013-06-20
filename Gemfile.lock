@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/sonots/ancestry.git
-  revision: 9df1ee82cadd8e7446d4dac21eae1b20736a6bb1
-  branch: master
+  revision: 7d2764c8d04793c11800a1223da0d4593612e8e7
+  branch: sonots
   specs:
     ancestry (2.0.0)
       activerecord (>= 3.0.0)
@@ -130,7 +130,7 @@ GEM
     method_source (0.8.1)
     mime-types (1.23)
     minitest (4.7.4)
-    multi_json (1.7.6)
+    multi_json (1.7.7)
     mysql2 (0.3.11)
     net-scp (1.1.1)
       net-ssh (>= 2.6.5)
