@@ -47,12 +47,12 @@ module GraphsHelper
     @image_uri_proc.call(path)
   end
 
-  def select_tag_for_preset
+  def select_tag_for_term
     html = ''
-    html += '<select name="preset">'
-    Settings.graph.date_period_presets.each do |preset|
-      selected = (preset[:short_name] == @preset) ? 'selected="selected"' : ''
-      html += %!<option class="span2" value="#{preset[:short_name]}" #{selected}>#{preset[:name]}</option>!
+    html += '<select name="term">'
+    Settings.graph.date_period_terms.each do |term|
+      selected = (term[:short_name] == @term) ? 'selected="selected"' : ''
+      html += %!<option class="span2" value="#{term[:short_name]}" #{selected}>#{term[:name]}</option>!
     end
     html += '</select>'
     html

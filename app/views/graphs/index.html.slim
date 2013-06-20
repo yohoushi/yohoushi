@@ -27,7 +27,7 @@ table class="table table-striped"
   = render partial: 'graph_filters' 
   - @graphs.each do |graph|
     // @ToDo query should be instance variable ?
-    - query = params.slice(:preset, :from, :to, :size, :width, :height)
+    - query = params.slice(:term, :from, :to, :size, :width, :height)
     h3 #{link_to File.basename(graph.path), view_graph_path(graph.path, query)}
     p.muted = graph.description
     p

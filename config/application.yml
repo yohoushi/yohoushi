@@ -12,7 +12,7 @@ defaults: &defaults
     single_graph:
       width: 640
       height: 396
-    date_period_presets:
+    date_period_terms:
       -
         name: 'hour(1min)'
         short_name: 'sh'

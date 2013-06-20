@@ -114,7 +114,7 @@ class GraphsController < ApplicationController
   end
 
   def set_view_options
-    @preset = params[:preset] || 'd'
+    @term = params[:term] || 'd'
     @from = params[:from].present? ? Time.parse(params[:from]) : nil
     @to   = params[:to].present?   ? Time.parse(params[:to])   : nil
     @size = params[:size].presence || 'M'
@@ -129,7 +129,7 @@ class GraphsController < ApplicationController
       end
     else
       @image_uri_proc = Proc.new do |path|
-        $mfclient.get_graph_uri(path, { t: @preset, width: @width, height: @height })
+        $mfclient.get_graph_uri(path, { t: @term, width: @width, height: @height })
       end
     end
   end
