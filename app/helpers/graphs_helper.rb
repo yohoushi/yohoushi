@@ -49,7 +49,7 @@ module GraphsHelper
 
   def select_tag_for_term
     html = ''
-    html += '<select name="term">'
+    html += '<select name="t">'
     Settings.graph.date_period_terms.each do |term|
       selected = (term[:short_name] == @term) ? 'selected="selected"' : ''
       html += %!<option class="span2" value="#{term[:short_name]}" #{selected}>#{term[:name]}</option>!

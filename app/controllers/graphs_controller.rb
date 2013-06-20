@@ -114,7 +114,7 @@ class GraphsController < ApplicationController
   end
 
   def set_view_options
-    @term = params[:term] || 'd'
+    @term = params[:t] || 'd'
     @from = params[:from].present? ? Time.parse(params[:from]) : nil
     @to   = params[:to].present?   ? Time.parse(params[:to])   : nil
     @size = params[:size].presence || 'M'
