@@ -5,6 +5,7 @@ class CreateNodes < ActiveRecord::Migration
       t.string :path, limit: 4096, index: true, null: false
       t.string :description
       t.boolean :hidden
+      t.boolean :complex
 
       t.timestamps
     end
