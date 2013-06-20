@@ -2,7 +2,6 @@ class GraphsController < ApplicationController
   before_action :set_tags, :set_root
   before_action :set_graph, only: [:show, :edit, :update, :destroy, :view_graph]
   before_action :set_view_options, only: [:show, :list_graph, :view_graph]
-  before_action :set_graph_uri_params, only: [:show, :list_graph, :view_graph]
   before_action :path_redirect, :set_graphs, only: [:list_graph]
   before_action :autocomplete_search, only: [:autocomplete_graph]
 
@@ -121,9 +120,6 @@ class GraphsController < ApplicationController
     @size = params[:size].presence || 'M'
     @width  = Settings.graph.sizes[@size]['width']
     @height = Settings.graph.sizes[@size]['height']
-  end
-
-  def set_graph_uri_params
     @graph_uri_params = {
       't'      => @term,
       'from'   => @from,
