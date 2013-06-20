@@ -26,9 +26,7 @@ table class="table table-striped"
 - if @display_graphs
   = render partial: 'graph_filters' 
   - @graphs.each do |graph|
-    // @ToDo query should be instance variable ?
-    - query = params.slice(:t, :from, :to, :size, :width, :height)
-    h3 #{link_to File.basename(graph.path), view_graph_path(graph.path, query)}
+    h3 #{link_to File.basename(graph.path), view_graph_path(graph.path, @params_for_view_options)}
     p.muted = graph.description
     p
       a.label.success.space-right href='#' = 'Setting'
@@ -38,5 +36,5 @@ table class="table table-striped"
       span.label.space-right = 'updated_at'
       span.muted.small = graph.updated_at.localtime
     p
-      a href="#{view_graph_path(graph.path, query)}"
+      a href="#{view_graph_path(graph.path, @params_for_view_options)}"
         img src="#{graph_image_uri_for(graph.path)}"
