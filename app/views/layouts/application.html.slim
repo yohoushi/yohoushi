@@ -29,6 +29,8 @@ html lang="en"
           .container.nav-collapse
             ul.nav
               li= link_to "Search", search_graph_path
+            ul.nav
+              li= link_to "Debug", graphs_path
 
     .container
 
@@ -39,6 +41,7 @@ html lang="en"
           = yield
     
       footer
+        br
         p &copy; DeNA Co., Ltd. 2013
     /!
       Javascripts
