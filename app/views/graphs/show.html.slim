@@ -5,20 +5,9 @@ p
   br
   = @graph.path
 
-.well
-  = form_tag({}, :method => 'get', :class => 'form-inline') do
-    #datetimepicker_from.input-append.date
-      = text_field_tag :from, params[:from], :class => "input-medium", :"data-format" => "yyyy-MM-dd hh:mm:ss", :placeholder => "from"
-      span.add-on
-        i data-time-icon="icon-time" data-date-icon="icon-calendar"
-    #datetimepicker_to.input-append.date
-      = text_field_tag :to,  params[:to], :class => "input-medium", :"data-format" => "yyyy-MM-dd hh:mm:ss", :placeholder => "to"
-      span.add-on
-        i data-time-icon="icon-time" data-date-icon="icon-calendar"
-    = button_tag 'Submit', :class => 'btn'
-    span.help-block Date time is treated as localtime.
+= render partial: 'graph_filters'
 
-img src="#{$mfclient.get_fixedterm_graph_uri(@graph.path, @from, @to, { width: @width, height: @height })}"
+img src="#{graph_uri_for(@graph.path)}"
 
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), graphs_path, :class => 'btn'

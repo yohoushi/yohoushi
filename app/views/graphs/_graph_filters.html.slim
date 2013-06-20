@@ -1,0 +1,18 @@
+.well
+  = form_tag({}, :method => 'get', :class => 'form-inline') do
+    #datetimepicker_from.input-append.date
+      = text_field_tag 'from', @from.try(:strftime, '%F %T'), :class => "input-medium", :"data-format" => "yyyy-MM-dd hh:mm:ss", :placeholder => "from"
+      span.add-on
+        i data-time-icon="icon-time" data-date-icon="icon-calendar"
+    #datetimepicker_to.input-append.date
+      = text_field_tag 'to', @to.try(:strftime, '%F %T'), :class => "input-medium", :"data-format" => "yyyy-MM-dd hh:mm:ss", :placeholder => "to"
+      span.add-on
+        i data-time-icon="icon-time" data-date-icon="icon-calendar"
+
+    == select_tag_for_term
+    == select_tag_for_size
+
+    = button_tag 'Submit', :class => 'btn'
+    span.help-block Date time is treated as localtime.
+
+

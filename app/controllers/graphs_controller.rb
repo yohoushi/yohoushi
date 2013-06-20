@@ -1,7 +1,7 @@
 class GraphsController < ApplicationController
   before_action :set_tags, :set_root
   before_action :set_graph, only: [:show, :edit, :update, :destroy, :view_graph]
-  before_action :set_view_options, only: [:show, :view_graph]
+  before_action :set_view_graph_params, only: [:show, :list_graph, :view_graph]
   before_action :path_redirect, :set_graphs, only: [:list_graph]
   before_action :autocomplete_search, only: [:autocomplete_graph]
 
@@ -16,8 +16,6 @@ class GraphsController < ApplicationController
 
   # GET /list_graph
   def list_graph
-    @units = params[:nav].try(:split, '_') || ['d', 'w'] # default: day and week
-    @units = @units.to(1)
     if @root
       @display_graphs = @root.children.first.try(:graph?)
     else
@@ -114,11 +112,21 @@ class GraphsController < ApplicationController
     {}
   end
 
-  def set_view_options
-    @from = params[:from].present? ? Time.parse(params[:from]) : 1.day.ago.localtime
-    @to   = params[:to].present?   ? Time.parse(params[:to])   : Time.now.localtime
-    @width  = Settings.try(:single_graph).try(:width)
-    @height = Settings.try(:single_graph).try(:height)
+  def set_view_graph_params
+    @view_graph_params = params.slice(:t, :from, :to, :size, :width, :height)
+    @term = params[:t] || 'd'
+    @from = params[:from].present? ? Time.parse(params[:from]) : nil
+    @to   = params[:to].present?   ? Time.parse(params[:to])   : nil
+    @size = params[:size].presence || 'M'
+    @width  = Settings.graph.sizes[@size]['width']
+    @height = Settings.graph.sizes[@size]['height']
+    @graph_uri_params = {
+      't'      => @term,
+      'from'   => @from,
+      'to'     => @to,
+      'width'  => @width,
+      'height' => @height
+    }
   end
 
   def path_redirect

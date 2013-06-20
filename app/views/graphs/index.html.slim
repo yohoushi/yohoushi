@@ -24,18 +24,9 @@ table class="table table-striped"
 = link_to t('.new', :default => t("helpers.links.new")), new_graph_path, :class => 'btn btn-primary'
 
 - if @display_graphs
-  div
-    .pull-right
-      ul.nav.nav-pills
-        - Settings.list_graph_nav.each do |item|
-          - if item[:active_default] && params[:nav].nil?
-            li.active = link_to(item[:name], {:nav => item[:short_name]})
-          - elsif item[:short_name] == params[:nav]
-            li.active = link_to(item[:name], {:nav => item[:short_name]})
-          - else
-            li = link_to(item[:name], {:nav => item[:short_name]})
+  = render partial: 'graph_filters' 
   - @graphs.each do |graph|
-    h3 #{link_to File.basename(graph.path), view_graph_path(graph.path)}
+    h3 #{link_to File.basename(graph.path), view_graph_path(graph.path, @view_graph_params)}
     p.muted = graph.description
     p
       a.label.success.space-right href='#' = 'Setting'
@@ -44,8 +35,6 @@ table class="table table-striped"
       span.muted.small.space-right = graph.created_at.localtime
       span.label.space-right = 'updated_at'
       span.muted.small = graph.updated_at.localtime
-    .row-fluid
-      - @units.each do |unit|
-        .span6
-          a href="#{view_graph_path(graph.path)}"
-            img src="#{$mfclient.get_graph_uri(graph.path, { t: unit })}"
+    p
+      a href="#{view_graph_path(graph.path, @view_graph_params)}"
+        img src="#{graph_uri_for(graph.path)}"
