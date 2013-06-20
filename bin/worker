@@ -21,7 +21,7 @@ module YohoushiWorker
     def start
       Bundler.require(:worker, ENV['RAILS_ENV'])
       load_enviroment(options[:require]) # rails
-      opts = @options.symbolize_keys.except(:require)
+      opts = @options.symbolize_keys.except(:require, :config, :interval)
 
       se = ServerEngine.create(nil, Worker, opts)
       se.run

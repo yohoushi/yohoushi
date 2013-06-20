@@ -1,10 +1,20 @@
 require 'serverengine'
 
 module Worker
+  def initialize
+    reload
+  end
+
+  def reload
+    @sleep = config[:interval] || 1
+    @processor = Processor.new
+  end
+
   def run
     until @stop
+      @processor.process
       logger.info "Awesome work!"
-      sleep 1
+      sleep @sleep
     end
   end
 

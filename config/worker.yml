@@ -2,6 +2,7 @@
 defaults: &defaults
   log: 'log/worker.log'
   pid_path: 'log/worker.pid'
+  interval: 1
 
 development:
   <<: *defaults
