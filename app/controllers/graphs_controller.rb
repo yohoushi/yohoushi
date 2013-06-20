@@ -114,7 +114,7 @@ class GraphsController < ApplicationController
   end
 
   def set_view_options
-    @params_for_view_options = params.slice(:t, :from, :to, :size, :width, :height)
+    @next_page_uri_params = params.slice(:t, :from, :to, :size, :width, :height)
     @term = params[:t] || 'd'
     @from = params[:from].present? ? Time.parse(params[:from]) : nil
     @to   = params[:to].present?   ? Time.parse(params[:to])   : nil

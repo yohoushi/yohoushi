@@ -38,8 +38,6 @@ module GraphsHelper
     html
   end
 
-  # determin graph image uri
-  #
   # @param path [String] like 'a/b/c'
   # @return full uri path [String] like 'http://10.33.49.163:5125/graph/mfclient/a%252Fb%252Fc/d?t=d'
   def graph_uri_for(path)
