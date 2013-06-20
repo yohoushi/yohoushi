@@ -5,3 +5,20 @@
 .space-right {
   margin-right: 3px;
 }
+
+// graph anchor
+// The anchor targets are hidden by 40px fixed position nav bar
+// at the top of the page.
+// The following lines are an solution for this problem.
+// @reference http://stackoverflow.com/questions/9047703/fixed-position-navbar-obscures-anchors
+.anchor {
+  padding-top: 40px;
+  margin-top: -40px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+a.anchor:hover {
+  color: #666;
+  background-color: transparent;
+}
