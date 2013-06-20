@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/sonots/growthforecast-client.git
-  revision: b2564ec18344393f888556a74f0a966c44b04735
+  revision: 4381b94e481c13f736ae0762603a51252b5d1fad
   branch: more_api
   specs:
     growthforecast-client (0.0.6)
@@ -17,7 +17,7 @@ GIT
 
 GIT
   remote: https://github.com/sonots/multiforecast-client.git
-  revision: 8f4f06b3bdfe52cff1a93e3b621ac5fd608ff14c
+  revision: a1ab7ee6d90f0a9505088e85f31e2e17bc1eb63f
   specs:
     multiforecast-client (0.1.1)
       growthforecast-client

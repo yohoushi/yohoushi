@@ -2,7 +2,7 @@ class GraphsController < ApplicationController
   before_action :set_tags, :set_root
   before_action :set_graph, only: [:show, :edit, :update, :destroy, :view_graph]
   before_action :set_view_options, only: [:show, :list_graph, :view_graph]
-  before_action :set_image_uri_proc, only: [:show, :list_graph, :view_graph]
+  before_action :set_graph_uri_params, only: [:show, :list_graph, :view_graph]
   before_action :path_redirect, :set_graphs, only: [:list_graph]
   before_action :autocomplete_search, only: [:autocomplete_graph]
 
@@ -123,16 +123,14 @@ class GraphsController < ApplicationController
     @height = Settings.graph.sizes[@size]['height']
   end
 
-  def set_image_uri_proc
-    if @from.present? && @to.present?
-      @image_uri_proc = Proc.new do |path|
-        $mfclient.get_fixedterm_graph_uri(path, @from, @to, { width: @width, height: @height })
-      end
-    else
-      @image_uri_proc = Proc.new do |path|
-        $mfclient.get_graph_uri(path, { t: @term, width: @width, height: @height })
-      end
-    end
+  def set_graph_uri_params
+    @graph_uri_params = {
+      't'      => @term,
+      'from'   => @from,
+      'to'     => @to,
+      'width'  => @width,
+      'height' => @height
+    }
   end
 
   def path_redirect

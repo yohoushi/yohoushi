@@ -42,9 +42,8 @@ module GraphsHelper
   #
   # @param path [String] like 'a/b/c'
   # @return full uri path [String] like 'http://10.33.49.163:5125/graph/mfclient/a%252Fb%252Fc/d?t=d'
-  def graph_image_uri_for(path)
-    # @image_uri_proc is initialized at app/controllers/graphs_controller.rb
-    @image_uri_proc.call(path)
+  def graph_uri_for(path)
+    $mfclient.get_graph_uri(path, @graph_uri_params)
   end
 
   def select_tag_for_term

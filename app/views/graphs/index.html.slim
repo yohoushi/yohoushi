@@ -37,4 +37,4 @@ table class="table table-striped"
       span.muted.small = graph.updated_at.localtime
     p
       a href="#{view_graph_path(graph.path, @params_for_view_options)}"
-        img src="#{graph_image_uri_for(graph.path)}"
+        img src="#{graph_uri_for(graph.path)}"
