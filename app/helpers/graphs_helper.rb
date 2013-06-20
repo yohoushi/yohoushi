@@ -48,27 +48,25 @@ module GraphsHelper
   end
 
   def select_tag_for_preset
-    collection_select(
-      :filter,
-      :preset,
-      Settings.graph.date_period_presets,
-      :short_name,
-      :name,
-      {:selected => lambda {|p| p[:short_name] == @preset }},
-      {:class => 'span2'},
-    )
+    html = ''
+    html += '<select name="preset">'
+    Settings.graph.date_period_presets.each do |preset|
+      selected = (preset[:short_name] == @preset) ? 'selected="selected"' : ''
+      html += %!<option class="span2" value="#{preset[:short_name]}" #{selected}>#{preset[:name]}</option>!
+    end
+    html += '</select>'
+    html
   end
 
   def select_tag_for_size
-    collection_select(
-      :filter,
-      :size,
-      Settings.graph.sizes,
-      :name,
-      :name,
-      {:selected => lambda {|s| s[:name] == @size}},
-      {:class => 'span2'},
-    )
+    html = ''
+    html += '<select name="size">'
+    Settings.graph.sizes.each do |size|
+      selected = (size[:name] == @size) ? 'selected="selected"' : ''
+      html += %!<option class="span2" value="#{size[:name]}" #{selected}>#{size[:name]}</option>!
+    end
+    html += '</select>'
+    html
   end
 
 end

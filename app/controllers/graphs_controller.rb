@@ -114,25 +114,10 @@ class GraphsController < ApplicationController
   end
 
   def set_view_options
-    begin 
-      @preset = params.require(:filter).require(:preset)
-    rescue ActionController::ParameterMissing
-      @preset = 'd'
-    end
-
-    begin
-      @from = Time.parse(params.require(:filter).require(:from))
-      @to   = Time.parse(params.require(:filter).require(:to))
-    rescue ActionController::ParameterMissing
-      @from = nil
-      @to   = nil
-    end
-
-    begin 
-      @size = params.require(:filter).require(:size)
-    rescue ActionController::ParameterMissing
-      @size = 'M'
-    end
+    @preset = params[:preset] || 'd'
+    @from = params[:from].present? ? Time.parse(params[:from]) : nil
+    @to   = params[:to].present?   ? Time.parse(params[:to])   : nil
+    @size = params[:size].presence || 'M'
     @width  = Settings.graph.sizes.select{|s| s[:name] == @size}.first.try(:width)
     @height = Settings.graph.sizes.select{|s| s[:name] == @size}.first.try(:height)
   end
