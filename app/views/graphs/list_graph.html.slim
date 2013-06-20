@@ -4,7 +4,7 @@ div class="tree"
   == tree @root, Settings.try(:tree).try(:depth)
 
 - if @display_graphs
-  = render partial: 'graph_filters' 
+  = render partial: 'tune' 
   - @graphs.each do |graph|
     h3
       a.anchor name="#{graph.basename}" href="##{graph.basename}" = graph.basename
