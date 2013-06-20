@@ -1,7 +1,7 @@
 class GraphsController < ApplicationController
   before_action :set_tags, :set_root
   before_action :set_graph, only: [:show, :edit, :update, :destroy, :view_graph]
-  before_action :set_view_options, only: [:show, :list_graph, :view_graph]
+  before_action :set_view_graph_params, only: [:show, :list_graph, :view_graph]
   before_action :path_redirect, :set_graphs, only: [:list_graph]
   before_action :autocomplete_search, only: [:autocomplete_graph]
 
@@ -112,8 +112,8 @@ class GraphsController < ApplicationController
     {}
   end
 
-  def set_view_options
-    @next_page_uri_params = params.slice(:t, :from, :to, :size, :width, :height)
+  def set_view_graph_params
+    @view_graph_params = params.slice(:t, :from, :to, :size, :width, :height)
     @term = params[:t] || 'd'
     @from = params[:from].present? ? Time.parse(params[:from]) : nil
     @to   = params[:to].present?   ? Time.parse(params[:to])   : nil
