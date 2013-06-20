@@ -21,12 +21,17 @@ class GraphsController < ApplicationController
     else
       @display_graphs = false
     end
-    render action: 'index'
+    render action: 'list_graph'
   end
 
   # GET /view_graph
   def view_graph
-    render action: 'show'
+    render action: 'view_graph'
+  end
+
+  # GET /search_graph
+  def search_graph
+    render action: 'search_graph'
   end
 
   # GET /graphs

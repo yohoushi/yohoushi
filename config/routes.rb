@@ -2,7 +2,9 @@ Yohoushi::Application.routes.draw do
   resources :graphs
 
   root 'graphs#list_graph'
+
   get 'autocomplete_graph' => 'graphs#autocomplete_graph', :as => 'autocomplete_graph'
+  get 'search_graph' => 'graphs#search_graph', :as => 'search_graph'
   get 'list_graph' => 'graphs#list_graph', :as => 'list_graph_root'
   get 'list_graph/:path' => 'graphs#list_graph', :constraints => { :path => /.+/ }, :as => 'list_graph'
   get 'view_graph/:path' => 'graphs#view_graph', :constraints => { :path => /.+/ }, :as => 'view_graph'

@@ -28,22 +28,15 @@ html lang="en"
           a.brand href="/"Yohoushi
           .container.nav-collapse
             ul.nav
-              li= link_to "Graph", list_graph_root_path
+              li= link_to "Search", search_graph_path
 
     .container
 
       .row
-        .span9
+        .span12
           = render template: 'layouts/_autocomplete'
           = bootstrap_flash
           = yield
-        .span3
-          .well.sidebar-nav
-            h3 Tag Cloud
-            ul.nav.nav-list
-              - tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class|
-                = link_to tag.name, "#{list_graph_root_path}?tag=#{tag.name}", :class => css_class
-                | &nbsp;
     
       footer
         p &copy; DeNA Co., Ltd. 2013
