@@ -7,13 +7,12 @@ module Worker
 
   def reload
     @sleep = config[:interval] || 1
-    @processor = Processor.new
+    @processor = Processor.new(self)
   end
 
   def run
     until @stop
       @processor.process
-      logger.info "Awesome work!"
       sleep @sleep
     end
   end

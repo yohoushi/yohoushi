@@ -1,7 +1,7 @@
 module Worker
-  class Processor
+  class Processor < ServerEngine::Processor
     def process
-      puts "Awesome work!"
+      logger.info "Awesome work!"
     end
   end
 end

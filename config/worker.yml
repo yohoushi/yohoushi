@@ -3,6 +3,8 @@ defaults: &defaults
   log: 'log/worker.log'
   pid_path: 'log/worker.pid'
   interval: 1
+  log_stdout: false
+  log_stderr: false
 
 development:
   <<: *defaults

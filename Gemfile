@@ -26,7 +26,7 @@ gem 'bootstrap-datetimepicker-rails'
 gem 'newrelic_rpm'
 
 group :worker do
-  gem 'serverengine'
+  gem 'serverengine', git: 'https://github.com/sonots/serverengine.git', branch: 'sonots'
 end
 
 group :bin do
