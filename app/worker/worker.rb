@@ -7,7 +7,7 @@ module Worker
 
   def reload
     @sleep = config[:interval] || 1
-    @processor = Processor.new(self)
+    @processor = Processor.new(logger, config)
   end
 
   def run

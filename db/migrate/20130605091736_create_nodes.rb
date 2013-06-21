@@ -6,6 +6,7 @@ class CreateNodes < ActiveRecord::Migration
       t.string :description
       t.boolean :hidden
       t.boolean :complex
+      t.boolean :mark
 
       t.timestamps
     end
