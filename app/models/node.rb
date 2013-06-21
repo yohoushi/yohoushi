@@ -6,8 +6,8 @@ class Node < ActiveRecord::Base
     type == "Graph"
   end
 
-  def directory?
-    type == "Directory"
+  def section?
+    type == "Section"
   end
 
   def dirname
@@ -24,11 +24,11 @@ class Node < ActiveRecord::Base
   # @return [Integer] id of the direct parent
   def self.create_ancestors(path)
     if (dirname = File.dirname(path)) == '.'
-      parent = Directory.select(:id).roots.first || Directory.create(:path => '', :parent_id => nil)
+      parent = Section.select(:id).roots.first || Section.create(:path => '', :parent_id => nil)
     else
       parent_id = create_ancestors(dirname)
       # NOTE: where(:path, :parent_id).first_or_create can not be used since :parent_id is not a real column
-      parent = Directory.select(:id).where(:path => dirname).first || Directory.create(:path => dirname, :parent_id => parent_id)
+      parent = Section.select(:id).where(:path => dirname).first || Section.create(:path => dirname, :parent_id => parent_id)
     end
     parent.id
   end

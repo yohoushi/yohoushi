@@ -132,7 +132,7 @@ class GraphsController < ApplicationController
   def path_redirect
     return unless (path = request.query_parameters[:path])
     not_found unless (node = Node.find_by(path: path))
-    if node.directory?
+    if node.section?
       redirect_to list_graph_path(path)
     else
       redirect_to view_graph_path(path)

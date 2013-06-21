@@ -4,7 +4,7 @@ module GraphsHelper
   def link_to_node(node)
     if node.root?
       link_to(node.basename, root_url)
-    elsif node.directory?
+    elsif node.section?
       link_to(node.basename, list_graph_path(node.path))
     else
       link_to(node.basename, view_graph_path(node.path))
