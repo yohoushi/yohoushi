@@ -6,5 +6,7 @@
     a.anchor name="#{graph.basename}" href="##{graph.basename}" = graph.basename
   p.muted = graph.description
   p
+    a.label.success.space-right href='#' = 'Setting'
+  p
     a href="#{view_graph_path(graph.path, @view_graph_params)}"
       img src="#{graph_uri_for(graph)}"
