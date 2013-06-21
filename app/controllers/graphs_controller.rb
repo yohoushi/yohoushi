@@ -33,7 +33,7 @@ class GraphsController < ApplicationController
   # GET /graphs
   # GET /graphs.json
   def index
-    @graphs = Graph.all
+    @graphs = Graph.all.order('path ASC')
   end
 
   # GET /graphs/1
@@ -174,6 +174,7 @@ class GraphsController < ApplicationController
     else
       @graphs = Graph.all
     end
+    @graphs = @graphs.order('path ASC')
   end
 
   # Use callbacks to share common setup or constraints between actions.
