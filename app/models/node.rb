@@ -48,7 +48,7 @@ class Node < ActiveRecord::Base
 
   # Find or create a node with its ancestors
   #
-  # @param params [Array] parameters of the node
+  # @param params [Hash] parameters of the node
   # @return [Node] node object
   def self.find_or_create(params)
     parent_id = self.create_ancestors(params[:path])
