@@ -2,7 +2,8 @@ class GraphsController < ApplicationController
   before_action :set_tags, :set_root
   before_action :set_graph, only: [:show, :edit, :update, :destroy, :view_graph]
   before_action :set_view_graph_params, only: [:show, :list_graph, :view_graph]
-  before_action :path_redirect, :set_graphs, only: [:list_graph]
+  before_action :path_redirect, only: [:tree_graph]
+  before_action :set_graphs, only: [:list_graph]
   before_action :autocomplete_search, only: [:autocomplete_graph]
 
   # GET /tree_graph
@@ -132,10 +133,12 @@ class GraphsController < ApplicationController
   def path_redirect
     return unless (path = request.query_parameters[:path])
     not_found unless (node = Node.find_by(path: path))
-    if node.directory?
-      redirect_to list_graph_path(path)
-    else
+    if node.root?
+      redirect_to tree_graph_path
+    elsif node.leaf?
       redirect_to view_graph_path(path)
+    else
+      redirect_to list_graph_path(path)
     end
   end
 

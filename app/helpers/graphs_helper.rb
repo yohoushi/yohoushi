@@ -4,10 +4,10 @@ module GraphsHelper
   def link_to_node(node)
     if node.root?
       link_to(node.basename, root_url)
-    elsif node.directory?
-      link_to(node.basename, list_graph_path(node.path))
-    else
+    elsif node.leaf?
       link_to(node.basename, view_graph_path(node.path))
+    else
+      link_to(node.basename, list_graph_path(node.path))
     end
   end
 
@@ -22,13 +22,13 @@ module GraphsHelper
       diff = curr_depth - prev_depth
       if curr_depth > prev_depth
         html += '<ul><li style="list-style:none">' * (diff - 1).abs
-        html += node.graph? ? '<ul><li class="graph">' : '<ul><li>'
+        html += node.leaf? ? '<ul><li class="leaf">' : '<ul><li>'
         open_ul += diff
       elsif curr_depth == prev_depth
-        html += node.graph? ? '</li><li class="graph">' : '</li><li>'
+        html += node.leaf? ? '</li><li class="leaf">' : '</li><li>'
       elsif curr_depth < prev_depth
         html += '</li></ul>' * diff.abs
-        html += node.graph? ? '</li><li class="graph">' : '</li><li>'
+        html += node.leaf? ? '</li><li class="leaf">' : '</li><li>'
         open_ul -= diff
       end
       prev_depth = curr_depth

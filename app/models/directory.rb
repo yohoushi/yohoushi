@@ -1,2 +1,0 @@
-class Directory < Node
-end
