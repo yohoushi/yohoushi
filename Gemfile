@@ -24,7 +24,6 @@ gem 'bootstrap-sass' # http://d.hatena.ne.jp/sandmark/20120321/1332292995
 gem 'bootswatch-rails'
 gem 'bootstrap-datetimepicker-rails'
 gem 'newrelic_rpm'
-gem 'activerecord-import'
 
 group :worker do
   gem 'serverengine'

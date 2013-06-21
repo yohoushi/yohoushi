@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 20130606035720) do
     t.string   "description"
     t.boolean  "hidden"
     t.boolean  "complex"
-    t.boolean  "mark"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "ancestry",       limit: 4096

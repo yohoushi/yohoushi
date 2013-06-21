@@ -6,7 +6,6 @@ class CreateNodes < ActiveRecord::Migration
       t.string :description
       t.boolean :hidden
       t.boolean :complex
-      t.boolean :mark # used by worker to mark and sweep unused nodes
 
       t.timestamps
     end

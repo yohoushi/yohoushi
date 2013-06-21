@@ -20,19 +20,29 @@ class Node < ActiveRecord::Base
     root? ? 'Home' : File.basename(path)
   end
 
+  # start marking of tracking nodes in #find_or_create
+  def self.start_marking
+    @marks = []
+  end
+
+  # stop marking of tracking nodes in #find_or_create
+  def self.stop_marking
+    @marks = nil
+  end
+
   # Create ancestors
   #
   # @param path [String] create ancestors of this path
-  # @param mark [Boolean] mark touched nodes
   # @return [Integer] id of the direct parent
-  def self.create_ancestors(path, mark = nil)
+  def self.create_ancestors(path)
     if (dirname = File.dirname(path)) == '.'
-      parent = Section.select(:id).roots.first || Section.create(:path => '', :mark => mark, :parent_id => nil)
+      parent = Section.select(:id).roots.first || Section.create(:path => '', :parent_id => nil)
     else
-      parent_id = create_ancestors(dirname, mark)
+      parent_id = create_ancestors(dirname)
       # NOTE: where(:path, :parent_id).first_or_create can not be used since :parent_id is not a real column
-      parent = Section.select(:id).where(:path => dirname).first || Section.create(:path => dirname, :mark => mark, :parent_id => parent_id)
+      parent = Section.select(:id).where(:path => dirname).first || Section.create(:path => dirname, :parent_id => parent_id)
     end
+    @marks.push parent.id if @marks.kind_of?(Array) # marking
     parent.id
   end
 
@@ -41,17 +51,9 @@ class Node < ActiveRecord::Base
   # @param params [Array] parameters of the node
   # @return [Node] node object
   def self.find_or_create(params)
-    parent_id = self.create_ancestors(params[:path], params[:mark])
+    parent_id = self.create_ancestors(params[:path])
     node = self.where(path: params[:path]).first || self.create(params.merge(parent_id: parent_id))
-  end
-
-  # Unmark all nodes (restore for next mark and sweep)
-  def self.unmark_all
-    # bulk update (only MySQL) in each 1000 records
-    Node.select(:id, :path, :mark).find_in_batches(:batch_size => 1000) do |nodes|
-      columns = [:id, :path, :mark]
-      values  = nodes.map {|n| [n.id, n.path, nil] } # unmark
-      Node.import columns, values, :on_duplicate_key_update => [:mark], :timestamps => false
-    end
+    @marks.push node.id if @marks.kind_of?(Array) # marking
+    node
   end
 end
