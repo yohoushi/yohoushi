@@ -32,7 +32,7 @@
   border-top: 1px solid #ccc;
 }
 .tree li a {
-    display: inline-block;
+  display: inline-block;
   border: 1px solid #ccc;
   padding: 0px 10px;
   text-decoration: none;
@@ -42,6 +42,10 @@
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
+}
+
+.tree li.graph a {
+  background: #c8e4f8; color: #000; border: 1px solid #94a0b4;
 }
 
 /*Remove connectors before root*/
@@ -56,7 +60,7 @@
 /*Time for some hover effects*/
 /*We will apply the hover effect the the lineage of the element also*/
 .tree li a:hover, .tree li a:hover+ul li a {
-  background: #c8e4f8; color: #000; border: 1px solid #94a0b4;
+  background: #c8f8e4; color: #000; border: 1px solid #94a0b4;
 }
 /*Connector styles on hover*/
 .tree li a:hover+ul li::after, 

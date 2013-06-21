@@ -1,8 +1,5 @@
 - model_class = Graph
 
-div class="tree"
-  == tree @root, Settings.try(:tree).try(:depth)
-
 table class="table table-striped"
   thead
     tr
@@ -22,20 +19,3 @@ table class="table table-striped"
           = link_to t('.destroy', :default => t("helpers.links.destroy")), graph_path(graph), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
 
 = link_to t('.new', :default => t("helpers.links.new")), new_graph_path, :class => 'btn btn-primary'
-
-- if @display_graphs
-  = render partial: 'graph_filters' 
-  - @graphs.each do |graph|
-    h3
-      a.anchor name="#{graph.basename}" href="##{graph.basename}" = graph.basename
-    p.muted = graph.description
-    p
-      a.label.success.space-right href='#' = 'Setting'
-      span.label.space-right = 'Complex Graph'
-      span.label.space-right = 'created_at' 
-      span.muted.small.space-right = graph.created_at.localtime
-      span.label.space-right = 'updated_at'
-      span.muted.small = graph.updated_at.localtime
-    p
-      a href="#{view_graph_path(graph.path, @view_graph_params)}"
-        img src="#{graph_uri_for(graph.path)}"

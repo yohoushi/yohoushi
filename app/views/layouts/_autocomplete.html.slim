@@ -5,7 +5,7 @@ p style="font-size:x-large"
       font color="#bbb"
         |  » 
     = @root.basename
-form class="form-search"
-  input type="text" class="input-xxlarge" id="autocomplete" placeholder="Path" data-autocomplete=autocomplete_graph_path name="path" value=params[:path]
+form class="form-search autocomplete-graph"
+  input type="text" class="span11" id="autocomplete" placeholder="Type Graph Path" data-autocomplete=autocomplete_graph_path name="path" value=params[:path]
   button type="submit" class="btn"
     | Go

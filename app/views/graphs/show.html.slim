@@ -5,13 +5,7 @@ p
   br
   = @graph.path
 
-= render partial: 'graph_filters'
-
-img src="#{graph_uri_for(@graph.path)}"
-
-.form-actions
-  = link_to t('.back', :default => t("helpers.links.back")), graphs_path, :class => 'btn'
-  '
-  = link_to t('.edit', :default => t("helpers.links.edit")), edit_graph_path(@graph), :class => 'btn'
-  '
-  = link_to t('.destroy', :default => t("helpers.links.destroy")), graph_path(@graph), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
+p
+  strong= model_class.human_attribute_name(:tag_list) + ':'
+  br
+  = @graph.tag_list

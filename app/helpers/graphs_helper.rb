@@ -22,13 +22,13 @@ module GraphsHelper
       diff = curr_depth - prev_depth
       if curr_depth > prev_depth
         html += '<ul><li style="list-style:none">' * (diff - 1).abs
-        html += '<ul><li>'
+        html += node.graph? ? '<ul><li class="graph">' : '<ul><li>'
         open_ul += diff
       elsif curr_depth == prev_depth
-        html += '</li><li>'
+        html += node.graph? ? '</li><li class="graph">' : '</li><li>'
       elsif curr_depth < prev_depth
         html += '</li></ul>' * diff.abs
-        html += '</li><li>'
+        html += node.graph? ? '</li><li class="graph">' : '</li><li>'
         open_ul -= diff
       end
       prev_depth = curr_depth

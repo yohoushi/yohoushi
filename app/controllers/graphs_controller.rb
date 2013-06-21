@@ -5,28 +5,28 @@ class GraphsController < ApplicationController
   before_action :path_redirect, :set_graphs, only: [:list_graph]
   before_action :autocomplete_search, only: [:autocomplete_graph]
 
-  # GET /autocomplete_graph?term=xxx
-  # for ajax autocomplete
+  # GET /tree_graph
+  def tree_graph
+  end
+
+  # GET /list_graph
+  def list_graph
+  end
+
+  # GET /view_graph
+  def view_graph
+  end
+
+  # GET /search_graph
+  def search_graph
+  end
+
+  # GET /autocomplete_graph?term=xxx for ajax autocomplete
   def autocomplete_graph
     render :json => @autocomplete.map {|node|
       description = node.description ? " (#{node.description})" : ""
       {label: "#{node.path}#{description}", value: node.path}
     }
-  end
-
-  # GET /list_graph
-  def list_graph
-    if @root
-      @display_graphs = @root.children.first.try(:graph?)
-    else
-      @display_graphs = false
-    end
-    render action: 'index'
-  end
-
-  # GET /view_graph
-  def view_graph
-    render action: 'show'
   end
 
   # GET /graphs
