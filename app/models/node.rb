@@ -41,13 +41,11 @@ class Node < ActiveRecord::Base
   # @param params [Array] parameters of the node
   # @return [Node] node object
   def self.find_or_create(params)
-    node = self.where(path: params[:path]).first
-    return node if node
     parent_id = self.create_ancestors(params[:path], params[:mark])
-    node = self.create(params.merge(parent_id: parent_id))
+    node = self.where(path: params[:path]).first || self.create(params.merge(parent_id: parent_id))
   end
 
-  # Unmark all nodes (Restore for next mark and sweep)
+  # Unmark all nodes (restore for next mark and sweep)
   def self.unmark_all
     # bulk update (only MySQL) in each 1000 records
     Node.select(:id, :path, :mark).find_in_batches(:batch_size => 1000) do |nodes|

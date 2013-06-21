@@ -20,9 +20,9 @@ module Worker
         complexes.each do |complex|
           Graph.find_or_create(path: complex['path'], complex: true, mark: true)
         end
-        # delete unmarked
+        # delete non-marked nodes
         Node.destroy_all(:mark => nil)
-        # restore mark
+        # restore mark for next mark and sweep
         Node.unmark_all
       end
     rescue => e
