@@ -38,10 +38,14 @@ module GraphsHelper
     html
   end
 
-  # @param path [String] like 'a/b/c'
+  # @param graph [Graph]
   # @return full uri path [String] like 'http://10.33.49.163:5125/graph/mfclient/a%252Fb%252Fc/d?t=d'
-  def graph_uri_for(path)
-    $mfclient.get_graph_uri(path, @graph_uri_params)
+  def graph_uri_for(graph)
+    if graph.complex
+      $mfclient.get_complex_uri(graph.path, @graph_uri_params)
+    else
+      $mfclient.get_graph_uri(graph.path, @graph_uri_params)
+    end
   end
 
   def select_tag_for_term
