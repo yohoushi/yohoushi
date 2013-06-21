@@ -44,7 +44,7 @@
   -moz-border-radius: 5px;
 }
 
-.tree li.graph a {
+.tree li.leaf a {
   background: #c8e4f8; color: #000; border: 1px solid #94a0b4;
 }
 

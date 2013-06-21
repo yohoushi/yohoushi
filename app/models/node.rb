@@ -5,10 +5,12 @@ class Node < ActiveRecord::Base
   def graph?
     type == "Graph"
   end
+  alias :leaf? :graph?
 
   def section?
     type == "Section"
   end
+  alias :inner? :section?
 
   def dirname
     root? ? '' : File.dirname(path)
