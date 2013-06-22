@@ -5,8 +5,8 @@ gem 'rails', '4.0.0.rc2'
 gem 'mysql2'
 gem 'sass-rails', '~> 4.0.0.rc2'
 gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
-gem 'therubyracer', platforms: :ruby
+gem 'coffee-rails', '~> 4.0.0' # compressor for JavaScript assets
+gem 'therubyracer', platforms: :ruby # Embeded V8 Javascript Interpreter (required for sprockets, asset pipeline)
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 # gem 'turbolinks'
@@ -24,9 +24,9 @@ gem 'newrelic_rpm'
 gem "settingslogic"
 gem 'growthforecast-client', git: 'https://github.com/sonots/growthforecast-client.git', branch: 'more_api'
 gem 'multiforecast-client', git: 'https://github.com/sonots/multiforecast-client.git'
-gem 'acts-as-taggable-on'
-gem 'ancestry', git: 'https://github.com/sonots/ancestry.git', branch: 'sonots'
-gem 'ancestry-treeview'
+gem 'acts-as-taggable-on' # tagging
+gem 'ancestry', git: 'https://github.com/sonots/ancestry.git', branch: 'sonots' # tree structured model
+gem 'ancestry-treeview' # an extensional ancestry gem created just for yohoushi
 
 group :worker do
   gem 'serverengine'
@@ -36,20 +36,19 @@ group :bin do
   gem 'thor'
 end
 
-group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
-end
-
 group :development do
   gem 'twitter-bootstrap-rails'
   gem 'capistrano'
   gem 'foreman'
+  gem 'yard' # document genration
+  gem 'better_errors' # sophisticated error view
+  gem 'binding_of_caller' # add irb/pry on better_rails view
+  gem 'bullet' # warn N+1 queries
 end
 
 group :development, :test do
-  gem 'spring'
-  gem 'rspec-rails'
+  gem 'spring' # rails application preloader
+  gem 'rspec-rails' # rails g rspec:model
   gem 'guard'
   gem 'guard-rspec'
   gem 'fabrication'
@@ -59,9 +58,9 @@ group :development, :test do
   gem 'debugger2', '~> 1.0.0.beta1'
   gem 'pry'
   gem 'pry-nav'
-  gem 'ir_b'
-  gem 'tapp'
-  gem 'gem-open'
+  gem 'ir_b', :require => 'ir_b/pry' # `ir b` instead of `binding.pry` (short)
+  gem 'tapp' # 'foo'.tapp   #=> `pp 'foo'` and return 'foo'
+  gem 'gem-open' # gem open [gem]
 
   # metrics
   gem 'simplecov-rcov', :require => false
