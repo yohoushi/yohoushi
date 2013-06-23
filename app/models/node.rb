@@ -5,12 +5,12 @@ class Node < ActiveRecord::Base
   def graph?
     type == "Graph"
   end
-  alias :leaf? :graph?
+  alias :is_childless? :graph? # override `ancestry`' to be more efficient
 
   def section?
     type == "Section"
   end
-  alias :inner? :section?
+  alias :has_children? :section? # override `ancestry` to be more efficient
 
   def dirname
     root? ? '' : File.dirname(path)

@@ -135,10 +135,10 @@ class GraphsController < ApplicationController
     not_found unless (node = Node.find_by(path: path))
     if node.root?
       redirect_to tree_graph_path
-    elsif node.leaf?
-      redirect_to view_graph_path(path)
-    else
+    elsif node.has_children?
       redirect_to list_graph_path(path)
+    else
+      redirect_to view_graph_path(path)
     end
   end
 

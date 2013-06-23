@@ -5,7 +5,7 @@ defaults: &defaults
       dir: ''
       gfuri: 'http://10.33.49.163:5125'
   tree:
-    depth: null
+    to_depth: null
   autocomplete:
     limit: 10
   graph:
