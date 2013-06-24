@@ -26,4 +26,17 @@ Yohoushi::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  config.after_initialize do
+    Bullet.enable = true # enable
+    Bullet.alert = true # pop up a JavaScript alert in the browser
+    Bullet.bullet_logger = true # log to the Bullet log file (Rails.root/log/bullet.log)
+    Bullet.rails_logger = true # add warnings directly to the Rails log
+    Bullet.console = true # log warnings to your browser's console.log
+
+    # allow all private ip ranges
+    BetterErrors::Middleware.allow_ip! '10.0.0.0/8'
+    BetterErrors::Middleware.allow_ip! '172.16.0.0/12'
+    BetterErrors::Middleware.allow_ip! '192.168.0.0/16'
+  end
 end
