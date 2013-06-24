@@ -28,15 +28,19 @@ html lang="en"
           a.brand href="/"Yohoushi
           .container.nav-collapse
             ul.nav
-              li= link_to "Tag", tagged_graph_path
+              li class=(@tab == 'tag' ? 'active' : '')
+                = link_to "Tag", tagged_graph_path
             ul.nav
-              li= link_to "Debug", graphs_path
+              li class=(@tab == 'debug' ? 'active' : '')
+                = link_to "Debug", graphs_path
 
     .container
 
       .row
         .span12
-          - unless @tab == 'tag'
+          - if @tab == 'tag'
+            = render template: 'layouts/_tagselect'
+          - else
             = render template: 'layouts/_autocomplete'
           = bootstrap_flash
           = yield

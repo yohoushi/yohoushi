@@ -1,9 +1,9 @@
 class GraphsController < ApplicationController
   before_action :set_root
   before_action :set_graph, only: [:show, :edit, :update, :destroy, :view_graph]
-  before_action :set_view_graph_params, only: [:show, :list_graph, :view_graph]
-  before_action :path_redirect, only: [:tree_graph]
   before_action :set_graphs, only: [:list_graph, :tagged_graph]
+  before_action :set_view_graph_params, only: [:view_graph, :list_graph, :tagged_graph]
+  before_action :path_redirect, only: [:tree_graph]
   before_action :autocomplete_search, only: [:autocomplete_graph]
   before_action :tagselect_search, only: [:tagselect_graph]
 
@@ -22,6 +22,8 @@ class GraphsController < ApplicationController
   # GET /tagged_graph
   def tagged_graph
     @tab = 'tag'
+    @tag_list = params[:tag_list]
+    render action: 'list_graph'
   end
 
   # GET /autocomplete_graph?term=xxx for ajax autocomplete
