@@ -1,0 +1,15 @@
+- model_class = Graph
+
+= form_for @graph do |f|
+  .control-group
+    = f.label :description, :class => 'control-labe'
+    .controls
+      = f.text_field :description, :class => 'text_field'
+  .control-group
+    = f.label :tag_list, :class => 'control-label'
+    .controls
+      = f.text_field :tag_list, :class => 'text_field'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    '
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), view_graph_path(@graph.path), :class => 'btn'

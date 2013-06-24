@@ -5,6 +5,6 @@
 h3 = @graph.basename
 p.muted = @graph.description
 p
-  a.label.success.space-right href='#' = 'Setting'
-p
-  img src="#{graph_uri_for(@graph)}"
+  a.label.success.space-right href="#{edit_path(@graph.path)}" = 'Setting'
+  p
+    img src="#{graph_uri_for(@graph)}"
