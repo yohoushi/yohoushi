@@ -15,5 +15,4 @@
 //= require jquery.ui.autocomplete
 //= require bootstrap
 //= require bootstrap-datetimepicker
-//= require select2
 //= require_tree .

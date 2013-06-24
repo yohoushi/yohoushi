@@ -3,9 +3,9 @@ class GraphsController < ApplicationController
   before_action :set_graph, only: [:show, :edit, :update, :destroy, :view_graph]
   before_action :set_view_graph_params, only: [:show, :list_graph, :view_graph]
   before_action :path_redirect, only: [:tree_graph]
-  before_action :set_graphs, only: [:list_graph]
+  before_action :set_graphs, only: [:list_graph, :tagged_graph]
   before_action :autocomplete_search, only: [:autocomplete_graph]
-  before_action :set_tags, only: [:tagselect_graph]
+  before_action :tagselect_search, only: [:tagselect_graph]
 
   # GET /tree_graph
   def tree_graph
@@ -19,8 +19,9 @@ class GraphsController < ApplicationController
   def view_graph
   end
 
-  # GET /tag_graph
-  def tag_graph
+  # GET /tagged_graph
+  def tagged_graph
+    @tab = 'tag'
   end
 
   # GET /autocomplete_graph?term=xxx for ajax autocomplete
@@ -33,7 +34,7 @@ class GraphsController < ApplicationController
 
   # GET /tagselect_graph?term=xxx for ajax tag autocomplete
   def tagselect_graph
-    render :json => @tags.map(&:name)
+    render :json => @tagselect.map(&:name)
   end
 
   # GET /graphs
@@ -160,6 +161,17 @@ class GraphsController < ApplicationController
     end
   end
 
+  def tagselect_search
+    case
+    when params[:term]
+      term = params[:term].gsub(/ /, '%')
+      @tagselect = Tag.select(:name).where("name LIKE ?", "#{term}%") # "%#{term}%")  
+    else
+      @tagselect = Tag.select(:name).all
+    end
+    @tagselect = @tagselect.order('name ASC') # .limit(Settings.try(:autocomplete).try(:limit))
+  end
+
   def autocomplete_search
     case
     when params[:term]
@@ -173,14 +185,13 @@ class GraphsController < ApplicationController
 
   def set_graphs
     case
-    when params[:tag].present?
-      @graphs = Graph.tagged_with(params[:tag])
+    when params[:tag_list].present?
+      @graphs = Graph.tagged_with(params[:tag_list].split(','), :any => true).order('path ASC')
     when params[:path].present?
-      @graphs = Graph.where("path LIKE ?", "#{params[:path]}%")
+      @graphs = Graph.where("path LIKE ?", "#{params[:path]}%").order('path ASC')
     else
-      @graphs = Graph.all
+      @graphs = []
     end
-    @graphs = @graphs.order('path ASC')
   end
 
   # Use callbacks to share common setup or constraints between actions.
