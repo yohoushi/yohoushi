@@ -7,7 +7,7 @@ defaults: &defaults
   tree:
     to_depth: null
   autocomplete:
-    limit: 10
+    limit: 20
   graph:
     date_period_terms:
       -

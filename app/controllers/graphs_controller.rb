@@ -22,7 +22,6 @@ class GraphsController < ApplicationController
   # GET /tagged_graph
   def tagged_graph
     @tab = 'tag'
-    @tag_list = params[:tag_list]
     render action: 'list_graph'
   end
 
@@ -171,7 +170,7 @@ class GraphsController < ApplicationController
     else
       @tagselect = Tag.select(:name).all
     end
-    @tagselect = @tagselect.order('name ASC') # .limit(Settings.try(:autocomplete).try(:limit))
+    @tagselect = @tagselect.order('name ASC').limit(Settings.try(:autocomplete).try(:limit))
   end
 
   def autocomplete_search
@@ -188,7 +187,7 @@ class GraphsController < ApplicationController
   def set_graphs
     case
     when params[:tag_list].present?
-      @graphs = Graph.tagged_with(params[:tag_list].split(','), :any => true).order('path ASC')
+      @graphs = Graph.tagged_with(params[:tag_list].split(',')).order('path ASC')
     when params[:path].present?
       @graphs = Graph.where("path LIKE ?", "#{params[:path]}%").order('path ASC')
     else
