@@ -28,4 +28,18 @@ select { width: auto; }
 form.tune-graph { margin-bottom: 0px; }
 form.tune-graph .help-block { margin-bottom: 0px; }
 form.tune-graph .well { margin-bottom: 10.5px; }
-ul.tagit { float: left; }
+
+// Tag-it Yohoushi Custom
+form.tagselect-graph { margin-bottom: 0px; }
+ul.tagit { margin-bottom: 0px; }
+.tagcloud { margin-bottom: 20.0px; clear:both; }
+.tagcloud a {
+  color: #0099DD;
+}
+.tagcloud a:visited {
+  color: #0099DD;
+}
+.tagcloud a:hover {
+  color: #fff;
+  background-color: #0099DD;
+}

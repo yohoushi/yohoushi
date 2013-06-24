@@ -5,7 +5,6 @@ $(function() {
             autoFocus: true,
             source: $('#tagselect').attr('data-tagselect') 
         },
-        showAutocompleteOnFocus: true,
     });
     $('.tagit').addClass('span11');
 });
