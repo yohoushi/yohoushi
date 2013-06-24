@@ -28,11 +28,11 @@ Yohoushi::Application.configure do
   config.assets.debug = true
 
   config.after_initialize do
-    Bullet.enable = true
-    Bullet.alert = true
-    Bullet.bullet_logger = true
-    Bullet.console = true
-    Bullet.rails_logger = true
+    Bullet.enable = true # enable
+    Bullet.alert = true # pop up a JavaScript alert in the browser
+    Bullet.bullet_logger = true # log to the Bullet log file (Rails.root/log/bullet.log)
+    Bullet.rails_logger = true # add warnings directly to the Rails log
+    Bullet.console = true # log warnings to your browser's console.log
 
     # allow all private ip ranges
     BetterErrors::Middleware.allow_ip! '10.0.0.0/8'
