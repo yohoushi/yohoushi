@@ -1,10 +1,11 @@
 class GraphsController < ApplicationController
-  before_action :set_tags, :set_root
+  before_action :set_root
   before_action :set_graph, only: [:show, :edit, :update, :destroy, :view_graph]
   before_action :set_view_graph_params, only: [:show, :list_graph, :view_graph]
   before_action :path_redirect, only: [:tree_graph]
   before_action :set_graphs, only: [:list_graph]
   before_action :autocomplete_search, only: [:autocomplete_graph]
+  before_action :set_tags, only: [:tagselect_graph]
 
   # GET /tree_graph
   def tree_graph
@@ -28,6 +29,11 @@ class GraphsController < ApplicationController
       description = node.description ? " (#{node.description})" : ""
       {label: "#{node.path}#{description}", value: node.path}
     }
+  end
+
+  # GET /tagselect_graph?term=xxx for ajax tag autocomplete
+  def tagselect_graph
+    render :json => @tags.map(&:name)
   end
 
   # GET /graphs

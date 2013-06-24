@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.autocomplete
-//= require_tree .
 //= require bootstrap
 //= require bootstrap-datetimepicker
 //= require select2
+//= require_tree .
