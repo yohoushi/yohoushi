@@ -20,6 +20,7 @@ gem 'bootstrap-sass' # http://d.hatena.ne.jp/sandmark/20120321/1332292995
 gem 'bootswatch-rails'
 gem 'bootstrap-datetimepicker-rails'
 gem 'newrelic_rpm'
+gem 'select2-rails'
 
 gem "settingslogic"
 gem 'growthforecast-client', git: 'https://github.com/sonots/growthforecast-client.git', branch: 'more_api'

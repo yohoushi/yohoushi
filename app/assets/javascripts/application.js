@@ -16,3 +16,4 @@
 //= require_tree .
 //= require bootstrap
 //= require bootstrap-datetimepicker
+//= require select2
