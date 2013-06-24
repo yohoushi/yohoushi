@@ -18,8 +18,8 @@ class GraphsController < ApplicationController
   def view_graph
   end
 
-  # GET /search_graph
-  def search_graph
+  # GET /tag_graph
+  def tag_graph
   end
 
   # GET /autocomplete_graph?term=xxx for ajax autocomplete
