@@ -3,11 +3,6 @@ source 'https://rubygems.org'
 ruby '2.0.0'
 gem 'rails', '4.0.0.rc2'
 gem 'mysql2'
-gem "settingslogic"
-gem 'growthforecast-client', git: 'https://github.com/sonots/growthforecast-client.git', branch: 'more_api'
-gem 'multiforecast-client', git: 'https://github.com/sonots/multiforecast-client.git'
-gem 'acts-as-taggable-on'
-gem 'ancestry', git: 'https://github.com/sonots/ancestry.git', branch: 'sonots'
 gem 'sass-rails', '~> 4.0.0.rc2'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
@@ -18,12 +13,20 @@ gem 'jquery-ui-rails'
 # gem 'jquery-turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'unicorn'
+
 gem 'slim', :require => 'slim-rails'
 gem "slim-rails"
 gem 'bootstrap-sass' # http://d.hatena.ne.jp/sandmark/20120321/1332292995
 gem 'bootswatch-rails'
 gem 'bootstrap-datetimepicker-rails'
 gem 'newrelic_rpm'
+
+gem "settingslogic"
+gem 'growthforecast-client', git: 'https://github.com/sonots/growthforecast-client.git', branch: 'more_api'
+gem 'multiforecast-client', git: 'https://github.com/sonots/multiforecast-client.git'
+gem 'acts-as-taggable-on'
+gem 'ancestry', git: 'https://github.com/sonots/ancestry.git', branch: 'sonots'
+gem 'ancestry-treeview'
 
 group :worker do
   gem 'serverengine'

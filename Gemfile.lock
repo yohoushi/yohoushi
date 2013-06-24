@@ -52,6 +52,8 @@ GEM
     acts-as-taggable-on (2.4.1)
       rails (>= 3, < 5)
     addressable (2.3.4)
+    ancestry-treeview (0.0.1)
+      ancestry (>= 2.0.0)
     arel (4.0.0)
     atomic (1.1.9)
     bootstrap-datetimepicker-rails (0.0.11)
@@ -262,6 +264,7 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on
   ancestry!
+  ancestry-treeview
   bootstrap-datetimepicker-rails
   bootstrap-sass
   bootswatch-rails
