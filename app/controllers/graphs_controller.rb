@@ -150,7 +150,8 @@ class GraphsController < ApplicationController
       graph.size   = size
       graph.width  = width
       graph.height = height
-      @errors = graph.validate!
+      graph.validate
+      flash[:alert] = graph.view_errors
     end
   end
 

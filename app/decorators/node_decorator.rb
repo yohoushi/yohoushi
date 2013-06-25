@@ -11,6 +11,11 @@ class NodeDecorator < Draper::Decorator
     end
   end
 
+  # Show ActiveModel::Errors
+  def view_errors
+    self.errors.full_messages.sort{|a,b| a.downcase <=> b.downcase }.join("<br />") if errors.present?
+  end
+
   # Define presentation-specific methods here. Helpers are accessed through
   # `helpers` (aka `h`). You can override attributes, for example:
   #

@@ -8,7 +8,7 @@ class GraphDecorator < NodeDecorator
   attr_accessor :width
   attr_accessor :height
 
-  def validate!
+  def validate
     self.errors.add(:from, 'must be older than `to`.') if @from and @to and @from >= @to
     errors
   end
