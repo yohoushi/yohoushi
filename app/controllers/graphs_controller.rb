@@ -1,10 +1,12 @@
 class GraphsController < ApplicationController
-  before_action :set_tags, :set_root
+  before_action :set_root
   before_action :set_graph, only: [:show, :edit, :update, :destroy, :view_graph]
-  before_action :set_view_graph_params, only: [:show, :list_graph, :view_graph]
+  before_action :set_graphs, only: [:list_graph, :tag_graph]
+  before_action :set_view_graph_params, only: [:view_graph, :list_graph, :tag_graph]
   before_action :path_redirect, only: [:tree_graph]
-  before_action :set_graphs, only: [:list_graph]
+  before_action :tag_redirect, only: [:tag_graph]
   before_action :autocomplete_search, only: [:autocomplete_graph]
+  before_action :tagselect_search, only: [:tagselect_graph]
 
   # GET /tree_graph
   def tree_graph
@@ -18,8 +20,10 @@ class GraphsController < ApplicationController
   def view_graph
   end
 
-  # GET /search_graph
-  def search_graph
+  # GET /tag_graph
+  def tag_graph
+    @tab = 'tag'
+    render action: 'list_graph'
   end
 
   # GET /autocomplete_graph?term=xxx for ajax autocomplete
@@ -28,6 +32,11 @@ class GraphsController < ApplicationController
       description = node.description ? " (#{node.description})" : ""
       {label: "#{node.path}#{description}", value: node.path}
     }
+  end
+
+  # GET /tagselect_graph?term=xxx for ajax tag autocomplete
+  def tagselect_graph
+    render :json => @tagselect.map(&:name)
   end
 
   # GET /graphs
@@ -130,6 +139,11 @@ class GraphsController < ApplicationController
     }
   end
 
+  def tag_redirect
+    return unless (tag_list = request.query_parameters[:tag_list])
+    redirect_to "#{tag_graph_root_path}/#{URI.escape(tag_list)}"
+  end
+
   def path_redirect
     return unless (path = request.query_parameters[:path])
     not_found unless (node = Node.find_by(path: path))
@@ -154,6 +168,17 @@ class GraphsController < ApplicationController
     end
   end
 
+  def tagselect_search
+    case
+    when params[:term]
+      term = params[:term].gsub(/ /, '%')
+      @tagselect = Tag.select(:name).where("name LIKE ?", "#{term}%") # "%#{term}%")  
+    else
+      @tagselect = Tag.select(:name).all
+    end
+    @tagselect = @tagselect.order('name ASC').limit(Settings.try(:autocomplete).try(:limit))
+  end
+
   def autocomplete_search
     case
     when params[:term]
@@ -167,14 +192,13 @@ class GraphsController < ApplicationController
 
   def set_graphs
     case
-    when params[:tag].present?
-      @graphs = Graph.tagged_with(params[:tag])
+    when params[:tag_list].present?
+      @graphs = Graph.tagged_with(params[:tag_list].split(',')).order('path ASC')
     when params[:path].present?
-      @graphs = Graph.where("path LIKE ?", "#{params[:path]}%")
+      @graphs = Graph.where("path LIKE ?", "#{params[:path]}/%").order('path ASC')
     else
-      @graphs = Graph.all
+      @graphs = []
     end
-    @graphs = @graphs.order('path ASC')
   end
 
   # Use callbacks to share common setup or constraints between actions.
