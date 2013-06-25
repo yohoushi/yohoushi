@@ -1,16 +1,6 @@
 module GraphsHelper
   include ActsAsTaggableOn::TagsHelper
 
-  def link_to_node(node)
-    if node.root?
-      link_to(node.basename, root_path)
-    elsif node.has_children?
-      link_to(node.basename, list_graph_path(node.path))
-    else
-      link_to(node.basename, view_graph_path(node.path))
-    end
-  end
-
   # @param graph [Graph]
   # @return full uri path [String] like 'http://10.33.49.163:5125/graph/mfclient/a%252Fb%252Fc/d?t=d'
   def graph_uri_for(graph)
