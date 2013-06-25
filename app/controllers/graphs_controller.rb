@@ -1,9 +1,10 @@
 class GraphsController < ApplicationController
   before_action :set_root
   before_action :set_graph, only: [:show, :edit, :update, :destroy, :view_graph]
-  before_action :set_graphs, only: [:list_graph, :tagged_graph]
-  before_action :set_view_graph_params, only: [:view_graph, :list_graph, :tagged_graph]
+  before_action :set_graphs, only: [:list_graph, :tag_graph]
+  before_action :set_view_graph_params, only: [:view_graph, :list_graph, :tag_graph]
   before_action :path_redirect, only: [:tree_graph]
+  before_action :tag_redirect, only: [:tag_graph]
   before_action :autocomplete_search, only: [:autocomplete_graph]
   before_action :tagselect_search, only: [:tagselect_graph]
 
@@ -19,8 +20,8 @@ class GraphsController < ApplicationController
   def view_graph
   end
 
-  # GET /tagged_graph
-  def tagged_graph
+  # GET /tag_graph
+  def tag_graph
     @tab = 'tag'
     render action: 'list_graph'
   end
@@ -136,6 +137,11 @@ class GraphsController < ApplicationController
       'width'  => @width,
       'height' => @height
     }
+  end
+
+  def tag_redirect
+    return unless (tag_list = request.query_parameters[:tag_list])
+    redirect_to "#{tag_graph_root_path}/#{URI.escape(tag_list)}"
   end
 
   def path_redirect

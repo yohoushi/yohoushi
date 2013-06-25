@@ -13,5 +13,5 @@ $(function() {
         $("#tagselect").tagit("createTag", event.target.name);
         $('#tagselect-button').focus();
         return false;
-    })
+    });
 });

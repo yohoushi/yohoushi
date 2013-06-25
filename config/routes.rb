@@ -4,10 +4,11 @@ Yohoushi::Application.routes.draw do
   root 'graphs#tree_graph'
 
   get 'tree_graph' => 'graphs#tree_graph', :as => 'tree_graph'
+  get 'view_graph/:path' => 'graphs#view_graph', :constraints => { :path => /.+/ }, :as => 'view_graph'
   get 'list_graph' => 'graphs#list_graph', :as => 'list_graph_root'
   get 'list_graph/:path' => 'graphs#list_graph', :constraints => { :path => /.+/ }, :as => 'list_graph'
-  get 'view_graph/:path' => 'graphs#view_graph', :constraints => { :path => /.+/ }, :as => 'view_graph'
-  get 'tagged_graph' => 'graphs#tagged_graph', :as => 'tagged_graph'
+  get 'tag_graph' => 'graphs#tag_graph', :as => 'tag_graph_root'
+  get 'tag_graph/:tag_list' => 'graphs#tag_graph', :constraints => { :tag_list => /.+/ }, :as => 'tag_graph'
   get 'autocomplete_graph' => 'graphs#autocomplete_graph', :as => 'autocomplete_graph'
   get 'tagselect_graph' => 'graphs#tagselect_graph', :as => 'tagselect_graph'
 
