@@ -13,9 +13,11 @@
     a href="#{view_path(graph.path, @view_graph_params)}"
       img src="#{graph_uri_for(graph)}"
   p
-    a href="#{edit_path(graph.path)}" Setting
+    a.btn.btn-mini href="#{edit_path(graph.path)}" 
+      i.icon-cog
+      = " Setting"
     '
     span.tag
       - graph.tag_list.each do |tag|
-        = link_to tag, tag_graph_path(tag)
+        a.label href="#{tag_graph_path(tag)}" = tag
         '
