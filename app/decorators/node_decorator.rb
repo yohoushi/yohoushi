@@ -1,4 +1,4 @@
-class NodeDecorator < Draper::Decorator
+class NodeDecorator < ResourceDecorator
   delegate_all
 
   def link_to
@@ -9,11 +9,6 @@ class NodeDecorator < Draper::Decorator
     else
       h.link_to(self.basename, h.view_path(self.path))
     end
-  end
-
-  # Show ActiveModel::Errors
-  def view_errors
-    self.errors.full_messages.sort{|a,b| a.downcase <=> b.downcase }.join("<br />") if errors.present?
   end
 
   # Define presentation-specific methods here. Helpers are accessed through
