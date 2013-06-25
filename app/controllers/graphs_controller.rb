@@ -92,7 +92,7 @@ class GraphsController < ApplicationController
 
     respond_to do |format|
       if success
-        format.html { redirect_to view_graph_path(@graph.path), notice: 'Graph was successfully updated.' }
+        format.html { redirect_to view_path(@graph.path), notice: 'Graph was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -152,11 +152,11 @@ class GraphsController < ApplicationController
     return unless (path = request.query_parameters[:path])
     not_found unless (node = Node.find_by(path: path))
     if node.root?
-      redirect_to tree_graph_path
+      redirect_to tree_path
     elsif node.has_children?
-      redirect_to list_graph_path(path)
+      redirect_to list_path(path)
     else
-      redirect_to view_graph_path(path)
+      redirect_to view_path(path)
     end
   end
 
