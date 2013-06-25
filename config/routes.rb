@@ -11,7 +11,7 @@ Yohoushi::Application.routes.draw do
   get 'tag_graph' => 'graphs#tag_graph', :as => 'tag_graph_root'
   get 'tag_graph/:tag_list' => 'graphs#tag_graph', :constraints => { :tag_list => /.+/ }, :as => 'tag_graph'
   get 'autocomplete_graph' => 'graphs#autocomplete_graph', :as => 'autocomplete'
-  get 'tagselect_graph' => 'graphs#tagselect_graph', :as => 'tagselect_graph'
+  get 'tagselect_graph' => 'graphs#tagselect_graph', :as => 'tagselect'
 
   namespace :api do
     resources :graphs, :only => %w[index], :constraints => { :path => /.+/ }, :defaults => {:format => 'json'} do
