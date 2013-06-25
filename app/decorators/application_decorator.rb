@@ -1,4 +1,4 @@
-class ResourceDecorator < Draper::Decorator
+class ApplicationDecorator < Draper::Decorator
   delegate_all
 
   # Show ActiveModel::Errors

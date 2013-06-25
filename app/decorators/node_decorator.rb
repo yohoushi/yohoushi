@@ -1,4 +1,4 @@
-class NodeDecorator < ResourceDecorator
+class NodeDecorator < ApplicationDecorator
   delegate_all
 
   def link_to
