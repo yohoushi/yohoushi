@@ -1,6 +1,6 @@
 class GraphsController < ApplicationController
   before_action :set_root
-  before_action :set_graph, only: [:show, :edit, :update, :destroy, :view_graph]
+  before_action :set_graph, only: [:show, :edit, :update, :destroy, :view_graph, :edit_graph]
   before_action :set_graphs, only: [:list_graph, :tag_graph]
   before_action :set_view_graph_params, only: [:view_graph, :list_graph, :tag_graph]
   before_action :path_redirect, only: [:tree_graph]
@@ -18,6 +18,10 @@ class GraphsController < ApplicationController
 
   # GET /view_graph
   def view_graph
+  end
+
+  # GET /edit_graph
+  def edit_graph
   end
 
   # GET /tag_graph
@@ -88,7 +92,7 @@ class GraphsController < ApplicationController
 
     respond_to do |format|
       if success
-        format.html { redirect_to @graph, notice: 'Graph was successfully updated.' }
+        format.html { redirect_to view_path(@graph.path), notice: 'Graph was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -148,11 +152,11 @@ class GraphsController < ApplicationController
     return unless (path = request.query_parameters[:path])
     not_found unless (node = Node.find_by(path: path))
     if node.root?
-      redirect_to tree_graph_path
+      redirect_to tree_path
     elsif node.has_children?
-      redirect_to list_graph_path(path)
+      redirect_to list_path(path)
     else
-      redirect_to view_graph_path(path)
+      redirect_to view_path(path)
     end
   end
 
@@ -209,6 +213,6 @@ class GraphsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def graph_params
-    params.require(:graph).permit(:path, :tag_list)
+    params.require(:graph).permit(:path, :description, :tag_list)
   end
 end
