@@ -1,11 +1,12 @@
-form#tagselect-form { margin-bottom: 0px; }
+form#tagselect-form { margin-bottom: 3px; }
 form#tagselect-form button { height: 37px; }
 ul.tagit { margin-bottom: 0px; }
 ul.tagit li.tagit-choice a:hover { background-color: transparent; }
 .tagcloud { margin-bottom: 20.0px; clear:both; }
-.tagcloud a { color: #0099DD; }
-.tagcloud a:visited { color: #0099DD; }
-.tagcloud a:hover { color: #fff; background-color: #0099DD; }
+.tagcloud a { margin-bottom: 3px; font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif; color: #555; font-weight: normal; border: 1px solid #D3D3D3; background: url("/assets/jquery-ui/ui-bg_glass_75_e6e6e6_1x400.png") repeat-x scroll 50% 50% #E6E6E6; }
+.tagcloud a:link { color: #555; }
+.tagcloud a:visited { color: #555; }
+.tagcloud a:hover { color: #0099DD; }
 .tagcloud-more { margin-top: -20.0px; margin-bottom: 20.0px; }
 .tagcloud-more a { color: #0099DD; }
 .tagcloud-more a:visited { color: #0099DD; }
