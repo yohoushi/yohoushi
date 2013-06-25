@@ -10,7 +10,7 @@ class GraphDecorator < NodeDecorator
 
   def validate
     self.errors.add(:from, 'must be older than `to`.') if @from and @to and @from >= @to
-    errors
+    self
   end
 
   # Define presentation-specific methods here. Helpers are accessed through

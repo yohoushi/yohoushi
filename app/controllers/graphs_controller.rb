@@ -2,7 +2,7 @@ class GraphsController < ApplicationController
   before_action :set_root
   before_action :set_graph, only: [:show, :edit, :update, :destroy, :view_graph, :edit_graph]
   before_action :set_graphs, only: [:list_graph, :tag_graph]
-  before_action :set_view_graph_params, only: [:view_graph, :list_graph, :tag_graph]
+  before_action :set_graph_uri_params, :set_view_graph_params, only: [:view_graph, :list_graph, :tag_graph]
   before_action :path_redirect, only: [:tree_graph]
   before_action :tag_redirect, only: [:tag_graph]
   before_action :autocomplete_search, only: [:autocomplete_graph]
@@ -128,12 +128,16 @@ class GraphsController < ApplicationController
 
   def set_view_graph_params
     @view_graph_params = params.slice(:t, :from, :to, :size, :width, :height)
-    term = params[:t] || 'd'
-    from = params[:from].present? ? Time.parse(params[:from]) : nil
-    to   = params[:to].present?   ? Time.parse(params[:to])   : nil
-    size = params[:size].presence || 'M'
+  end
+
+  def set_graph_uri_params
+    term   = params[:t] || 'd'
+    from   = params[:from].present? ? Time.parse(params[:from]) : nil
+    to     = params[:to].present?   ? Time.parse(params[:to])   : nil
+    size   = params[:size].presence || 'M'
     width  = Settings.graph.sizes[size]['width']
     height = Settings.graph.sizes[size]['height']
+
     @graph_uri_params = {
       't'      => term,
       'from'   => from,
@@ -150,8 +154,7 @@ class GraphsController < ApplicationController
       graph.size   = size
       graph.width  = width
       graph.height = height
-      graph.validate
-      flash[:alert] = graph.view_errors
+      flash.now[:alert] = graph.validate.view_errors
     end
   end
 
@@ -170,10 +173,6 @@ class GraphsController < ApplicationController
     else
       redirect_to view_path(path)
     end
-  end
-
-  def set_tags
-    @tags = Graph.tag_counts_on(:tags).order('count DESC')
   end
 
   def set_root
