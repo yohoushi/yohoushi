@@ -131,29 +131,29 @@ class GraphsController < ApplicationController
   end
 
   def set_graph_uri_params
-    term   = params[:t] || 'd'
-    from   = params[:from].present? ? Time.parse(params[:from]) : nil
-    to     = params[:to].present?   ? Time.parse(params[:to])   : nil
-    size   = params[:size].presence || 'M'
-    width  = Settings.graph.sizes[size]['width']
-    height = Settings.graph.sizes[size]['height']
+    @term   = params[:t] || 'd'
+    @from   = params[:from].present? ? Time.parse(params[:from]) : nil
+    @to     = params[:to].present?   ? Time.parse(params[:to])   : nil
+    @size   = params[:size].presence || 'M'
+    @width  = Settings.graph.sizes[@size]['width']
+    @height = Settings.graph.sizes[@size]['height']
 
     @graph_uri_params = {
-      't'      => term,
-      'from'   => from,
-      'to'     => to,
-      'width'  => width,
-      'height' => height
+      't'      => @term,
+      'from'   => @from,
+      'to'     => @to,
+      'width'  => @width,
+      'height' => @height
     }
 
     if graph = @graph || @graphs.first
       graph = graph.decorate
-      graph.term   = term
-      graph.from   = from
-      graph.to     = to
-      graph.size   = size
-      graph.width  = width
-      graph.height = height
+      graph.term   = @term
+      graph.from   = @from
+      graph.to     = @to
+      graph.size   = @size
+      graph.width  = @width
+      graph.height = @height
       flash.now[:alert] = graph.validate.view_errors
     end
   end
