@@ -29,12 +29,10 @@ form.tune-graph { margin-bottom: 0px; }
 form.tune-graph .help-block { margin-bottom: 0px; }
 form.tune-graph .well { margin-bottom: 10.5px; }
 
-// Show graph setting link when :hover
-.setting-link {
-  display: none;
-  //display: block;
-}
+// Tags bottom of graph image
+.tag
+.tag a { color: #0099DD; }
+.tag a:link { color: #0099DD; }
+.tag a:visited { color: #0099DD; }
+.tag a:hover { color: #fff; background-color: #0099DD; }
 
-.graph-image-container:hover .setting-link {
-  display: block;
-}

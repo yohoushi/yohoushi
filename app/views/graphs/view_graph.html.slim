@@ -2,18 +2,16 @@
 
 = render partial: 'tune'
 
-.graph-container
-  h3 
-    = @graph.basename
-    '
-    small = @graph.description
-  .row.graph-image-container
-    .span10
-      img src="#{graph_uri_for(@graph)}"
-    .span2
-      ul.nav.nav-list.setting-link
-        li 
-          a href="#{edit_path(@graph.path)}" Setting
-          li.nav-header Tags
-          - @graph.tag_list.each do |tag|
-            li = tag
+h3 
+  = @graph.basename
+  '
+  small = @graph.description
+p
+  img src="#{graph_uri_for(@graph)}"
+p
+  a href="#{edit_path(@graph.path)}" Setting
+  '
+  span.tag
+    - @graph.tag_list.each do |tag|
+      = link_to tag, tag_graph_path(tag)
+      '

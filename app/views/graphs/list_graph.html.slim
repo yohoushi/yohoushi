@@ -2,22 +2,20 @@
 
 = render partial: 'tune' 
 - @graphs.each do |graph|
-  .graph-container
-    h3
-      - if @tab == 'tag'
-        a.anchor name="#{graph.path}" href="##{graph.path}" = graph.path
-      - else
-        a.anchor name="#{graph.basename(params[:path])}" href="##{graph.basename(params[:path])}" = graph.basename(params[:path])
-      '
-      small = graph.description
-    .row.graph-image-container
-          .span10
-            a href="#{view_path(graph.path, @view_graph_params)}"
-              img src="#{graph_uri_for(graph)}"
-          .span2
-            ul.nav.nav-list.setting-link
-              li 
-                a href="#{edit_path(graph.path)}" Setting
-                li.nav-header Tags
-                - graph.tag_list.each do |tag|
-                  li = tag
+  h3
+    - if @tab == 'tag'
+      a.anchor name="#{graph.path}" href="##{graph.path}" = graph.path
+    - else
+      a.anchor name="#{graph.basename(params[:path])}" href="##{graph.basename(params[:path])}" = graph.basename(params[:path])
+    '
+    small = graph.description
+  p
+    a href="#{view_path(graph.path, @view_graph_params)}"
+      img src="#{graph_uri_for(graph)}"
+  p
+    a href="#{edit_path(graph.path)}" Setting
+    '
+    span.tag
+      - graph.tag_list.each do |tag|
+        = link_to tag, tag_graph_path(tag)
+        '
