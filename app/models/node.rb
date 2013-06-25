@@ -16,8 +16,12 @@ class Node < ActiveRecord::Base
     root? ? '' : File.dirname(path)
   end
 
-  def basename
-    root? ? 'Home' : File.basename(path)
+  def basename(dirname = nil)
+    if dirname
+      root? ? 'Home' : path.gsub("#{dirname}/", '')
+    else
+      root? ? 'Home' : File.basename(path)
+    end
   end
 
   # start marking of tracking nodes in #find_or_create

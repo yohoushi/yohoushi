@@ -6,7 +6,7 @@
     - if @tab == 'tag'
       a.anchor name="#{graph.path}" href="##{graph.path}" = graph.path
     - else
-      a.anchor name="#{graph.basename}" href="##{graph.basename}" = graph.basename
+      a.anchor name="#{graph.basename(params[:path])}" href="##{graph.basename(params[:path])}" = graph.basename(params[:path])
   p.muted = graph.description
   p
     a.label.success.space-right href='#' = 'Setting'

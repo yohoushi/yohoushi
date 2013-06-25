@@ -195,7 +195,7 @@ class GraphsController < ApplicationController
     when params[:tag_list].present?
       @graphs = Graph.tagged_with(params[:tag_list].split(',')).order('path ASC')
     when params[:path].present?
-      @graphs = Graph.where("path LIKE ?", "#{params[:path]}%").order('path ASC')
+      @graphs = Graph.where("path LIKE ?", "#{params[:path]}/%").order('path ASC')
     else
       @graphs = []
     end
