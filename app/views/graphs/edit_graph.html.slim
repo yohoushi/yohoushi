@@ -1,8 +1,12 @@
 - model_class = Graph
 
-= form_for @graph do |f|
+= form_for @graph, :html => { class: "form-horizontal" } do |f|
   .control-group
-    = f.label :description, :class => 'control-labe'
+    = f.label :path, :class => 'control-label'
+    .controls
+      span class="text" =@graph.path
+  .control-group
+    = f.label :description, :class => 'control-label'
     .controls
       = f.text_field :description, :class => 'text_field'
   .control-group

@@ -1,3 +1,5 @@
+- action = controller.action_name
+
 doctype html
 html lang="en"
   head
@@ -38,8 +40,9 @@ html lang="en"
 
       .row
         .span12
-          - if @tab == 'tag'
+          - if action == "tag_graph"
             = render template: 'layouts/_tagselect'
+          - elsif action == "edit_graph"
           - else
             = render template: 'layouts/_autocomplete'
           = bootstrap_flash
