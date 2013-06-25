@@ -1,7 +1,7 @@
 p style="font-size:x-large"
   - if @root.present?
     - @root.ancestors.each do |node|
-      = link_to_node(node)
+      = node.decorate.link_to
       font color="#bbb"
         |  » 
     = @root.basename

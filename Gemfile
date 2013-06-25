@@ -21,6 +21,7 @@ gem 'bootswatch-rails'
 gem 'bootstrap-datetimepicker-rails'
 gem 'newrelic_rpm'
 
+gem 'draper' # decorator(view-model)
 gem "settingslogic"
 gem 'growthforecast-client', git: 'https://github.com/sonots/growthforecast-client.git', branch: 'more_api'
 gem 'multiforecast-client', git: 'https://github.com/sonots/multiforecast-client.git'
