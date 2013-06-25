@@ -1,6 +1,18 @@
 class GraphDecorator < NodeDecorator
   delegate_all
 
+  attr_accessor :term
+  attr_accessor :from
+  attr_accessor :to
+  attr_accessor :size
+  attr_accessor :width
+  attr_accessor :height
+
+  def validate!
+    self.errors.add(:from, 'must be older than `to`.') if @from and @to and @from >= @to
+    errors
+  end
+
   # Define presentation-specific methods here. Helpers are accessed through
   # `helpers` (aka `h`). You can override attributes, for example:
   #

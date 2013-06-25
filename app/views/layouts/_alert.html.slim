@@ -1,0 +1,7 @@
+- if @errors.present?
+  div class="alert alert-block alert-error"
+    h4 class="alert-heading"
+      | Oops!
+    br
+    p class="code"
+      = @errors.full_messages.sort{|a,b| a.downcase <=> b.downcase }.join("<br />")
