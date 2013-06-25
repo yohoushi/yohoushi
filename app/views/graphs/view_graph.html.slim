@@ -2,9 +2,11 @@
 
 = render partial: 'tune'
 
-h3 = @graph.basename
-p.muted = @graph.description
+h3 
+  = @graph.basename
+  '
+  small = @graph.description
 p
   a.label.success.space-right href="#{edit_path(@graph.path)}" = 'Setting'
-  p
-    img src="#{graph_uri_for(@graph)}"
+p
+  img src="#{graph_uri_for(@graph)}"
