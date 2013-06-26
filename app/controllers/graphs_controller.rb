@@ -2,7 +2,7 @@ class GraphsController < ApplicationController
   before_action :set_root
   before_action :set_graph, only: [:show, :edit, :update, :destroy, :view_graph, :edit_graph]
   before_action :set_graphs, only: [:list_graph, :tag_graph]
-  before_action :set_graph_uri_params, :set_view_graph_params, only: [:view_graph, :list_graph, :tag_graph]
+  before_action :set_graph_parameter, :set_view_graph_params, only: [:view_graph, :list_graph, :tag_graph]
   before_action :path_redirect, only: [:tree_graph]
   before_action :tag_redirect, only: [:tag_graph]
   before_action :autocomplete_search, only: [:autocomplete_graph]
@@ -130,32 +130,9 @@ class GraphsController < ApplicationController
     @view_graph_params = params.slice(:t, :from, :to, :size, :width, :height)
   end
 
-  def set_graph_uri_params
-    @term   = params[:t] || 'd'
-    @from   = params[:from].present? ? Time.parse(params[:from]) : nil
-    @to     = params[:to].present?   ? Time.parse(params[:to])   : nil
-    @size   = params[:size].presence || 'M'
-    @width  = Settings.graph.sizes[@size]['width']
-    @height = Settings.graph.sizes[@size]['height']
-
-    @graph_uri_params = {
-      't'      => @term,
-      'from'   => @from,
-      'to'     => @to,
-      'width'  => @width,
-      'height' => @height
-    }
-
-    if graph = @graph || @graphs.first
-      graph = graph.decorate
-      graph.term   = @term
-      graph.from   = @from
-      graph.to     = @to
-      graph.size   = @size
-      graph.width  = @width
-      graph.height = @height
-      flash.now[:alert] = graph.validate.view_errors
-    end
+  def set_graph_parameter
+    @graph_parameter = GraphParameter.new(params)
+    flash.now[:alert] = @graph_parameter.validate.decorate.view_errors
   end
 
   def tag_redirect

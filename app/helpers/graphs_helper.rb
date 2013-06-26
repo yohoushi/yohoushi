@@ -5,9 +5,9 @@ module GraphsHelper
   # @return full uri path [String] like 'http://10.33.49.163:5125/graph/mfclient/a%252Fb%252Fc/d?t=d'
   def graph_uri_for(graph)
     if graph.complex
-      $mfclient.get_complex_uri(graph.path, @graph_uri_params)
+      $mfclient.get_complex_uri(graph.path, @graph_prameter.graph_uri_params)
     else
-      $mfclient.get_graph_uri(graph.path, @graph_uri_params)
+      $mfclient.get_graph_uri(graph.path, @graph_parameter.graph_uri_params)
     end
   end
 
@@ -15,7 +15,7 @@ module GraphsHelper
     html = ''
     html += '<select name="t">'
     Settings.graph.date_period_terms.each do |term|
-      selected = (term[:short_name] == @term) ? 'selected="selected"' : ''
+      selected = (term[:short_name] == @graph_parameter.term) ? 'selected="selected"' : ''
       html += %!<option class="span2" value="#{term[:short_name]}" #{selected}>#{term[:name]}</option>!
     end
     html += '</select>'
@@ -26,7 +26,7 @@ module GraphsHelper
     html = ''
     html += '<select name="size">'
     Settings.graph.sizes.sort{|(k1, v1), (k2, v2)| v1['width'] <=> v2['width']}.each do |size, v|
-      selected = (size == @size) ? 'selected="selected"' : ''
+      selected = (size == @graph_parameter.size) ? 'selected="selected"' : ''
       html += %!<option class="span2" value="#{size}" #{selected}>#{size}</option>!
     end
     html += '</select>'
