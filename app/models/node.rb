@@ -5,7 +5,7 @@ class Node < ActiveRecord::Base
   def graph?
     type == "Graph"
   end
-  alias :is_childless? :graph? # override `ancestry`' to be more efficient
+  alias :is_childless? :graph? # override `ancestry` to be more efficient
 
   def section?
     type == "Section"
