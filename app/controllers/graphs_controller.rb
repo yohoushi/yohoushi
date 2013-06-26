@@ -132,7 +132,7 @@ class GraphsController < ApplicationController
 
   def set_graph_parameter
     @graph_parameter = GraphParameter.new(params)
-    flash.now[:alert] = @graph_parameter.validate.view_errors
+    flash.now[:alert] = @graph_parameter.validate.decorate.view_errors
   end
 
   def tag_redirect
