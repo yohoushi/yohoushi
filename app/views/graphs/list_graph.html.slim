@@ -1,6 +1,6 @@
 - model_class = Graph
 
-= render partial: 'tune' 
+= render partial: 'tune' if @graphs.present?
 - @graphs.each do |graph|
   h3
     - if @tab == 'tag'

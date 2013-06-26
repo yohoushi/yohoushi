@@ -16,6 +16,7 @@ gem 'unicorn'
 
 gem 'slim', :require => 'slim-rails'
 gem "slim-rails"
+gem 'twitter-bootstrap-rails'
 gem 'bootstrap-sass' # http://d.hatena.ne.jp/sandmark/20120321/1332292995
 gem 'bootswatch-rails'
 gem 'bootstrap-datetimepicker-rails'
@@ -38,7 +39,6 @@ group :bin do
 end
 
 group :development do
-  gem 'twitter-bootstrap-rails'
   gem 'capistrano'
   gem 'foreman'
   gem 'yard' # document genration

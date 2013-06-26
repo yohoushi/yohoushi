@@ -1,4 +1,4 @@
-class NodeDecorator < Draper::Decorator
+class NodeDecorator < ApplicationDecorator
   delegate_all
 
   def link_to
