@@ -47,22 +47,24 @@ group :development do
   gem 'bullet' # warn N+1 queries
 end
 
+group :test do
+  gem 'rspec-rails' # rails g rspec:model
+  gem 'webmock', :require => false
+  gem 'guard-rspec'
+
+  # metrics
+  gem 'simplecov-rcov', :require => false
+end
+
 group :development, :test do
   gem 'spring' # rails application preloader
-  gem 'rspec-rails' # rails g rspec:model
   gem 'guard'
-  gem 'guard-rspec'
   gem 'fabrication'
-  gem 'webmock', :require => false
 
   # for debug
   gem 'debugger2', '~> 1.0.0.beta1'
   gem 'pry'
   gem 'pry-nav'
-  gem 'ir_b', :require => 'ir_b/pry' # `ir b` instead of `binding.pry` (short)
   gem 'tapp' # 'foo'.tapp   #=> `pp 'foo'` and return 'foo'
   gem 'gem-open' # gem open [gem]
-
-  # metrics
-  gem 'simplecov-rcov', :require => false
 end

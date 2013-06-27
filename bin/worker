@@ -11,7 +11,7 @@ module YohoushiWorker
       super(args, opts, config)
 
       if options[:config] && File.exists?(options[:config])
-        @options = YAML.load_file(options[:config])[ENV['RAILS_ENV']].symbolize_keys.merge(@options.symbolize_keys)
+        @options = YAML.load_file(options[:config])[ENV['RAILS_ENV']].merge(@options)
       end
     end
 
@@ -20,7 +20,7 @@ module YohoushiWorker
     option :daemonize,   :aliases => ["-d"], :type => :boolean
     def start
       Bundler.require(:worker, ENV['RAILS_ENV'])
-      load_enviroment(options[:require]) # rails
+      load_enviroment(options[:require]) # load rails only in start
       opts = @options.symbolize_keys.except(:require, :config, :interval)
 
       se = ServerEngine.create(nil, Worker, opts)
@@ -29,7 +29,7 @@ module YohoushiWorker
 
     desc "stop", "Stops a worker"
     def stop
-      pid = File.read(@options[:pid_path]).to_i
+      pid = File.read(@options["pid_path"]).to_i
 
       begin
         Process.kill("QUIT", pid)
@@ -41,7 +41,7 @@ module YohoushiWorker
 
     desc "graceful_stop", "Gracefully stops a worker"
     def graceful_stop
-      pid = File.read(@options[:pid_path]).to_i
+      pid = File.read(@options["pid_path"]).to_i
 
       begin
         Process.kill("TERM", pid)
@@ -53,7 +53,7 @@ module YohoushiWorker
 
     desc "restart", "Restarts a worker"
     def restart
-      pid = File.read(@options[:pid_path]).to_i
+      pid = File.read(@options["pid_path"]).to_i
 
       begin
         Process.kill("HUP", pid)
@@ -65,7 +65,7 @@ module YohoushiWorker
 
     desc "graceful_restart", "Graceful restarts a worker"
     def graceful_restart
-      pid = File.read(@options[:pid_path]).to_i
+      pid = File.read(@options["pid_path"]).to_i
 
       begin
         Process.kill("USR1", pid)
