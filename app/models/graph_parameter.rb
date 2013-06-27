@@ -5,8 +5,16 @@ class GraphParameter < ApplicationParameter
   def initialize(params)
     params  = params.slice(:t, :from, :to, :size)
     @t      = params[:t].presence || 'd'
-    @from   = params[:from].present? ? Time.parse(params[:from]) : nil
-    @to     = params[:to].present?   ? Time.parse(params[:to])   : nil
+    begin
+      @from = params[:from].present? ? Time.parse(params[:from]) : nil
+    rescue ArgumentError => e
+      self.errors.add(:from, 'is invalid.')
+    end
+    begin
+      @to = params[:to].present?   ? Time.parse(params[:to])   : nil
+    rescue ArgumentError => e
+      self.errors.add(:to, 'is invalid.')
+    end
     @size   = params[:size].presence || 'M'
     @width  = Settings.graph.sizes[@size]['width']
     @height = Settings.graph.sizes[@size]['height']
