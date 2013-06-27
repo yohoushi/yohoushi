@@ -1,5 +1,6 @@
 module Debug
   class GraphsController < ApplicationController
+    before_action { @tab = 'debug' }
     before_action :set_graph, only: [:show, :edit, :update, :destroy]
 
     # GET /graphs
