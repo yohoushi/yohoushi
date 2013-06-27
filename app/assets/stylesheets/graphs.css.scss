@@ -40,3 +40,14 @@ form.tune-graph .well { margin-bottom: 10.5px; }
 .tag a:link { color: #fff; }
 .tag a:visited { color: #fff; }
 .tag a:hover { color: #0099DD; }
+
+// thumnail size graph images
+ul.thumbnail-ul {
+  list-style: none;
+  margin: 0px; 
+}
+
+li.thumbnail-li {
+  float: left;
+  margin: 0px 6px 12px 6px;
+}
