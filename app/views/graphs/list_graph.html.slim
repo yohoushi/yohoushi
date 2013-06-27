@@ -8,8 +8,14 @@
         tr
           - trio.each do |graph|
             td
-              a href="#{view_path(graph.path)}"
-                img src="#{graph_uri_for(graph)}"
+              p
+                - if @tab == 'tag'
+                  a href="#{view_path(graph.path)}" = graph.path
+                - else
+                  a href="#{view_path(graph.path)}" = graph.basename(params[:path])
+              p
+                a href="#{view_path(graph.path)}"
+                  img src="#{graph_uri_for(graph)}"
 
 - else
   - @graphs.each do |graph|
