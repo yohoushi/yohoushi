@@ -5,9 +5,9 @@ class NodeDecorator < ApplicationDecorator
     if self.root?
       h.link_to(self.basename, h.root_path)
     elsif self.has_children?
-      h.link_to(self.basename, h.list_path(self.path))
+      h.link_to(self.basename, h.list_graph_path(self.path))
     else
-      h.link_to(self.basename, h.view_path(self.path))
+      h.link_to(self.basename, h.view_graph_path(self.path))
     end
   end
 

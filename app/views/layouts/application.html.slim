@@ -52,7 +52,7 @@ html lang="en"
         .span12
           - if action == "tag_graph"
             = render template: 'layouts/_tagselect'
-          - elsif action == "edit_graph"
+          - elsif action == "setup_graph"
           - else
             = render template: 'layouts/_autocomplete'
           = bootstrap_flash

@@ -1,6 +1,6 @@
 class GraphsController < ApplicationController
   before_action :set_root
-  before_action :set_graph, only: [:show, :edit, :update, :destroy, :view_graph, :edit_graph]
+  before_action :set_graph, only: [:show, :edit, :update, :destroy, :view_graph, :setup_graph]
   before_action :set_graphs, only: [:list_graph, :tag_graph]
   before_action :set_graph_parameter, only: [:view_graph, :list_graph, :tag_graph]
   before_action :path_redirect, only: [:tree_graph]
@@ -20,8 +20,8 @@ class GraphsController < ApplicationController
   def view_graph
   end
 
-  # GET /edit_graph
-  def edit_graph
+  # GET /setup_graph
+  def setup_graph
   end
 
   # GET /tag_graph
@@ -42,6 +42,8 @@ class GraphsController < ApplicationController
   def tagselect_graph
     render :json => @tagselect.map(&:name)
   end
+
+  # -------------- debug ---------------------- #
 
   # GET /graphs
   # GET /graphs.json
@@ -92,7 +94,7 @@ class GraphsController < ApplicationController
 
     respond_to do |format|
       if success
-        format.html { redirect_to view_path(@graph.path), notice: 'Graph was successfully updated.' }
+        format.html { redirect_to view_graph_path(@graph.path), notice: 'Graph was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -140,11 +142,11 @@ class GraphsController < ApplicationController
     return unless (path = request.query_parameters[:path])
     not_found unless (node = Node.find_by(path: path))
     if node.root?
-      redirect_to tree_path
+      redirect_to tree_graph_path
     elsif node.has_children?
-      redirect_to list_path(path)
+      redirect_to list_graph_path(path)
     else
-      redirect_to view_path(path)
+      redirect_to view_graph_path(path)
     end
   end
 

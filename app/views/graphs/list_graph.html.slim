@@ -11,7 +11,7 @@
               p
                 == graph.decorate.anchor_to(params[:path])
               p
-                a href="#{view_path(graph.path)}"
+                a href="#{view_graph_path(graph.path)}"
                   img src="#{graph_uri_for(graph)}"
 
 - else
@@ -21,10 +21,10 @@
       '
       small = graph.description
     p
-      a href="#{view_path(graph.path)}"
+      a href="#{view_graph_path(graph.path)}"
         img src="#{graph_uri_for(graph)}"
     p
-      a.btn.btn-mini href="#{edit_path(graph.path)}" 
+      a.btn.btn-mini href="#{setup_graph_path(graph.path)}" 
         i.icon-cog
         = " Setting"
       '
