@@ -10,7 +10,7 @@
     '
     small = graph.description
   p
-    a href="#{view_path(graph.path, @view_graph_params)}"
+    a href="#{view_path(graph.path)}"
       img src="#{graph_uri_for(graph)}"
   p
     a.btn.btn-mini href="#{edit_path(graph.path)}" 

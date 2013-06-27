@@ -2,7 +2,7 @@ class GraphsController < ApplicationController
   before_action :set_root
   before_action :set_graph, only: [:show, :edit, :update, :destroy, :view_graph, :edit_graph]
   before_action :set_graphs, only: [:list_graph, :tag_graph]
-  before_action :set_graph_parameter, :set_view_graph_params, only: [:view_graph, :list_graph, :tag_graph]
+  before_action :set_graph_parameter, only: [:view_graph, :list_graph, :tag_graph]
   before_action :path_redirect, only: [:tree_graph]
   before_action :tag_redirect, only: [:tag_graph]
   before_action :autocomplete_search, only: [:autocomplete_graph]
@@ -124,10 +124,6 @@ class GraphsController < ApplicationController
   def update_params
     # ToDo
     {}
-  end
-
-  def set_view_graph_params
-    @view_graph_params = params.slice(:t, :from, :to, :size, :width, :height)
   end
 
   def set_graph_parameter
