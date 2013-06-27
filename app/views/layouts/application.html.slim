@@ -42,9 +42,10 @@ html lang="en"
             ul.nav
               li class=(@tab == 'tag' ? 'active' : '')
                 = link_to "Tag", tag_graph_root_path
-            ul.nav
-              li class=(@tab == 'debug' ? 'active' : '')
-                = link_to "Debug", graphs_path
+            - if Rails.env == 'development' or Rails.env == 'test'
+              ul.nav
+                li class=(@tab == 'debug' ? 'active' : '')
+                  = link_to "Debug", graphs_path
 
     .container
 
