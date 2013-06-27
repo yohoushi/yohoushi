@@ -8,7 +8,7 @@ $(function() {
         placeholderText: $('#tagselect').attr('data-placeholder'),
         singleFieldDelimiter: ","
     });
-    $('.tagit').addClass('span8');
+    $('.tagit').addClass('span6');
     $(".tagcloud a").click(function(event){
         $("#tagselect").tagit("createTag", event.target.name);
         $('#tagselect-button').focus();
