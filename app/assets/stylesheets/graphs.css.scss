@@ -7,20 +7,9 @@
 }
 
 // graph anchor
-// The anchor targets are hidden by 40px fixed position nav bar
-// The following lines are an solution for this problem.
-// @ reference http://hail2u.net/blog/webdesign/target-pseudo-class-and-padding-top.html
-//
-// Previously, we referred to the following for this problem. 
-// @reference http://stackoverflow.com/questions/9047703/fixed-position-navbar-obscures-anchors
-// But this is not good because the above blocks are hidden by this padding.
 .anchor {
   display: inline-block;
   cursor: pointer;
-}
-
-.anchor:target {
-  padding-top: 40px;
 }
 
 a.anchor:hover {
