@@ -1,7 +1,7 @@
 - model_class = Graph
 
 = render partial: 'tune' if @graphs.present?
-- if @graph_parameter.notitle
+- if @graph_parameter.size == 'thumbnail'
   table.graph-thumbnails
     tbody
       - @graphs.each_slice(3) do |trio|
