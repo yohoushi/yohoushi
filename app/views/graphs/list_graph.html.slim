@@ -2,11 +2,14 @@
 
 = render partial: 'tune' if @graphs.present?
 - if @graph_parameter.notitle
-  ul.thumbnail-ul
-    - @graphs.each do |graph|
-      li.thumbnail-li
-        a href="#{view_path(graph.path)}"
-          img src="#{graph_uri_for(graph)}"
+  table.graph-thumbnails
+    tbody
+      - @graphs.each_slice(3) do |trio|
+        tr
+          - trio.each do |graph|
+            td
+              a href="#{view_path(graph.path)}"
+                img src="#{graph_uri_for(graph)}"
 
 - else
   - @graphs.each do |graph|
