@@ -5,10 +5,10 @@ $(function() {
         }
     };
     $('#datetimepicker-from').datetimepicker().on('changeDate', function(event){
-        datetime_submit();
+        $('#select-from').focus();
     });
     $('#datetimepicker-to').datetimepicker().on('changeDate', function(event){
-        datetime_submit();
+        $('#select-to').focus();
     });
     $("#select-from").blur(function(event){
         datetime_submit();
