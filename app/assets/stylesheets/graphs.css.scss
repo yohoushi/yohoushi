@@ -44,6 +44,7 @@ form.tune-graph .well { margin-bottom: 10.5px; }
 // thumbnails
 .graph-thumbnails { width: 100%; }
 .graph-thumbnails tr { vertical-align: top; }
-.graph-thumbnails tr td img { padding-bottom: 16px; }
+.graph-thumbnails tr td img { padding-bottom: 0x; }
+.graph-thumbnails tr td p { margin-bottom: 4px; }
 .graph-thumbnails tr td a { background-color: transparent; }
 .graph-thumbnails tr td a:hover { color: #666; }
