@@ -3,8 +3,8 @@ defaults: &defaults
   log: 'log/worker.log'
   pid_path: 'log/worker.pid'
   interval: 1
-  log_stdout: false
-  log_stderr: false
+  log_stdout: false # Serverengine captures stdout and outputs to log file as default. Disable it
+  log_stderr: false # Serverengine captures stderr and outputs to log file as default. Disable it
 
 development:
   <<: *defaults
@@ -14,3 +14,5 @@ test:
 
 production:
   <<: *defaults
+  interval: 60
+
