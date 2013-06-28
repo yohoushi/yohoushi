@@ -25,8 +25,12 @@ mysql
 
 ## How to run the test suite
 
-    rake db:migrate RAILS_ENV=test
+    rake db:drop db:create db:migrate RAILS_ENV=test
     rspec
+
+## Assets Precompile
+
+    RAILS_ENV=production rake assets:precompile
 
 ## Services (job queues, cache servers, search engines, etc.)
 
