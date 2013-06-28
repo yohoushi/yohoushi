@@ -13,7 +13,7 @@ module GraphsHelper
 
   def select_tag_for_term
     html = ''
-    html += '<select name="t">'
+    html += '<select name="t" id="select-term">'
     Settings.graph.date_period_terms.each do |term|
       selected = (term[:short_name] == @graph_parameter.term) ? 'selected="selected"' : ''
       html += %!<option class="span2" value="#{term[:short_name]}" #{selected}>#{term[:name]}</option>!
@@ -24,7 +24,7 @@ module GraphsHelper
 
   def select_tag_for_size
     html = ''
-    html += '<select name="size">'
+    html += '<select name="size" id="select-size">'
     Settings.graph.sizes.sort{|(k1, v1), (k2, v2)| v1['width'] <=> v2['width']}.each do |size, v|
       selected = (size == @graph_parameter.size) ? 'selected="selected"' : ''
       html += %!<option class="span2" value="#{size}" #{selected}>#{size}</option>!

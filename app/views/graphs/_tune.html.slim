@@ -1,11 +1,11 @@
-= form_tag({}, :method => 'get', :class => 'form-inline tune-graph') do
+= form_tag({}, :method => 'get', :class => 'form-inline', :id => 'tune-form') do
   div class="well well-small"
-    #datetimepicker_from.input-append.date
-      = text_field_tag 'from', @graph_parameter.from_at, :class => "input-medium", :"data-format" => "yyyy-MM-dd hh:mm:ss", :placeholder => "from"
+    #datetimepicker-from.input-append.date
+      = text_field_tag 'from', @graph_parameter.from_at, :class => "input-medium", :id => "select-from", :"data-format" => "yyyy-MM-dd hh:mm:ss", :placeholder => "from"
       span.add-on
         i data-time-icon="icon-time" data-date-icon="icon-calendar"
-    #datetimepicker_to.input-append.date
-      = text_field_tag 'to', @graph_parameter.to_at, :class => "input-medium", :"data-format" => "yyyy-MM-dd hh:mm:ss", :placeholder => "to"
+    #datetimepicker-to.input-append.date
+      = text_field_tag 'to', @graph_parameter.to_at, :class => "input-medium", :id => "select-to", :"data-format" => "yyyy-MM-dd hh:mm:ss", :placeholder => "to"
       span.add-on
         i data-time-icon="icon-time" data-date-icon="icon-calendar"
 
