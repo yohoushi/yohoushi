@@ -1,21 +1,7 @@
 $(function() {
-    var datetime_submit = function(){
-        if ($("#select-from").val().length > 0 && $("#select-to").val().length > 0) {
-            $('#tune-form').submit();
-        }
-    };
-    $('#datetimepicker-from').datetimepicker().on('changeDate', function(event){
-        $('#select-from').focus();
-    });
-    $('#datetimepicker-to').datetimepicker().on('changeDate', function(event){
-        $('#select-to').focus();
-    });
-    $("#select-from").blur(function(event){
-        datetime_submit();
-    });
-    $("#select-to").blur(function(event){
-        datetime_submit();
-    });
+    $('#datetimepicker-from').datetimepicker();
+    $('#datetimepicker-to').datetimepicker();
+    // auto-submit
     $("#select-term").change(function(event){
         $('#tune-form').submit();
     });
