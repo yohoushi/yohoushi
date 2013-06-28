@@ -1,17 +1,19 @@
 Yohoushi::Application.routes.draw do
-  resources :graphs
-
   root 'graphs#tree_graph'
 
-  get 'tree_graph' => 'graphs#tree_graph', :as => 'tree'
-  get 'view_graph/:path' => 'graphs#view_graph', :constraints => { :path => /.+/ }, :as => 'view'
-  get 'edit_graph/:path' => 'graphs#edit_graph', :constraints => { :path => /.+/ }, :as => 'edit'
-  get 'list_graph' => 'graphs#list_graph', :as => 'list_root'
-  get 'list_graph/:path' => 'graphs#list_graph', :constraints => { :path => /.+/ }, :as => 'list'
+  get 'tree_graph' => 'graphs#tree_graph', :as => 'tree_graph'
+  get 'view_graph/:path' => 'graphs#view_graph', :constraints => { :path => /.+/ }, :as => 'view_graph'
+  get 'setup_graph/:path' => 'graphs#setup_graph', :constraints => { :path => /.+/ }, :as => 'setup_graph'
+  get 'list_graph' => 'graphs#list_graph', :as => 'list_graph_root'
+  get 'list_graph/:path' => 'graphs#list_graph', :constraints => { :path => /.+/ }, :as => 'list_graph'
   get 'tag_graph' => 'graphs#tag_graph', :as => 'tag_graph_root'
   get 'tag_graph/:tag_list' => 'graphs#tag_graph', :constraints => { :tag_list => /.+/ }, :as => 'tag_graph'
-  get 'autocomplete_graph' => 'graphs#autocomplete_graph', :as => 'autocomplete'
-  get 'tagselect_graph' => 'graphs#tagselect_graph', :as => 'tagselect'
+  get 'autocomplete_graph' => 'graphs#autocomplete_graph', :as => 'autocomplete_graph'
+  get 'tagselect_graph' => 'graphs#tagselect_graph', :as => 'tagselect_graph'
+
+  namespace :debug, :as => '', :path => '' do
+    resources :graphs
+  end
 
   namespace :api do
     resources :graphs, :only => %w[index], :constraints => { :path => /.+/ }, :defaults => {:format => 'json'} do
