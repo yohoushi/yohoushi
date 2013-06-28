@@ -15,4 +15,5 @@
 //= require jquery.ui.autocomplete
 //= require bootstrap
 //= require bootstrap-datetimepicker
+//= require_tree ../../../vendor/assets/javascripts/.
 //= require_tree .
