@@ -11,6 +11,14 @@ class NodeDecorator < ApplicationDecorator
     end
   end
 
+  def anchor_to(path = nil)
+    if path
+      "<a class='anchor' name='#{self.basename(path)}' href='##{self.basename(path)}'>#{self.basename(path)}</a>"
+    else
+      "<a class='anchor' name='#{self.path}' href='##{self.path}'>#{self.path}</a>"
+    end
+  end
+
   # Define presentation-specific methods here. Helpers are accessed through
   # `helpers` (aka `h`). You can override attributes, for example:
   #

@@ -1,23 +1,34 @@
 - model_class = Graph
 
 = render partial: 'tune' if @graphs.present?
-- @graphs.each do |graph|
-  h3
-    - if @tab == 'tag'
-      a.anchor name="#{graph.path}" href="##{graph.path}" = graph.path
-    - else
-      a.anchor name="#{graph.basename(params[:path])}" href="##{graph.basename(params[:path])}" = graph.basename(params[:path])
-    '
-    small = graph.description
-  p
-    a href="#{view_path(graph.path)}"
-      img src="#{graph_uri_for(graph)}"
-  p
-    a.btn.btn-mini href="#{edit_path(graph.path)}" 
-      i.icon-cog
-      = " Setting"
-    '
-    span.tag
-      - graph.tag_list.each do |tag|
-        a.label href="#{tag_graph_path(tag)}" = tag
-        '
+- if @graph_parameter.size == 'thumbnail'
+  table.graph-thumbnails
+    tbody
+      - @graphs.each_slice(3) do |trio|
+        tr
+          - trio.each do |graph|
+            td
+              p
+                == graph.decorate.anchor_to(params[:path])
+              p
+                a href="#{view_path(graph.path)}"
+                  img src="#{graph_uri_for(graph)}"
+
+- else
+  - @graphs.each do |graph|
+    h3
+      == graph.decorate.anchor_to(params[:path])
+      '
+      small = graph.description
+    p
+      a href="#{view_path(graph.path)}"
+        img src="#{graph_uri_for(graph)}"
+    p
+      a.btn.btn-mini href="#{edit_path(graph.path)}" 
+        i.icon-cog
+        = " Setting"
+      '
+      span.tag
+        - graph.tag_list.each do |tag|
+          a.label href="#{tag_graph_path(tag)}" = tag
+          '

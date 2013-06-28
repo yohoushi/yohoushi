@@ -7,20 +7,9 @@
 }
 
 // graph anchor
-// The anchor targets are hidden by 40px fixed position nav bar
-// The following lines are an solution for this problem.
-// @ reference http://hail2u.net/blog/webdesign/target-pseudo-class-and-padding-top.html
-//
-// Previously, we referred to the following for this problem. 
-// @reference http://stackoverflow.com/questions/9047703/fixed-position-navbar-obscures-anchors
-// But this is not good because the above blocks are hidden by this padding.
 .anchor {
   display: inline-block;
   cursor: pointer;
-}
-
-.anchor:target {
-  padding-top: 40px;
 }
 
 a.anchor:hover {
@@ -40,3 +29,10 @@ form.tune-graph .well { margin-bottom: 10.5px; }
 .tag a:link { color: #fff; }
 .tag a:visited { color: #fff; }
 .tag a:hover { color: #0099DD; }
+
+// thumbnails
+.graph-thumbnails { width: 100%; }
+.graph-thumbnails tr { vertical-align: top; }
+.graph-thumbnails tr td p { margin-bottom: 4px; }
+.graph-thumbnails tr td a { background-color: transparent; }
+.graph-thumbnails tr td a:hover { color: #666; }

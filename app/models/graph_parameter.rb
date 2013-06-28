@@ -1,5 +1,5 @@
 class GraphParameter < ApplicationParameter
-  attr_reader :t, :from, :to, :size, :width, :height
+  attr_reader :t, :from, :to, :size, :width, :height, :notitle
   alias :term :t
 
   def initialize(params)
@@ -10,6 +10,7 @@ class GraphParameter < ApplicationParameter
     @size   = params[:size].presence || 'M'
     @width  = Settings.graph.sizes[@size]['width']
     @height = Settings.graph.sizes[@size]['height']
+    @notitle = true if params[:size] == 'thumbnail'
   end
 
   # `from` suitable for datetime picker
@@ -24,13 +25,15 @@ class GraphParameter < ApplicationParameter
 
   # query parameters passed to growthforecast's graph image uri
   def graph_uri_params
-    {
+    params = {
       't'      => @t,
       'from'   => @from,
       'to'     => @to,
       'width'  => @width,
       'height' => @height,
     }
+    params['notitle'] = '1' if @notitle
+    params
   end
 
   def validate

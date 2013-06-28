@@ -39,8 +39,8 @@ defaults: &defaults
         short_name: 'y'
     sizes:
       thumbnail:
-        width: 370
-        height: 160
+        width: 306
+        height: 90
       M:
         width: 462
         height: 200
