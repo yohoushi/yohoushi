@@ -15,7 +15,9 @@
 $(function() {
   $(window).hashchange(function(){
     var pos = $("a[name='" + location.hash.substr(1) + "']").offset().top;
-    $('html, body').animate({ scrollTop: pos - 40 }, 1);
+    // $('html, body').animate({ scrollTop: pos - 40 }, 0); // does not jump well on page load on safari
+    // $('html, body').animate({ scrollTop: pos - 40 }, 1); // works, but have to wait 1ms
+    window.scrollTo(0, pos - 40); // worked on safari, chrome, firefox well
   });
   // trigger the event on page load.
   if (location.hash) { $(window).hashchange(); }
