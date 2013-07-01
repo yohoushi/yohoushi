@@ -1,11 +1,17 @@
+# https://gist.github.com/nragaz/472092
 # http://unicorn.bogomips.org/SIGNALS.html
- 
+RAILS_ENV     ||= ENV['RAILS_ENV'] ||= 'development'
+RAILS_ROOT    ||= ENV['RAILS_ROOT'] = File.expand_path('../..', __FILE__)
+PID_DIR       ||= "#{RAILS_ROOT}/log"
+BIN_PATH      ||= "#{RAILS_ROOT}/bin"
+
 God.watch do |w|
   w.name = "unicorn"
   w.interval = 30.seconds # default
   
   # unicorn needs to be run from the rails root
-  w.start = "cd #{RAILS_ROOT} && #{BIN_PATH}/unicorn_rails -c #{RAILS_ROOT}/config/unicorn.rb -E #{RAILS_ENV} -D"
+  w.start = "cd #{RAILS_ROOT} && #{BIN_PATH}/unicorn -c #{RAILS_ROOT}/config/unicorn.conf -E #{RAILS_ENV} -D"
+  w.log = "#{RAILS_ROOT}/log/yohoushi.log"
  
   # QUIT gracefully shuts down workers
   w.stop = "kill -QUIT `cat #{PID_DIR}/unicorn.pid`"
@@ -17,8 +23,8 @@ God.watch do |w|
   w.restart_grace = 10.seconds
   w.pid_file = "#{PID_DIR}/unicorn.pid"
  
-  w.uid = 'rails'
-  w.gid = 'rails'
+  # w.uid = 'rails'
+  # w.gid = 'rails'
  
   w.behavior(:clean_pid_file)
  

@@ -2,7 +2,7 @@
 
 yet another GrowthForecast like Graphing / Visualization tool.
 
-This is a collaborative project of NOC (@nikushi) and PlaSys (@sonots). 
+This is a collaborative project of NOC (@niku4i) and PlaSys (@sonots). 
 
 ## Ruby version
 
@@ -33,5 +33,13 @@ mysql
     RAILS_ENV=production rake assets:precompile
 
 ## Services (job queues, cache servers, search engines, etc.)
+
+Run the unicorn HTTP server, and a worker
+
+    bin/god -c config/yohoushi.god
+
+Stop them and monitoring tool god
+
+    bin/god terminate
 
 ## Deployment instructions
