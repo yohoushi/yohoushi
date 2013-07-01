@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/sonots/multiforecast-client.git
-  revision: 63eeb7b7f389ee8464c04ebbd0d69edf61e7c962
+  revision: 92a71d6235f83bb5730e6e1885a51959fe61d9f5
   specs:
     multiforecast-client (0.1.1)
       growthforecast-client
@@ -42,7 +42,7 @@ GEM
       tzinfo (~> 0.3.37)
     acts-as-taggable-on (2.4.1)
       rails (>= 3, < 5)
-    addressable (2.3.4)
+    addressable (2.3.5)
     ancestry-treeview (0.0.2)
       ancestry (>= 2.0.0)
     arel (4.0.0)
@@ -98,6 +98,7 @@ GEM
       thor (>= 0.13.6)
     formatador (0.2.4)
     gem-open (0.1.6)
+    god (0.13.2)
     growthforecast-client (0.62.0)
       httpclient
       thor
@@ -132,7 +133,7 @@ GEM
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
       rb-kqueue (>= 0.2)
-    lumberjack (1.0.3)
+    lumberjack (1.0.4)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -148,7 +149,7 @@ GEM
     net-ssh (2.6.7)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
-    newrelic_rpm (3.6.4.122)
+    newrelic_rpm (3.6.5.130)
     polyglot (0.3.3)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
@@ -202,7 +203,7 @@ GEM
       railties (>= 4.0.0.beta, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
-    serverengine (1.5.2)
+    serverengine (1.5.3)
       sigdump (~> 0.2.2)
     settingslogic (2.0.9)
     sigdump (0.2.2)
@@ -258,10 +259,10 @@ GEM
       rack
       raindrops (~> 0.7)
     uniform_notifier (1.2.0)
-    webmock (1.11.0)
+    webmock (1.12.3)
       addressable (>= 2.2.7)
       crack (>= 0.3.2)
-    yard (0.8.6.1)
+    yard (0.8.6.2)
 
 PLATFORMS
   ruby
@@ -283,6 +284,7 @@ DEPENDENCIES
   fabrication
   foreman
   gem-open
+  god
   growthforecast-client
   guard
   guard-rspec

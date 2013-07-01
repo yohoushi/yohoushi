@@ -13,6 +13,7 @@ gem 'jquery-ui-rails'
 # gem 'jquery-turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'unicorn'
+gem 'god' # a process monitoring framework in ruby
 
 gem 'slim', :require => 'slim-rails'
 gem "slim-rails"
