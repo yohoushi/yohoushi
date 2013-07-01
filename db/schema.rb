@@ -15,9 +15,9 @@ ActiveRecord::Schema.define(version: 20130606035720) do
 
   create_table "nodes", force: true do |t|
     t.string   "type"
-    t.string   "path",           limit: 768,             null: false
+    t.string   "path",           limit: 768,                 null: false
     t.string   "description"
-    t.boolean  "hidden"
+    t.boolean  "hidden",                     default: false, null: false
     t.boolean  "complex"
     t.datetime "created_at"
     t.datetime "updated_at"
