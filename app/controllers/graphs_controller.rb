@@ -92,15 +92,15 @@ class GraphsController < ApplicationController
     else
       @autocomplete = Node.select(:path, :description).all
     end
-    @autocomplete = @autocomplete.without_roots.order('path ASC').limit(Settings.try(:autocomplete).try(:limit))
+    @autocomplete = @autocomplete.without_roots.visible.order('path ASC').limit(Settings.try(:autocomplete).try(:limit))
   end
 
   def set_graphs
     case
     when params[:tag_list].present?
-      @graphs = Graph.tagged_with(params[:tag_list].split(',')).order('path ASC')
+      @graphs = Graph.tagged_with(params[:tag_list].split(',')).visible.order('path ASC')
     when params[:path].present?
-      @graphs = Graph.where("path LIKE ?", "#{params[:path]}/%").order('path ASC')
+      @graphs = Graph.where("path LIKE ?", "#{params[:path]}/%").visible.order('path ASC')
     else
       @graphs = []
     end

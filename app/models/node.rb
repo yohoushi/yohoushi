@@ -1,6 +1,7 @@
 class Node < ActiveRecord::Base
   has_ancestry cache_depth: true
   scope :without_roots, lambda { where.not(ancestry: nil) }
+  scope :visible, lambda { where.not(hidden: true) }
 
   def graph?
     type == "Graph"
