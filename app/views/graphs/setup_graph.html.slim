@@ -13,6 +13,10 @@
     = f.label :tag_list, :class => 'control-label'
     .controls
       = f.text_field :tag_list, :class => 'text_field'
+  .control-group
+    = f.label :hide_graph, :class => 'control-label'
+    .controls
+      = f.check_box :hidden, :class => 'checkbox'
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     '
