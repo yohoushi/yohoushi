@@ -28,7 +28,7 @@ gem 'growthforecast-client', git: 'https://github.com/sonots/growthforecast-clie
 gem 'multiforecast-client', git: 'https://github.com/sonots/multiforecast-client.git'
 gem 'acts-as-taggable-on' # tagging
 gem 'ancestry', git: 'https://github.com/sonots/ancestry.git', branch: 'sonots' # tree structured model
-gem 'ancestry-treeview', git: 'https://github.com/niku4i/ancestry-treeview.git', branch: 'conditions' # an extensional ancestry gem created just for yohoushi
+gem 'ancestry-treeview' # an extensional ancestry gem created just for yohoushi
 
 group :worker do
   gem 'serverengine'

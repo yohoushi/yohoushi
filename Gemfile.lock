@@ -1,12 +1,4 @@
 GIT
-  remote: https://github.com/niku4i/ancestry-treeview.git
-  revision: 87a0d4e7e5ae2e871623c330c7dc6d4053d7e016
-  branch: conditions
-  specs:
-    ancestry-treeview (0.0.1)
-      ancestry (>= 2.0.0)
-
-GIT
   remote: https://github.com/sonots/ancestry.git
   revision: 7d2764c8d04793c11800a1223da0d4593612e8e7
   branch: sonots
@@ -60,8 +52,10 @@ GEM
     acts-as-taggable-on (2.4.1)
       rails (>= 3, < 5)
     addressable (2.3.4)
+    ancestry-treeview (0.0.2)
+      ancestry (>= 2.0.0)
     arel (4.0.0)
-    atomic (1.1.9)
+    atomic (1.1.10)
     better_errors (0.9.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -278,7 +272,7 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on
   ancestry!
-  ancestry-treeview!
+  ancestry-treeview
   better_errors
   binding_of_caller
   bootstrap-datetimepicker-rails
