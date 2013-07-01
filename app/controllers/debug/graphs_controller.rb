@@ -93,7 +93,7 @@ module Debug
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def graph_params
-      params.require(:graph).permit(:path, :description, :tag_list, :hidden)
+      params.require(:graph).permit(:path, :description, :tag_list, :visible)
     end
   end
 end
