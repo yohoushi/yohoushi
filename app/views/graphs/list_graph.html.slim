@@ -32,6 +32,3 @@
         - graph.tag_list.each do |tag|
           a.label href="#{tag_graph_path(tag)}" = tag
           '
-
-- if @graphs.present?
-  == paginate @graphs
