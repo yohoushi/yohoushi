@@ -24,7 +24,7 @@ gem 'newrelic_rpm'
 
 gem 'draper' # decorator(view-model)
 gem "settingslogic"
-gem 'growthforecast-client', git: 'https://github.com/sonots/growthforecast-client.git', branch: 'more_api'
+gem 'growthforecast-client'
 gem 'multiforecast-client', git: 'https://github.com/sonots/multiforecast-client.git'
 gem 'acts-as-taggable-on' # tagging
 gem 'ancestry', git: 'https://github.com/sonots/ancestry.git', branch: 'sonots' # tree structured model

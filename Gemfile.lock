@@ -7,15 +7,6 @@ GIT
       activerecord (>= 3.0.0)
 
 GIT
-  remote: https://github.com/sonots/growthforecast-client.git
-  revision: 945a0d0d0ff3358e8fdff3e16127445ec18ad4d1
-  branch: more_api
-  specs:
-    growthforecast-client (0.0.6)
-      httpclient
-      thor
-
-GIT
   remote: https://github.com/sonots/multiforecast-client.git
   revision: 63eeb7b7f389ee8464c04ebbd0d69edf61e7c962
   specs:
@@ -107,6 +98,9 @@ GEM
       thor (>= 0.13.6)
     formatador (0.2.4)
     gem-open (0.1.6)
+    growthforecast-client (0.62.0)
+      httpclient
+      thor
     guard (1.8.1)
       formatador (>= 0.2.4)
       listen (>= 1.0.0)
@@ -286,7 +280,7 @@ DEPENDENCIES
   fabrication
   foreman
   gem-open
-  growthforecast-client!
+  growthforecast-client
   guard
   guard-rspec
   jbuilder (~> 1.2)
