@@ -97,9 +97,9 @@ class GraphsController < ApplicationController
 
   def set_tags
     if params[:tag_list].present?
-      set_graphs
+      set_graphs # utilize ActiveRecord cache
       graph_ids = @graphs.map(&:id)
-      @tags = Tag.
+      @tags = Tag.select("distinct tags.id, tags.name").
         joins("inner join taggings on tags.id = taggings.tag_id").
         where("taggings.taggable_id IN (#{graph_ids.join(',')})").
         order('name ASC')
