@@ -2,14 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// utils
 .space-right {
   margin-right: 3px;
 }
+.word-break-all { word-break: break-all; }
 
 // graph anchor
 .anchor {
   display: inline-block;
   cursor: pointer;
+  word-break: break-all;
 }
 
 a.anchor:hover {
@@ -30,9 +33,13 @@ form#tune-form .well { margin-bottom: 10.5px; }
 .tag a:visited { color: #fff; }
 .tag a:hover { color: #0099DD; }
 
+// breadcrumbs
+p#breadcrumbs { font-size: x-large; word-break: break-all; }
+
 // thumbnails
 .graph-thumbnails { width: 100%; }
 .graph-thumbnails tr { vertical-align: top; }
-.graph-thumbnails tr td p { margin-bottom: 4px; }
+.graph-thumbnails tr td { width: 33%; }
+.graph-thumbnails tr td p { margin-bottom: 4px; margin-right: 12px; }
 .graph-thumbnails tr td a { background-color: transparent; }
 .graph-thumbnails tr td a:hover { color: #666; }

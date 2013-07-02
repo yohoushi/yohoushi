@@ -1,4 +1,4 @@
-p style="font-size:x-large"
+p#breadcrumbs
   - if @root.present?
     - @root.ancestors.each do |node|
       = node.decorate.link_to
