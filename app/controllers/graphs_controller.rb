@@ -33,7 +33,7 @@ class GraphsController < ApplicationController
   # GET /autocomplete_graph?term=xxx for ajax autocomplete
   def autocomplete_graph
     render :json => @autocomplete.map {|node|
-      description = node.description ? " (#{node.description})" : ""
+      description = node.description.present? ? " (#{node.description})" : ""
       {label: "#{node.path}#{description}", value: node.path}
     }
   end
