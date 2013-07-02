@@ -11,10 +11,12 @@ module Worker
   end
 
   def run
+    logger.info "Yohoushi worker started."
     until @stop
       @processor.process
       sleep @sleep
     end
+    logger.info "Yohoushi worker stopped."
   end
 
   def stop
