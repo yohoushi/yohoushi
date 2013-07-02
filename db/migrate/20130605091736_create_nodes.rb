@@ -4,7 +4,7 @@ class CreateNodes < ActiveRecord::Migration
       t.string :type # STI
       t.string :path, limit: 255*3+3, index: true, null: false, collation: 'utf8_bin' # note that index works upto 255
       t.string :description
-      t.boolean :hidden
+      t.boolean :visible, default: true, null: false
       t.boolean :complex
 
       t.timestamps

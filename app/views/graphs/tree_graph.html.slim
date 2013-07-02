@@ -1,3 +1,3 @@
 - model_class = Graph
 
-== @root.tree(to_depth: Settings.try(:tree).try(:to_depth)) {|node| node.decorate.link_to } if @root
+== @root.tree({to_depth: Settings.try(:tree).try(:to_depth), conditions: ["visible = ?", true]}) {|node| node.decorate.link_to } if @root
