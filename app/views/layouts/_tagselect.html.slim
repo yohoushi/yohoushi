@@ -5,7 +5,7 @@ form class="form-search" id="tagselect-form"
   button type="submit" class="btn" id="tagselect-button"
     | Go
 div class="tagcloud"
-  - Tag.all.order('name ASC').each do |tag|
+  - @tags.each do |tag|
     = link_to tag.name, "#", :name => tag.name
     = " "
 

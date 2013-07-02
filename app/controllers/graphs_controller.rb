@@ -4,7 +4,7 @@ class GraphsController < ApplicationController
   before_action :set_graphs, only: [:list_graph, :tag_graph]
   before_action :set_graph_parameter, only: [:view_graph, :list_graph, :tag_graph]
   before_action :path_redirect, only: [:tree_graph]
-  before_action :tag_redirect, only: [:tag_graph]
+  before_action :tag_redirect, :set_tags, only: [:tag_graph]
   before_action :autocomplete_search, only: [:autocomplete_graph]
   before_action :tagselect_search, only: [:tagselect_graph]
 
@@ -93,6 +93,19 @@ class GraphsController < ApplicationController
       @autocomplete = Node.select(:path, :description).all
     end
     @autocomplete = @autocomplete.without_roots.visible.order('path ASC').limit(Settings.try(:autocomplete).try(:limit))
+  end
+
+  def set_tags
+    if params[:tag_list].present?
+      set_graphs # utilize ActiveRecord cache
+      graph_ids = @graphs.map(&:id)
+      @tags = Tag.select("distinct tags.id, tags.name").
+        joins("inner join taggings on tags.id = taggings.tag_id").
+        where("taggings.taggable_id IN (#{graph_ids.join(',')})").
+        order('name ASC')
+    else
+      @tags = Tag.all.order('name ASC')
+    end
   end
 
   def set_graphs
