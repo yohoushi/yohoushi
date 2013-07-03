@@ -117,6 +117,9 @@ class GraphsController < ApplicationController
     else
       @graphs = []
     end
+    if @graphs.present?
+      @graphs = @graphs.page(params[:page]).per(params[:per])
+    end
   end
 
   # Use callbacks to share common setup or constraints between actions.

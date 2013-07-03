@@ -123,6 +123,9 @@ GEM
     jquery-ui-rails (4.0.3)
       jquery-rails
       railties (>= 3.1.0)
+    kaminari (0.14.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     kgio (2.8.0)
     libv8 (3.11.8.17)
     listen (1.2.2)
@@ -286,6 +289,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   jquery-ui-rails
+  kaminari
   multiforecast-client!
   mysql2
   newrelic_rpm
