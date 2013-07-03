@@ -27,7 +27,7 @@ module Worker
       end
     rescue => e
       logger.error "#{e.class} #{e.message} #{e.backtrace.first}"
-      raise e # die, but got will reboot it
+      raise e # die, but `god` will reboot it
     end
   end
 end
