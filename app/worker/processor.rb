@@ -11,23 +11,35 @@ module Worker
 
     def process
       report_time(logger) do
-        marks = Graph.start_marking
-        # create and mark
-        graphs = $mfclient.list_graph
-        graphs.each do |graph|
-          Graph.find_or_create(path: graph['path'])
+        graphs = $mfclient.list_graph.map {|g| g['path'] }
+        in_batches(graphs, batch_size: 1000) do |batches|
+          create_or_destroy_graphs(batches)
         end
-        complexes = $mfclient.list_complex
-        complexes.each do |complex|
-          Graph.find_or_create(path: complex['path'], complex: true)
+
+        complexes = $mfclient.list_complex.map {|g| g['path'] }
+        in_batches(complexes, batch_size: 1000) do |batches|
+          create_or_destroy_graphs(batches, complex: true)
         end
-        # sweep non-marked nodes
-        Node.where.not(:id => marks.uniq).destroy_all
-        Graph.stop_marking
+
+        sweep_childless_sections
       end
     rescue => e
       logger.error "#{e.class} #{e.message} #{e.backtrace.first}"
       raise e # die, but `god` will reboot it
+    end
+
+    def create_or_destroy_graphs(paths, complex: false)
+      selected = sql.execute("select path from nodes where type = 'Graph' AND path IN #{in_clause(paths)}").to_a.flatten
+      added   = paths - selected
+      removed = selected - paths
+      added.each {|add| Graph.find_or_create(path: add, complex: complex) }
+      removed.each {|remove| Graph.find_by(path: remove).destroy } # use destroy to remove taggings and tags too
+      nil
+    end
+
+    def sweep_childless_sections
+      Section.all.each {|section| section.destroy_if_childless }
+      nil
     end
   end
 end
