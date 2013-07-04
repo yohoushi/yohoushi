@@ -49,4 +49,14 @@ class Node < ActiveRecord::Base
     node = self.where(path: params[:path]).first || self.create(params.merge(parent_id: parent_id))
     node
   end
+
+  # Destroy self, and ancestors if childless
+  def destroy_ancestors
+    parent = self.parent
+    self.destroy
+    if parent and parent.children.first.blank?
+      parent.destroy_ancestors
+    end
+  end
+
 end
