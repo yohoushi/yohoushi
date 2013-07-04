@@ -1,0 +1,18 @@
+#accordion{
+  margin: 0;
+  padding: 0;
+  border: 1px solid #000;
+}
+
+#accordion .accordion_head {
+  cursor: pointer;
+}
+
+#accordion li {
+  list-style: none;
+}
+
+#accordion a{
+  text-decoration:none;
+}
+

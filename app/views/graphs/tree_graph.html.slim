@@ -1,3 +1,26 @@
 - model_class = Graph
 
-== @root.tree({to_depth: Settings.try(:tree).try(:to_depth), conditions: ["visible = ?", true]}) {|node| node.decorate.link_to } if @root
+ul#accordion
+  li
+    div.accordion_head
+      a href="#" section 1
+    ul
+      li
+        div.accordion_head
+          a href="#" section 1.1
+        ul
+          li
+            div.accordion_head
+              a href="#" graph1
+          li
+            div.accordion_head
+              a href="#" graph2
+          li
+            div.accordion_head
+              a href="#" graph3
+      li
+        div.accordion_head
+          a href="#" section 1.2
+  li
+    div.accordion_head
+      a href="#" section 2
