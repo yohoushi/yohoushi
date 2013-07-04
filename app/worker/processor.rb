@@ -11,18 +11,9 @@ module Worker
 
     def process
       report_time(logger) do
-        graphs    = $mfclient.list_graph.map   {|g| g['path'] }
-        complexes = $mfclient.list_complex.map {|g| g['path'] }
-        both      = graphs + complexes
-
-        # diff
-        plus  = both
-        minus = []
-        Graph.select('id, path').find_in_batches(batch_size: 1000) do |batches|
-          batches = batches.map(&:path)
-          plus   -= batches
-          minus  += batches - both
-        end
+        graphs      = $mfclient.list_graph.map   {|g| g['path'] }
+        complexes   = $mfclient.list_complex.map {|g| g['path'] }
+        plus, minus = Graph.find_diff(graphs + complexes)
 
         # create
         complex_plus = plus & complexes
