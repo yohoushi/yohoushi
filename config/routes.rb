@@ -10,6 +10,7 @@ Yohoushi::Application.routes.draw do
   get 'tag_graph/:tag_list' => 'graphs#tag_graph', :constraints => { :tag_list => /.+/ }, :as => 'tag_graph'
   get 'autocomplete_graph' => 'graphs#autocomplete_graph', :as => 'autocomplete_graph'
   get 'tagselect_graph' => 'graphs#tagselect_graph', :as => 'tagselect_graph'
+  get 'children_graph' => 'graphs#children_graph', :as => 'children_graph'
 
   namespace :debug, :as => '', :path => '' do
     resources :graphs

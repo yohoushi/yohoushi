@@ -7,6 +7,7 @@ class GraphsController < ApplicationController
   before_action :tag_redirect, :set_tags, only: [:tag_graph]
   before_action :autocomplete_search, only: [:autocomplete_graph]
   before_action :tagselect_search, only: [:tagselect_graph]
+  before_action :set_children, only: [:children_graph]
 
   # GET /tree_graph
   def tree_graph
@@ -41,6 +42,11 @@ class GraphsController < ApplicationController
   # GET /tagselect_graph?term=xxx for ajax tag autocomplete
   def tagselect_graph
     render :json => @tagselect.map(&:name)
+  end
+
+  # GET /children_graph?term=xxx for ajax ancestry tree view
+  def children_graph
+    render :json => @children.map{|c| [c.basename, c.path] }
   end
 
   private
@@ -134,4 +140,10 @@ class GraphsController < ApplicationController
   def graph_params
     params.require(:graph).permit(:path, :description, :tag_list)
   end
+
+  def set_children
+    @children = Node.find_by(path: params[:term]).try(:children).try(:order, 'path ASC')
+    not_found unless @children
+  end
+
 end
