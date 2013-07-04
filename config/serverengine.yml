@@ -1,8 +1,11 @@
-# config/worker.yml
+# config/serverengine.yml
 defaults: &defaults
-  log: 'log/worker.log'
-  pid_path: 'log/worker.pid'
+  # worker options
   interval: 1
+  module_name: 'Worker'
+  # serverengine options
+  log: 'log/serverengine.log'
+  pid_path: 'log/serverengine.pid'
   log_stdout: false # Serverengine captures stdout and outputs to log file as default. Disable it
   log_stderr: false # Serverengine captures stderr and outputs to log file as default. Disable it
 

@@ -13,6 +13,7 @@ gem 'jquery-ui-rails'
 # gem 'jquery-turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'unicorn'
+gem 'god' # a process monitoring framework in ruby
 
 gem 'slim', :require => 'slim-rails'
 gem "slim-rails"
@@ -31,7 +32,7 @@ gem 'ancestry', git: 'https://github.com/sonots/ancestry.git', branch: 'sonots' 
 gem 'ancestry-treeview' # an extensional ancestry gem created just for yohoushi
 gem "kaminari" # paginator
 
-group :worker do
+group :serverengine do
   gem 'serverengine'
 end
 
