@@ -25,16 +25,6 @@ class Node < ActiveRecord::Base
     end
   end
 
-  # start marking of tracking nodes in #find_or_create
-  def self.start_marking
-    @marks = []
-  end
-
-  # stop marking of tracking nodes in #find_or_create
-  def self.stop_marking
-    @marks = nil
-  end
-
   # Create ancestors
   #
   # @param path [String] create ancestors of this path
@@ -47,7 +37,6 @@ class Node < ActiveRecord::Base
       # NOTE: where(:path, :parent_id).first_or_create can not be used since :parent_id is not a real column
       parent = Section.select(:id).where(:path => dirname).first || Section.create(:path => dirname, :parent_id => parent_id)
     end
-    @marks.push parent.id if @marks.kind_of?(Array) # marking
     parent.id
   end
 
@@ -58,7 +47,16 @@ class Node < ActiveRecord::Base
   def self.find_or_create(params)
     parent_id = self.create_ancestors(params[:path])
     node = self.where(path: params[:path]).first || self.create(params.merge(parent_id: parent_id))
-    @marks.push node.id if @marks.kind_of?(Array) # marking
     node
   end
+
+  # Destroy self, and ancestors if childless
+  def destroy_ancestors
+    parent = self.parent
+    self.destroy
+    if parent and parent.children.first.blank?
+      parent.destroy_ancestors
+    end
+  end
+
 end
