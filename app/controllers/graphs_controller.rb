@@ -46,7 +46,10 @@ class GraphsController < ApplicationController
 
   # GET /children_graph?term=xxx for ajax ancestry tree view
   def children_graph
-    render :json => @children.map{|c| {:path => c.path, :basename => c.basename} }
+    render :json => @children.map {|c| 
+      uri = c.graph? ? view_graph_path(path: c.path) : list_graph_path(path: c.path)
+      {:uri => uri, :path => c.path, :basename => c.basename}
+    }
   end
 
   private

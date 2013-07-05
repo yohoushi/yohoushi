@@ -1,26 +1,7 @@
 - model_class = Graph
 
 ul#accordion
-  li
-    div.accordion_head
-      a href="#" section 1
-    ul
-      li
-        div.accordion_head
-          a href="#" section 1.1
-        ul
-          li
-            div.accordion_head
-              a href="#" graph1
-          li
-            div.accordion_head
-              a href="#" graph2
-          li
-            div.accordion_head
-              a href="#" graph3
-      li
-        div.accordion_head
-          a href="#" section 1.2
-  li
-    div.accordion_head
-      a href="#" section 2
+  - @root.children.each do |node|
+    li
+      div.accordion_head data-term="#{node.path}"
+        a href="#{list_graph_path(path: node.path)}" = node.basename
