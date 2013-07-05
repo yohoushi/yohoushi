@@ -19,6 +19,8 @@ describe Section do
         Section.destroy_all_childless 
       end
       it { expect(Section.find_by(path: 'a/b')).not_to be_nil }
+      it { expect(Section.find_by(path: 'a')).not_to be_nil }
+      it { expect(Section.find_by(path: '')).not_to be_nil }
     end
   end
 end

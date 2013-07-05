@@ -18,6 +18,23 @@ describe Node do
   end
 
   describe "#destroy_ancestors" do
-    pending
+    let(:path) { 'a/b/c' }
+    context "default" do
+      before { described_class.find_or_create(path: path).destroy_ancestors }
+      it { expect(described_class.find_by(path: 'a/b/c')).to be_nil }
+      it { expect(described_class.find_by(path: 'a/b')).to be_nil }
+      it { expect(described_class.find_by(path: 'a')).to be_nil }
+      it { expect(described_class.find_by(path: '')).to be_nil }
+    end
+
+    context "section having a child is not destroyed" do
+      before { described_class.find_or_create(path: 'a/b/d') }
+      before { described_class.find_or_create(path: 'a/b/c').destroy_ancestors }
+      it { expect(described_class.find_by(path: 'a/b/c')).to be_nil }
+      it { expect(described_class.find_by(path: 'a/b/d')).not_to be_nil }
+      it { expect(described_class.find_by(path: 'a/b')).not_to be_nil }
+      it { expect(described_class.find_by(path: 'a')).not_to be_nil }
+      it { expect(described_class.find_by(path: '')).not_to be_nil }
+    end
   end
 end
