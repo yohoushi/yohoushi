@@ -47,5 +47,5 @@ RSpec.configure do |config|
 end
 
 def mfclient
-  MultiForecast::Client.new(Settings.growthforecasts)
+  MultiForecast::Client.new(Settings.multiforecast)
 end

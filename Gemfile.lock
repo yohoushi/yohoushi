@@ -6,9 +6,8 @@ GIT
     ancestry (2.0.0)
       activerecord (>= 3.0.0)
 
-GIT
-  remote: https://github.com/sonots/multiforecast-client.git
-  revision: 92a71d6235f83bb5730e6e1885a51959fe61d9f5
+PATH
+  remote: ../multiforecast-client
   specs:
     multiforecast-client (0.1.1)
       growthforecast-client
