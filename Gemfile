@@ -26,7 +26,7 @@ gem 'newrelic_rpm'
 gem 'draper' # decorator(view-model)
 gem "settingslogic"
 gem 'growthforecast-client'
-gem 'multiforecast-client', path: '../multiforecast-client' # git: 'https://github.com/sonots/multiforecast-client.git'
+gem 'multiforecast-client'
 gem 'acts-as-taggable-on' # tagging
 gem 'ancestry', git: 'https://github.com/sonots/ancestry.git', branch: 'sonots' # tree structured model
 gem 'ancestry-treeview' # an extensional ancestry gem created just for yohoushi
