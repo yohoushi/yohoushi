@@ -137,6 +137,7 @@ begin
     end
   else
     require 'god/cli/run'
+    require 'extensions/god/cli/run' # yohoushi custom
     God::CLI::Run.new(options)
   end
 rescue Exception => e
