@@ -13,6 +13,9 @@ begin
   ORIGINAL_ARGV = ARGV.dup
 
   options = {:daemonize => true, :port => 17165, :syslog => true, :events => true}
+  # yohoushi customize
+  options[:daemonize] = false
+  options[:config]    = File.expand_path('../../config/yohoushi.god', __FILE__)
 
   opts = OptionParser.new do |opts|
     opts.banner = <<-EOF
