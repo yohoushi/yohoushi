@@ -13,9 +13,8 @@ begin
   ORIGINAL_ARGV = ARGV.dup
 
   options = {:daemonize => true, :port => 17165, :syslog => true, :events => true}
-  # yohoushi customize
-  options[:daemonize] = false
-  options[:config]    = File.expand_path('../../config/yohoushi.god', __FILE__)
+  options[:daemonize] = false # yohoushi custom
+  options[:config]    = File.expand_path('../../config/yohoushi.god', __FILE__) # yohoushi custom
 
   opts = OptionParser.new do |opts|
     opts.banner = <<-EOF
@@ -41,7 +40,7 @@ begin
       status [task or group name]        show status
       signal <task or group name> <sig>  signal all matching tasks
       quit                               stop yohoushi
-      terminate                          stop yohoushi and all tasks
+      stop | terminate                   stop yohoushi and all tasks
       check                              run self diagnostic
 
     Options:
@@ -71,6 +70,7 @@ begin
       options[:daemonize] = false
     end
 
+    # yohoushi custom
     opts.on("-d", "--daemonize", "Daemonize") do
       options[:daemonize] = true
     end
@@ -123,6 +123,7 @@ begin
     God::EventHandler.load
     God::CLI::Version.version_extended
   elsif command = ARGV[0]
+    command = 'terminate' if command == 'stop' and !ARGV[1] # yohoushi custom
     require 'god'
     God::EventHandler.load
     God::CLI::Command.new(command, options, ARGV)
