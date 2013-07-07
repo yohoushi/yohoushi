@@ -18,13 +18,13 @@ begin
     opts.banner = <<-EOF
   Usage:
     Starting:
-      god [-c <config file>] [-p <port> | -b] [-P <file>] [-l <file>] [-D]
+      yohoushi [-c <config file>] [-p <port> | -b] [-P <file>] [-l <file>] [-D]
 
     Querying:
-      god <command> <argument> [-p <port>]
-      god <command> [-p <port>]
-      god -v
-      god -V (must be run as root to be accurate on Linux)
+      yohoushi <command> <argument> [-p <port>]
+      yohoushi <command> [-p <port>]
+      yohoushi -v
+      yohoushi -V (must be run as root to be accurate on Linux)
 
     Commands:
       start <task or group name>         start task or group
@@ -32,13 +32,13 @@ begin
       stop <task or group name>          stop task or group
       monitor <task or group name>       monitor task or group
       unmonitor <task or group name>     unmonitor task or group
-      remove <task or group name>        remove task or group from god
-      load <file> [action]               load a config into a running god
+      remove <task or group name>        remove task or group from yohoushi
+      load <file> [action]               load a config into a running yohoushi
       log <task name>                    show realtime log for given task
       status [task or group name]        show status
       signal <task or group name> <sig>  signal all matching tasks
-      quit                               stop god
-      terminate                          stop god and all tasks
+      quit                               stop yohoushi
+      terminate                          stop yohoushi and all tasks
       check                              run self diagnostic
 
     Options:
