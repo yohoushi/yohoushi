@@ -30,14 +30,16 @@ mysql
 
     RAILS_ENV=production rake assets:precompile
 
-## Services (job queues, cache servers, search engines, etc.)
+## Services
 
-Run the unicorn HTTP server, and a serverengine worker
+Start yohoushi (the unicorn HTTP server and a serverengine worker):
 
-    bin/god -c config/yohoushi.god
+    bin/yohoushi -d
 
-Stop them and monitoring tool god
+Use `-d` option to daemonize.
 
-    bin/god terminate
+Stop yoshoushi:
+
+    bin/yohoushi stop
 
 ## Deployment instructions
