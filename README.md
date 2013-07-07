@@ -30,13 +30,11 @@ mysql
 
     RAILS_ENV=production rake assets:precompile
 
-## Services
+## Start Services
 
-Start yohoushi (the unicorn HTTP server and a serverengine worker):
+Start yohoushi (the unicorn HTTP server and a serverengine worker): Use `-d` option to daemonize.
 
     bin/yohoushi -d
-
-Use `-d` option to daemonize.
 
 Stop yoshoushi:
 
@@ -46,6 +44,4 @@ TROUBLESHOOTING:
 
 When `stop` command does not work well, please try to `start` yohoushi and send `stop` again. 
 Yohoushi is using a process management gem named `god`, but I am experiencing with this trouble sometimes. 
-I am strggling to fix this problem, and I will send a pull request to `god` when I find a solution for this.
-
-## Deployment instructions
+I will send a pull request to `god` if I find a solution for this.
