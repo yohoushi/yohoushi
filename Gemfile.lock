@@ -7,6 +7,12 @@ GIT
       activerecord (>= 3.0.0)
 
 GIT
+  remote: https://github.com/sonots/god.git
+  revision: ad4f1657e5a7b4c96de8417bfcda9e553ab63f30
+  branch: yohoushi
+  specs:
+    god (0.13.2)
+
   remote: https://github.com/sonots/multiforecast-client.git
   revision: 92a71d6235f83bb5730e6e1885a51959fe61d9f5
   specs:

@@ -42,4 +42,10 @@ Stop yoshoushi:
 
     bin/yohoushi stop
 
+TROUBLESHOOTING:
+
+When `stop` command does not work well, please try to `start` yohoushi and send `stop` again. 
+Yohoushi is using a process management gem named `god`, but I am experiencing with this trouble sometimes. 
+I am strggling to fix this problem, and I will send a pull request to `god` when I find a solution for this.
+
 ## Deployment instructions

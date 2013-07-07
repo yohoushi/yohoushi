@@ -129,6 +129,8 @@ begin
     if command == 'restart' and !ARGV[1] # yohoushi custom
       God::CLI::Command.new(command, options, [command, "yohoushi"])
     elsif command == 'stop' and !ARGV[1] # yoshoushi custom
+      God::CLI::Command.new('stop', options, ['stop', 'yohoushi'])
+      sleep 1
       God::CLI::Command.new('terminate', options, ARGV)
     else
       God::CLI::Command.new(command, options, ARGV)
