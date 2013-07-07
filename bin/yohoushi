@@ -71,6 +71,10 @@ begin
       options[:daemonize] = false
     end
 
+    opts.on("-d", "--daemonize", "Daemonize") do
+      options[:daemonize] = true
+    end
+
     opts.on("-v", "--version", "Print the version number and exit") do
       options[:version] = true
     end
