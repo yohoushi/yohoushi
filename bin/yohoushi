@@ -123,10 +123,15 @@ begin
     God::EventHandler.load
     God::CLI::Version.version_extended
   elsif command = ARGV[0]
-    command = 'terminate' if command == 'stop' and !ARGV[1] # yohoushi custom
     require 'god'
     God::EventHandler.load
-    God::CLI::Command.new(command, options, ARGV)
+    if command == 'restart' and !ARGV[1] # yohoushi custom
+      God::CLI::Command.new(command, options, [command, "yohoushi"])
+    elsif command == 'stop' and !ARGV[1] # yoshoushi custom
+      God::CLI::Command.new('terminate', options, ARGV)
+    else
+      God::CLI::Command.new(command, options, ARGV)
+    end
   else
     require 'god/cli/run'
     God::CLI::Run.new(options)

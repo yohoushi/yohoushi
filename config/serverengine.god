@@ -7,6 +7,7 @@ BIN_PATH      ||= "#{RAILS_ROOT}/bin"
  
 God.watch do |w|
   w.name = "serverengine"
+  w.group = "yohoushi"
   w.interval = 30.seconds
 
   # needs to be run from the rails root

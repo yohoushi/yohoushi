@@ -7,6 +7,7 @@ BIN_PATH      ||= "#{RAILS_ROOT}/bin"
 
 God.watch do |w|
   w.name = "unicorn"
+  w.group = "yohoushi"
   w.interval = 30.seconds # default
   
   # unicorn needs to be run from the rails root
