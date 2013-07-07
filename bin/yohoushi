@@ -115,14 +115,14 @@ begin
   $load_god = true
 
   # dispatch
-  if !options[:config] && options[:version]
+  if options[:version]
     require 'god'
     God::CLI::Version.version
-  elsif !options[:config] && options[:info]
+  elsif options[:info]
     require 'god'
     God::EventHandler.load
     God::CLI::Version.version_extended
-  elsif !options[:config] && command = ARGV[0]
+  elsif command = ARGV[0]
     require 'god'
     God::EventHandler.load
     God::CLI::Command.new(command, options, ARGV)
