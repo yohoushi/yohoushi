@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# This is a copy and customized version of bin/god
 
 STDOUT.sync = true
 
