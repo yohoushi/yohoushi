@@ -1,0 +1,134 @@
+#!/usr/bin/env ruby
+
+STDOUT.sync = true
+
+$:.unshift File.join(File.dirname(__FILE__), *%w[.. lib])
+
+require 'optparse'
+require 'drb'
+require 'yaml'
+
+begin
+  # Save ARGV in case someone wants to use it later
+  ORIGINAL_ARGV = ARGV.dup
+
+  options = {:daemonize => true, :port => 17165, :syslog => true, :events => true}
+
+  opts = OptionParser.new do |opts|
+    opts.banner = <<-EOF
+  Usage:
+    Starting:
+      god [-c <config file>] [-p <port> | -b] [-P <file>] [-l <file>] [-D]
+
+    Querying:
+      god <command> <argument> [-p <port>]
+      god <command> [-p <port>]
+      god -v
+      god -V (must be run as root to be accurate on Linux)
+
+    Commands:
+      start <task or group name>         start task or group
+      restart <task or group name>       restart task or group
+      stop <task or group name>          stop task or group
+      monitor <task or group name>       monitor task or group
+      unmonitor <task or group name>     unmonitor task or group
+      remove <task or group name>        remove task or group from god
+      load <file> [action]               load a config into a running god
+      log <task name>                    show realtime log for given task
+      status [task or group name]        show status
+      signal <task or group name> <sig>  signal all matching tasks
+      quit                               stop god
+      terminate                          stop god and all tasks
+      check                              run self diagnostic
+
+    Options:
+  EOF
+
+    opts.on("-cCONFIG", "--config-file CONFIG", "Configuration file") do |x|
+      options[:config] = x
+    end
+
+    opts.on("-pPORT", "--port PORT", "Communications port (default 17165)") do |x|
+      options[:port] = x
+    end
+
+    opts.on("-b", "--auto-bind", "Auto-bind to an unused port number") do
+      options[:port] = "0"
+    end
+
+    opts.on("-PFILE", "--pid FILE", "Where to write the PID file") do |x|
+      options[:pid] = x
+    end
+
+    opts.on("-lFILE", "--log FILE", "Where to write the log file") do |x|
+      options[:log] = x
+    end
+
+    opts.on("-D", "--no-daemonize", "Don't daemonize") do
+      options[:daemonize] = false
+    end
+
+    opts.on("-v", "--version", "Print the version number and exit") do
+      options[:version] = true
+    end
+
+    opts.on("-V", "Print extended version and build information") do
+      options[:info] = true
+    end
+
+    opts.on("--log-level LEVEL", "Log level [debug|info|warn|error|fatal]") do |x|
+      options[:log_level] = x.to_sym
+    end
+
+    opts.on("--no-syslog", "Disable output to syslog") do
+      options[:syslog] = false
+    end
+
+    opts.on("--attach PID", "Quit god when the attached process dies") do |x|
+      options[:attach] = x
+    end
+
+    opts.on("--no-events", "Disable the event system") do
+      options[:events] = false
+    end
+
+    opts.on("--bleakhouse", "Enable bleakhouse profiling") do
+      options[:bleakhouse] = true
+    end
+  end
+
+  opts.parse!
+
+  # validate
+  if options[:log_level] && ![:debug, :info, :warn, :error, :fatal].include?(options[:log_level])
+    abort("Invalid log level '#{options[:log_level]}'")
+  end
+
+  # Use this flag to actually load all of the god infrastructure
+  $load_god = true
+
+  # dispatch
+  if !options[:config] && options[:version]
+    require 'god'
+    God::CLI::Version.version
+  elsif !options[:config] && options[:info]
+    require 'god'
+    God::EventHandler.load
+    God::CLI::Version.version_extended
+  elsif !options[:config] && command = ARGV[0]
+    require 'god'
+    God::EventHandler.load
+    God::CLI::Command.new(command, options, ARGV)
+  else
+    require 'god/cli/run'
+    God::CLI::Run.new(options)
+  end
+rescue Exception => e
+  if e.instance_of?(SystemExit)
+    raise
+  else
+    puts 'Uncaught exception'
+    puts e.message
+    puts e.backtrace.join("\n")
+  end
+end
