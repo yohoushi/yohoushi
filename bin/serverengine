@@ -2,6 +2,7 @@
 require 'bundler/setup'
 require 'yaml'
 ENV['RAILS_ENV'] ||= 'development'
+ENV['RAILS_ROOT'] ||= File.expand_path('../..', __FILE__)
 Bundler.require(:bin, ENV['RAILS_ENV'])
 
 module ServerEngine
@@ -16,7 +17,7 @@ module ServerEngine
         config = instance_eval(File.read(options[:config]), options[:config])
         @options = config.merge(@options)
       end
-
+      @options["module_name"] ||= 'Worker'
     end
 
     desc "start", "Start a serverengine"

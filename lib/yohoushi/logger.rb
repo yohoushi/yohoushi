@@ -1,6 +1,7 @@
 require 'logger'
 require 'yaml'
 ENV['RAILS_ENV'] ||= 'development'
+ENV['RAILS_ROOT'] ||= File.expand_path('../../..', __FILE__)
 
 module Yohoushi
   module_function
@@ -22,7 +23,7 @@ module Yohoushi
     end
 
     if out.kind_of?(String) # String
-      out = File.expand_path(out, "#{__FILE__}/../../../") # support relative path from yohoushi root
+      out = File.expand_path(out, ENV['RAILS_ROOT']) # support relative path from yohoushi root
     elsif out.respond_to?(:sync) # IO object
       out.sync = true
     end
