@@ -1,9 +1,9 @@
 # config/application.yml
 defaults: &defaults
-  growthforecasts:
-    -
-      dir: ''
-      gfuri: 'http://10.33.49.163:5125'
+  multiforecast:
+    short_metrics: true
+    mapping:
+      '': 'http://10.33.49.163:5125'
   tree:
     to_depth: null
   autocomplete:

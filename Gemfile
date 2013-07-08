@@ -26,7 +26,7 @@ gem 'newrelic_rpm'
 gem 'draper' # decorator(view-model)
 gem "settingslogic"
 gem 'growthforecast-client'
-gem 'multiforecast-client', git: 'https://github.com/sonots/multiforecast-client.git'
+gem 'multiforecast-client'
 gem 'acts-as-taggable-on' # tagging
 gem 'ancestry', git: 'https://github.com/sonots/ancestry.git', branch: 'yohoushi' # tree structured model
 gem 'ancestry-treeview' # an extensional ancestry gem created just for yohoushi
@@ -52,10 +52,8 @@ end
 group :test do
   gem 'rspec-rails' # rails g rspec:model
   gem 'webmock', :require => false
-  gem 'guard-rspec'
-
-  # metrics
-  gem 'simplecov-rcov', :require => false
+  gem 'guard-rspec' # automatically run specs
+  gem 'simplecov-rcov', :require => false # coverage
 end
 
 group :development, :test do

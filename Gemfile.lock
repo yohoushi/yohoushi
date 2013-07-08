@@ -6,13 +6,6 @@ GIT
     ancestry (2.0.0)
       activerecord (>= 3.0.0)
 
-GIT
-  remote: https://github.com/sonots/multiforecast-client.git
-  revision: 92a71d6235f83bb5730e6e1885a51959fe61d9f5
-  specs:
-    multiforecast-client (0.1.1)
-      growthforecast-client
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -141,6 +134,8 @@ GEM
     mime-types (1.23)
     minitest (4.7.5)
     multi_json (1.7.7)
+    multiforecast-client (0.62.0.2)
+      growthforecast-client (~> 0.62.0)
     mysql2 (0.3.11)
     net-scp (1.1.1)
       net-ssh (>= 2.6.5)
@@ -292,7 +287,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   kaminari
-  multiforecast-client!
+  multiforecast-client
   mysql2
   newrelic_rpm
   pry
