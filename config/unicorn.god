@@ -12,7 +12,6 @@ God.watch do |w|
   
   # unicorn needs to be run from the rails root
   w.start = "cd #{RAILS_ROOT} && #{BIN_PATH}/unicorn -c #{RAILS_ROOT}/config/unicorn.conf -E #{RAILS_ENV} -D"
-  w.log = "#{RAILS_ROOT}/log/yohoushi.log"
  
   # QUIT gracefully shuts down workers
   w.stop = "kill -QUIT `cat #{PID_DIR}/unicorn.pid`"

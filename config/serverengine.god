@@ -12,7 +12,6 @@ God.watch do |w|
 
   # needs to be run from the rails root
   w.start   = "cd #{RAILS_ROOT} && #{BIN_PATH}/serverengine start -p #{PID_DIR}/serverengine.pid -d"
-  w.log     = "#{RAILS_ROOT}/log/yohoushi.log"
 
   # TERM to graceful stop, QUIT to stop
   w.stop = "kill -TERM `cat #{PID_DIR}/serverengine.pid`"
