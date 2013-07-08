@@ -1,5 +1,10 @@
 # config/application.yml
 defaults: &defaults
+  logger:
+    out: 'log/yohoushi.log'
+    level: 'info'
+    shift_age: 0 # 0 means do not rotate
+    shift_size: 1048676
   multiforecast:
     mapping:
       '': 'http://10.33.49.163:5125'
