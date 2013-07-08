@@ -1,13 +1,17 @@
+// @reference http://coder.blog.uhuru.co.jp/js/easy_accordion
 $(function() {
   $('.accordion-head').each( function() {
     $(this).after('<ul class="accordion-nav" style="display: none;"></ul>');
   });
 
   $(document).on("click", '.accordion-head', function() {
-
     var ul = $(this).next();
     if (ul.text() == '') {
+
+      // fetch string from <ul data-term=""">
       term = $(this).data('term');
+
+      // load contents via ajax
       $.getJSON("/children_graph?term=" + term)
       .done(function(data) {
         $.each(data, function(i,item) {
@@ -21,12 +25,14 @@ $(function() {
           ul.addClass('accordion-nav-leaf');
         }
 
+        // Open the content window
         ul.hide().slideToggle();
       });
     } else {
+        // Just open it
       ul.slideToggle();
     }
-  }).next().hide();
+  });
 
 });
 

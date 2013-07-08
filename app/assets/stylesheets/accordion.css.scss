@@ -1,3 +1,4 @@
+// @reference http://weboook.blog22.fc2.com/blog-entry-347.html
 #accordion {
   margin: 0;
   padding: 0px 20px 0px 0px;
@@ -19,9 +20,6 @@
 
 #accordion > li > div {
   border-left: 0px;
-}
-#accordion > li:last-child > div {
-  border-bottom: 0px;
 }
 
 .accordion-nav > li:first-child > div {
@@ -51,7 +49,7 @@
 
 // override .accordion-nav
 .accordion-nav-leaf > li > div:hover {
-   background-color: #fff;
+   background-color: transparent;
    cursor: default;
 }
 
