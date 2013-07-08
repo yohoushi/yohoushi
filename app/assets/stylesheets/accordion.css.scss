@@ -80,7 +80,8 @@
 
 .accordion-nav-arrow:before {
   font-size: 20px;
-  content: '>';
+  font-family: FontAwesome;
+  content: '\F054'; // icon-chevron-right
 }
 
 .accordion-nav > li > div:hover .accordion-nav-arrow {
