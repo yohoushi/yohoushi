@@ -36,7 +36,7 @@ Start yohoushi (the unicorn HTTP server and a serverengine worker): Use `-d` opt
 
     bin/yohoushi -d
 
-Stop yoshoushi:
+Stop yohoushi:
 
     bin/yohoushi stop
 
