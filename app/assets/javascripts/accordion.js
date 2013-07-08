@@ -7,12 +7,13 @@ $(function() {
     var ul = $(this).next();
     if (ul.text() == '') {
       term = $(this).data('term');
-      $.getJSON("/children_graph?term=" + term, function(data) {
+      $.getJSON("/children_graph?term=" + term)
+      .done(function(data) {
         $.each(data, function(i,item) {
-          ul.append('<li><div class="accordion_head" data-term="' + item.path + '"><a href="' + item.uri + '" >' + item.basename+ "</a></div><ul style='dispaly: none;'><ul></li>");
+          ul.append('<li><div class="accordion_head" data-term="' + item.path + '"><a href="' + item.uri + '" >' + item.basename+ '</a></div><ul style="display: none;"></ul></li>');
         });
+        ul.hide().slideToggle();
       });
-      ul.slideToggle();
     } else {
       ul.slideToggle();
     }
