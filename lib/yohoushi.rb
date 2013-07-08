@@ -117,7 +117,7 @@ begin
 
   # dispatch
   if options[:version]
-    require 'version' # yohoushi custom
+    require 'yohoushi/version' # yohoushi custom
     puts "Version: #{Yohoushi::VERSION}" # yohoushi custom
   elsif options[:info]
     require 'god'
