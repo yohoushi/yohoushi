@@ -80,7 +80,7 @@ begin
       options[:version] = true
     end
 
-    opts.on("-V", "Print extended version and build information") do
+    opts.on("-V", "Print the version and build information of god") do
       options[:info] = true
     end
 
@@ -117,8 +117,8 @@ begin
 
   # dispatch
   if options[:version]
-    require 'god'
-    God::CLI::Version.version
+    require 'version' # yohoushi custom
+    puts "Version: #{Yohoushi::VERSION}" # yohoushi custom
   elsif options[:info]
     require 'god'
     God::EventHandler.load
