@@ -3,7 +3,7 @@
 
 STDOUT.sync = true
 
-$:.unshift File.join(File.dirname(__FILE__), *%w[.. lib])
+$:.unshift File.join(File.dirname(__FILE__), *%w[.. .. lib])
 
 require 'optparse'
 require 'drb'
@@ -15,7 +15,7 @@ begin
 
   options = {:daemonize => true, :port => 17165, :syslog => true, :events => true}
   options[:daemonize] = false # yohoushi custom
-  options[:config]    = File.expand_path('../../config/yohoushi.god', __FILE__) # yohoushi custom
+  options[:config]    = File.expand_path('../../../config/yohoushi.god', __FILE__) # yohoushi custom
 
   opts = OptionParser.new do |opts|
     opts.banner = <<-EOF

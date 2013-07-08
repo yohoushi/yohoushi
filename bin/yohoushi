@@ -13,4 +13,4 @@ ENV['BUNDLE_GEMFILE'] ||= File.expand_path("../../Gemfile",
 require 'rubygems'
 require 'bundler/setup'
 
-load File.expand_path("../../lib/yohoushi.rb", __FILE__)
+load File.expand_path("../../lib/yohoushi/cli.rb", __FILE__)
