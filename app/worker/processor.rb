@@ -3,7 +3,7 @@ module Worker
     include ::Util
 
     def initialize(logger = Rails.logger, config = {})
-      @logger = Rails.logger = logger
+      @logger = logger
       @config = config
     end
 

@@ -15,7 +15,7 @@ module Yohoushi
   # @param config The config yaml file to load
   # @param block Format block
   # @return Logger instance
-  def logger(out: $stdout, level: 'info', shift_age: 0, shift_size: 1048676, config: nil, &block)
+  def logger(out: $stdout, level: 'info', shift_age: 0, shift_size: 1048676, config: nil, service: 'yohoushi', &block)
     # Load the config yaml
     if config and File.exists?(config)
       settings = YAML.load_file(config)[ENV['RAILS_ENV']]["logger"]
@@ -31,7 +31,7 @@ module Yohoushi
     # Default log formart
     block ||= proc do |level, time, _, message|
       # "[#{time.strftime("%Y-%m-%d %H:%M:%S")}] [#{level.rjust(5)}] #{message}\n"
-      "time:#{time.strftime("%FT%T%z")}\tlevel:#{level}\tmessage:#{message}\n" # LTSV
+      "time:#{time.strftime("%FT%T%z")}\tlevel:#{level}\tservice:#{service}\tmessage:#{message}\n" # LTSV
     end
 
     Logger.new(out, shift_age, shift_size).tap do |logger|
