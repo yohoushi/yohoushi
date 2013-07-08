@@ -2,7 +2,8 @@ source 'https://rubygems.org'
 
 ruby '2.0.0'
 gem 'rails', '~> 4.0.0'
-gem 'sqlite3'
+gem 'sqlite3' # Use sqlite as the database
+# gem 'mysql2' # Use myql as the database
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0' # compressor for JavaScript assets
