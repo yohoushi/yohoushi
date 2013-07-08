@@ -7,7 +7,7 @@ class GraphsController < ApplicationController
   before_action :tag_redirect, :set_tags, only: [:tag_graph]
   before_action :autocomplete_search, only: [:autocomplete_graph]
   before_action :tagselect_search, only: [:tagselect_graph]
-  before_action :set_children, only: [:children_graph]
+  before_action :set_children, only: [:accordion_graph]
 
   # GET /tree_graph
   def tree_graph
@@ -44,8 +44,8 @@ class GraphsController < ApplicationController
     render :json => @tagselect.map(&:name)
   end
 
-  # GET /children_graph?term=xxx for ajax ancestry tree view
-  def children_graph
+  # GET /accordion_graph?term=xxx for ajax ancestry tree view
+  def accordion_graph
     render :json => @children.map {|c| 
       uri = c.graph? ? view_graph_path(path: c.path) : list_graph_path(path: c.path)
       {:uri => uri, :path => c.path, :basename => c.basename, :has_children => c.has_children?}

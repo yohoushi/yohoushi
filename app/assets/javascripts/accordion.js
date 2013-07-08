@@ -12,7 +12,7 @@ $(function() {
       term = $(this).data('term');
 
       // load contents via ajax
-      $.getJSON("/children_graph?term=" + term)
+      $.getJSON("/accordion_graph?term=" + term)
       .done(function(data) {
         $.each(data, function(i,item) {
           var div_class = (item.has_children == true) ? 'class="accordion-head"' : ''
