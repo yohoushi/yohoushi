@@ -10,42 +10,31 @@ describe Node do
   end
 
   describe "#find_or_create" do
-    context 'default' do
-      let(:path) { 'a/b/c' }
-      subject { described_class.find_or_create(path: path) }
-      it { expect(subject.path).to eq 'a/b/c' }
-      it { expect(subject.parent.path).to eq 'a/b' }
-      it { expect(subject.parent.parent.path).to eq 'a' }
+    let(:path) { 'a/b/c' }
+    subject { described_class.find_or_create(path: path) }
+    it { expect(subject.path).to eq 'a/b/c' }
+    it { expect(subject.parent.path).to eq 'a/b' }
+    it { expect(subject.parent.parent.path).to eq 'a' }
+  end
+
+  describe "#destroy_ancestors" do
+    let(:path) { 'a/b/c' }
+    context "default" do
+      before { described_class.find_or_create(path: path).destroy_ancestors }
+      it { expect(described_class.find_by(path: 'a/b/c')).to be_nil }
+      it { expect(described_class.find_by(path: 'a/b')).to be_nil }
+      it { expect(described_class.find_by(path: 'a')).to be_nil }
+      it { expect(described_class.find_by(path: '')).to be_nil }
     end
 
-    context 'marking then delete non-marked nodes' do
-      let(:path) { 'a/b/c' }
-      before {
-        @marks = described_class.start_marking
-        described_class.find_or_create(path: path)
-        described_class.where.not(:id => @marks.uniq).destroy_all
-      }
-      it { expect(@marks).to include(described_class.find_by(path: '').id) }
-      it { expect(@marks).to include(described_class.find_by(path: 'a').id) }
-      it { expect(@marks).to include(described_class.find_by(path: 'a/b').id) }
-      it { expect(@marks).to include(described_class.find_by(path: 'a/b/c').id) }
-      it { expect(described_class.all.map(&:path)).to eq ['', 'a', 'a/b', 'a/b/c'] }
-    end
-
-    context 'default then marking then delete non-marked nodes' do
-      let(:path1) { 'a/b/c' }
-      let(:path2) { 'a/d/e' }
-      before {
-        described_class.find_or_create(path: path1) # means a graph which does not exist in gf anymore
-        @marks = described_class.start_marking
-        described_class.find_or_create(path: path2) # means a graph which exists in gf
-        described_class.where.not(:id => @marks.uniq).destroy_all
-      }
-      it { expect(@marks).to include(described_class.find_by(path: '').id) }
-      it { expect(@marks).to include(described_class.find_by(path: 'a').id) }
-      it { expect(@marks).to include(described_class.find_by(path: 'a/d').id) }
-      it { expect(@marks).to include(described_class.find_by(path: 'a/d/e').id) }
-      it { expect(described_class.all.map(&:path)).to eq ['', 'a', 'a/d', 'a/d/e'] }
+    context "section having a child is not destroyed" do
+      before { described_class.find_or_create(path: 'a/b/d') }
+      before { described_class.find_or_create(path: 'a/b/c').destroy_ancestors }
+      it { expect(described_class.find_by(path: 'a/b/c')).to be_nil }
+      it { expect(described_class.find_by(path: 'a/b/d')).not_to be_nil }
+      it { expect(described_class.find_by(path: 'a/b')).not_to be_nil }
+      it { expect(described_class.find_by(path: 'a')).not_to be_nil }
+      it { expect(described_class.find_by(path: '')).not_to be_nil }
     end
   end
 end
