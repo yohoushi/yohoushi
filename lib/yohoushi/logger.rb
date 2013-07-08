@@ -1,12 +1,9 @@
 require 'logger'
 require 'yaml'
+ENV['RAILS_ENV'] ||= 'development'
 
 module Yohoushi
   module_function
-
-  def rails_env
-    defined?(Rails.env) ? Rails.env : ENV['RAILS_ENV'] || 'development'
-  end
 
   # Create a logger instance
   #
@@ -20,7 +17,7 @@ module Yohoushi
   def logger(params = { 'out' => $stdout, 'level' => 'info', 'shift_age' => 0, 'shift_size' => 1048676, 'config' => nil }, &block)
     # Load the config yaml
     if params['config'] and File.exists?(params['config'])
-      params = YAML.load_file(params['config'])[rails_env]["logger"].merge(params)
+      params = YAML.load_file(params['config'])[ENV['RAILS_ENV']]["logger"].merge(params)
     end
 
     if params['out'].kind_of?(String) # String
