@@ -1,18 +1,95 @@
-#accordion{
+#accordion {
   margin: 0;
-  padding: 0;
-  border: 1px solid #000;
+  padding: 0px 20px 0px 0px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-#accordion .accordion_head {
-  cursor: pointer;
-}
-
-#accordion li {
+.accordion-nav > li {
+  margin: 15px 0px 15px 20px;
   list-style: none;
 }
 
-#accordion a{
-  text-decoration:none;
+.accordion-nav > li > div {
+  position: relative; // this is required by .accordion-nav-arrow
+  cursor: pointer;
+  padding: 8px 30px;
+  border-bottom: 1px solid #ccc;
+}
+
+#accordion > li > div {
+  border-left: 0px;
+}
+#accordion > li:last-child > div {
+  border-bottom: 0px;
+}
+
+.accordion-nav > li:first-child > div {
+  border-top: 0px;
+}
+
+.accordion-nav > li > div:hover {
+   background-color: #0099DD;
+}
+
+.accordion-nav > li > div > a {
+  color: #0099DD;
+  text-decoration: none;
+  // Users may be able to click a link by this tiny padding.
+  padding-right: 30px;
+  padding-left: 5px;
+}
+
+.accordion-nav > li > div:hover > a {
+  color: #fff;
+}
+
+.accordion-nav > li > div > a:hover {
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+// override .accordion-nav
+.accordion-nav-leaf > li > div:hover {
+   background-color: #fff;
+   cursor: default;
+}
+
+// override .accordion-nav
+.accordion-nav-leaf > li > div:hover > a {
+  color: #0099DD;
+}
+
+// right-side arrow icon
+.accordion-nav-arrow {
+  position: absolute;
+  top: 50%;
+  right: 30px;
+  width: 30px;
+  height: 20px;
+  line-height: 1;
+  margin-top: -10px;
+  color: #f6f6f6;
+  // must be used with vendor prefix
+  -moz-transition: .3s;
+  -webkit-transition: .3s;
+  -o-transition: .3s;
+  -ms-transition: .3s;
+  transition: .3s;
+}
+
+.accordion-nav-arrow:before {
+  font-size: 20px;
+  content: '>';
+}
+
+.accordion-nav > li > div:hover .accordion-nav-arrow {
+  color: #0081bb;
+  // must be used with vendor prefix
+  -moz-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 
