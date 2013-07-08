@@ -1,6 +1,6 @@
 # config/application.yml
 defaults: &defaults
-  logger:
+  logger: &logger
     out: 'log/yohoushi.log'
     level: 'info'
     shift_age: 0 # 0 means do not rotate
@@ -8,6 +8,8 @@ defaults: &defaults
   multiforecast:
     mapping:
       '': 'http://10.33.49.163:5125'
+  autocomplete:
+    limit: 20
   graph:
     date_period_terms:
       -
@@ -53,9 +55,19 @@ defaults: &defaults
 
 development:
   <<: *defaults
+  logger:
+    <<: *logger
+    level: 'debug'
 
 test:
   <<: *defaults
+  logger:
+    <<: *logger
+    level: 'debug'
+  multiforecast:
+    short_metrics: true
+    mapping:
+      '': 'http://localhost:5125'
 
 production:
   <<: *defaults

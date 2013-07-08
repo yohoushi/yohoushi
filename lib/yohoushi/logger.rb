@@ -1,8 +1,12 @@
 require 'logger'
-require 'active_support'
+require 'yaml'
 
 module Yohoushi
   module_function
+
+  def rails_env
+    defined?(Rails.env) ? Rails.env : ENV['RAILS_ENV'] || 'development'
+  end
 
   # Create a logger instance
   #
@@ -13,18 +17,17 @@ module Yohoushi
   # @param config The config yaml file to load
   # @param block Format block
   # @return Logger instance
-  def logger(params = { out: $stdout, level: 'info', shift_age: 0, shift_size: 1048676, config: nil }, &block)
-    params = params.symbolize_keys
+  def logger(params = { 'out' => $stdout, 'level' => 'info', 'shift_age' => 0, 'shift_size' => 1048676, 'config' => nil }, &block)
     # Load the config yaml
-    if params[:config] and File.exists?(params[:config])
-      params = YAML.load_file(params[:config])[Rails.env]["logger"].symbolize_keys.merge(params)
+    if params['config'] and File.exists?(params['config'])
+      params = YAML.load_file(params['config'])[rails_env]["logger"].merge(params)
     end
 
-    # params[:out]
-    if params[:out].kind_of?(String) # String
-      params[:out] = File.expand_path(params[:out], Rails.root)
-    elsif params[:out].respond_to?(:sync) # IO object
-      params[:out].sync = true
+    if params['out'].kind_of?(String) # String
+      # support relative path from yohoushi root
+      params['out'] = File.expand_path(params['out'], "#{__FILE__}/../../../")
+    elsif params['out'].respond_to?(:sync) # IO object
+      params['out'].sync = true
     end
 
     # Default log formart
@@ -33,9 +36,9 @@ module Yohoushi
     end
 
     # Make an instance of logger
-    Logger.new(params[:out], params[:shift_age], params[:shift_size]).tap do |logger|
+    Logger.new(params['out'], params['shift_age'], params['shift_size']).tap do |logger|
       logger.formatter = block
-      logger.level = eval("Logger::#{params[:level].upcase}")
+      logger.level = eval("Logger::#{params['level'].upcase}")
     end
   end
 end
