@@ -8,6 +8,8 @@ $:.unshift File.join(File.dirname(__FILE__), *%w[.. .. lib])
 require 'optparse'
 require 'drb'
 require 'yaml'
+RAILS_ENV ||= ENV['RAILS_ENV'] ||= 'development'
+RAILS_ROOT ||= ENV['RAILS_ROOT'] ||= File.expand_path('../../..', __FILE__)
 
 begin
   # Save ARGV in case someone wants to use it later
@@ -15,7 +17,7 @@ begin
 
   options = {:daemonize => true, :port => 17165, :syslog => true, :events => true}
   options[:daemonize] = false # yohoushi custom
-  options[:config]    = File.expand_path('../../../config/yohoushi.god', __FILE__) # yohoushi custom
+  options[:config]    = "#{RAILS_ROOT}/config/yohoushi.god" # yohoushi custom
 
   opts = OptionParser.new do |opts|
     opts.banner = <<-EOF
@@ -136,6 +138,7 @@ begin
       God::CLI::Command.new(command, options, ARGV)
     end
   else
+    puts "Sending output to log file: #{RAILS_ROOT}/log/yohoushi.log"
     require 'god/cli/run'
     require File.expand_path('../../vendor/extensions/god/cli/run', __FILE__) # yohoushi custom
     God::CLI::Run.new(options)
