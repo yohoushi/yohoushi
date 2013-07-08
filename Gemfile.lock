@@ -36,8 +36,6 @@ GEM
     acts-as-taggable-on (2.4.1)
       rails (>= 3, < 5)
     addressable (2.3.5)
-    ancestry-treeview (0.0.2)
-      ancestry (>= 2.0.0)
     arel (4.0.0)
     atomic (1.1.10)
     better_errors (0.9.0)
@@ -262,7 +260,6 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on
   ancestry!
-  ancestry-treeview
   better_errors
   binding_of_caller
   bootstrap-datetimepicker-rails
