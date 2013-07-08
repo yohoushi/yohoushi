@@ -1,7 +1,8 @@
 - model_class = Graph
 
-ul#accordion
-  - @root.children.each do |node|
-    li
-      div.accordion_head data-term="#{node.path}"
-        a href="#{list_graph_path(path: node.path)}" = node.basename
+- if @root.present?
+  ul#accordion
+    - @root.children.each do |node|
+      li
+        div.accordion_head data-term="#{node.path}"
+          a href="#{list_graph_path(path: node.path)}" = node.basename
