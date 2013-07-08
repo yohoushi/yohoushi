@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/sonots/ancestry.git
   revision: 7d2764c8d04793c11800a1223da0d4593612e8e7
-  branch: sonots
+  branch: yohoushi
   specs:
     ancestry (2.0.0)
       activerecord (>= 3.0.0)
