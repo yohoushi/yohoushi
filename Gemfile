@@ -22,6 +22,7 @@ gem 'twitter-bootstrap-rails'
 gem 'bootstrap-sass' # http://d.hatena.ne.jp/sandmark/20120321/1332292995
 gem 'bootswatch-rails'
 gem 'bootstrap-datetimepicker-rails'
+gem 'font-awesome-rails' # Font-Awesome web fonts
 # gem 'newrelic_rpm'
 
 gem 'draper' # decorator(view-model)
