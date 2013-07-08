@@ -6,7 +6,8 @@ Bundler.require(:bin, ENV['RAILS_ENV'])
 
 module ServerEngine
   class CLI < Thor
-    class_option :config,    :aliases => ["-c"], :type => :string, :default => 'config/serverengine.conf'
+    class_option :config, :aliases => ["-c"], :type => :string, :default => 'config/serverengine.conf'
+    default_command :start
 
     def initialize(args = [], opts = [], config = {})
       super(args, opts, config)
@@ -15,6 +16,7 @@ module ServerEngine
         config = instance_eval(File.read(options[:config]), options[:config])
         @options = config.merge(@options)
       end
+
     end
 
     desc "start", "Start a serverengine"
