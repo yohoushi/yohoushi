@@ -1,6 +1,6 @@
 $(function() {
   $('.accordion_head').each( function() {
-    $(this).after('<ul style="display: block;"></ul>');
+    $(this).after('<ul style="display: none;"></ul>');
   });
 
   $(document).on("click", '.accordion_head', function() {
@@ -12,7 +12,7 @@ $(function() {
           ul.append('<li><div class="accordion_head" data-term="' + item.path + '"><a href="' + item.uri + '" >' + item.basename+ "</a></div><ul style='dispaly: none;'><ul></li>");
         });
       });
-      ul.hide().slideToggle();
+      ul.slideToggle();
     } else {
       ul.slideToggle();
     }
