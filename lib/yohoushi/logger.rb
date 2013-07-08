@@ -14,28 +14,28 @@ module Yohoushi
   # @param config The config yaml file to load
   # @param block Format block
   # @return Logger instance
-  def logger(params = { 'out' => $stdout, 'level' => 'info', 'shift_age' => 0, 'shift_size' => 1048676, 'config' => nil }, &block)
+  def logger(out: $stdout, level: 'info', shift_age: 0, shift_size: 1048676, config: nil, &block)
     # Load the config yaml
-    if params['config'] and File.exists?(params['config'])
-      params = YAML.load_file(params['config'])[ENV['RAILS_ENV']]["logger"].merge(params)
+    if config and File.exists?(config)
+      settings = YAML.load_file(config)[ENV['RAILS_ENV']]["logger"]
+      settings.each {|key, val| instance_eval("#{key} = val") if defined?(key) } # keyword arguments merge
     end
 
-    if params['out'].kind_of?(String) # String
-      # support relative path from yohoushi root
-      params['out'] = File.expand_path(params['out'], "#{__FILE__}/../../../")
-    elsif params['out'].respond_to?(:sync) # IO object
-      params['out'].sync = true
+    if out.kind_of?(String) # String
+      out = File.expand_path(out, "#{__FILE__}/../../../") # support relative path from yohoushi root
+    elsif out.respond_to?(:sync) # IO object
+      out.sync = true
     end
 
     # Default log formart
     block ||= proc do |level, time, _, message|
-      "[#{time.strftime("%Y-%m-%d %H:%M:%S")}] [#{level.rjust(5)}] #{message}\n"
+      # "[#{time.strftime("%Y-%m-%d %H:%M:%S")}] [#{level.rjust(5)}] #{message}\n"
+      "time:#{time.strftime("%FT%T%z")}\tlevel:#{level}\tmessage:#{message}\n" # LTSV
     end
 
-    # Make an instance of logger
-    Logger.new(params['out'], params['shift_age'], params['shift_size']).tap do |logger|
+    Logger.new(out, shift_age, shift_size).tap do |logger|
       logger.formatter = block
-      logger.level = eval("Logger::#{params['level'].upcase}")
+      logger.level = eval("Logger::#{level.upcase}")
     end
   end
 end
