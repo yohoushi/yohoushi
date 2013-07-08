@@ -48,7 +48,7 @@ class GraphsController < ApplicationController
   def children_graph
     render :json => @children.map {|c| 
       uri = c.graph? ? view_graph_path(path: c.path) : list_graph_path(path: c.path)
-      {:uri => uri, :path => c.path, :basename => c.basename}
+      {:uri => uri, :path => c.path, :basename => c.basename, :has_children => c.has_children?}
     }
   end
 

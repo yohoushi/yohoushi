@@ -10,7 +10,8 @@ $(function() {
       $.getJSON("/children_graph?term=" + term)
       .done(function(data) {
         $.each(data, function(i,item) {
-          ul.append('<li><div class="accordion_head" data-term="' + item.path + '"><a href="' + item.uri + '" >' + item.basename+ '</a></div><ul style="display: none;"></ul></li>');
+          var accordion_class = (item.has_children == true) ? "accordion_head" : "accordion_leaf";
+          ul.append('<li><div class="' + accordion_class + '" data-term="' + item.path + '"><a href="' + item.uri + '" >' + item.basename+ '</a></div><ul style="display: none;"></ul></li>');
         });
         ul.hide().slideToggle();
       });
