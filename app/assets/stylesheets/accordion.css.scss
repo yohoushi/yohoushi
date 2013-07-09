@@ -5,14 +5,14 @@
 }
 
 .accordion-nav > li {
-  margin: 15px 0px 15px 0px;
+  margin: 0px;
   list-style: none;
 }
 
 .accordion-nav > li > div {
   position: relative; // this is required by .accordion-nav-arrow
   cursor: pointer;
-  padding: 8px 30px;
+  padding: 2px 5px;
   border-bottom: 1px solid #ccc;
 }
 
