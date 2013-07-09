@@ -32,8 +32,7 @@
   color: #0099DD;
   text-decoration: none;
   // Users may be able to click a link by this tiny padding.
-  padding-right: 30px;
-  padding-left: 5px;
+  padding: 0px 5px;
 }
 
 .accordion-nav > li > div:hover > a {
@@ -60,12 +59,9 @@
 .accordion-nav-arrow {
   position: absolute;
   top: 50%;
-  right: 30px;
-  width: 30px;
-  height: 20px;
-  line-height: 1;
+  right: 10px;
   margin-top: -10px;
-  color: #f6f6f6;
+  color: #e5e5e5;
   // must be used with vendor prefix
   -moz-transition: .3s;
   -webkit-transition: .3s;
@@ -75,9 +71,9 @@
 }
 
 .accordion-nav-arrow:before {
-  font-size: 20px;
+  font-size: 12px;
   font-family: FontAwesome;
-  content: '\F054'; // icon-chevron-right
+  content: '\F04B'; // icon-play
 }
 
 .accordion-nav > li > div:hover .accordion-nav-arrow {
