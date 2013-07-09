@@ -78,6 +78,9 @@
 
 .accordion-nav > li > div:hover .accordion-nav-arrow {
   color: #0081bb;
+}
+
+.accordion-nav-arrow-rotate {
   // must be used with vendor prefix
   -moz-transform: rotate(90deg);
   -webkit-transform: rotate(90deg);

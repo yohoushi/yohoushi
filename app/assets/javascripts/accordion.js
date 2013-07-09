@@ -5,9 +5,16 @@ $(function() {
   });
 
   $(document).on("click", '.accordion-head', function() {
-    var ul = $(this).next();
-    if (ul.text() == '') {
+    // Add/Remove opened status
+    var arrow = $('> .accordion-nav-arrow', this);
+    if (arrow.hasClass('accordion-nav-arrow-rotate')) {
+      arrow.removeClass('accordion-nav-arrow-rotate');
+    } else {
+      arrow.addClass('accordion-nav-arrow-rotate');
+    }
 
+   var ul = $(this).next();
+   if (ul.text() == '') {
       // fetch string from <ul data-term=""">
       term = $(this).data('term');
 
@@ -32,6 +39,7 @@ $(function() {
         // Just open it
       ul.slideToggle();
     }
+
   });
 
 });
