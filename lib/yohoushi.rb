@@ -137,7 +137,7 @@ begin
     end
   else
     require 'god/cli/run'
-    require 'extensions/god/cli/run' # yohoushi custom
+    require File.expand_path('../../vendor/extensions/god/cli/run', __FILE__) # yohoushi custom
     God::CLI::Run.new(options)
   end
 rescue Exception => e
