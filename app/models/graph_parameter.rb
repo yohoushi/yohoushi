@@ -16,8 +16,8 @@ class GraphParameter < ApplicationParameter
       self.errors.add(:to, 'is invalid.')
     end
     @size   = params[:size].presence || 'M'
-    @width  = Settings.graph.sizes[@size]['width']
-    @height = Settings.graph.sizes[@size]['height']
+    @width  = GraphSettings.sizes[@size]['width']
+    @height = GraphSettings.sizes[@size]['height']
     @notitle = true if params[:size] == 'thumbnail'
   end
 
