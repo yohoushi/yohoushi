@@ -1,13 +1,8 @@
 # config/application.yml
 defaults: &defaults
   multiforecast:
-    short_metrics: true
     mapping:
       '': 'http://10.33.49.163:5125'
-  tree:
-    to_depth: null
-  autocomplete:
-    limit: 20
   graph:
     date_period_terms:
       -
@@ -56,10 +51,6 @@ development:
 
 test:
   <<: *defaults
-  growthforecasts:
-    -
-      dir: ''
-      gfuri: 'http://localhost:5125'
 
 production:
   <<: *defaults
