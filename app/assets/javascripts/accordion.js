@@ -15,16 +15,16 @@ $(function() {
 
    var ul = $(this).next();
    if (ul.text() == '') {
-      // fetch string from <ul data-term=""">
-      term = $(this).data('term');
+      // fetch string from <ul data-path=""">
+      path = $(this).data('path');
 
       // load contents via ajax
-      $.getJSON("/accordion_graph?term=" + term)
+      $.getJSON("/accordion_graph?path=" + path)
       .done(function(data) {
         $.each(data, function(i,item) {
           var div_class = (item.has_children == true) ? 'class="accordion-head"' : ''
           var arrow = (item.has_children == true) ?  '<span class="accordion-nav-arrow"></span>' : ''
-          ul.append('<li><div ' + div_class + ' data-term="' + item.path + '"><a href="' + item.uri + '" > ' + item.basename + '</a>' + arrow + '</div><ul class="accordion-nav" style="display: none;"></ul></li>');
+          ul.append('<li><div ' + div_class + ' data-path="' + item.path + '"><a href="' + item.uri + '" > ' + item.basename + '</a>' + arrow + '</div><ul class="accordion-nav" style="display: none;"></ul></li>');
         });
 
         // Add a class to ul tag if creat the last leaf box

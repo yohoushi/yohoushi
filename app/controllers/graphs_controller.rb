@@ -44,7 +44,7 @@ class GraphsController < ApplicationController
     render :json => @tagselect.map(&:name)
   end
 
-  # GET /accordion_graph?term=xxx for ajax ancestry tree view
+  # GET /accordion_graph?path=xxx for ajax accordion navigation
   def accordion_graph
     render :json => @children.map {|c| 
       uri = c.graph? ? view_graph_path(path: c.path) : list_graph_path(path: c.path)
@@ -145,7 +145,7 @@ class GraphsController < ApplicationController
   end
 
   def set_children
-    @children = Node.find_by(path: params[:term]).try(:children).try(:order, 'path ASC')
+    @children = Node.find_by(path: params[:path]).try(:children).try(:order, 'path ASC')
     not_found unless @children
   end
 
