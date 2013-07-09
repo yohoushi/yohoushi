@@ -11,6 +11,7 @@
  *= require_self
  *= require_tree .
  *= require jquery.ui.autocomplete
+ *= require font-awesome
  */
 // First import spacelab variables
 @import "bootswatch/spacelab/variables";
@@ -30,8 +31,8 @@ body { padding-top: 60px; }
 // bootstrap-datetimepicker-rails gem requires follow line
 @import 'bootstrap-datetimepicker';
 
-// ancestry-treeview gem
-@import "ancestry-treeview";
+// font-awesome gem
+@import "font-awesome";
 
 // Whatever application styles you have go last
 // @import "base";

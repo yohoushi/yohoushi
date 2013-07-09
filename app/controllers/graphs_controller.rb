@@ -7,6 +7,7 @@ class GraphsController < ApplicationController
   before_action :tag_redirect, :set_tags, only: [:tag_graph]
   before_action :autocomplete_search, only: [:autocomplete_graph]
   before_action :tagselect_search, only: [:tagselect_graph]
+  before_action :set_children, only: [:accordion_graph]
 
   # GET /tree_graph
   def tree_graph
@@ -41,6 +42,14 @@ class GraphsController < ApplicationController
   # GET /tagselect_graph?term=xxx for ajax tag autocomplete
   def tagselect_graph
     render :json => @tagselect.map(&:name)
+  end
+
+  # GET /accordion_graph?path=xxx for ajax accordion navigation
+  def accordion_graph
+    render :json => @children.map {|c| 
+      uri = c.graph? ? view_graph_path(path: c.path) : list_graph_path(path: c.path)
+      {:uri => uri, :path => c.path, :basename => c.basename, :has_children => c.has_children?}
+    }
   end
 
   private
@@ -134,4 +143,10 @@ class GraphsController < ApplicationController
   def graph_params
     params.require(:graph).permit(:path, :description, :tag_list)
   end
+
+  def set_children
+    @children = Node.find_by(path: params[:path]).try(:children).try(:order, 'path ASC')
+    not_found unless @children
+  end
+
 end

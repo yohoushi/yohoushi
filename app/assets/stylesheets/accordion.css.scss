@@ -1,0 +1,89 @@
+// @reference http://weboook.blog22.fc2.com/blog-entry-347.html
+#accordion {
+  margin: 0;
+  padding: 0 53px 0px 0px;
+}
+
+.accordion-nav > li {
+  margin: 0px;
+  list-style: none;
+}
+
+.accordion-nav > li > div {
+  position: relative; // this is required by .accordion-nav-arrow
+  cursor: pointer;
+  padding: 2px 5px;
+  border-bottom: 1px solid #ccc;
+}
+
+#accordion > li > div {
+  border-left: 0px;
+}
+
+.accordion-nav > li:first-child > div {
+  border-top: 0px;
+}
+
+.accordion-nav > li > div:hover {
+   background-color: #eee;
+}
+
+.accordion-nav > li > div > a {
+  color: #0099DD;
+  text-decoration: none;
+  // Users may be able to click a link by this tiny padding.
+  padding: 0px 5px;
+}
+
+.accordion-nav > li > div > a:hover {
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+// override .accordion-nav
+.accordion-nav-leaf > li > div:hover {
+   background-color: transparent;
+   cursor: default;
+}
+
+// override .accordion-nav
+.accordion-nav-leaf > li > div:hover > a {
+  color: #0099DD;
+}
+
+// right-side arrow icon
+.accordion-nav-arrow {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  margin-top: -10px;
+  color: #e5e5e5;
+  // must be used with vendor prefix
+  -moz-transition: .3s;
+  -webkit-transition: .3s;
+  -o-transition: .3s;
+  -ms-transition: .3s;
+  transition: .3s;
+}
+
+.accordion-nav-arrow:before {
+  font-size: 12px;
+  font-family: FontAwesome;
+  content: '\F04B'; // icon-play
+}
+
+.accordion-nav > li > div:hover .accordion-nav-arrow {
+  color: #0099DD;
+  opacity: 0.5;
+}
+
+.accordion-nav-arrow-rotate {
+  color: #0099DD;
+  opacity: 0.5;
+  // must be used with vendor prefix
+  -moz-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}

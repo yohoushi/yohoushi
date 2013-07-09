@@ -22,6 +22,7 @@ gem 'twitter-bootstrap-rails'
 gem 'bootstrap-sass' # http://d.hatena.ne.jp/sandmark/20120321/1332292995
 gem 'bootswatch-rails'
 gem 'bootstrap-datetimepicker-rails'
+gem 'font-awesome-rails' # Font-Awesome web fonts
 # gem 'newrelic_rpm'
 
 gem 'draper' # decorator(view-model)
@@ -30,7 +31,6 @@ gem 'growthforecast-client'
 gem 'multiforecast-client'
 gem 'acts-as-taggable-on' # tagging
 gem 'ancestry', git: 'https://github.com/sonots/ancestry.git', branch: 'yohoushi' # tree structured model
-gem 'ancestry-treeview' # an extensional ancestry gem created just for yohoushi
 gem "kaminari" # paginator
 
 group :serverengine do
