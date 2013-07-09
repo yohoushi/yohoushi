@@ -43,7 +43,6 @@ end
 
 group :development do
   gem 'capistrano'
-  gem 'foreman'
   gem 'yard' # document genration
   gem 'better_errors' # sophisticated error view
   gem 'binding_of_caller' # add irb/pry on better_rails view
