@@ -140,7 +140,7 @@ begin
   else
     puts "Sending output to log file: #{RAILS_ROOT}/log/yohoushi.log"
     require 'god/cli/run'
-    require File.expand_path('../../vendor/extensions/god/cli/run', __FILE__) # yohoushi custom
+    require File.expand_path('../../../vendor/extensions/god/cli/run', __FILE__) # yohoushi custom
     God::CLI::Run.new(options)
   end
 rescue Exception => e
