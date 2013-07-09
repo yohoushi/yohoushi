@@ -25,7 +25,7 @@
 }
 
 .accordion-nav > li > div:hover {
-   background-color: #0099DD;
+   background-color: #eee;
 }
 
 .accordion-nav > li > div > a {
@@ -33,10 +33,6 @@
   text-decoration: none;
   // Users may be able to click a link by this tiny padding.
   padding: 0px 5px;
-}
-
-.accordion-nav > li > div:hover > a {
-  color: #fff;
 }
 
 .accordion-nav > li > div > a:hover {
@@ -77,10 +73,13 @@
 }
 
 .accordion-nav > li > div:hover .accordion-nav-arrow {
-  color: #0081bb;
+  color: #0099DD;
+  opacity: 0.5;
 }
 
 .accordion-nav-arrow-rotate {
+  color: #0099DD;
+  opacity: 0.5;
   // must be used with vendor prefix
   -moz-transform: rotate(90deg);
   -webkit-transform: rotate(90deg);
@@ -88,4 +87,3 @@
   -ms-transform: rotate(90deg);
   transform: rotate(90deg);
 }
-
