@@ -51,9 +51,6 @@ development:
 
 test:
   <<: *defaults
-  multiforecast:
-    mapping:
-      '': 'http://localhost:5125'
 
 production:
   <<: *defaults
