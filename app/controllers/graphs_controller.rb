@@ -82,7 +82,8 @@ class GraphsController < ApplicationController
     else
       @tagselect = Tag.select(:name).all
     end
-    @tagselect = @tagselect.order('name ASC').limit(Settings.try(:autocomplete).try(:limit))
+    limit = Settings.try(:autocomplete).try(:limit) || 20
+    @tagselect = @tagselect.order('name ASC').limit(limit)
   end
 
   def autocomplete_search
@@ -92,7 +93,8 @@ class GraphsController < ApplicationController
     else
       @autocomplete = Node.select(:path, :description).all
     end
-    @autocomplete = @autocomplete.without_roots.visible.order('path ASC').limit(Settings.try(:autocomplete).try(:limit))
+    limit = Settings.try(:autocomplete).try(:limit) || 20
+    @autocomplete = @autocomplete.without_roots.visible.order('path ASC').limit(limit)
   end
 
   def set_tags

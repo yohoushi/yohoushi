@@ -2,7 +2,7 @@ module Worker
   class Processor
     include ::Util
 
-    def initialize(logger = Rails.logger, config = WorkerSettings)
+    def initialize(logger = Rails.logger, config = {})
       @logger = logger
       @config = config
     end
