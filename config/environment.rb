@@ -1,8 +1,9 @@
 # Load the Rails application.
 require File.expand_path('../application', __FILE__)
 
-require File.expand_path('../../lib/yohoushi/logger', __FILE__)
-Rails.logger = Yohoushi.logger(config: File.expand_path('../application.yml', __FILE__), service: 'rails')
+require File.expand_path("#{Rails.root}/lib/yohoushi/logger")
+log_level = (Rails.env == 'development' ? 'debug' : 'info')
+Rails.logger = Yohoushi.logger(out: 'log/application.log', shift_age: 10, level: log_level)
 
 # Initialize the Rails application.
 Yohoushi::Application.initialize!
