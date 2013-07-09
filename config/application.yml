@@ -3,48 +3,6 @@ defaults: &defaults
   multiforecast:
     mapping:
       '': 'http://10.33.49.163:5125'
-  graph:
-    date_period_terms:
-      -
-        name: 'hour(1min)'
-        short_name: 'sh'
-      -
-        name: '8hours(1min)'
-        short_name: 's8h'
-      -
-        name: '3days(1min)'
-        short_name: 's3d'
-      -
-        name: 'hour'
-        short_name: 'h'
-      -
-        name: 'halfday'
-        short_name: 'n'
-      -
-        name: 'day'
-        short_name: 'd'
-      -
-        name: 'week'
-        short_name: 'w'
-      -
-        name: 'month'
-        short_name: 'm'
-      -
-        name: 'year'
-        short_name: 'y'
-    sizes:
-      thumbnail:
-        width: 306
-        height: 90
-      M:
-        width: 462
-        height: 200
-      L: 
-        width: 640
-        height: 277
-      LL:
-        width: 800
-        height: 346
 
 development:
   <<: *defaults
