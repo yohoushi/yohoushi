@@ -8,11 +8,16 @@ module God
 
         # ugly workaround to terminate all processes by Ctrl-C
         # https://bugs.ruby-lang.org/issues/7917
+        trapped = false
         Signal.trap('INT') do
-          Thread.new do
-            God::CLI::Command.new('stop', @options, ['stop', 'yohoushi'])
-            sleep 1
-            God::CLI::Command.new('terminate', @options, ['terminate'])
+          if !trapped
+            Thread.new do
+              God::CLI::Command.new('stop', @options, ['stop', 'yohoushi'])
+              God::CLI::Command.new('terminate', @options, ['terminate'])
+            end
+            trapped = true
+          else
+            raise 'Interrupted'
           end
         end
 
