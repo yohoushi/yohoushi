@@ -20,7 +20,7 @@ module Yohoushi
   # @param service The service name to print in the log
   # @param block Format block
   # @return Logger instance
-  def logger(out: $stdout, level: log_level, shift_age: 0, shift_size: 1048676, config: nil, service: nil, &block)
+  def logger(out: $stdout, level: log_level, shift_age: 0, shift_size: 10485760, config: nil, service: nil, &block)
     # Load the config yaml
     if config and File.exists?(config)
       settings = YAML.load_file(config)[RAILS_ENV]["logger"]
