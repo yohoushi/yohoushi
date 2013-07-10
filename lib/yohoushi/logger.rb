@@ -1,13 +1,13 @@
 require 'logger'
 require 'yaml'
-RAILS_ENV  ||= ENV['RAILS_ENV']  ||= 'development'
-RAILS_ROOT ||= ENV['RAILS_ROOT'] ||= File.expand_path('../../..', __FILE__)
+ENV['RAILS_ENV']  ||= 'development'
+ENV['RAILS_ROOT'] ||= File.expand_path('../../..', __FILE__)
 
 module Yohoushi
   module_function
 
   def log_level
-    RAILS_ENV == 'development' ? 'debug' : 'info'
+    ENV['RAILS_ENV'] == 'development' ? 'debug' : 'info'
   end
 
   # Create a logger instance
@@ -23,12 +23,12 @@ module Yohoushi
   def logger(out: $stdout, level: log_level, shift_age: 0, shift_size: 10485760, config: nil, service: nil, &block)
     # Load the config yaml
     if config and File.exists?(config)
-      settings = YAML.load_file(config)[RAILS_ENV]["logger"]
+      settings = YAML.load_file(config)[ENV['RAILS_ENV']]["logger"]
       settings.each {|key, val| instance_eval("#{key} = val") if defined?(key) } # keyword arguments merge
     end
 
     if out.kind_of?(String) # String
-      out = File.expand_path(out, RAILS_ROOT) # support relative path from yohoushi root
+      out = File.expand_path(out, ENV['RAILS_ROOT']) # support relative path from yohoushi root
     elsif out.respond_to?(:sync) # IO object
       out.sync = true
     end
