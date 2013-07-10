@@ -11,11 +11,4 @@ require 'spec_helper'
 #   end
 # end
 describe GraphsHelper do
-  describe "#link" do
-    pending "todo"
-  end
-
-  describe "#tree" do
-    pending "todo"
-  end
 end
