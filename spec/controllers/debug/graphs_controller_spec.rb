@@ -18,7 +18,10 @@ require 'spec_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-describe GraphsController do
+describe Debug::GraphsController do
+  before do
+    stub_request(:any, /./).to_return(:status => 200, :body => "{}", :headers => {})
+  end
 
   # This should return the minimal set of attributes required to create a valid
   # Graph. As you add validations to Graph, be sure to
@@ -84,14 +87,14 @@ describe GraphsController do
     describe "with invalid params" do
       it "assigns a newly created but unsaved graph as @graph" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Graph.any_instance.stub(:save).and_return(false)
+        Graph.any_instance.stub(:save!).and_raise(ActiveRecord::StatementInvalid)
         post :create, {:graph => { "path" => "invalid value" }}, valid_session
         assigns(:graph).should be_a_new(Graph)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Graph.any_instance.stub(:save).and_return(false)
+        Graph.any_instance.stub(:save!).and_raise(ActiveRecord::StatementInvalid)
         post :create, {:graph => { "path" => "invalid value" }}, valid_session
         response.should render_template("new")
       end

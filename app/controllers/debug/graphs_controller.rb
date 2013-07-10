@@ -26,9 +26,14 @@ module Debug
     # POST /graphs
     # POST /graphs.json
     def create
-      success = ActiveRecord::Base.transaction do
-        @graph = Graph.find_or_create(graph_params)
-        $mfclient.post_graph(@graph.path, post_params)
+      begin
+        success = ActiveRecord::Base.transaction do
+          @graph = Graph.find_or_create(graph_params)
+          $mfclient.post_graph(@graph.path, post_params)
+        end
+      rescue => e
+        @graph = Graph.new(graph_params)
+        @graph.valid?
       end
 
       respond_to do |format|
@@ -45,9 +50,14 @@ module Debug
     # PATCH/PUT /graphs/1
     # PATCH/PUT /graphs/1.json
     def update
-      success = ActiveRecord::Base.transaction do
-        @graph.update(graph_params)
-        $mfclient.edit_graph(@graph.path, update_params)
+      begin
+        success = ActiveRecord::Base.transaction do
+          if @graph.update(graph_params)
+            $mfclient.edit_graph(@graph.path, update_params)
+          end
+        end
+      rescue => e
+        @graph.valid?
       end
 
       respond_to do |format|

@@ -1,13 +1,15 @@
 require 'spec_helper'
 
-describe "graphs/index" do
+describe "debug/graphs/index" do
   before(:each) do
     assign(:graphs, [
       stub_model(Graph,
         :path => "Path",
+        :created_at => Time.now,
       ),
       stub_model(Graph,
         :path => "Path",
+        :created_at => Time.now,
       )
     ])
   end

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "graphs/edit" do
+describe "debug/graphs/edit" do
   before(:each) do
     @graph = assign(:graph, stub_model(Graph,
       :path => "MyString",
@@ -12,7 +12,7 @@ describe "graphs/edit" do
 
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     assert_select "form[action=?][method=?]", graph_path(@graph), "post" do
-      assert_select "input#graph_path[path=?]", "graph[path]"
+      assert_select "input#graph_path[name=?]", "graph[path]"
     end
   end
 end
