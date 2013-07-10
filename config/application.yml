@@ -3,6 +3,8 @@ defaults: &defaults
   multiforecast:
     mapping:
       '': 'http://localhost:5125'
+  tagcloud:
+    limit: 400
 
 development:
   <<: *defaults

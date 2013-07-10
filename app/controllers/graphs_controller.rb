@@ -117,6 +117,11 @@ class GraphsController < ApplicationController
     else
       @tags = Tag.all.order('name ASC')
     end
+    limit = params[:limit].try(:to_i) || Settings.try(:tagcloud).try(:limit) || 400
+    if limit > 0 # limit == 0 if param[:limit] is non-integer string such as "null"
+      @tags_has_more = @tags.size > limit
+      @tags = @tags.limit(limit)
+    end
   end
 
   def set_graphs
