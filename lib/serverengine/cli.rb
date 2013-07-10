@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 require 'yaml'
-ENV['RAILS_ENV'] ||= 'development'
+ENV['RAILS_ENV'] ||= 'production'
 ENV['RAILS_ROOT'] ||= File.expand_path('../../..', __FILE__)
 Bundler.require(:bin, ENV['RAILS_ENV'])
 

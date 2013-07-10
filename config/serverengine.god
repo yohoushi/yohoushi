@@ -1,6 +1,6 @@
 # https://gist.github.com/nragaz/472092
 # https://github.com/frsyuki/serverengine
-RAILS_ENV     ||= ENV['RAILS_ENV'] ||= 'development'
+RAILS_ENV     ||= ENV['RAILS_ENV'] ||= 'production'
 RAILS_ROOT    ||= ENV['RAILS_ROOT'] = File.expand_path('../..', __FILE__)
 PID_DIR       ||= "#{RAILS_ROOT}/log"
 BIN_PATH      ||= "#{RAILS_ROOT}/bin"

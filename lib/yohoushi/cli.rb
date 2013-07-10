@@ -8,7 +8,7 @@ $:.unshift File.join(File.dirname(__FILE__), *%w[.. .. lib])
 require 'optparse'
 require 'drb'
 require 'yaml'
-ENV['RAILS_ENV']  ||= 'development'
+ENV['RAILS_ENV']  ||= 'production'
 ENV['RAILS_ROOT'] ||= File.expand_path('../../..', __FILE__)
 
 begin
