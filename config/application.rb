@@ -4,7 +4,6 @@ require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
-Rails.env = ENV["RAILS_ENV"] || ENV["RACK_ENV"] || "production"
 Bundler.require(:default, Rails.env)
 
 module Yohoushi
