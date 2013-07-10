@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "graphs/show" do
+describe "debug/graphs/show" do
   before(:each) do
     @graph = assign(:graph, stub_model(Graph,
       :path => "Path",
