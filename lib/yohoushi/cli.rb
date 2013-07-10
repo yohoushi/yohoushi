@@ -3,11 +3,13 @@
 
 STDOUT.sync = true
 
-$:.unshift File.join(File.dirname(__FILE__), *%w[.. lib])
+$:.unshift File.join(File.dirname(__FILE__), *%w[.. .. lib])
 
 require 'optparse'
 require 'drb'
 require 'yaml'
+RAILS_ENV  ||= ENV['RAILS_ENV']  ||= 'development'
+RAILS_ROOT ||= ENV['RAILS_ROOT'] ||= File.expand_path('../../..', __FILE__)
 
 begin
   # Save ARGV in case someone wants to use it later
@@ -15,7 +17,7 @@ begin
 
   options = {:daemonize => true, :port => 17165, :syslog => true, :events => true}
   options[:daemonize] = false # yohoushi custom
-  options[:config]    = File.expand_path('../../config/yohoushi.god', __FILE__) # yohoushi custom
+  options[:config]    = "#{RAILS_ROOT}/config/yohoushi.god" # yohoushi custom
 
   opts = OptionParser.new do |opts|
     opts.banner = <<-EOF
@@ -117,7 +119,7 @@ begin
 
   # dispatch
   if options[:version]
-    require 'version' # yohoushi custom
+    require 'yohoushi/version' # yohoushi custom
     puts "Version: #{Yohoushi::VERSION}" # yohoushi custom
   elsif options[:info]
     require 'god'
@@ -127,7 +129,7 @@ begin
     require 'god'
     God::EventHandler.load
     if command == 'restart' and !ARGV[1] # yohoushi custom
-      God::CLI::Command.new(command, options, [command, "yohoushi"])
+      God::CLI::Command.new('restart', options, ['restart', 'yohoushi'])
     elsif command == 'stop' and !ARGV[1] # yohoushi custom
       God::CLI::Command.new('stop', options, ['stop', 'yohoushi'])
       sleep 1
@@ -136,8 +138,9 @@ begin
       God::CLI::Command.new(command, options, ARGV)
     end
   else
+    puts "Sending output to log file: #{RAILS_ROOT}/log/yohoushi.log"
     require 'god/cli/run'
-    require File.expand_path('../../vendor/extensions/god/cli/run', __FILE__) # yohoushi custom
+    require "#{RAILS_ROOT}/vendor/extensions/god/cli/run" # yohoushi custom
     God::CLI::Run.new(options)
   end
 rescue Exception => e
