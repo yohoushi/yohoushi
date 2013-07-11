@@ -1,4 +1,5 @@
 class GraphsController < ApplicationController
+  include Util
   before_action :set_root
   before_action :set_graph, only: [:view_graph, :setup_graph]
   before_action :set_graphs, only: [:list_graph, :tag_graph]
@@ -107,20 +108,22 @@ class GraphsController < ApplicationController
   end
 
   def set_tags
-    if params[:tag_list].present?
-      set_graphs # utilize ActiveRecord cache
-      graph_ids = @graphs.map(&:id)
-      @tags = Tag.select("distinct tags.id, tags.name").
-        joins("inner join taggings on tags.id = taggings.tag_id").
-        where("taggings.taggable_id IN (#{graph_ids.join(',')})").
-        order('name ASC')
-    else
-      @tags = Tag.all.order('name ASC')
-    end
-    limit = params[:limit].try(:to_i) || Settings.try(:tagcloud).try(:limit) || 400
-    if limit > 0 # limit == 0 if param[:limit] is non-integer string such as "null"
-      @tags_has_more = @tags.size > limit
-      @tags = @tags.limit(limit)
+    report_time(logger) do
+      if params[:tag_list].present?
+        set_graphs # utilize ActiveRecord cache
+        @tags = @graphs.tag_counts_on(:tags)
+        tags_size = @graphs.tags_on(:tags).size
+      else
+        @tags = Graph.tag_counts_on(:tags)
+        tags_size = Tag.all.size # I did not like to post the above big query just for count(*). This was faster
+      end
+
+      limit = params[:limit].try(:to_i) || Settings.try(:tagcloud).try(:limit) || 400
+      if limit > 0 # limit == 0 if param[:limit] is non-integer string such as "null"
+        @tags_has_more = tags_size > limit
+        @tags = @tags.order('count DESC').limit(limit)
+      end
+      @tags = @tags.order('name ASC')
     end
   end
 
