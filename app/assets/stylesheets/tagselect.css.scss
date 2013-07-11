@@ -3,14 +3,21 @@ form#tagselect-form button { height: 37px; }
 ul.tagit { margin-bottom: 0px; }
 ul.tagit li.tagit-choice a:hover { background-color: transparent; }
 .tagcloud { margin-bottom: 20.0px; clear:both; }
-.tagcloud a { margin-bottom: 3px; font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif; color: #555; font-weight: normal; border: 1px solid #D3D3D3; background: url("/assets/jquery-ui/ui-bg_glass_75_e6e6e6_1x400.png") repeat-x scroll 50% 50% #E6E6E6; }
-.tagcloud a:link { color: #555; }
-.tagcloud a:visited { color: #555; }
-.tagcloud a:hover { color: #0099DD; }
 .tagcloud-more { margin-top: -20.0px; margin-bottom: 20.0px; }
 .tagcloud-more a { color: #0099DD; }
 .tagcloud-more a:visited { color: #0099DD; }
 .tagcloud-more a:hover { color: #fff; background-color: #0099DD; }
+a.tag {
+  margin-bottom: 3px;
+  font-weight: normal;
+  text-shadow: 0 0 0;
+  color: #777;
+  border: 1px solid #E6E6E6;
+  background: url("/assets/jquery-ui/ui-bg_glass_75_e6e6e6_1x400.png") repeat-x scroll 50% 50% #E6E6E6;
+}
+a.tag:link { color: #777; }
+a.tgg:visited { color: #777; }
+a.tag:hover { color: #0099DD; }
 .css1 { font-size: 1.0em; }
 .css2 { font-size: 1.2em; }
 .css3 { font-size: 1.4em; }

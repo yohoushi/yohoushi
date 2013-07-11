@@ -28,7 +28,7 @@
         i.icon-cog
         = " Setting"
       '
-      span.tag
+      span.tag-list
         - graph.tag_list.each do |tag|
-          a.label href="#{tag_graph_path(tag)}" = tag
+          a class="label tag" href="#{tag_graph_path(tag)}" = tag
           '
