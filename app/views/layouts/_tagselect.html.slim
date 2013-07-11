@@ -11,5 +11,5 @@ div class="tagcloud"
 - if @tags_has_more
   div class="tagcloud-more"
     | Too many tags 
-    = link_to "» Show ALL", "#{current_path}?limit=null"
+    = link_to "» Show ALL", current_path(limit: 'null')
 
