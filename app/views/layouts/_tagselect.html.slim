@@ -6,7 +6,7 @@ form class="form-search" id="tagselect-form"
     | Go
 div class="tagcloud"
   - @tags.each do |tag|
-    = link_to tag.name, "#", :name => tag.name
+    = link_to tag.name, "#", :name => tag.name, :class => "label tag"
     = " "
 - if @tags_has_more
   div class="tagcloud-more"
