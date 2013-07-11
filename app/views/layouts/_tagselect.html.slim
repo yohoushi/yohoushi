@@ -8,4 +8,8 @@ div class="tagcloud"
   - @tags.each do |tag|
     = link_to tag.name, "#", :name => tag.name
     = " "
+- if @tags_has_more
+  div class="tagcloud-more"
+    | Too many tags 
+    = link_to "» Show ALL", current_path(limit: 'null')
 
