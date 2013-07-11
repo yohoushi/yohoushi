@@ -16,7 +16,7 @@
 .accordion-nav > li > div {
   position: relative; // this is required by .accordion-nav-arrow
   cursor: pointer;
-  padding: 2px 5px;
+  padding: 2px 5px 2px 24px;
   border-top: 1px solid transparent;
   border-right: 1px solid transparent;
   border-left: 1px solid transparent;
@@ -42,6 +42,10 @@
   text-decoration: underline;
 }
 
+.accordion-nav-leaf > li > div {
+  padding-left: 5px;
+}
+
 // override .accordion-nav
 .accordion-nav-leaf > li > div:hover {
    border-top: 1px solid transparent;
@@ -58,7 +62,7 @@
 .accordion-nav-arrow {
   position: absolute;
   top: 50%;
-  right: 10px;
+  left: 10px;
   margin-top: -10px;
   color: #e5e5e5;
   // must be used with vendor prefix
