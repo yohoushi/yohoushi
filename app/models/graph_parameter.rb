@@ -34,7 +34,7 @@ class GraphParameter < ApplicationParameter
   # query parameters passed to growthforecast's graph image uri
   def graph_uri_params
     params = {
-      't'      => @t,
+      't'      => gf_term,
       'from'   => @from,
       'to'     => @to,
       'width'  => @width,
@@ -47,5 +47,12 @@ class GraphParameter < ApplicationParameter
   def validate
     self.errors.add(:from, 'must be older than `to`.') if @from and @to and @from >= @to
     self
+  end
+
+  private
+
+  def gf_term
+    short_metrics = Settings.multiforecast.try(:short_metrics).nil? || Settings.multiforecast.try(:short_metrics)
+    (short_metrics && %w(c h 4h n 8h d 3d).include?(@t)) ? "s#{@t}" : @t
   end
 end
