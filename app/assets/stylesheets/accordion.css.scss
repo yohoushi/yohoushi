@@ -4,6 +4,10 @@
   padding: 0 53px 0px 0px;
 }
 
+#accordion > li:first-child > div:hover {
+  border-top: 1px solid #e6e6e6;
+}
+
 .accordion-nav > li {
   margin: 0px;
   list-style: none;
@@ -13,19 +17,17 @@
   position: relative; // this is required by .accordion-nav-arrow
   cursor: pointer;
   padding: 2px 5px;
+  border-top: 1px solid transparent;
+  border-right: 1px solid transparent;
+  border-left: 1px solid transparent;
   border-bottom: 1px solid #ccc;
 }
 
-#accordion > li > div {
-  border-left: 0px;
-}
-
-.accordion-nav > li:first-child > div {
-  border-top: 0px;
-}
-
 .accordion-nav > li > div:hover {
-   background-color: #eee;
+  border-top: 1px solid #f6f6f6;
+  border-left: 1px solid #e6e6e6;
+  border-right: 1px solid #e6e6e6;
+  background-color: #eee;
 }
 
 .accordion-nav > li > div > a {
@@ -42,6 +44,8 @@
 
 // override .accordion-nav
 .accordion-nav-leaf > li > div:hover {
+   border-top: 1px solid transparent;
+   border-left: 1px solid transparent;
    background-color: transparent;
    cursor: default;
 }
