@@ -37,4 +37,36 @@ describe Node do
       it { expect(described_class.find_by(path: '')).not_to be_nil }
     end
   end
+
+  describe "#basename" do
+    context "root" do
+      context "default" do
+        subject { described_class.find_or_create(path: '') }
+        it { expect(subject.basename).to eq 'Home' }
+      end
+
+      context "dirname" do
+        subject { described_class.find_or_create(path: '') }
+        it { expect(subject.basename('foo')).to eq 'Home' }
+      end
+    end
+
+    context "node" do
+      let(:path) { 'a/a/a' }
+      context "default" do
+        subject { described_class.find_or_create(path: path) }
+        it { expect(subject.basename).to eq 'a' }
+      end
+
+      context "matching dirname" do
+        subject { described_class.find_or_create(path: path) }
+        it { expect(subject.basename('a')).to eq 'a/a' }
+      end
+
+      context "nomatching dirname" do
+        subject { described_class.find_or_create(path: path) }
+        it { expect(subject.basename('b')).to eq 'a/a/a' }
+      end
+    end
+  end
 end
