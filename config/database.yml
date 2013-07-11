@@ -1,3 +1,13 @@
+production:
+  adapter: mysql2
+  database: yohoushi
+  pool: 5
+  timeout: 5000
+  username: root
+  password: 
+  host: localhost
+  port: 3306
+
 development:
   adapter: mysql2
   database: yohoushi_development
@@ -16,12 +26,3 @@ test:
   password: 
   host: localhost
 
-production:
-  adapter: mysql2
-  database: yohoushi_production
-  pool: 5
-  timeout: 5000
-  username: root
-  password: 
-  host: localhost
-  port: 3306

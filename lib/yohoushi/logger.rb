@@ -1,6 +1,6 @@
 require 'logger'
 require 'yaml'
-ENV['RAILS_ENV']  ||= 'development'
+ENV['RAILS_ENV']  ||= 'production'
 ENV['RAILS_ROOT'] ||= File.expand_path('../../..', __FILE__)
 
 module Yohoushi

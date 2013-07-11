@@ -4,12 +4,12 @@ defaults: &defaults
     mapping:
       '': 'http://localhost:5125'
 
+production:
+  <<: *defaults
+
 development:
   <<: *defaults
 
 test:
-  <<: *defaults
-
-production:
   <<: *defaults
 
