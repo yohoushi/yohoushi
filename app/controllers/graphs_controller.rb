@@ -153,7 +153,7 @@ class GraphsController < ApplicationController
   end
 
   def set_children
-    @children = Section.find_by_path(params[:path]).try(:children).try(:order, 'path ASC, type DESC')
+    @children = Section.find_by_path(params[:path]).try(:children).try(:visible).try(:order, 'path ASC, type DESC')
     not_found unless @children
   end
 
