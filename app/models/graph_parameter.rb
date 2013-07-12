@@ -2,6 +2,8 @@ class GraphParameter < ApplicationParameter
   attr_reader :t, :from, :to, :size, :width, :height, :notitle
   alias :term :t
 
+  SHORTABLE_TERMS = %w(c h 4h n 8h d 3d)
+
   def initialize(params)
     params  = params.slice(:t, :from, :to, :size)
     @t      = params[:t].presence || 'd'
@@ -53,6 +55,6 @@ class GraphParameter < ApplicationParameter
 
   def gf_term
     short_metrics = Settings.multiforecast.try(:short_metrics).nil? || Settings.multiforecast.try(:short_metrics)
-    (short_metrics && %w(c h 4h n 8h d 3d).include?(@t)) ? "s#{@t}" : @t
+    (short_metrics && SHORTABLE_TERMS.include?(@t)) ? "s#{@t}" : @t
   end
 end
