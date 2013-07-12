@@ -4,6 +4,10 @@
   padding: 0 53px 0px 0px;
 }
 
+#accordion > li:first-child > div:hover {
+  border-top: 1px solid #e6e6e6;
+}
+
 .accordion-nav > li {
   margin: 0px;
   list-style: none;
@@ -12,20 +16,18 @@
 .accordion-nav > li > div {
   position: relative; // this is required by .accordion-nav-arrow
   cursor: pointer;
-  padding: 2px 5px;
+  padding: 2px 5px 2px 24px;
+  border-top: 1px solid transparent;
+  border-right: 1px solid transparent;
+  border-left: 1px solid transparent;
   border-bottom: 1px solid #ccc;
 }
 
-#accordion > li > div {
-  border-left: 0px;
-}
-
-.accordion-nav > li:first-child > div {
-  border-top: 0px;
-}
-
 .accordion-nav > li > div:hover {
-   background-color: #eee;
+  border-top: 1px solid #f6f6f6;
+  border-left: 1px solid #e6e6e6;
+  border-right: 1px solid #e6e6e6;
+  background-color: #eee;
 }
 
 .accordion-nav > li > div > a {
@@ -40,9 +42,14 @@
   text-decoration: underline;
 }
 
+.accordion-nav-leaf > li > div {
+  padding-left: 5px;
+}
+
 // override .accordion-nav
 .accordion-nav-leaf > li > div:hover {
-   background-color: transparent;
+   border-top: 1px solid transparent;
+   border-left: 1px solid transparent;
    cursor: default;
 }
 
@@ -55,7 +62,7 @@
 .accordion-nav-arrow {
   position: absolute;
   top: 50%;
-  right: 10px;
+  left: 10px;
   margin-top: -10px;
   color: #e5e5e5;
   // must be used with vendor prefix
