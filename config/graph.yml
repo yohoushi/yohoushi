@@ -1,22 +1,19 @@
 date_period_terms:
   -
-    name: 'hour(1min)'
-    short_name: 'sh'
-  -
-    name: '8hours(1min)'
-    short_name: 's8h'
-  -
-    name: '3days(1min)'
-    short_name: 's3d'
-  -
     name: 'hour'
     short_name: 'h'
+  -
+    name: '8hours'
+    short_name: '8h'
   -
     name: 'halfday'
     short_name: 'n'
   -
     name: 'day'
     short_name: 'd'
+  -
+    name: '3days'
+    short_name: '3d'
   -
     name: 'week'
     short_name: 'w'
