@@ -22,21 +22,16 @@ $(function() {
       $.getJSON("/accordion_graph?path=" + path)
       .done(function(data) {
         $.each(data, function(i,item) {
-          var div_class = (item.has_children == true) ? 'class="accordion-head"' : ''
+          var div_class = (item.has_children == true) ? 'class="accordion-head"' : 'class="accordion-nav-leaf'
           var arrow = (item.has_children == true) ?  '<span class="accordion-nav-arrow"></span>' : ''
           ul.append('<li><div ' + div_class + ' data-path="' + item.path + '"><a href="' + item.uri + '" > ' + item.basename + '</a>' + arrow + '</div><ul class="accordion-nav" style="display: none;"></ul></li>');
         });
-
-        // Add a class to ul tag if creat the last leaf box
-        if (data[0].has_children == false) {
-          ul.addClass('accordion-nav-leaf');
-        }
 
         // Open the content window
         ul.hide().slideToggle();
       });
     } else {
-        // Just open it
+        // Just open or close it
       ul.slideToggle();
     }
 

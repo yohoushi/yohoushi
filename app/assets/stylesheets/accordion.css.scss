@@ -42,20 +42,9 @@
   text-decoration: underline;
 }
 
-.accordion-nav-leaf > li > div {
-  padding-left: 5px;
-}
-
 // override .accordion-nav
-.accordion-nav-leaf > li > div:hover {
-   border-top: 1px solid transparent;
-   border-left: 1px solid transparent;
-   cursor: default;
-}
-
-// override .accordion-nav
-.accordion-nav-leaf > li > div:hover > a {
-  color: #0099DD;
+div:hover .accordion-nav-leaf {
+  cursor: default;
 }
 
 // right-side arrow icon
