@@ -18,10 +18,11 @@ class Node < ActiveRecord::Base
   end
 
   def basename(dirname = nil)
-    if dirname
-      root? ? 'Home' : path.gsub("#{dirname}/", '')
+    return 'Home' if root?
+    if dirname # "a" for "a/b/c" => "b/c"
+      path.index("#{dirname}/") == 0 ? path["#{dirname}/".size .. -1] : path
     else
-      root? ? 'Home' : File.basename(path)
+      File.basename(path)
     end
   end
 
