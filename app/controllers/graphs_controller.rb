@@ -56,8 +56,13 @@ class GraphsController < ApplicationController
   private
 
   def set_graph_parameter
-    @graph_parameter = GraphParameter.new(params)
-    flash.now[:alert] = @graph_parameter.validate.decorate.view_errors
+    # restore from session
+    @graph_parameter = session[:graph_parameter] || GraphParameter.new
+    # override with query parameters
+    @graph_parameter.update(params)
+    # store into session even if it has an error
+    session[:graph_parameter] = @graph_parameter
+    flash.now[:alert] = @graph_parameter.decorate.view_errors
   end
 
   def tag_redirect
