@@ -4,12 +4,17 @@ class GraphParameter < ApplicationParameter
 
   SHORTABLE_TERMS = %w(c h 4h n 8h d 3d)
 
+  def valid?
+    self.errors.empty?
+  end
+
   def initialize(params = {})
     update(params)
   end
 
   def update(params = {})
     params  = params.slice(:t, :from, :to, :size)
+    self.errors.clear
     @t      = params[:t].presence || @t || 'd'
     begin
       @from = params[:from].present? ? Time.parse(params[:from]) : @from || nil
