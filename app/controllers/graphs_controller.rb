@@ -71,7 +71,7 @@ class GraphsController < ApplicationController
   end
 
   def path_redirect
-    return unless (path = request.query_parameters[:path])
+    return unless (path = request.query_parameters[:rpath])
     not_found unless (node = Node.find_by(path: path))
     if node.root?
       redirect_to tree_graph_path
