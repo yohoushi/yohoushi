@@ -62,9 +62,9 @@ group :development, :test do
   gem 'fabrication'
 
   # for debug
-  gem 'debugger2', '~> 1.0.0.beta1'
+  gem 'byebug' # ruby 2.0 debugger
   gem 'pry'
-  gem 'pry-nav'
+  gem 'pry-byebug'
   gem 'tapp' # 'foo'.tapp   #=> `pp 'foo'` and return 'foo'
   gem 'gem-open' # gem open [gem]
 end

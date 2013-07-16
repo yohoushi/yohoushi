@@ -51,6 +51,9 @@ GEM
     builder (3.1.4)
     bullet (4.6.0)
       uniform_notifier
+    byebug (1.6.1)
+      columnize (~> 0.3.6)
+      debugger-linecache (~> 1.2.0)
     capistrano (2.15.4)
       highline
       net-scp (>= 1.0.0)
@@ -70,9 +73,6 @@ GEM
       safe_yaml (~> 0.9.0)
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
-    debugger2 (1.0.0.beta2)
-      columnize (>= 0.3.1)
-      debugger-linecache (~> 1.2.0)
     diff-lcs (1.2.4)
     draper (1.2.1)
       actionpack (>= 3.0)
@@ -145,8 +145,9 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
-    pry-nav (0.2.3)
-      pry (~> 0.9.10)
+    pry-byebug (1.1.2)
+      byebug (~> 1.6)
+      pry (~> 0.9.12)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -266,9 +267,9 @@ DEPENDENCIES
   bootstrap-sass
   bootswatch-rails
   bullet
+  byebug
   capistrano
   coffee-rails (~> 4.0.0)
-  debugger2 (~> 1.0.0.beta1)
   draper
   fabrication
   font-awesome-rails
@@ -284,7 +285,7 @@ DEPENDENCIES
   multiforecast-client
   mysql2
   pry
-  pry-nav
+  pry-byebug
   rails (~> 4.0.0)
   rspec-rails
   sass-rails (~> 4.0.0)
