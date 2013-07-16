@@ -62,7 +62,7 @@ group :development, :test do
   gem 'fabrication'
 
   # for debug
-  gem 'byebug'
+  gem 'byebug' # ruby 2.0 debugger
   gem 'pry'
   gem 'pry-byebug'
   gem 'tapp' # 'foo'.tapp   #=> `pp 'foo'` and return 'foo'
