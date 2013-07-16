@@ -4,23 +4,39 @@ class GraphParameter < ApplicationParameter
 
   SHORTABLE_TERMS = %w(c h 4h n 8h d 3d)
 
-  def initialize(params)
+  def valid?
+    self.errors.empty?
+  end
+
+  def initialize(params = {})
+    update(params)
+  end
+
+  def update(params = {})
     params  = params.slice(:t, :from, :to, :size)
-    @t      = params[:t].presence || 'd'
+    self.errors.clear
+    @t      = params[:t].presence || @t || 'd'
     begin
-      @from = params[:from].present? ? Time.parse(params[:from]) : nil
+      if params.has_key?(:from)
+        @from = params[:from].present? ? Time.parse(params[:from]) : nil # clear if blank
+      end
     rescue ArgumentError => e
       self.errors.add(:from, 'is invalid.')
     end
     begin
-      @to = params[:to].present?   ? Time.parse(params[:to])   : nil
+      if params.has_key?(:to)
+        @to = params[:to].present? ? Time.parse(params[:to]) : nil # clear if blank
+      end
     rescue ArgumentError => e
       self.errors.add(:to, 'is invalid.')
     end
-    @size   = params[:size].presence || 'M'
+    if @from and @to and @from >= @to
+      self.errors.add(:from, 'must be older than `to`.')
+    end
+    @size   = params[:size].presence || @size || 'M'
     @width  = GraphSettings.sizes[@size]['width']
     @height = GraphSettings.sizes[@size]['height']
-    @notitle = true if params[:size] == 'thumbnail'
+    @notitle = true if @size == 'thumbnail'
   end
 
   # `from` suitable for datetime picker
@@ -44,11 +60,6 @@ class GraphParameter < ApplicationParameter
     }
     params['notitle'] = '1' if @notitle
     params
-  end
-
-  def validate
-    self.errors.add(:from, 'must be older than `to`.') if @from and @to and @from >= @to
-    self
   end
 
   private

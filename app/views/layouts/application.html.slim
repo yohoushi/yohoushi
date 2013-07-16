@@ -45,7 +45,6 @@ html lang="en"
           - elsif action == "setup_graph"
           - else
             = render template: 'layouts/_autocomplete'
-          = bootstrap_flash
           = yield
           - if action == "list_graph" || action == "tag_graph"
             = render template: 'layouts/_pagination'
