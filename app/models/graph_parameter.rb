@@ -13,30 +13,35 @@ class GraphParameter < ApplicationParameter
   end
 
   def update(params = {})
-    params  = params.slice(:t, :from, :to, :size)
     self.errors.clear
-    @t      = params[:t].presence || @t || 'd'
-    begin
-      if params.has_key?(:from)
+    params = params.slice(:t, :from, :to, :size)
+
+    @t = params[:t].presence || @t || 'd'
+
+    if params.has_key?(:from)
+      begin
         @from = params[:from].present? ? Time.parse(params[:from]) : nil # clear if blank
+      rescue ArgumentError => e
+        self.errors.add(:from, 'is invalid.')
       end
-    rescue ArgumentError => e
-      self.errors.add(:from, 'is invalid.')
     end
-    begin
-      if params.has_key?(:to)
+    if params.has_key?(:to)
+      begin
         @to = params[:to].present? ? Time.parse(params[:to]) : nil # clear if blank
+      rescue ArgumentError => e
+        self.errors.add(:to, 'is invalid.')
       end
-    rescue ArgumentError => e
-      self.errors.add(:to, 'is invalid.')
     end
     if @from and @to and @from >= @to
       self.errors.add(:from, 'must be older than `to`.')
     end
-    @size   = params[:size].presence || @size || 'M'
-    @width  = GraphSettings.sizes[@size]['width']
-    @height = GraphSettings.sizes[@size]['height']
+
+    @size    = params[:size].presence || @size || 'M'
+    @width   = GraphSettings.sizes[@size]['width']
+    @height  = GraphSettings.sizes[@size]['height']
     @notitle = true if @size == 'thumbnail'
+
+    self
   end
 
   # `from` suitable for datetime picker
