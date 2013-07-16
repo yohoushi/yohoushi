@@ -17,12 +17,16 @@ class GraphParameter < ApplicationParameter
     self.errors.clear
     @t      = params[:t].presence || @t || 'd'
     begin
-      @from = params[:from].present? ? Time.parse(params[:from]) : @from || nil
+      if params.has_key?(:from)
+        @from = params[:from].present? ? Time.parse(params[:from]) : nil # clear if blank
+      end
     rescue ArgumentError => e
       self.errors.add(:from, 'is invalid.')
     end
     begin
-      @to = params[:to].present? ? Time.parse(params[:to]) : @to || nil
+      if params.has_key?(:to)
+        @to = params[:to].present? ? Time.parse(params[:to]) : nil # clear if blank
+      end
     rescue ArgumentError => e
       self.errors.add(:to, 'is invalid.')
     end
