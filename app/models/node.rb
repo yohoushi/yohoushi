@@ -31,7 +31,7 @@ class Node < ActiveRecord::Base
   # @param path [String] create ancestors of this path
   # @return [Integer] id of the direct parent
   def self.create_ancestors(path)
-    if (dirname = File.dirname(path)) == '.'
+    if (dirname = File.dirname(path)) == '.' || dirname == '/'
       parent = Section.select(:id).roots.first || Section.create(:path => '', :parent_id => nil)
     else
       parent_id = create_ancestors(dirname)
