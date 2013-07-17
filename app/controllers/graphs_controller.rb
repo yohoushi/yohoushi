@@ -4,7 +4,7 @@ class GraphsController < ApplicationController
   before_action :set_graph, only: [:view_graph, :setup_graph]
   before_action :set_graphs, only: [:list_graph, :tag_graph]
   before_action :set_graph_parameter, only: [:view_graph, :list_graph, :tag_graph]
-  before_action :path_redirect, only: [:tree_graph]
+  before_action :path_redirect, only: [:tree_graph, :view_graph, :list_graph]
   before_action :tag_redirect, :set_tags, only: [:tag_graph]
   before_action :autocomplete_search, only: [:autocomplete_graph]
   before_action :tagselect_search, only: [:tagselect_graph]
