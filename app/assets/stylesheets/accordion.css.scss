@@ -57,6 +57,9 @@ div:hover .accordion-nav-leaf {
   // must be used with vendor prefix
   -moz-transition: .3s;
   -webkit-transition: .3s;
+  // The follow line prevents flickering Chrome/Safari when css3 animation run
+  // @reference http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/css3-animations-the-hiccups-and-bugs-youll-want-to-avoid/
+  -webkit-backface-visibility: hidden;
   -o-transition: .3s;
   -ms-transition: .3s;
   transition: .3s;
@@ -79,6 +82,9 @@ div:hover .accordion-nav-leaf {
   // must be used with vendor prefix
   -moz-transform: rotate(90deg);
   -webkit-transform: rotate(90deg);
+  // The follow line prevents flickering Chrome/Safari when css3 animation run
+  // @reference http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/css3-animations-the-hiccups-and-bugs-youll-want-to-avoid/
+  -webkit-backface-visibility: hidden;
   -o-transform: rotate(90deg);
   -ms-transform: rotate(90deg);
   transform: rotate(90deg);
