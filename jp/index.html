@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="../stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="../stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Yohoushi - for allusers who love graphs!</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Yohoushi</h1>
+        <h2>Yohoushi loves GrowthForecast</h2>
+        <a href="https://github.com/yohoushi/yohoushi" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+        
+<h3>
+<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Yohoushi</h3>
+
+<p>YohoushiはGrowthForecastと連携し動作するグラフツールです。Yohoushiを使うことで、GrowthForecastをグラフデータ格納とグラフ画像生成用のバックエンドサーバとして用い、Yohoushiではグラフビューア機能を提供します。</p>
+
+<p>YohoushiではGrowthForecastでは実現できなかった様々なビューでグラフを確認できます。例えば、グラフを大きくしたり、from/toの日時指定でグラフを確認したり、サムネイルサイズでたくさんあるグラフを一覧で見たりすることできます。またGrowthForecastではグラフ階層が3階層固定でしたがYohoushiではこの制約を無くすことも可能です。</p>
+
+<p>また複数のGrowthForecastを集約してユーザに見せることが可能です。この特徴によるメリットのとしてGrowthForecastサーバの台数を増やすことでシステムを容易にスケールできるようになります。また、たとえば各拠点に散らばっていたGrowthForecastサーバを1つのビューで見せることも可能です。</p>
+
+<pre><code>         +----------+                 +---+
+         |          |            +--> |GF1| <--- post a number 
+Ops ---> | Yohoushi | <----------+    +---+
+         |          |            |    +---+
+         +----------+            +--> |GF2| <--- post a number
+                                      +---+
+                                        .
+                                        .
+</code></pre>
+
+<p>また、既に運用中のGrowthForecastがシステムに存在する場合には、既存のGrowthForecastのシステムに変更を加えることなくYohoushiをお試しできます。これはYohoushiがGrowthForecastのグラフやグラフパス一覧を参照するのみなので、たとえばcronなどで動作しているGrowthForecastへ値を登録するスクリプトを変更する必要はありません。</p>
+
+<h3>
+<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Installation</h3>
+
+<h4>
+<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Requirements</h4>
+<p>まず以下のソフトウェアをインストールしてください。</p>
+<ol>
+  <li>GrowthForecast (>=0.62)</li>
+  <li>Ruby (>=2.0.0)</li>
+  <li>Rails (>=4.0.0)< /li>
+  <li>MySQL or Sqlite3 (>=3.6.16)</li>
+</ol>
+
+<p>Yohoushiはグラフパス名など保存するためにMySQLを使用します。MySQLの代わりにSQLite3を使うことも可能で、その場合には<code>cp config/database-sqlite.yml config/database.yml</code>のようにデータベース設定を変更してください。</p>
+
+<p>Yohoushiのインストール</p>
+
+以下を実行すると、MySQLデータベース上にyohoushi_productionという名前のデータベースが作成されます。
+
+<ol>
+  <li><code>git clone git@github.com:yohoushi/yohoushi.git </code></li>
+  <li><code>cd yohoushi</code></li>
+  <li><code>bundle install</code></li>
+  <li><code>bundle rake db:create</code></li>
+  <li><code>bundle rake db:migrate</code></li>
+</ol>
+
+<h3>
+<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Configuration</h3>
+
+<p>GrowthForecastサーバのURLを設定ファイルに登録してください。<code>config/application.yml</code>の<code>mapping</code>キー以下にURLを登録します。下の設定例ではYohoushiを起動すると<code>http://gfserver.local:5125</code>を参照し始めます。</p>
+
+<pre><code>defaults: &defaults
+  multiforecast:
+  mapping:
+    '':     'http://gfserver.local:5125'
+  tagcloud:
+  limit: 400
+</code></pre>
+
+<h3>
+<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Run</h3>
+<p>以下のコマンドでYohoushiが起動します。<code>bundle exec</code>を前に付ける必要はありません。</p>
+
+<pre><code>$ bin/yohoushi</code></pre>
+
+<p><code>bin/yohoushi</code>を実行すると、Webサーバ用workerとGrowthForecastのパス情報を定期的に参照するworkerが起動します。<code>Ctrl+c</code>で停止します。<code>-d</code>オプションを付けるとデーモン化します。</p>
+
+<p>webブラウザで<code>http://localhost:4804</code>にアクセスしてみてください! Yohoushiの画面を確認できます。</p>
+
+<p>なお、注意点として、初回起動時の起動直後はGrowthForecastのグラフパスデータの同期に時間がかかります。そのため同期が完了するまでの間はYohoushi上のグラフパスがGrowthForecastのものと異なるように見えますが、しばらく時間をあけると同期が完了します。2回目以降の同期処理は差分更新のため時間がかかることはありません。</p> 
+
+<p>デーモン化したYohoushiを停止するには以下を実行してください。</p>
+
+<pre><code>$ bin/yohoushi stop</code></pre>
+
+
+<h3>
+<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>For more information</h3>
+
+<p>Yohoushiを4階層以上のグラフを登録するには<a href="https://github.com/sonots/multiforecast-client">multiforecast-client</a> gemを使ってデータをPOSTすることになります。</p>
+
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/yohoushi/yohoushi/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/yohoushi/yohoushi/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/yohoushi/yohoushi"></a> is maintained by <a href="https://github.com/yohoushi">yohoushi</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
