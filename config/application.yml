@@ -1,4 +1,3 @@
-# config/application.yml
 defaults: &defaults
   multiforecast:
     mapping:
