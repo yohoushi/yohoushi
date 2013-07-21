@@ -1,0 +1,32 @@
+header .language {
+  position: absolute;
+  width: 200px;
+  height: 30px;
+  right: 0px;
+  top: -31px;
+}
+
+header button.lang-button {
+  width: 70px;
+  height: 20px;
+  border: solid 1px #ccc;
+}
+
+header button.lang-button:first-child {
+  margin-right: 5px;
+}
+
+header button.lang-button.not-selected {
+  background-color: #fff;
+  color: #474747;
+  cursor: pointer;
+}
+
+header button.lang-button.not-selected:hover {
+  background-color: #e5e5e5;
+}
+
+header button.lang-button.selected {
+  background-color: #474747;
+  color: #fff;
+}
