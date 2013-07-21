@@ -29,8 +29,8 @@
       <div class="inner clearfix">
         <section id="main-content">
         
-<h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>About Yohoushi</h3>
+<h3><a name="welcome-to-yohoushi" class="anchor" href="#welcome-to-yohoushi"><span class="octicon octicon-link">
+About Yohoushi</span></a></h3>
 
 <p>Yohoushi は <a href="http://kazeburo.github.io/GrowthForecast/">GrowthForecast</a> と連携し動作するグラフツールです。GrowthForecastをバックエンドとして利用し、Yohoushi は統合グラフビューワとして機能します。</p>
 
@@ -48,9 +48,11 @@ Ops ---> | Yohoushi | <----------+    +---+
 
 <p>また、既存のGrowthForecastのシステムに変更を加えることなくYohoushiをお試しできます。この場合は、たとえばcronなどで動作しているGrowthForecastへ値を登録するスクリプトを変更する必要はありません。</p>
 
-<h3><a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Install</a></h3>
+<h3><a name="instalation" class="anchor" href="#installation"><span class="octicon octicon-link">
+Installation</span></a></h3>
 
-<h4><a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>(1) Requirements</h4>
+<h4><a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>
+(1) Requirements</h4>
 <p>あらかじめ以下のソフトウェアをインストールしておいてください。</p>
 <ol>
   <li>Ruby (>=2.0.0)</li>
@@ -58,15 +60,17 @@ Ops ---> | Yohoushi | <----------+    +---+
   <li><a href="http://kazeburo.github.io/GrowthForecast/">GrowthForecast</a> (>=0.62)</li>
 </ol>
 
-<h4><a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>(2) Install Yohoushi</h4>
+<h4><a name="install-yohoushi" class="anchor" href="#install-yohoushi"><span class="octicon octicon-link">
+(2) Install Yohoushi</span></a></h4>
 
-<p>右メニューのダウンロードページからアーカイブファイルをダウンロード、展開し、youhoushi ディレクトリで以下のコマンドを実行してください。
+<p><a href="https://github.com/yohoushi/yohoushi/releases">yohoushi/releases</a> からアーカイブファイルをダウンロード、展開し、youhoushi ディレクトリで以下のコマンドを実行してください。
 数分かかることがあります。 </p>
 
 <pre><code>$ bin/bundle --deployment
 </code></pre>
 
-<h3><a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>(3) Configure Application</h3>
+<h3><a name="configure-applicaiton" class="anchor" href="#configure-applicaiton"><span class="octicon octicon-link">
+(3) Configure Application</span></a></h3>
 
 <p>GrowthForecast サーバのURLを config/application.yml に登録してください。
 デフォルトでは localhost:5125 の GrowthForecast サーバに接続します。</p>
@@ -88,7 +92,8 @@ multiforecast:
 
 <p>この例では、名前が app1/ から始まるグラフは localhost:5125 に、app2/ から始まるグラフは localhost:5000 に分散されます。</p>
 
-<h4><a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>(4) Configure Database</h4>
+<h4><a name="configure-database" class="anchor" href="#configure-database"><span class="octicon octicon-link">
+(4) Configure Database</span></a></h4>
 
 <p>config/database.yml にMySQLの設定を記述し、次のコマンドを実行してください。</p>
 
@@ -110,9 +115,10 @@ multiforecast:
 
 SQLite を使いたい場合は config/database-sqlite.yml を config/database.yml に上書きし、設定を記述した上で上記コマンドを実行してください。
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>(5) Run</h3>
-<p>以下のコマンドで Yohoushi が起動します。Ctrl-c で停止します。</p>
+<h3><a name="run" class="anchor" href="#run"><span class="octicon octicon-link">
+(5) Run</span></a></h3>
+
+<p>以下のコマンドで Yohoushi が起動します。</p>
 
 <pre><code>$ bin/yohoushi</code></pre>
 
@@ -126,17 +132,17 @@ SQLite を使いたい場合は config/database-sqlite.yml を config/database.y
 
 <pre><code>$ bin/yohoushi stop</code></pre>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>(6) Check</h3>
+<h3><a name="check" class="anchor" href="#check"><span class="octicon octicon-link">
+(6) Check</span></a></h3>
 <p>Yohoushi の動作確認をするために GrowthForecast の URLに対してPOST リクエストを送り、グラフを作成してみましょう。この例では GrowthForecast が localhost:5125 で起動しているものとします。</p>
 
 <pre><code>$ curl -d 'number=10' http://localhost:5125/api/app1/section1/graph1
 </code></pre>
 
-<p>GrowthForecast との同期が走って(最大１分待ちます) Yohoushi にグラフが表示されれば成功です。</p>
+<p>Yohoushi worker の GrowthForecast との同期処理が走って(最大１分待ちます) Yohoushi にグラフが表示されれば成功です。</p>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>For more information</h3>
+<h3><a name="for-more-infomation" class="anchor" href="#for-more-information"><span class="octicon octicon-link">
+For more information</span></a></h3>
 
 <p>Yohoushiに4階層以上のグラフを登録するには <a href="https://github.com/sonots/multiforecast-client">multiforecast-client</a> gemを使ってデータをPOSTしてください。</p>
 
