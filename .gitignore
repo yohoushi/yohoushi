@@ -3,5 +3,6 @@
 /db/*.sqlite3-journal
 /log/*
 /tmp
-.ruby-version
+/.ruby-version
 /public/assets
+/vendor/bundle
