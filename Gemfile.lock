@@ -6,6 +6,13 @@ GIT
     ancestry (2.0.0)
       activerecord (>= 3.0.0)
 
+PATH
+  remote: ../rack-streaming-proxy
+  specs:
+    rack-streaming-proxy (1.8.24)
+      rack (>= 1.4)
+      servolux (~> 0.10)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -181,6 +188,7 @@ GEM
       sprockets-rails (~> 2.0.0)
     serverengine (1.5.3)
       sigdump (~> 0.2.2)
+    servolux (0.10.0)
     settingslogic (2.0.9)
     sigdump (0.2.2)
     slim (2.0.0)
@@ -263,6 +271,7 @@ DEPENDENCIES
   mysql2
   pry
   pry-byebug
+  rack-streaming-proxy!
   rails (~> 4.0.0)
   rspec-rails
   sass-rails (~> 4.0.0)

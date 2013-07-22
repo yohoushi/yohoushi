@@ -4,10 +4,18 @@ module GraphsHelper
   # @param graph [Graph]
   # @return full uri path [String] like 'http://10.33.49.163:5125/graph/mfclient/a%252Fb%252Fc/d?t=d'
   def graph_uri_for(graph)
-    if graph.complex
-      $mfclient.get_complex_uri(graph.path, @graph_parameter.graph_uri_params)
+    if Settings.proxy
+      if graph.complex
+        complex_image_path(graph.path, @graph_parameter.graph_uri_params)
+      else
+        graph_image_path(graph.path, @graph_parameter.graph_uri_params)
+      end
     else
-      $mfclient.get_graph_uri(graph.path, @graph_parameter.graph_uri_params)
+      if graph.complex
+        $mfclient.get_complex_uri(graph.path, @graph_parameter.graph_uri_params)
+      else
+        $mfclient.get_graph_uri(graph.path, @graph_parameter.graph_uri_params)
+      end
     end
   end
 

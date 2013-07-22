@@ -20,5 +20,14 @@ module Yohoushi
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
+    config.middleware.use Rack::StreamingProxy do |request|
+      return nil unless Settings.proxy
+      if m = request.path.match('^/complex/graph/(.+)')
+        $mfclient.get_complex_uri(m[1], request.params)
+      elsif m = request.path.match('^/graph/(.+)')
+        $mfclient.get_graph_uri(m[1], request.params)
+      end
+    end
   end
 end

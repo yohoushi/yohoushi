@@ -11,6 +11,8 @@ Yohoushi::Application.routes.draw do
   get 'autocomplete_graph' => 'graphs#autocomplete_graph', :as => 'autocomplete_graph'
   get 'tagselect_graph' => 'graphs#tagselect_graph', :as => 'tagselect_graph'
   get 'accordion_graph' => 'graphs#accordion_graph', :as => 'accordion_graph'
+  # get 'graph/:path' => 'graphs#graph_image', :constraints => { :path => /.+/ }, :as => 'graph_image'
+  # get 'complex/:path' => 'graphs#complex_image', :constraints => { :path => /.+/ }, :as => 'complex_image'
 
   namespace :debug, :as => '', :path => '' do
     resources :graphs
