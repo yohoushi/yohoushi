@@ -1,8 +1,9 @@
-# config/application.yml
 defaults: &defaults
   multiforecast:
     mapping:
       '': 'http://localhost:5125'
+  unicorn:
+    port: 4804
   tagcloud:
     limit: 400
 

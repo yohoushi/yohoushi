@@ -1,4 +1,4 @@
-production:
+defaults: &defaults
   adapter: mysql2
   database: yohoushi
   pool: 5
@@ -8,21 +8,13 @@ production:
   host: localhost
   port: 3306
 
+production:
+  <<: *defaults
+
 development:
-  adapter: mysql2
+  <<: *defaults
   database: yohoushi_development
-  pool: 5
-  timeout: 5000
-  username: root
-  password: 
-  host: localhost
 
 test:
-  adapter: mysql2
+  <<: *defaults
   database: yohoushi_test
-  pool: 5
-  timeout: 5000
-  username: root
-  password: 
-  host: localhost
-

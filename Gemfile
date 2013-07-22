@@ -42,7 +42,6 @@ group :bin do
 end
 
 group :development do
-  gem 'capistrano'
   gem 'yard' # document genration
   gem 'better_errors' # sophisticated error view
   gem 'binding_of_caller' # add irb/pry on better_rails view
@@ -53,13 +52,11 @@ group :test do
   gem 'rspec-rails' # rails g rspec:model
   gem 'webmock', :require => false
   gem 'guard-rspec' # automatically run specs
-  gem 'simplecov-rcov', :require => false # coverage
 end
 
 group :development, :test do
   gem 'spring' # rails application preloader
   gem 'guard'
-  gem 'fabrication'
 
   # for debug
   gem 'byebug' # ruby 2.0 debugger
