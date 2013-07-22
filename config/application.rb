@@ -22,7 +22,7 @@ module Yohoushi
     # config.i18n.default_locale = :de
 
     config.middleware.use Rack::StreamingProxy::Proxy do |request|
-      return nil unless Settings.proxy
+      next unless Settings.proxy
       if request.path.start_with?('/complex/')
         $mfclient.get_complex_uri(request.path[9..-1], request.params)
       elsif request.path.start_with?('/graph/')
