@@ -34,76 +34,119 @@
       <div class="inner clearfix">
         <section id="main-content">
         
-<h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Yohoushi</h3>
+<h3><a name="welcome-to-yohoushi" class="anchor" href="#welcome-to-yohoushi"><span class="octicon octicon-link">
+About Yohoushi</span></a></h3>
 
-<p>Yohoushi is for all users who love graphs. It is a graphing tool designed to collaborate with GrowthForecast, Yohoushi as a front-end and GrowthForecast as backend.</p>
+<p>Yohoushi is for all users who love graphs. It is a graphing tool designed to collaborate with <a href="http://kazeburo.github.io/GrowthForecast/">GrowthForecast</a> where Yohoushi as a front-end and GrowthForecast(s) as back-ends.</p>
 
-<p>Yohoushi shows you graphs stored in GrowthForecast in a multiple approach. You can see a large sized graph, specify start/end time date, and see a number of thumbnail graphs in one page. And it also supports an unlimited-layer hierarchical graph tree.</p>
+<p>Yohoushi shows you graphs stored in a GrowthForecast in multiple approaches. You can see large-sized graphs, specify start/end time date, and see a number of thumbnail graphs in one page. And, it also supports an unlimited hierarchical graph tree.</p>
 
-<p>And it supports multiple GrowthForecast clusters. Yohoushi provides you highly scalable system.</p>
+<p>Also, it supports multiple GrowthForecast clusters. Yohoushi provides you highly scalable system.</p>
 <pre><code>         +----------+                 +---+
          |          |            +--> |GF1| <--- post a number 
 Ops ---> | Yohoushi | <----------+    +---+
          |          |            |    +---+
          +----------+            +--> |GF2| <--- post a number
                                       +---+
-                                        .
-                                        .
 </code></pre>
 
-<p>If you are already an user of GrowthForecast, No reason not to try Yohoushi! Adding Yohoushi into the existing system is really easy, just run Yohoushi. You'll notice that you don't need to change the script to post a number to GrowthForecast because it refers to GrowthForecast.</p>
+<p>If you are already an user of GrowthForecast, no reason not to try Yohoushi! Adding Yohoushi into the existing system is really easy, just run Yohoushi. You'll notice that you don't need to change a script to post a number to GrowthForecast.</p>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Installation</h3>
+<h3><a name="instalation" class="anchor" href="#installation"><span class="octicon octicon-link">
+Installation</span></a></h3>
 
-<h4>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Requirements</h4>
-<p>Install these first.</p>
+<h4><a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>
+(1) Requirements</h4>
+<p>Please install them beforehand.</p>
 <ol>
-  <li>GrowthForecast (>=0.62)</li>
   <li>Ruby (>=2.0.0)</li>
-  <li>Rails (>=4.0.0)< /li>
   <li>MySQL or Sqlite3 (>=3.6.16)</li>
+  <li>GrowthForecast (>=0.62)</li>
 </ol>
 
-<p>Note that Yohoushi uses MySQL as default. If you like sqlite3, override the configuration file <code>cp config/database-sqlite.yml config/database.yml</code>.</p>
+<h4><a name="install-yohoushi" class="anchor" href="#install-yohoushi"><span class="octicon octicon-link">
+(2) Install Yohoushi</span></a></h4>
 
-<p>To install Yohoushi, </p>
-<ol>
-  <li><code>git clone git@github.com:yohoushi/yohoushi.git </code></li>
-  <li><code>cd yohoushi</code></li>
-  <li><code>bundle install</code></li>
-</ol>
+<p>Download the yohoushi from <a href="https://github.com/yohoushi/yohoushi/releases">yohoushi/releases</a>, and unarchive it. Execute the following command in the yohoushi directory. </p>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Configuration</h3>
-
-<p>Open <code>config/application.yml</code> with an editor, and replace the url after <code>:mapping</code> syntax with the real url.</p>
-
-<pre><code>defaults: &defaults
-  multiforecast:
-  mapping:
-    '':     'http://gfserver.local:5125'
-  tagcloud:
-  limit: 400
+<pre><code>$ bin/bundle --deployment
 </code></pre>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Run</h3>
+<h3><a name="configure-applicaiton" class="anchor" href="#configure-applicaiton"><span class="octicon octicon-link">
+(3) Configure Application</span></a></h3>
+
+<p>Register the URL(s) of GrowthForecast(s) on config/application.yml. Yohoushi connects to a GrowthForecast of localhost:5125 as default.</p>
+
+<pre><code># config/application.yml
+multiforecast:
+  mapping:
+    '':     'http://localhost:5125'
+</code></pre>
+
+<p>To connect to multiple GrowthForecast servers, write your mapping rule as follows:<p>
+
+<pre><code># config/application.yml
+multiforecast:
+  mapping:
+    'app1/':     'http://localhost:5125'
+    'app2/':     'http://localhost:5000'
+</code></pre>
+
+<p>In this example, Yohoushi maps graphs whose names starting from 'app1/' and 'app2/', to 'localhost:5125' and 'localhost:5000' respectively. </p>
+
+<h4><a name="configure-database" class="anchor" href="#configure-database"><span class="octicon octicon-link">
+(4) Configure Database</span></a></h4>
+
+<p>Write MySQL configuration on config/database.yml, and execute the following command.</p>
+
+<pre><code>$ bin/rake db:create db:migrate
+</code></pre>
+
+<p>As default, this command connects to MySQL located on localhost:3306 with root user / no password, and creates a database named `yohoushi`. </p>
+
+<pre><code># config/database.yml
+  adapter: mysql2
+  database: yohoushi
+  pool: 5
+  timeout: 5000
+  username: root
+  password: 
+  host: localhost
+  port: 3306
+</code></pre>
+
+<p>If you want to use SQLite instead of MySQL, copy config/database-sqlite.yml to config/database.yml, and execute the above command. </p>
+
+<h3><a name="run" class="anchor" href="#run"><span class="octicon octicon-link">
+(5) Run</span></a></h3>
+
 <p>Just,</p>
 
 <pre><code>$ bin/yohoushi</code></pre>
 
-<p>Note that you don't need <code>bundle exec</code> prefix. </p>
+<p>And you're done! Point your web browser at <code>http://localhost:4804</code>. </p>
 
-<p>And you're done! Point your web browser at <code>http://localhost:4804</code></p>
+<p>To daemonize, run with <code>-d</code> option.</p>
 
+<pre><code>$ bin/yohoushi -d</code></pre>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>For more information</h3>
+<p>To stop the daemonized Yohoushi, execute</p>
 
-<p><a href="https://github.com/sonots/multiforecast-client">multiforecast-client</a> is an useful GrowthForecast client when run with Yohoushi.</p></p>
+<pre><code>$ bin/yohoushi stop</code></pre>
+
+<h3><a name="check" class="anchor" href="#check"><span class="octicon octicon-link">
+(6) Check</span></a></h3>
+<p>To check Yohoushi is working well, let's POST a number to GrowthForecast. Here, let me assume GrowthForecast is working on localhost:5125. </p>
+
+<pre><code>$ curl -d 'number=10' http://localhost:5125/api/app1/section1/graph1
+</code></pre>
+
+<p>Success if this graph is shown on Yohoushi. You may wait a minute at maximum until the Yohoushi worker synchronizes graph data with GrowthForecast. </p>
+
+<h3><a name="for-more-infomation" class="anchor" href="#for-more-information"><span class="octicon octicon-link">
+For more information</span></a></h3>
+
+<p><a href="https://github.com/sonots/multiforecast-client">multiforecast-client</a> gem is useful to create graphs with mapping rules.</p></p>
 
         </section>
 
