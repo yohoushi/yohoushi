@@ -21,12 +21,12 @@ module Yohoushi
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    config.middleware.use Rack::StreamingProxy do |request|
+    config.middleware.use Rack::StreamingProxy::Proxy do |request|
       return nil unless Settings.proxy
-      if m = request.path.match('^/complex/graph/(.+)')
-        $mfclient.get_complex_uri(m[1], request.params)
-      elsif m = request.path.match('^/graph/(.+)')
-        $mfclient.get_graph_uri(m[1], request.params)
+      if request.path.start_with?('/complex/')
+        $mfclient.get_complex_uri(request.path[9..-1], request.params)
+      elsif request.path.start_with?('/graph/')
+        $mfclient.get_graph_uri(request.path[7..-1], request.params)
       end
     end
   end

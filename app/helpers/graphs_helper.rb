@@ -6,9 +6,9 @@ module GraphsHelper
   def graph_uri_for(graph)
     if Settings.proxy
       if graph.complex
-        complex_image_path(graph.path, @graph_parameter.graph_uri_params)
+        proxy_complex_path(graph.path, @graph_parameter.graph_uri_params)
       else
-        graph_image_path(graph.path, @graph_parameter.graph_uri_params)
+        proxy_graph_path(graph.path, @graph_parameter.graph_uri_params)
       end
     else
       if graph.complex
