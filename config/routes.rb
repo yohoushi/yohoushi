@@ -12,6 +12,10 @@ Yohoushi::Application.routes.draw do
   get 'tagselect_graph' => 'graphs#tagselect_graph', :as => 'tagselect_graph'
   get 'accordion_graph' => 'graphs#accordion_graph', :as => 'accordion_graph'
 
+  # NOTE: Implementation of following proxy routes are at config/application.rb, not graphs_controller.rb
+  get 'graph/:path' => 'graphs#proxy_graph', :constraints => { :path => /.+/ }, :as => 'proxy_graph'
+  get 'complex/:path' => 'graphs#proxy_complex', :constraints => { :path => /.+/ }, :as => 'proxy_complex'
+
   namespace :debug, :as => '', :path => '' do
     resources :graphs
   end
