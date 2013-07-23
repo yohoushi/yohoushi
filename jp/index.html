@@ -91,11 +91,11 @@ multiforecast:
 <pre><code># config/application.yml
 multiforecast:
   mapping:
-    'app1/':     'http://localhost:5125'
-    'app2/':     'http://localhost:5000'
+    'app1/':     'http://growthforecast1:5125'
+    'app2/':     'http://growthforecast2:5125'
 </code></pre>
 
-<p>この例では、名前が app1/ から始まるグラフは localhost:5125 に、app2/ から始まるグラフは localhost:5000 に分散されます。</p>
+<p>この例では、名前が app1/ から始まるグラフは growthforecast1:5125 に、app2/ から始まるグラフは growthforecast2:5125 に分散されます。</p>
 
 <h4><a name="configure-database" class="anchor" href="#configure-database"><span class="octicon octicon-link">
 (4) Configure Database</span></a></h4>
@@ -141,7 +141,7 @@ SQLite を使いたい場合は config/database-sqlite.yml を config/database.y
 (6) Check</span></a></h3>
 <p>Yohoushi の動作確認をするために GrowthForecast の URLに対してPOST リクエストを送り、グラフを作成してみましょう。この例では GrowthForecast が localhost:5125 で起動しているものとします。</p>
 
-<pre><code>$ curl -d 'number=10' http://localhost:5125/api/app1/section1/graph1
+<pre><code>$ curl -d 'number=10' http://localhost:5125/api/service1/section1/graph1
 </code></pre>
 
 <p>Yohoushi worker の GrowthForecast との同期処理が走って(最大１分待ちます) Yohoushi にグラフが表示されれば成功です。</p>
@@ -149,7 +149,15 @@ SQLite を使いたい場合は config/database-sqlite.yml を config/database.y
 <h3><a name="for-more-infomation" class="anchor" href="#for-more-information"><span class="octicon octicon-link">
 For more information</span></a></h3>
 
-<p>Yohoushiに4階層以上のグラフを登録するには <a href="https://github.com/sonots/multiforecast-client">multiforecast-client</a> gemを使ってデータをPOSTしてください。</p>
+<p>Yohoushiに4階層以上のグラフを登録するには Yohoushi API か <a href="https://github.com/sonots/multiforecast-client">multiforecast-client</a> を使ってデータをPOSTしてください。</p>
+
+<p>Yohoushi API には次のようにデータを POST します。mapping ルールに従って、適切な GrowthForecast に分散してくれます。</p>
+
+<pre><code>$ curl -d 'number=10' http://yohoushi:4804/api/graphs/sec1/sec2/sec3/graph1
+</code></pre>
+
+<p>ただし、Yohoushi API を多用すると Yohoushi がボトルネックになる可能性があるため、mapping ルールに従って直接 GrowthForecast にデータを POST してくれる
+<a href="https://github.com/sonots/multiforecast-client">multiforecast-client</a> の使用を推奨します。</p>
 
         </section>
 
