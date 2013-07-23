@@ -88,11 +88,11 @@ multiforecast:
 <pre><code># config/application.yml
 multiforecast:
   mapping:
-    'app1/':     'http://localhost:5125'
-    'app2/':     'http://localhost:5000'
+    'app1/':     'http://growthforecast1:5125'
+    'app2/':     'http://growthforecast2:5125'
 </code></pre>
 
-<p>In this example, Yohoushi maps graphs whose names starting from 'app1/' and 'app2/', to 'localhost:5125' and 'localhost:5000' respectively. </p>
+<p>In this example, Yohoushi maps graphs whose names starting from 'app1/' and 'app2/', to 'growthforecast1:5125' and 'growthforecast2:5125' respectively. </p>
 
 <h4><a name="configure-database" class="anchor" href="#configure-database"><span class="octicon octicon-link">
 (4) Configure Database</span></a></h4>
@@ -138,7 +138,7 @@ multiforecast:
 (6) Check</span></a></h3>
 <p>To check Yohoushi is working well, let's POST a number to GrowthForecast. Here, let me assume GrowthForecast is working on localhost:5125. </p>
 
-<pre><code>$ curl -d 'number=10' http://localhost:5125/api/app1/section1/graph1
+<pre><code>$ curl -d 'number=10' http://localhost:5125/api/service1/section1/graph1
 </code></pre>
 
 <p>Success if this graph is shown on Yohoushi. You may wait a minute at maximum until the Yohoushi worker synchronizes graph data with GrowthForecast. </p>
@@ -146,7 +146,15 @@ multiforecast:
 <h3><a name="for-more-infomation" class="anchor" href="#for-more-information"><span class="octicon octicon-link">
 For more information</span></a></h3>
 
-<p><a href="https://github.com/sonots/multiforecast-client">multiforecast-client</a> gem is useful to create graphs with mapping rules.</p></p>
+<p>You may use Yohoushi API or <a href="https://github.com/sonots/multiforecast-client">multiforecast-client</a> to create graphs of 4 levels or more.</p></p>
+
+<p>Use the Yohoushi API as belows. It distributes POST data to an appropriate GrowthForecast.</p>
+
+<pre><code>$ curl -d 'number=10' http://yohoushi:4804/api/graphs/sec1/sec2/sec3/graph1
+</code></pre>
+
+<p>However, there is a possibility that Yohoushi will be a bottleneck by overuse of its API, therefore, 
+it is recommended to use a <a href="https://github.com/sonots/multiforecast-client">multiforecast-client</a> that will POST data directly GrowthForecast according to mapping rules.</p>
 
         </section>
 
