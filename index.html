@@ -115,7 +115,22 @@ multiforecast:
   port: 3306
 </code></pre>
 
-<p>If you want to use SQLite instead of MySQL, copy config/database-sqlite.yml to config/database.yml, and execute the above command. </p>
+<h5><a name="configure-database" class="anchor" href="#support-sqlite"><span class="octicon octicon-link">
+Support SQLite</span></a></h4>
+
+<p>If you want to use SQLite instead of MySQL, perform the following procedures. </p>
+
+<p>Modify Gemfile by an editor as follow.</p>
+<pre><code># Gemfile
+gem 'sqlite3'  # activate this line
+# gem 'mysql2' # comment out this line
+</code></pre>
+
+<p>Execute the next commands.</p>
+<pre><code>$ bin/bundle
+$ cp config/database-sqlite.yml config/database.yml
+$ bin/rake db:create db:migrate
+</code></pre>
 
 <h3><a name="run" class="anchor" href="#run"><span class="octicon octicon-link">
 (5) Run</span></a></h3>
