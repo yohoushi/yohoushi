@@ -3,8 +3,7 @@ class GraphsController < ApplicationController
   before_action :set_root
   before_action :set_graph, only: [:view_graph, :setup_graph]
   before_action :set_graphs, only: [:list_graph, :tag_graph]
-  before_action :set_list_graph_parameter, only: [:list_graph, :tag_graph]
-  before_action :set_view_graph_parameter, only: [:view_graph]
+  before_action :set_graph_parameter, only: [:view_graph, :list_graph, :tag_graph]
   before_action :path_redirect, only: [:tree_graph, :view_graph, :list_graph]
   before_action :tag_redirect, :set_tags, only: [:tag_graph]
   before_action :autocomplete_search, only: [:autocomplete_graph]
@@ -56,24 +55,14 @@ class GraphsController < ApplicationController
 
   private
 
-  def set_list_graph_parameter
+  def set_graph_parameter
     # restore from session
-    @list_graph_parameter = session[:list_graph_parameter] || GraphParameter.new(size: 'thumbnail')
+    @graph_parameter = session[:graph_parameter] || GraphParameter.new
     # override with query parameters
-    @list_graph_parameter.update(params)
+    @graph_parameter.update(params)
     # store into session even if it has an error
-    session[:list_graph_parameter] = @list_graph_parameter
-    flash.now[:alert] = @list_graph_parameter.decorate.view_errors
-  end
-
-  def set_view_graph_parameter
-    # restore from session
-    @view_graph_parameter = session[:view_graph_parameter] || GraphParameter.new(size: 'LL')
-    # override with query parameters
-    @view_graph_parameter.update(params)
-    # store into session even if it has an error
-    session[:view_graph_parameter] = @view_graph_parameter
-    flash.now[:alert] = @view_graph_parameter.decorate.view_errors
+    session[:graph_parameter] = @graph_parameter
+    flash.now[:alert] = @graph_parameter.decorate.view_errors
   end
 
   def tag_redirect

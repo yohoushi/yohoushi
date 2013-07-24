@@ -1,6 +1,6 @@
 - model_class = Graph
 
-= render partial: 'tune', locals: { graph_parameter: @view_graph_parameter }
+= render partial: 'tune'
 
 h3 
   span.word-break-all
@@ -8,7 +8,7 @@ h3
   '
   small = @graph.description
 p
-  img src="#{graph_uri_for(@graph, @view_graph_parameter)}"
+  img src="#{graph_uri_for(@graph)}"
 p
   a.btn.btn-mini href="#{setup_graph_path(@graph.path)}"
     i.icon-cog

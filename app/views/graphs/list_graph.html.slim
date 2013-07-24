@@ -1,7 +1,7 @@
 - model_class = Graph
 
-= render partial: 'tune', locals: { graph_parameter: @list_graph_parameter} if @graphs.present?
-- if @list_graph_parameter.size == 'thumbnail'
+= render partial: 'tune' if @graphs.present?
+- if @graph_parameter.size == 'thumbnail'
   table.graph-thumbnails
     tbody
       - @graphs.each_slice(3) do |trio|
@@ -12,7 +12,7 @@
                 == graph.decorate.anchor_to(params[:path])
               p
                 a href="#{view_graph_path(graph.path)}"
-                  img src="#{graph_uri_for(graph, @list_graph_parameter)}"
+                  img src="#{graph_uri_for(graph)}"
 
 - else
   - @graphs.each do |graph|
@@ -22,7 +22,7 @@
       small = graph.description
     p
       a href="#{view_graph_path(graph.path)}"
-        img src="#{graph_uri_for(graph, @list_graph_parameter)}"
+        img src="#{graph_uri_for(graph)}"
     p
       a.btn.btn-mini href="#{setup_graph_path(graph.path)}" 
         i.icon-cog
