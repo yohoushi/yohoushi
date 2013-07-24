@@ -74,13 +74,6 @@ Installation</span></a></h3>
 <pre><code>$ bin/bundle
 </code></pre>
 
-<p>なお、SQLiteを使いたい場合は以下のとおりGemfileの修正した上で上記コマンドを実行してください。</p>
-
-<pre><code># Gemfile
-gem 'sqlite3'  # 行頭の#を削除する
-# gem 'mysql2' # コメントアウトする
-</code></pre>
-
 <h3><a name="configure-applicaiton" class="anchor" href="#configure-applicaiton"><span class="octicon octicon-link">
 (3) Configure Application</span></a></h3>
 
@@ -125,7 +118,24 @@ multiforecast:
   port: 3306
 </code></pre>
 
-SQLite を使いたい場合は config/database-sqlite.yml を config/database.yml に上書きし、設定を記述した上で上記コマンドを実行してください。
+<h5><a name="configure-database" class="anchor" href="#support-sqlite"><span class="octicon octicon-link">
+Support SQLite</span></a></h4>
+
+<p>MySQLではなくSQLiteを使いたい場合は以下を実行してください。</p>
+
+<p>Gemfileを修正してください。</p>
+
+<pre><code># Gemfile
+gem 'sqlite3'  # 行頭の#を削除する
+# gem 'mysql2' # コメントアウトする
+</code></pre>
+
+<p>次のコマンドを実行してください。</p>
+
+<pre><code>$ bin/bundle
+$ cp config/database-sqlite.yml config/database.yml
+$ bin/rake db:create db:migrate
+</code></pre>
 
 <h3><a name="run" class="anchor" href="#run"><span class="octicon octicon-link">
 (5) Run</span></a></h3>
