@@ -23,7 +23,7 @@ describe GraphParameter do
       its(:term) { should == 'd' }
       its(:from) { should be_nil }
       its(:to)   { should be_nil }
-      its(:size) { should == 'M' }
+      its(:size) { should == 'thumbnail' }
     end
 
     context "valid" do
