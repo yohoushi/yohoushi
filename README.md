@@ -1,42 +1,53 @@
 # Yohoushi
 
-Yohoushi is for all users who love graphs.
-
-Please see details of Yohoushi at [gh-pages](http://yohoushi.github.io/yohoushi).
+Yohoushi is for all users who love graphs. Documents are avialable at [gh-pages](http://yohoushi.github.io/yohoushi).
 
 ## Ruby version
 
-ruby 2.0.0
+* ruby 2.0.0
 
 ## System dependencies
 
-mysql
+* MySQL
+* GrowthForecast >= 0.62
 
-## Configuration
+## Preparation
 
-## Database creation
+Install and run MySQL and GrowthForecast. Configure `config/application.yml` and `config/database.yml`. 
 
-    rake db:create
+    bundle
 
-## Database initialization
+## How to develop
 
-    rake db:migrate
-    rake db:seed
+Note that the default `RAILS_ENV` is being switched to `production`, not `development`
+so that users of yohoushi can easily install and run it in production environment. 
+Thus, developers must specify `RAILS_ENV=development`.
+
+
+Database initialization
+
+    RAILS_ENV=development bin/rake db:create db:migrate
+
+Run both a rails app and a serverengine worker; Use `-d` option to daemonize.
+
+    RAILS_ENV=development bin/yohoushi -d
+
+Stop both the daemonized rails app and serverengine worker:
+
+    RAILS_ENV=development bin/yohoushi stop
+
+Run a serverengine worker only
+
+    RAILS_ENV=development bin/serverengine
+
+Run a rails app only
+
+    RAILS_ENV=development bin/rails s
 
 ## How to run the test suite
 
-    rake db:drop db:create db:migrate RAILS_ENV=test
+    RAILS_ENV=test bin/rake db:drop db:create db:migrate 
     rspec
-
-## Start Services
-
-Start yohoushi (the unicorn HTTP server and a serverengine worker): Use `-d` option to daemonize.
-
-    bin/yohoushi -d
-
-Stop yohoushi:
-
-    bin/yohoushi stop
 
 ## ChangeLog
 
