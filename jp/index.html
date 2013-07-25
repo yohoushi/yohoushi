@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="../stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="../stylesheets/jp-stylesheet.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="../stylesheets/pygment_trac.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="../stylesheets/print.css" media="print" />
     <link rel="stylesheet" type="text/css" href="../stylesheets/yohoushi.css" media="screen" />
@@ -34,8 +34,8 @@
       <div class="inner clearfix">
         <section id="main-content">
         
-<h3><a name="welcome-to-yohoushi" class="anchor" href="#welcome-to-yohoushi"><span class="octicon octicon-link">
-About Yohoushi</span></a></h3>
+<h2>About Yohoushi
+<a name="welcome-to-yohoushi" class="anchor" href="#welcome-to-yohoushi"><span class="octicon octicon-link">&dagger;</span></a></h2>
 
 <p>Yohoushi は <a href="http://kazeburo.github.io/GrowthForecast/">GrowthForecast</a> と連携し動作するグラフツールです。GrowthForecastをバックエンドとして利用し、Yohoushi は統合グラフビューワとして機能します。</p>
 
@@ -53,11 +53,12 @@ Ops ---> | Yohoushi | <----------+    +---+
 
 <p>また、既存のGrowthForecastのシステムに変更を加えることなくYohoushiをお試しできます。この場合は、たとえばcronなどで動作しているGrowthForecastへ値を登録するスクリプトを変更する必要はありません。</p>
 
-<h3><a name="instalation" class="anchor" href="#installation"><span class="octicon octicon-link">
-Installation</span></a></h3>
+<h2>Installation
+<a name="instalation" class="anchor" href="#installation"><span class="octicon octicon-link">&dagger;</span></a></h2>
 
-<h4><a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>
-(1) Requirements</h4>
+<h3>(1) Requirements
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link">&dagger;</span></a></h3>
+
 <p>あらかじめ以下のソフトウェアをインストールしておいてください。</p>
 <ol>
   <li>Ruby (>=2.0.0)</li>
@@ -65,8 +66,8 @@ Installation</span></a></h3>
   <li><a href="http://kazeburo.github.io/GrowthForecast/">GrowthForecast</a> (>=0.62)</li>
 </ol>
 
-<h4><a name="install-yohoushi" class="anchor" href="#install-yohoushi"><span class="octicon octicon-link">
-(2) Install Yohoushi</span></a></h4>
+<h3>(2) Install Yohoushi
+<a name="install-yohoushi" class="anchor" href="#install-yohoushi"><span class="octicon octicon-link">&dagger;</span></a></h3>
 
 <p><a href="https://github.com/yohoushi/yohoushi/releases">yohoushi/releases</a> からアーカイブファイルをダウンロード、展開し、youhoushi ディレクトリで以下のコマンドを実行してください。
 数分かかることがあります。 </p>
@@ -74,8 +75,8 @@ Installation</span></a></h3>
 <pre><code>$ bin/bundle
 </code></pre>
 
-<h3><a name="configure-applicaiton" class="anchor" href="#configure-applicaiton"><span class="octicon octicon-link">
-(3) Configure Application</span></a></h3>
+<h3>(3) Configure Application
+<a name="configure-applicaiton" class="anchor" href="#configure-applicaiton"><span class="octicon octicon-link">&dagger;</span></a></h3>
 
 <p>GrowthForecast サーバのURLを config/application.yml に登録してください。
 デフォルトでは localhost:5125 の GrowthForecast サーバに接続します。</p>
@@ -97,8 +98,8 @@ multiforecast:
 
 <p>この例では、名前が app1/ から始まるグラフは growthforecast1:5125 に、app2/ から始まるグラフは growthforecast2:5125 に分散されます。</p>
 
-<h4><a name="configure-database" class="anchor" href="#configure-database"><span class="octicon octicon-link">
-(4) Configure Database</span></a></h4>
+<h3>(4) Configure Database
+<a name="configure-database" class="anchor" href="#configure-database"><span class="octicon octicon-link">&dagger;</span></a></h3>
 
 <p>config/database.yml にMySQLの設定を記述し、次のコマンドを実行してください。</p>
 
@@ -118,8 +119,8 @@ multiforecast:
   port: 3306
 </code></pre>
 
-<h5><a name="configure-database" class="anchor" href="#support-sqlite"><span class="octicon octicon-link">
-Support SQLite</span></a></h4>
+<h4>Support SQLite
+<a name="configure-database" class="anchor" href="#support-sqlite"><span class="octicon octicon-link">&dagger;</span></a></h4>
 
 <p>MySQLではなくSQLiteを使いたい場合は以下を実行してください。</p>
 
@@ -137,8 +138,8 @@ $ cp config/database-sqlite.yml config/database.yml
 $ bin/rake db:create db:migrate
 </code></pre>
 
-<h3><a name="run" class="anchor" href="#run"><span class="octicon octicon-link">
-(5) Run</span></a></h3>
+<h3>(5) Run
+<a name="run" class="anchor" href="#run"><span class="octicon octicon-link">&dagger;</span></a></h3>
 
 <p>以下のコマンドで Yohoushi が起動します。</p>
 
@@ -154,8 +155,9 @@ $ bin/rake db:create db:migrate
 
 <pre><code>$ bin/yohoushi stop</code></pre>
 
-<h3><a name="check" class="anchor" href="#check"><span class="octicon octicon-link">
-(6) Check</span></a></h3>
+<h3>(6) Check
+<a name="check" class="anchor" href="#check"><span class="octicon octicon-link">&dagger;</span></a></h3>
+
 <p>Yohoushi の動作確認をするために GrowthForecast の URLに対してPOST リクエストを送り、グラフを作成してみましょう。この例では GrowthForecast が localhost:5125 で起動しているものとします。</p>
 
 <pre><code>$ curl -d 'number=10' http://localhost:5125/api/service1/section1/graph1
@@ -163,8 +165,8 @@ $ bin/rake db:create db:migrate
 
 <p>Yohoushi worker の GrowthForecast との同期処理が走って(最大１分待ちます) Yohoushi にグラフが表示されれば成功です。</p>
 
-<h3><a name="for-more-infomation" class="anchor" href="#for-more-information"><span class="octicon octicon-link">
-For more information</span></a></h3>
+<h2>For more information
+<a name="for-more-infomation" class="anchor" href="#for-more-information"><span class="octicon octicon-link">&dagger;</span></a></h2>
 
 <p>Yohoushiに4階層以上のグラフを登録するには Yohoushi API か <a href="https://github.com/sonots/multiforecast-client">multiforecast-client</a> を使ってデータをPOSTしてください。</p>
 

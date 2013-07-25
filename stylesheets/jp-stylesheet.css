@@ -51,7 +51,7 @@ body {
   font-size: 15px;
   line-height: 1.5; 
   background: #fafafa url(../images/body-bg.jpg) 0 0 repeat;
-  font-family: 'Helvetica Neue', Helvetica, Arial, serif;
+  font-family: Arial, Calibri, "Lucida Grande", Verdana, "Hiragino Kaku Gothic Pro", Meiryo, "メイリオ", sans-serif; 
   font-weight: 400;
   color: #666;
 }
@@ -69,7 +69,7 @@ a.anchor {
 header {
   padding-top: 40px;
   padding-bottom: 40px;
-  font-family: 'Helvetica Neue', Helvetica, Arial, serif; 
+  font-family: Arial, Calibri, "Lucida Grande", Verdana, "Hiragino Kaku Gothic Pro", Meiryo, "メイリオ", sans-serif; 
   background: #2e7bcf url(../images/header-bg.jpg) 0 0 repeat-x;
   border-bottom: solid 1px #275da1;
 }
@@ -139,7 +139,7 @@ a.button {
   color: #fff;
   padding-left: 68px;
   padding-top: 22px;
-  font-family: 'Helvetica Neue', Helvetica, Arial, serif; 
+  font-family: Arial, Calibri, "Lucida Grande", Verdana, "Hiragino Kaku Gothic Pro", Meiryo, "メイリオ", sans-serif; 
 }
 a.button small {
   display: block;
@@ -228,6 +228,7 @@ form {
 /* GENERAL ELEMENT TYPE STYLES */
 
 #main-content h1 {
+  font-family: Arial, Calibri, "Lucida Grande", Verdana, "Hiragino Kaku Gothic Pro", Meiryo, "メイリオ", sans-serif; 
   font-family: 'Helvetica Neue', Helvetica, Arial, serif; 
   font-size: 2.8em;
   letter-spacing: -1px;
@@ -242,7 +243,7 @@ form {
 }
 
 #main-content h2 {
-  font-family: 'Helvetica Neue', Helvetica, Arial, serif; 
+  font-family: Arial, Calibri, "Lucida Grande", Verdana, "Hiragino Kaku Gothic Pro", Meiryo, "メイリオ", sans-serif; 
   font-size: 22px;
   font-weight: bold;
   margin-bottom: 8px;
@@ -256,7 +257,7 @@ form {
 }
 
 #main-content h3 {
-  font-family: 'Helvetica Neue', Helvetica, Arial, serif; 
+  font-family: Arial, Calibri, "Lucida Grande", Verdana, "Hiragino Kaku Gothic Pro", Meiryo, "メイリオ", sans-serif; 
   font-size: 18px;
   font-weight: bold;
   margin-top: 24px;
@@ -272,7 +273,7 @@ form {
 }
 
 #main-content h4 {
-  font-family: 'Helvetica Neue', Helvetica, Arial, serif; 
+  font-family: Arial, Calibri, "Lucida Grande", Verdana, "Hiragino Kaku Gothic Pro", Meiryo, "メイリオ", sans-serif; 
   font-size: 15px;
   font-weight: bold;
   color: #474747;
@@ -286,7 +287,7 @@ h4:before {
 }
 
 #main-content h5 {
-  font-family: 'Helvetica Neue', Helvetica, Arial, serif; 
+  font-family: Arial, Calibri, "Lucida Grande", Verdana, "Hiragino Kaku Gothic Pro", Meiryo, "メイリオ", sans-serif; 
   font-size: 14px;
   color: #474747;
 } 
@@ -298,7 +299,7 @@ h5:before {
 }
 
 #main-content h6 {
-  font-family: 'Helvetica Neue', Helvetica, Arial, serif; 
+  font-family: Arial, Calibri, "Lucida Grande", Verdana, "Hiragino Kaku Gothic Pro", Meiryo, "メイリオ", sans-serif; 
   font-size: .8em;
   color: #474747;
 } 

@@ -34,8 +34,8 @@
       <div class="inner clearfix">
         <section id="main-content">
         
-<h3><a name="welcome-to-yohoushi" class="anchor" href="#welcome-to-yohoushi"><span class="octicon octicon-link">
-About Yohoushi</span></a></h3>
+<h2>About Yohoushi
+<a name="welcome-to-yohoushi" class="anchor" href="#welcome-to-yohoushi"><span class="octicon octicon-link">&dagger;</span></a></h2>
 
 <p>Yohoushi is for all users who love graphs. It is a graphing tool designed to collaborate with <a href="http://kazeburo.github.io/GrowthForecast/">GrowthForecast</a> where Yohoushi as a front-end and GrowthForecast(s) as back-ends.</p>
 
@@ -52,11 +52,12 @@ Ops ---> | Yohoushi | <----------+    +---+
 
 <p>If you are already an user of GrowthForecast, no reason not to try Yohoushi! Adding Yohoushi into the existing system is really easy, just run Yohoushi. You'll notice that you don't need to change a script to post a number to GrowthForecast.</p>
 
-<h3><a name="instalation" class="anchor" href="#installation"><span class="octicon octicon-link">
-Installation</span></a></h3>
+<h2>Installation
+<a name="instalation" class="anchor" href="#installation"><span class="octicon octicon-link">&dagger;</span></a></h2>
 
-<h4><a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>
-(1) Requirements</h4>
+<h3>(1) Requirements
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link">&dagger;</span></a></h3>
+
 <p>Please install them beforehand.</p>
 <ol>
   <li>Ruby (>=2.0.0)</li>
@@ -64,16 +65,16 @@ Installation</span></a></h3>
   <li>GrowthForecast (>=0.62)</li>
 </ol>
 
-<h4><a name="install-yohoushi" class="anchor" href="#install-yohoushi"><span class="octicon octicon-link">
-(2) Install Yohoushi</span></a></h4>
+<h3>(2) Install Yohoushi
+<a name="install-yohoushi" class="anchor" href="#install-yohoushi"><span class="octicon octicon-link">&dagger;</span></a></h3>
 
 <p>Download the yohoushi from <a href="https://github.com/yohoushi/yohoushi/releases">yohoushi/releases</a>, and unarchive it. Execute the following command in the yohoushi directory. </p>
 
 <pre><code>$ bin/bundle
 </code></pre>
 
-<h3><a name="configure-applicaiton" class="anchor" href="#configure-applicaiton"><span class="octicon octicon-link">
-(3) Configure Application</span></a></h3>
+<h3>(3) Configure Application
+<a name="configure-applicaiton" class="anchor" href="#configure-applicaiton"><span class="octicon octicon-link">&dagger;</span></a></h3>
 
 <p>Register the URL(s) of GrowthForecast(s) on config/application.yml. Yohoushi connects to a GrowthForecast of localhost:5125 as default.</p>
 
@@ -94,8 +95,8 @@ multiforecast:
 
 <p>In this example, Yohoushi maps graphs whose names starting from 'app1/' and 'app2/', to 'growthforecast1:5125' and 'growthforecast2:5125' respectively. </p>
 
-<h4><a name="configure-database" class="anchor" href="#configure-database"><span class="octicon octicon-link">
-(4) Configure Database</span></a></h4>
+<h3>(4) Configure Database
+<a name="configure-database" class="anchor" href="#configure-database"><span class="octicon octicon-link">&dagger;</span></a></h3>
 
 <p>Write MySQL configuration on config/database.yml, and execute the following command.</p>
 
@@ -115,8 +116,8 @@ multiforecast:
   port: 3306
 </code></pre>
 
-<h5><a name="configure-database" class="anchor" href="#support-sqlite"><span class="octicon octicon-link">
-Support SQLite</span></a></h4>
+<h4>Support SQLite
+<a name="configure-database" class="anchor" href="#support-sqlite"><span class="octicon octicon-link">&dagger;</span></a></h4>
 
 <p>If you want to use SQLite instead of MySQL, perform the following procedures. </p>
 
@@ -132,8 +133,8 @@ $ cp config/database-sqlite.yml config/database.yml
 $ bin/rake db:create db:migrate
 </code></pre>
 
-<h3><a name="run" class="anchor" href="#run"><span class="octicon octicon-link">
-(5) Run</span></a></h3>
+<h3>(5) Run
+<a name="run" class="anchor" href="#run"><span class="octicon octicon-link">&dagger;</span></a></h3>
 
 <p>Just,</p>
 
@@ -149,8 +150,9 @@ $ bin/rake db:create db:migrate
 
 <pre><code>$ bin/yohoushi stop</code></pre>
 
-<h3><a name="check" class="anchor" href="#check"><span class="octicon octicon-link">
-(6) Check</span></a></h3>
+<h3>(6) Check
+<a name="check" class="anchor" href="#check"><span class="octicon octicon-link">&dagger;</span></a></h3>
+
 <p>To check Yohoushi is working well, let's POST a number to GrowthForecast. Here, let me assume GrowthForecast is working on localhost:5125. </p>
 
 <pre><code>$ curl -d 'number=10' http://localhost:5125/api/service1/section1/graph1
@@ -158,8 +160,8 @@ $ bin/rake db:create db:migrate
 
 <p>Success if this graph is shown on Yohoushi. You may wait a minute at maximum until the Yohoushi worker synchronizes graph data with GrowthForecast. </p>
 
-<h3><a name="for-more-infomation" class="anchor" href="#for-more-information"><span class="octicon octicon-link">
-For more information</span></a></h3>
+<h2>For more information
+<a name="for-more-infomation" class="anchor" href="#for-more-information"><span class="octicon octicon-link">&dagger;</span></a></h2>
 
 <p>You may use Yohoushi API or <a href="https://github.com/sonots/multiforecast-client">multiforecast-client</a> to create graphs of 4 levels or more.</p></p>
 
