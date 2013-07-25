@@ -3,3 +3,5 @@
 db/
 log/
 tmp/
+.rbenv-version
+vendor/
