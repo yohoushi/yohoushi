@@ -92,11 +92,11 @@ multiforecast:
 <pre><code># config/application.yml
 multiforecast:
   mapping:
-    'app1/':     'http://growthforecast1:5125'
-    'app2/':     'http://growthforecast2:5125'
+    'app1/':     'http://host.to.growthforecast1:5125'
+    'app2/':     'http://host.to.growthforecast2:5125'
 </code></pre>
 
-<p>この例では、名前が app1/ から始まるグラフは growthforecast1:5125 に、app2/ から始まるグラフは growthforecast2:5125 に分散されます。</p>
+<p>この例では、名前が app1/ から始まるグラフは host.to.growthforecast1:5125 に、app2/ から始まるグラフは host.to.growthforecast2:5125 に分散されます。</p>
 
 <h3>(4) Configure Database
 <a name="configure-database" class="anchor" href="#configure-database"><span class="octicon octicon-link">&dagger;</span></a></h3>
@@ -133,8 +133,8 @@ gem 'sqlite3'  # 行頭の#を削除する
 
 <p>次のコマンドを実行してください。</p>
 
-<pre><code>$ bin/bundle
-$ cp config/database-sqlite.yml config/database.yml
+<pre><code>$ cp config/database-sqlite.yml config/database.yml
+$ bin/bundle
 $ bin/rake db:create db:migrate
 </code></pre>
 
