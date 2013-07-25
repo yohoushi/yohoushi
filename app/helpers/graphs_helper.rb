@@ -4,21 +4,17 @@ module GraphsHelper
   # @param graph [Graph]
   # @return full uri path [String] like 'http://10.33.49.163:5125/graph/mfclient/a%252Fb%252Fc/d?t=d'
   def graph_uri_for(graph)
-    current_params = params["action"] == 'view_graph' ?
-      @graph_parameter.view_graph_uri_params :
-      @graph_parameter.list_graph_uri_params
-
     if Settings.proxy
       if graph.complex
-        proxy_complex_path(graph.path, current_params)
+        proxy_complex_path(graph.path, @graph_parameter.graph_uri_params)
       else
-        proxy_graph_path(graph.path, current_params)
+        proxy_graph_path(graph.path, @graph_parameter.graph_uri_params)
       end
     else
       if graph.complex
-        $mfclient.get_complex_uri(graph.path, current_params)
+        $mfclient.get_complex_uri(graph.path, @graph_parameter.graph_uri_params)
       else
-        $mfclient.get_graph_uri(graph.path, current_params)
+        $mfclient.get_graph_uri(graph.path, @graph_parameter.graph_uri_params)
       end
     end
   end
@@ -35,11 +31,10 @@ module GraphsHelper
   end
 
   def select_tag_for_size
-    current_size = (params["action"] == 'view_graph' ? @graph_parameter.view_size : @graph_parameter.list_size)
     html = ''
     html += '<select name="size" id="select-size">'
     GraphSettings.sizes.sort{|(k1, v1), (k2, v2)| v1['width'] <=> v2['width']}.each do |size, v|
-      selected = (size == current_size) ? 'selected="selected"' : ''
+      selected = (size == @graph_parameter.size) ? 'selected="selected"' : ''
       html += %!<option class="span2" value="#{size}" #{selected}>#{size}</option>!
     end
     html += '</select>'

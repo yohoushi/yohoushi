@@ -56,12 +56,6 @@ class GraphsController < ApplicationController
   private
 
   def set_graph_parameter
-   if params.has_key?('size')
-      params["action"] == "view_graph" ?
-        params['view_size'] = params['size'] :
-        params['list_size'] = params['size']
-    end
-
     # restore from session
     @graph_parameter = session[:graph_parameter] || GraphParameter.new
     # override with query parameters

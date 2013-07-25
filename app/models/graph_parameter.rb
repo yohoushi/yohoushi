@@ -1,7 +1,5 @@
 class GraphParameter < ApplicationParameter
   attr_reader :t, :from, :to
-  attr_reader :list_size, :list_width, :list_height, :list_notitle
-  attr_reader :view_size, :view_width, :view_height, :view_notitle
   alias :term :t
 
   SHORTABLE_TERMS = %w(c h 4h n 8h d 3d)
@@ -16,7 +14,7 @@ class GraphParameter < ApplicationParameter
 
   def update(params = {})
     self.errors.clear
-    params = params.slice(:t, :from, :to, :list_size, :view_size)
+    params = params.slice(:t, :from, :to, :size, :action)
 
     @t = params[:t].presence || @t || 'd'
 
@@ -38,15 +36,18 @@ class GraphParameter < ApplicationParameter
       self.errors.add(:from, 'must be older than `to`.')
     end
 
-    @list_size    = params[:list_size].presence || @list_size || 'thumbnail'
-    @list_width   = GraphSettings.sizes[@list_size]['width']
-    @list_height  = GraphSettings.sizes[@list_size]['height']
-    @list_notitle = true if @list_size == 'thumbnail'
-
-    @view_size    = params[:view_size].presence || @view_size || 'LL'
-    @view_width   = GraphSettings.sizes[@view_size]['width']
-    @view_height  = GraphSettings.sizes[@view_size]['height']
-    @view_notitle = true if @view_size == 'thumbnail'
+    @action = params[:action] || 'list_graph'
+    if @action == "view_graph"
+      @view_size    = params[:size].presence || @view_size || 'LL'
+      @view_width   = GraphSettings.sizes[@view_size]['width']
+      @view_height  = GraphSettings.sizes[@view_size]['height']
+      @view_notitle = true if @view_size == 'thumbnail'
+    else
+      @list_size    = params[:size].presence || @list_size || 'thumbnail'
+      @list_width   = GraphSettings.sizes[@list_size]['width']
+      @list_height  = GraphSettings.sizes[@list_size]['height']
+      @list_notitle = true if @list_size == 'thumbnail'
+    end
 
     self
   end
@@ -61,29 +62,32 @@ class GraphParameter < ApplicationParameter
     @to.try(:strftime, '%F %T')
   end
 
-  # query parameters passed to growthforecast's graph image uri
-  def list_graph_uri_params
-    params = {
-      't'      => gf_term,
-      'from'   => @from,
-      'to'     => @to,
-      'width'  => @list_width,
-      'height' => @list_height,
-    }
-    params['notitle'] = '1' if @list_notitle
-    params
+  def size
+    @action == "view_graph" ? @view_size : @list_size
+  end
+
+  def width
+    @action == 'view_graph' ? @view_width : @list_width
+  end
+
+  def height
+    @action == 'view_graph' ? @view_height : @list_height
+  end
+
+  def notitle
+    @action == 'view_graph' ? @view_notitle : @list_notitle
   end
 
   # query parameters passed to growthforecast's graph image uri
-  def view_graph_uri_params
+  def graph_uri_params
     params = {
       't'      => gf_term,
       'from'   => @from,
       'to'     => @to,
-      'width'  => @view_width,
-      'height' => @view_height,
+      'width'  => width,
+      'height' => height,
     }
-    params['notitle'] = '1' if @view_notitle
+    params['notitle'] = '1' if notitle
     params
   end
 
@@ -93,8 +97,4 @@ class GraphParameter < ApplicationParameter
     short_metrics = Settings.multiforecast.try(:short_metrics).nil? || Settings.multiforecast.try(:short_metrics)
     (short_metrics && SHORTABLE_TERMS.include?(@t)) ? "s#{@t}" : @t
   end
-
-  # backward compatibility
-  alias :size :list_size
-  alias :graph_uri_params :list_graph_uri_params
 end

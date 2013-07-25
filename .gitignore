@@ -8,3 +8,5 @@
 /.ruby-version
 /public/assets
 /vendor/bundle
+.DS_Store
+.rbenv-version
