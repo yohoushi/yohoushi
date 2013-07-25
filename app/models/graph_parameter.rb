@@ -1,5 +1,5 @@
 class GraphParameter < ApplicationParameter
-  attr_reader :t, :from, :to, :size, :width, :height, :notitle
+  attr_reader :t, :from, :to
   alias :term :t
 
   SHORTABLE_TERMS = %w(c h 4h n 8h d 3d)
@@ -14,7 +14,7 @@ class GraphParameter < ApplicationParameter
 
   def update(params = {})
     self.errors.clear
-    params = params.slice(:t, :from, :to, :size)
+    params = params.slice(:t, :from, :to, :size, :action)
 
     @t = params[:t].presence || @t || 'd'
 
@@ -36,10 +36,18 @@ class GraphParameter < ApplicationParameter
       self.errors.add(:from, 'must be older than `to`.')
     end
 
-    @size    = params[:size].presence || @size || 'M'
-    @width   = GraphSettings.sizes[@size]['width']
-    @height  = GraphSettings.sizes[@size]['height']
-    @notitle = true if @size == 'thumbnail'
+    @action = params[:action] || 'list_graph'
+    if @action == "view_graph"
+      @view_size    = params[:size].presence || @view_size || 'LL'
+      @view_width   = GraphSettings.sizes[@view_size]['width']
+      @view_height  = GraphSettings.sizes[@view_size]['height']
+      @view_notitle = true if @view_size == 'thumbnail'
+    else
+      @list_size    = params[:size].presence || @list_size || 'thumbnail'
+      @list_width   = GraphSettings.sizes[@list_size]['width']
+      @list_height  = GraphSettings.sizes[@list_size]['height']
+      @list_notitle = true if @list_size == 'thumbnail'
+    end
 
     self
   end
@@ -54,16 +62,32 @@ class GraphParameter < ApplicationParameter
     @to.try(:strftime, '%F %T')
   end
 
+  def size
+    @action == "view_graph" ? @view_size : @list_size
+  end
+
+  def width
+    @action == 'view_graph' ? @view_width : @list_width
+  end
+
+  def height
+    @action == 'view_graph' ? @view_height : @list_height
+  end
+
+  def notitle
+    @action == 'view_graph' ? @view_notitle : @list_notitle
+  end
+
   # query parameters passed to growthforecast's graph image uri
   def graph_uri_params
     params = {
       't'      => gf_term,
       'from'   => @from,
       'to'     => @to,
-      'width'  => @width,
-      'height' => @height,
+      'width'  => width,
+      'height' => height,
     }
-    params['notitle'] = '1' if @notitle
+    params['notitle'] = '1' if notitle
     params
   end
 
