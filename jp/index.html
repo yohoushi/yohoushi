@@ -35,7 +35,7 @@
         <section id="main-content">
         
 <h2>About Yohoushi
-<a name="welcome-to-yohoushi" class="anchor" href="#welcome-to-yohoushi"><span class="octicon octicon-link">&dagger;</span></a></h3>
+<a name="welcome-to-yohoushi" class="anchor" href="#welcome-to-yohoushi"><span class="octicon octicon-link">&dagger;</span></a></h2>
 
 <p>Yohoushi は <a href="http://kazeburo.github.io/GrowthForecast/">GrowthForecast</a> と連携し動作するグラフツールです。GrowthForecastをバックエンドとして利用し、Yohoushi は統合グラフビューワとして機能します。</p>
 
@@ -54,10 +54,10 @@ Ops ---> | Yohoushi | <----------+    +---+
 <p>また、既存のGrowthForecastのシステムに変更を加えることなくYohoushiをお試しできます。この場合は、たとえばcronなどで動作しているGrowthForecastへ値を登録するスクリプトを変更する必要はありません。</p>
 
 <h2>Installation
-<a name="instalation" class="anchor" href="#installation"><span class="octicon octicon-link">&dagger;</span></a></h3>
+<a name="instalation" class="anchor" href="#installation"><span class="octicon octicon-link">&dagger;</span></a></h2>
 
 <h3>(1) Requirements
-<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link">&dagger;</span></a></h4>
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link">&dagger;</span></a></h3>
 
 <p>あらかじめ以下のソフトウェアをインストールしておいてください。</p>
 <ol>
@@ -67,7 +67,7 @@ Ops ---> | Yohoushi | <----------+    +---+
 </ol>
 
 <h3>(2) Install Yohoushi
-<a name="install-yohoushi" class="anchor" href="#install-yohoushi"><span class="octicon octicon-link">&dagger;</span></a></h4>
+<a name="install-yohoushi" class="anchor" href="#install-yohoushi"><span class="octicon octicon-link">&dagger;</span></a></h3>
 
 <p><a href="https://github.com/yohoushi/yohoushi/releases">yohoushi/releases</a> からアーカイブファイルをダウンロード、展開し、youhoushi ディレクトリで以下のコマンドを実行してください。
 数分かかることがあります。 </p>
@@ -99,7 +99,7 @@ multiforecast:
 <p>この例では、名前が app1/ から始まるグラフは growthforecast1:5125 に、app2/ から始まるグラフは growthforecast2:5125 に分散されます。</p>
 
 <h3>(4) Configure Database
-<a name="configure-database" class="anchor" href="#configure-database"><span class="octicon octicon-link">&dagger;</span></a></h4>
+<a name="configure-database" class="anchor" href="#configure-database"><span class="octicon octicon-link">&dagger;</span></a></h3>
 
 <p>config/database.yml にMySQLの設定を記述し、次のコマンドを実行してください。</p>
 
@@ -166,7 +166,7 @@ $ bin/rake db:create db:migrate
 <p>Yohoushi worker の GrowthForecast との同期処理が走って(最大１分待ちます) Yohoushi にグラフが表示されれば成功です。</p>
 
 <h2>For more information
-<a name="for-more-infomation" class="anchor" href="#for-more-information"><span class="octicon octicon-link">&dagger;</span></a></h3>
+<a name="for-more-infomation" class="anchor" href="#for-more-information"><span class="octicon octicon-link">&dagger;</span></a></h2>
 
 <p>Yohoushiに4階層以上のグラフを登録するには Yohoushi API か <a href="https://github.com/sonots/multiforecast-client">multiforecast-client</a> を使ってデータをPOSTしてください。</p>
 
