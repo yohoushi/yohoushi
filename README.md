@@ -1,6 +1,8 @@
 # Yohoushi
 
-yet another GrowthForecast like Graphing / Visualization tool.
+Yohoushi is for all users who love graphs.
+
+Please see details of Yohoushi at [gh-pages](http://yohoushi.github.io/yohoushi).
 
 ## Ruby version
 
@@ -36,8 +38,19 @@ Stop yohoushi:
 
     bin/yohoushi stop
 
-TROUBLESHOOTING:
+## ChangeLog
 
-When `stop` command does not work well, please try to `start` yohoushi and send `stop` again. 
-Yohoushi is using a process management gem named `god`, but I am experiencing with this trouble sometimes. 
-I will send a pull request to `god` if I find a solution for this.
+See [CHANGELOG.md](CHANGELOG.md) for details.
+
+## Contributing
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new [Pull Request](../../pull/new/master)
+
+## Copyright
+
+Copyright (c) 2013 DeNA Co., Ltd. See [LICENSE](LICENSE) for details.
+
