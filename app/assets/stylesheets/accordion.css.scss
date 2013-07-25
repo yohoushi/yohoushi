@@ -53,7 +53,7 @@ div:hover .accordion-nav-leaf {
   top: 50%;
   left: 10px;
   margin-top: -10px;
-  color: #e5e5e5;
+  color: #666;
   // must be used with vendor prefix
   -moz-transition: .3s;
   -webkit-transition: .3s;
@@ -72,12 +72,12 @@ div:hover .accordion-nav-leaf {
 }
 
 .accordion-nav > li > div:hover .accordion-nav-arrow {
-  color: #0099DD;
+  color: #111;
   opacity: 0.5;
 }
 
 .accordion-nav-arrow-rotate {
-  color: #0099DD;
+  color: #111;
   opacity: 0.5;
   // must be used with vendor prefix
   -moz-transform: rotate(90deg);
