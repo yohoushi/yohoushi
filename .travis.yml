@@ -1,4 +1,12 @@
+services:
+  - mysql
 rvm:
   - 2.0.0
 gemfile:
   - Gemfile
+env:
+  - RAILS_ENV=test
+bundler_args: --without development --path vendor/bundle
+script: 
+  - bundle exec rake --trace db:create db:migrate
+  - bundle exec rspec 
