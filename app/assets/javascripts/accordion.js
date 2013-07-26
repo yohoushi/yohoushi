@@ -16,15 +16,34 @@ $(function() {
    var ul = $(this).next();
    if (ul.text() == '') {
       // fetch string from <ul data-path=""">
-      path = $(this).data('path');
+      var path = $(this).data('path');
 
       // load contents via ajax
       $.getJSON("/accordion_graph?path=" + path)
       .done(function(data) {
         $.each(data, function(i,item) {
-          var div_class = (item.has_children == true) ? 'class="accordion-head"' : 'class="accordion-nav-leaf'
-          var arrow = (item.has_children == true) ?  '<span class="accordion-nav-arrow"></span>' : ''
-          ul.append('<li><div ' + div_class + ' data-path="' + item.path + '"><a href="' + item.uri + '" > ' + item.basename + '</a>' + arrow + '</div><ul class="accordion-nav" style="display: none;"></ul></li>');
+          // Append following doms to <ul>.
+          //
+          //   li
+          //     div.accordion-head data-path="a/b/c"
+          //       a href="/list_graph?a/b/c" "c"
+          //       span.accordion-nav-arrow /
+          //     ul.accordion-nav style="display: none;" /
+          //
+
+          var li = $("<li/>");
+
+          var div_class = (item.has_children == true) ? "accordion-head" : "accordion-nav-leaf";
+          var div = $("<div/>").addClass(div_class).attr('data-path', escape(item.path));
+          var a = $("<a/>").attr('href', item.uri).text(item.basename);
+          var arrow_class = (item.has_children == true) ?  "accordion-nav-arrow" : ''
+          var arrow = $("<span/>").addClass(arrow_class);
+          li.append(div.append(a).append(arrow));
+
+          var ul_dummy = $("<ul/>").addClass("accordion-nav").css('display', 'none');
+          li.append(ul_dummy);
+
+          ul.append(li);
         });
 
         // Open the content window
