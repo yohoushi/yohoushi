@@ -34,7 +34,7 @@ $(function() {
           var li = $("<li/>");
 
           var div_class = (item.has_children == true) ? "accordion-head" : "accordion-nav-leaf";
-          var div = $("<div/>").addClass(div_class).attr('data-path', item.path);
+          var div = $("<div/>").addClass(div_class).attr('data-path', escape(item.path));
           var a = $("<a/>").attr('href', item.uri).text(item.basename);
           var arrow_class = (item.has_children == true) ?  "accordion-nav-arrow" : ''
           var arrow = $("<span/>").addClass(arrow_class);
