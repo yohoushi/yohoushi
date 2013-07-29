@@ -23,10 +23,11 @@ module Yohoushi
 
     config.middleware.use Rack::StreamingProxy::Proxy do |request|
       next unless Settings.proxy
+      path = CGI.unescape(request.path)
       if request.path.start_with?('/complex/')
-        $mfclient.get_complex_uri(request.path[9..-1], request.params)
+        $mfclient.get_complex_uri(path[9..-1], request.params)
       elsif request.path.start_with?('/graph/')
-        $mfclient.get_graph_uri(request.path[7..-1], request.params)
+        $mfclient.get_graph_uri(path[7..-1], request.params)
       end
     end
   end
