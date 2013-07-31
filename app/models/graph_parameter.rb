@@ -41,12 +41,12 @@ class GraphParameter < ApplicationParameter
       @view_size    = params[:size].presence || @view_size || 'LL'
       @view_width   = GraphSettings.sizes[@view_size]['width']
       @view_height  = GraphSettings.sizes[@view_size]['height']
-      @view_notitle = true if @view_size == 'thumbnail'
+      @view_notitle = (@view_size == 'thumbnail')
     else
       @list_size    = params[:size].presence || @list_size || 'thumbnail'
       @list_width   = GraphSettings.sizes[@list_size]['width']
       @list_height  = GraphSettings.sizes[@list_size]['height']
-      @list_notitle = true if @list_size == 'thumbnail'
+      @list_notitle = (@list_size == 'thumbnail')
     end
 
     self
