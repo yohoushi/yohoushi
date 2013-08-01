@@ -26,6 +26,7 @@ gem 'font-awesome-rails' # Font-Awesome web fonts
 # gem 'newrelic_rpm'
 
 gem 'draper' # decorator(view-model)
+gem 'acts_as_parameter_object' # Introduce parameter object, cf. Refactoring: Ruby Edition
 gem "settingslogic"
 gem 'growthforecast-client'
 gem 'multiforecast-client'
