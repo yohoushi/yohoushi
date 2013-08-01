@@ -43,6 +43,8 @@ GEM
       tzinfo (~> 0.3.37)
     acts-as-taggable-on (2.4.1)
       rails (>= 3, < 5)
+    acts_as_parameter_object (0.0.1)
+      activemodel
     addressable (2.3.5)
     arel (4.0.0)
     atomic (1.1.10)
@@ -248,6 +250,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on
+  acts_as_parameter_object
   ancestry!
   better_errors
   binding_of_caller

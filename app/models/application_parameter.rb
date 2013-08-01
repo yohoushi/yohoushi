@@ -1,4 +1,4 @@
 class ApplicationParameter
   include Draper::Decoratable
-  include ActiveModel::Validations
+  include ActsAsParameterObject
 end
