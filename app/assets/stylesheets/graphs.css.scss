@@ -37,3 +37,7 @@ p#breadcrumbs { font-size: x-large; word-break: break-all; }
 .graph-thumbnails tr td p { margin-bottom: 4px; margin-right: 12px; }
 .graph-thumbnails tr td a { background-color: transparent; }
 .graph-thumbnails tr td a:hover { color: #666; }
+
+// jquery.ui.autocomplete Yohoushi custom
+// cf. http://stackoverflow.com/questions/5409788/jquery-autocomplete-result-style
+ul.ui-autocomplete.ui-menu { font-size: 100%; }
