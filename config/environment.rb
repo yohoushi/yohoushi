@@ -5,4 +5,7 @@ require File.expand_path("#{Rails.root}/lib/yohoushi/logger")
 Rails.logger = Yohoushi.logger(out: 'log/application.log', shift_age: 3) # shift_age: 0 to stop logrotate
 
 # Initialize the Rails application.
+unless %w[production development test].include?(ENV['RAILS_ENV'])
+  require File.expand_path("#{Rails.root}/config/environments/production")
+end
 Yohoushi::Application.initialize!
