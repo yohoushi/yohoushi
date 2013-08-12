@@ -10,8 +10,10 @@ require 'drb'
 require 'yaml'
 ENV['RAILS_ENV']  ||= 'production'
 ENV['RAILS_ROOT'] ||= File.expand_path('../../..', __FILE__)
+require 'util'
 
 begin
+  include Util
   # Save ARGV in case someone wants to use it later
   ORIGINAL_ARGV = ARGV.dup
 
@@ -44,6 +46,7 @@ begin
       signal <task or group name> <sig>  signal all matching tasks
       quit                               stop yohoushi
       stop | terminate                   stop yohoushi and all tasks
+      kill                               execute kill commands for unicorn and serverengine
       check                              run self diagnostic
 
     Options:
@@ -134,6 +137,9 @@ begin
       God::CLI::Command.new('stop', options, ['stop', 'yohoushi'])
       sleep 1
       God::CLI::Command.new('terminate', options, ARGV)
+    elsif command == 'kill' and !ARGV[1] # yohoushi custom
+      try_kill('QUIT', "#{ENV['RAILS_ROOT']}/log/unicorn.pid")
+      try_kill('TERM', "#{ENV['RAILS_ROOT']}/log/serverengine.pid")
     else
       God::CLI::Command.new(command, options, ARGV)
     end
