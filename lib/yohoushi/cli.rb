@@ -139,13 +139,10 @@ begin
     end
   else
     puts "Sending output to log file: #{File.expand_path('log/application.log', ENV['RAILS_ROOT'])}" # yohoushi custom
-    th = Thread.new do
-      system "#{File.expand_path('bin/rake', ENV['RAILS_ROOT'])} assets:precompile" # yohoushi custom
-    end
+    system "#{File.expand_path('bin/rake', ENV['RAILS_ROOT'])} assets:precompile" # yohoushi custom
     require 'god/cli/run'
     require File.expand_path('vendor/extensions/god/cli/run', ENV['RAILS_ROOT']) # yohoushi custom
     God::CLI::Run.new(options)
-    th.join
   end
 rescue Exception => e
   if e.instance_of?(SystemExit)
