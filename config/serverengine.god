@@ -11,7 +11,7 @@ God.watch do |w|
   w.interval = 30.seconds
 
   # needs to be run from the rails root
-  w.start   = "cd #{RAILS_ROOT} && #{BIN_PATH}/serverengine start -p #{PID_DIR}/serverengine.pid -d"
+  w.start   = "cd #{RAILS_ROOT} && RAILS_ENV=#{RAILS_ENV} #{BIN_PATH}/serverengine start -p #{PID_DIR}/serverengine.pid -d"
 
   # TERM to graceful stop, QUIT to stop
   w.stop = "kill -TERM `cat #{PID_DIR}/serverengine.pid`"
