@@ -1,3 +1,23 @@
+## 0.62.3 (2013/08/24)
+
+Fixes:
+
+* Fix that the title of graph image disappears after thumbnal is chosen once
+* Fix unicorn.god and serverengine.god not to care RAILS_ENV
+* Fix the automatic rake assets:precompile
+
+Enhancement:
+
+* Reset `From` and `To` field when `term` field is selected
+* require 'config/environments/production.rb' as default
+* Add `kill` subcommand for bin/yohoushi
+* bin/yohoushi traps the TERM signal to kill unicorn and serverengine 
+
+Changes:
+
+* Make smaller the font-size of the autocomplete form
+* Create `acts_as_parameter_object` gem and use it
+
 ## 0.62.2 (2013/07/26)
 
 Fixes:
