@@ -1,9 +1,6 @@
 header .language {
-  position: absolute;
-  width: 200px;
-  height: 30px;
-  right: 0px;
-  top: -31px;
+  position:absolute;
+  top:-30px;
 }
 
 header button.lang-button {
