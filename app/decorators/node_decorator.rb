@@ -19,6 +19,42 @@ class NodeDecorator < ApplicationDecorator
     end
   end
 
+
+  def accordion_node_opened
+    out = <<-EOS
+      <li>
+        <div class='accordion-head' data-path='#{h.h(self.path)}'>
+          <a href="#{h.list_graph_path(self.path)}">#{self.basename}</a>
+          <span class='accordion-nav-arrow accordion-nav-arrow-rotate'></span>
+        </div>
+        <ul class='accordion-nav' style='display:none;'></ul>
+      </li>
+    EOS
+  end
+
+  def accordion_node_closed
+    out = <<-EOS
+      <li>
+        <div class='accordion-head' data-path='#{h.h(self.path)}'>
+          <a href="#{h.list_graph_path(self.path)}">#{self.basename}</a>
+          <span class='accordion-nav-arrow'></span>
+        </div>
+        <ul class='accordion-nav' style='display:none;'></ul>
+      </li>
+    EOS
+  end
+
+  def accordion_node_graph
+    out = <<-EOS
+      <li>
+        <div class='accordion-nav-leaf' data-path='#{h.h(self.path)}'>
+          <a href="#{h.list_graph_path(self.path)}">#{self.basename}</a>
+          <span></span>
+        </div>
+      </li>
+    EOS
+  end
+
   # Define presentation-specific methods here. Helpers are accessed through
   # `helpers` (aka `h`). You can override attributes, for example:
   #
