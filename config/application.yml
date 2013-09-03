@@ -6,6 +6,8 @@ defaults: &defaults
     port: 4804
   tagcloud:
     limit: 400
+  accordion:
+    depth: 1
 
 production:
   <<: *defaults

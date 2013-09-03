@@ -20,13 +20,14 @@ class NodeDecorator < ApplicationDecorator
   end
 
   # Build HTML lists for the accordion on the top page. The list begins at [self]
+  # @param depth [Integer] depth of the accordion to show when load the top page.
   #
   # @return [String]
-  def build_accordion
+  def build_accordion(depth)
     out = ''
     before_tag = "<ul id='accordion' class='accordion-nav'>"
     after_tag  = "</ul>"
-    out += self.decorate.accordion_item_with_remain_depth(3, before_tag, after_tag) do |node, remain_depth|
+    out += self.decorate.accordion_item_with_remain_depth(depth, before_tag, after_tag) do |node, remain_depth|
       if node.is_a? Graph
         node.decorate.accordion_graph_node
       elsif remain_depth > 1
