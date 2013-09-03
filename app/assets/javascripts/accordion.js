@@ -1,9 +1,5 @@
 // @reference http://coder.blog.uhuru.co.jp/js/easy_accordion
 $(function() {
-  $('.accordion-head').each( function() {
-    $(this).after('<ul class="accordion-nav" style="display: none;"></ul>');
-  });
-
   $(document).on("click", '.accordion-head', function() {
     // Add/Remove opened status
     var arrow = $('> .accordion-nav-arrow', this);

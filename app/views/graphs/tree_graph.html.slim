@@ -1,10 +1,4 @@
 - model_class = Graph
 
 - if @root.present?
-  ul#accordion.accordion-nav
-    - @root.children.each do |node|
-      li
-        div.accordion-head data-path="#{node.path}"
-          a href="#{list_graph_path(path: node.path)}" = node.basename
-          span.accordion-nav-arrow /
-
+  == @root.decorate.build_accordion
