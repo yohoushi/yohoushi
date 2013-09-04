@@ -72,7 +72,7 @@ class NodeDecorator < ApplicationDecorator
   def build_accordion_recursively(depth = 1)
     return '' if depth <= 0
     out = ''
-    self.children.each do |node|
+    self.children.visible.order('path ASC, type DESC').each do |node|
       out += '<li>'
       out += if node.is_a? Graph
                node.decorate.accordion_graph_node
