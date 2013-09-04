@@ -19,6 +19,76 @@ class NodeDecorator < ApplicationDecorator
     end
   end
 
+  # Build HTML lists for the accordion on the top page. The list begins at [self]
+  # @param depth [Integer] depth of the accordion to show when load the top page.
+  #
+  # @return [String]
+  def build_accordion(depth)
+    out = '<ul id="accordion" class="accordion-nav">'
+    out += self.decorate.build_accordion_recursively(depth)
+    out += '</ul>'
+  end
+
+  # Return an opened node of the accordion.
+  #
+  # @return [String]
+  def accordion_opened_node
+    out = <<-EOS
+      <div class='accordion-head' data-path='#{h.h(self.path)}'>
+        <a href="#{h.list_graph_path(self.path)}">#{self.basename}</a>
+        <span class='accordion-nav-arrow accordion-nav-arrow-rotate'></span>
+      </div>
+    EOS
+  end
+
+  # Return a closed node of the accordion.
+  #
+  # @return [String]
+  def accordion_closed_node
+    out = <<-EOS
+      <div class='accordion-head' data-path='#{h.h(self.path)}'>
+        <a href="#{h.list_graph_path(self.path)}">#{self.basename}</a>
+        <span class='accordion-nav-arrow'></span>
+      </div>
+    EOS
+  end
+
+  # Return a graph node of the accordion.
+  #
+  # @return [String]
+  def accordion_graph_node
+    out = <<-EOS
+      <div class='accordion-nav-leaf' data-path='#{h.h(self.path)}'>
+        <a href="#{h.view_graph_path(self.path)}">#{self.basename}</a>
+        <span></span>
+      </div>
+    EOS
+  end
+
+  # Build the lists for the accordion recursively.
+  # @param depth [Integer] how much depth to create
+  #
+  # @return [String]
+  def build_accordion_recursively(depth = 1)
+    return '' if depth <= 0
+    out = ''
+    self.children.each do |node|
+      out += '<li>'
+      out += if node.is_a? Graph
+               node.decorate.accordion_graph_node
+             elsif depth > 1
+               node.decorate.accordion_opened_node
+             else
+               node.decorate.accordion_closed_node
+             end
+      out += '<ul class="accordion-nav">'
+      out += node.decorate.build_accordion_recursively(depth - 1)
+      out += '</ul>'
+      out += '</li>'
+    end
+    out
+  end
+
   # Define presentation-specific methods here. Helpers are accessed through
   # `helpers` (aka `h`). You can override attributes, for example:
   #
