@@ -68,7 +68,7 @@ class NodeDecorator < ApplicationDecorator
   def accordion_graph_node
     out = <<-EOS
       <div class='accordion-nav-leaf' data-path='#{h.h(self.path)}'>
-        <a href="#{h.list_graph_path(self.path)}">#{self.basename}</a>
+        <a href="#{h.view_graph_path(self.path)}">#{self.basename}</a>
         <span></span>
       </div>
     EOS
