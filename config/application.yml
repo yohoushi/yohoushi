@@ -7,7 +7,7 @@ defaults: &defaults
   tagcloud:
     limit: 400
   accordion:
-    depth: 1
+    initial_depth: 1
 
 production:
   <<: *defaults
