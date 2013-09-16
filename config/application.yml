@@ -8,6 +8,7 @@ defaults: &defaults
     limit: 400
   accordion:
     initial_depth: 1
+    link_to_tree_graph: true
 
 production:
   <<: *defaults

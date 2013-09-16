@@ -1,7 +1,8 @@
 Yohoushi::Application.routes.draw do
   root 'graphs#tree_graph'
 
-  get 'tree_graph' => 'graphs#tree_graph', :as => 'tree_graph'
+  get 'tree_graph' => 'graphs#tree_graph', :as => 'tree_graph_root'
+  get 'tree_graph/:path' => 'graphs#tree_graph', :constraints => { :path => /.+/ }, :as => 'tree_graph'
   get 'view_graph/:path' => 'graphs#view_graph', :constraints => { :path => /.+/ }, :as => 'view_graph'
   get 'setup_graph/:path' => 'graphs#setup_graph', :constraints => { :path => /.+/ }, :as => 'setup_graph'
   get 'list_graph' => 'graphs#list_graph', :as => 'list_graph_root'

@@ -13,6 +13,10 @@ class Node < ActiveRecord::Base
   end
   alias :has_children? :section? # override `ancestry` to be more efficient
 
+  def has_graph_child?
+    children.any? {|child| child.graph? }
+  end
+
   def dirname
     root? ? '' : File.dirname(path)
   end
