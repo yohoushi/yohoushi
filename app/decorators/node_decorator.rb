@@ -2,12 +2,24 @@ class NodeDecorator < ApplicationDecorator
   delegate_all
 
   def link_to
+    h.link_to(self.basename, self.graph_path)
+  end
+
+  def graph_path
     if self.root?
-      h.link_to(self.basename, h.root_path)
+      h.root_path
     elsif self.has_children?
-      h.link_to(self.basename, h.list_graph_path(self.path))
+      self.list_or_tree_graph_path
     else
-      h.link_to(self.basename, h.view_graph_path(self.path))
+      h.view_graph_path(self.path)
+    end
+  end
+
+  def list_or_tree_graph_path
+    if Settings.try(:accordion).try(:link_to_tree_graph) and !self.has_graph_child?
+      h.tree_graph_path(self.path)
+    else
+      h.list_graph_path(self.path)
     end
   end
 
@@ -35,7 +47,7 @@ class NodeDecorator < ApplicationDecorator
   def accordion_opened_node
     out = <<-EOS
       <div class='accordion-head' data-path='#{h.h(self.path)}'>
-        <a href="#{h.list_graph_path(self.path)}">#{self.basename}</a>
+        <a href="#{self.list_or_tree_graph_path}">#{self.basename}</a>
         <span class='accordion-nav-arrow accordion-nav-arrow-rotate'></span>
       </div>
     EOS
@@ -47,7 +59,7 @@ class NodeDecorator < ApplicationDecorator
   def accordion_closed_node
     out = <<-EOS
       <div class='accordion-head' data-path='#{h.h(self.path)}'>
-        <a href="#{h.list_graph_path(self.path)}">#{self.basename}</a>
+        <a href="#{self.list_or_tree_graph_path}">#{self.basename}</a>
         <span class='accordion-nav-arrow'></span>
       </div>
     EOS

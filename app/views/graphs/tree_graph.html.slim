@@ -1,4 +1,4 @@
 - model_class = Graph
 
 - if @root.present?
-  == @root.decorate.build_accordion(Settings.try(:accordion).try(:depth) || 1)
+  == @root.decorate.build_accordion(Settings.try(:accordion).try(:initial_depth) || 1)

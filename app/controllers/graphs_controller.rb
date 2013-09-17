@@ -48,7 +48,7 @@ class GraphsController < ApplicationController
   # GET /accordion_graph?path=xxx for ajax accordion navigation
   def accordion_graph
     render :json => @children.map {|c| 
-      uri = c.graph? ? view_graph_path(path: c.path) : list_graph_path(path: c.path)
+      uri = c.decorate.graph_path
       {:uri => uri, :path => c.path, :basename => c.basename, :has_children => c.has_children?}
     }
   end
@@ -73,13 +73,7 @@ class GraphsController < ApplicationController
   def path_redirect
     return unless (path = request.query_parameters[:path])
     not_found unless (node = Node.find_by(path: path))
-    if node.root?
-      redirect_to tree_graph_path
-    elsif node.has_children?
-      redirect_to list_graph_path(path)
-    else
-      redirect_to view_graph_path(path)
-    end
+    redirect_to node.decorate.graph_path
   end
 
   def set_root
