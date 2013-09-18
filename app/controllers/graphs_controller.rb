@@ -67,7 +67,7 @@ class GraphsController < ApplicationController
 
   def tag_redirect
     return unless (tag_list = request.query_parameters[:tag_list])
-    redirect_to "#{tag_graph_root_path}/#{URI.escape(tag_list)}"
+    redirect_to @root.decorate.tag_graph_path(tag_list)
   end
 
   def path_redirect
