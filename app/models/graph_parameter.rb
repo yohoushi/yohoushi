@@ -78,6 +78,26 @@ class GraphParameter < ApplicationParameter
     @action == 'view_graph' ? @view_notitle : @list_notitle
   end
 
+  # convert back to params
+  def to_view_params
+    {
+      't'      => @t,
+      'from'   => @from,
+      'to'     => @to,
+      'size'   => @view_size,
+    }
+  end
+
+  # convert back to params
+  def to_list_params
+    {
+      't'      => @t,
+      'from'   => @from,
+      'to'     => @to,
+      'size'   => @list_size,
+    }
+  end
+
   # query parameters passed to growthforecast's graph image uri
   def graph_uri_params
     params = {
