@@ -49,12 +49,12 @@ class NodeDecorator < ApplicationDecorator
 
   def graph_parameter_view_params
     # ToDo: we would cache this `params` because this is common in all model entities, but maybe trivial
-    h.session[:graph_parameter].to_view_params
+    h.session[:graph_parameter].try(:to_view_params)
   end
 
   def graph_parameter_list_params
     # ToDo: we would cache this `params` because this is common in all model entities, but maybe trivial
-    h.session[:graph_parameter].to_list_params
+    h.session[:graph_parameter].try(:to_list_params)
   end
 
   def anchor_to(path = nil)
