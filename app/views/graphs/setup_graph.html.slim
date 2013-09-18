@@ -20,4 +20,7 @@
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     '
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), view_graph_path(@graph.path), :class => 'btn'
+    = link_to t('.cancel'), view_graph_path(@graph.path), :class => 'btn'
+    '
+    = link_to t('.destroy'), graph_path(@graph), :method => :delete, :data => { :confirm => t('.confirm', :default => 'Are you sure?') }, :class => 'btn btn-danger'
+
