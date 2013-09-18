@@ -7,28 +7,30 @@
       - @graphs.each_slice(3) do |trio|
         tr
           - trio.each do |graph|
+            - graph = graph.decorate
             td
               p
-                == graph.decorate.anchor_to(params[:path])
+                == graph.anchor_to(params[:path])
               p
-                a href="#{view_graph_path(graph.path)}"
+                a href="#{graph.view_graph_path}"
                   img src="#{graph_uri_for(graph)}"
 
 - else
   - @graphs.each do |graph|
+    - graph = graph.decorate
     h3
-      == graph.decorate.anchor_to(params[:path])
+      == graph.anchor_to(params[:path])
       '
       small = graph.description
     p
-      a href="#{view_graph_path(graph.path)}"
+      a href="#{graph.view_graph_path}"
         img src="#{graph_uri_for(graph)}"
     p
-      a.btn.btn-mini href="#{setup_graph_path(graph.path)}" 
+      a.btn.btn-mini href="#{graph.setup_graph_path}"
         i.icon-cog
         = " Setting"
       '
       span.tag-list
         - graph.tag_list.each do |tag|
-          a class="label tag" href="#{tag_graph_path(tag)}" = tag
+          a class="label tag" href="#{graph.tag_graph_path(tag)}" = tag
           '

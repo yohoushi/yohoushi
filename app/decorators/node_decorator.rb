@@ -7,20 +7,54 @@ class NodeDecorator < ApplicationDecorator
 
   def graph_path
     if self.root?
-      h.root_path
+      self.root_path
     elsif self.has_children?
       self.list_or_tree_graph_path
     else
-      h.view_graph_path(self.path)
+      self.view_graph_path
     end
   end
 
   def list_or_tree_graph_path
     if Settings.try(:accordion).try(:link_to_tree_graph) and !self.has_graph_child?
-      h.tree_graph_path(self.path)
+      self.tree_graph_path
     else
-      h.list_graph_path(self.path)
+      self.list_graph_path
     end
+  end
+
+  def view_graph_path
+    h.view_graph_path(self.path, graph_parameter_view_params)
+  end
+
+  def root_path
+    h.root_path(graph_parameter_list_params)
+  end
+
+  def tree_graph_path
+    h.tree_graph_path(self.path, graph_parameter_list_params)
+  end
+
+  def list_graph_path
+    h.list_graph_path(self.path, graph_parameter_list_params)
+  end
+
+  def tag_graph_path(tag_list)
+    h.tag_graph_path(tag_list, graph_parameter_list_params)
+  end
+
+  def setup_graph_path
+    h.setup_graph_path(self.path)
+  end
+
+  def graph_parameter_view_params
+    # ToDo: we would cache this `params` because this is common in all model entities, but maybe trivial
+    h.session[:graph_parameter].try(:to_view_params)
+  end
+
+  def graph_parameter_list_params
+    # ToDo: we would cache this `params` because this is common in all model entities, but maybe trivial
+    h.session[:graph_parameter].try(:to_list_params)
   end
 
   def anchor_to(path = nil)
