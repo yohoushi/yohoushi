@@ -1,7 +1,7 @@
 class GraphsController < ApplicationController
   include Util
   before_action :set_root
-  before_action :set_graph, only: [:view_graph, :setup_graph]
+  before_action :set_graph, only: [:view_graph, :setup_graph, :update_graph, :delete_graph]
   before_action :set_graphs, only: [:list_graph, :tag_graph]
   before_action :set_graph_parameter, only: [:view_graph, :list_graph, :tag_graph]
   before_action :path_redirect, only: [:tree_graph, :view_graph, :list_graph]
@@ -30,6 +30,39 @@ class GraphsController < ApplicationController
   def tag_graph
     @tab = 'tag'
     render action: 'list_graph'
+  end
+
+  # PATCH/PUT /update_graph
+  def update_graph
+    begin
+      success = ActiveRecord::Base.transaction do
+        @graph.update(graph_params)
+        # $mfclient.edit_graph(@graph.path, update_params) # @todo
+      end
+    rescue => e
+      @graph.valid?
+    end
+
+    if success
+      redirect_to @graph.decorate.setup_graph_path, notice: 'Graph was successfully updated.'
+    else
+      redirect_to @graph.decorate.setup_graph_path, alert: 'Failed to update a graph.'
+    end
+  end
+
+  # DELETE /delete_graph
+  def delete_graph
+    begin
+      success = $mfclient.delete_graph(@graph.path)
+      # will not delete the entry in the yohoushi db here, yohoushi worker will delete it
+    rescue => e
+    end
+
+    if success
+      redirect_to @graph.parent.decorate.list_graph_path, notice: 'Graph was successfully deleted. Please wait for a while until the graph will be completely deleted.'
+    else
+      redirect_to @graph.decorate.setup_graph_path, alert: 'Failed to delete a graph.'
+    end
   end
 
   # GET /autocomplete_graph?term=xxx for ajax autocomplete
@@ -148,7 +181,7 @@ class GraphsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def graph_params
-    params.require(:graph).permit(:path, :description, :tag_list)
+    params.require(:graph).permit(:path, :description, :tag_list, :visible)
   end
 
   def set_children

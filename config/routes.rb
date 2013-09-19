@@ -5,6 +5,9 @@ Yohoushi::Application.routes.draw do
   get 'tree_graph/:path' => 'graphs#tree_graph', :constraints => { :path => /.+/ }, :as => 'tree_graph'
   get 'view_graph/:path' => 'graphs#view_graph', :constraints => { :path => /.+/ }, :as => 'view_graph'
   get 'setup_graph/:path' => 'graphs#setup_graph', :constraints => { :path => /.+/ }, :as => 'setup_graph'
+  put 'update_graph/:path' => 'graphs#update_graph', :constraints => { :path => /.+/ }, :as => 'update_graph'
+  patch 'update_graph/:path' => 'graphs#update_graph', :constraints => { :path => /.+/ }
+  delete 'delete_graph/:path' => 'graphs#delete_graph', :constraints => { :path => /.+/ }, :as => 'delete_graph'
   get 'list_graph' => 'graphs#list_graph', :as => 'list_graph_root'
   get 'list_graph/:path' => 'graphs#list_graph', :constraints => { :path => /.+/ }, :as => 'list_graph'
   get 'tag_graph' => 'graphs#tag_graph', :as => 'tag_graph_root'
