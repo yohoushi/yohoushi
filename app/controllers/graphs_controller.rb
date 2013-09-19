@@ -44,9 +44,9 @@ class GraphsController < ApplicationController
     end
 
     if success
-      redirect_to setup_graph_path(@graph.path), notice: 'Graph was successfully updated.'
+      redirect_to @graph.decorate.setup_graph_path, notice: 'Graph was successfully updated.'
     else
-      redirect_to setup_graph_path(@graph.path), alert: 'Failed to update a graph.'
+      redirect_to @graph.decorate.setup_graph_path, alert: 'Failed to update a graph.'
     end
   end
 
@@ -59,9 +59,9 @@ class GraphsController < ApplicationController
     end
 
     if success
-      redirect_to list_graph_path(@graph.parent.path), notice: 'Graph was successfully deleted. Please wait for a while.'
+      redirect_to @graph.parent.decorate.list_graph_path, notice: 'Graph was successfully deleted. Please wait for a while until the graph will be completely deleted.'
     else
-      redirect_to setup_graph_path(@graph.path), alert: 'Failed to delete a graph.'
+      redirect_to @graph.decorate.setup_graph_path, alert: 'Failed to delete a graph.'
     end
   end
 
