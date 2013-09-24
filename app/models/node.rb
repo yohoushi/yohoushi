@@ -2,6 +2,7 @@ class Node < ActiveRecord::Base
   has_ancestry cache_depth: true
   scope :without_roots, lambda { where.not(ancestry: nil) }
   scope :visible, lambda { where(visible: true) }
+  attr_accessor :has_graph_child
 
   def graph?
     type == "Graph"
@@ -14,6 +15,7 @@ class Node < ActiveRecord::Base
   alias :has_children? :section? # override `ancestry` to be more efficient
 
   def has_graph_child?
+    return @has_graph_child unless @has_graph_child.nil? # set by `#set_has_graph_child`
     children.select(:type).any? {|child| child.graph? }
   end
 
@@ -64,4 +66,12 @@ class Node < ActiveRecord::Base
     end
   end
 
+  # @param nodes [Array] array of nodes
+  def self.set_has_graph_child(nodes)
+    # select ancestry from nodes where ancestry IN ('1/1844/1845', '1/1844') and type = 'Graph' group by ancestry;
+    childrens = Node.where('ancestry IN (?)', nodes.map(&:path))
+    paths = childrens.where("type = 'Graph'").group(:ancestry).pluck(:ancestry)
+    hash = Hash[*paths.zip([true]*paths.size).flatten]
+    nodes.each {|node| node.has_graph_child = hash[node.path] || false }
+  end
 end
