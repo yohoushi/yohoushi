@@ -14,7 +14,7 @@ class Node < ActiveRecord::Base
   alias :has_children? :section? # override `ancestry` to be more efficient
 
   def has_graph_child?
-    children.any? {|child| child.graph? }
+    children.select(:type).any? {|child| child.graph? }
   end
 
   def dirname
