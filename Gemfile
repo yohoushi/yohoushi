@@ -48,6 +48,7 @@ group :development do
   gem 'better_errors' # sophisticated error view
   gem 'binding_of_caller' # add irb/pry on better_rails view
   gem 'bullet' # warn N+1 queries
+  gem 'rack-mini-profiler' # simple profiler
 end
 
 group :test do
