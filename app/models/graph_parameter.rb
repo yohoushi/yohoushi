@@ -80,21 +80,23 @@ class GraphParameter < ApplicationParameter
 
   # convert back to params
   def to_view_params
+    # Without || '', query parameters become like ?t=d&size=L
+    # With || '', query parameters become like ?to=&from=&t=d&size=L
     {
-      't'      => @t,
-      'from'   => @from,
-      'to'     => @to,
-      'size'   => @view_size,
+      't'      => @t || '',
+      'from'   => @from || '',
+      'to'     => @to || '',
+      'size'   => @view_size || '',
     }
   end
 
   # convert back to params
   def to_list_params
     {
-      't'      => @t,
-      'from'   => @from,
-      'to'     => @to,
-      'size'   => @list_size,
+      't'      => @t || '',
+      'from'   => @from || '',
+      'to'     => @to || '',
+      'size'   => @list_size || '',
     }
   end
 
