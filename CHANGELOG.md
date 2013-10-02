@@ -3,9 +3,9 @@
 Enhancement:
 
 * Add `Destory` button
-* Add `graph_parameter` query parameters to links
-* Add a config to link to `tree_graph`
-* Add a config to expand the accordion from the root to the nodes of specified depth
+* Add graph_parameter query parameters to links so that we can copy the URL and paste somewhere to see the same view later.
+* Add a config to link to tree_graph, accordion.link_to_tree_graph. Default: true
+* Add a config to expand the accordion from the root to the nodes of specified depth, accordion.initial_depth. Default: 1
  
 Fixes:
 
