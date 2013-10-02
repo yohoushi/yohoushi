@@ -1,3 +1,16 @@
+## 0.62.4 (2013/10/02)
+
+Enhancement:
+
+* Add `Destory` button
+* Add `graph_parameter` query parameters to links
+* Add a config to link to `tree_graph`
+* Add a config to expand the accordion from the root to the nodes of specified depth
+ 
+Fixes:
+
+* Fix tag autocomplete of <
+
 ## 0.62.3 (2013/08/24)
 
 Fixes:
