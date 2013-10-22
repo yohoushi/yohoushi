@@ -1,4 +1,4 @@
-require 'logger'
+require 'serverengine/daemon_logger'
 require 'yaml'
 ENV['RAILS_ENV']  ||= 'production'
 ENV['RAILS_ROOT'] ||= File.expand_path('../../..', __FILE__)
@@ -44,7 +44,7 @@ module Yohoushi
       end
     end
 
-    Logger.new(out, shift_age, shift_size).tap do |logger|
+    ServerEngine::DaemonLogger.new(out, log_rotate_age: shift_age, log_rotate_size: shift_size).tap do |logger|
       logger.formatter = block
       logger.level = eval("Logger::#{level.upcase}")
     end
