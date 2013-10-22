@@ -69,9 +69,10 @@ class Node < ActiveRecord::Base
   # @param nodes [Array] array of nodes
   def self.set_has_graph_child(nodes)
     # select ancestry from nodes where ancestry IN ('1/1844/1845', '1/1844') and type = 'Graph' group by ancestry;
-    childrens = Node.where('ancestry IN (?)', nodes.map(&:path))
+    # NOTE: We are overriding `path` method of ancestry gem, so have to construct it like `ancestry/id`
+    childrens = Node.where('ancestry IN (?)', nodes.map {|node| "#{node.ancestry}/#{node.id}" })
     paths = childrens.where("type = 'Graph'").group(:ancestry).pluck(:ancestry)
     hash = Hash[*paths.zip([true]*paths.size).flatten]
-    nodes.each {|node| node.has_graph_child = hash[node.path] || false }
+    nodes.each {|node| node.has_graph_child = hash["#{node.ancestry}/#{node.id}"] || false }
   end
 end
