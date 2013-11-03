@@ -154,7 +154,7 @@ class GraphsController < ApplicationController
       @tags = @tags.order('name ASC')
       if limit > 0 # limit == 0 if param[:limit] is non-integer string such as "null"
         @tags_has_more = tags_size > limit
-        @tags = @tags.order('count DESC').limit(limit)
+        @tags = @tags.limit(limit)
       end
       @tags
     end
