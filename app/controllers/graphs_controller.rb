@@ -139,6 +139,7 @@ class GraphsController < ApplicationController
     @autocomplete = @autocomplete.without_roots.visible.order('path ASC').limit(limit)
   end
 
+  # Set @tags to [Array<ActsAsTaggableOn::Tag>]
   def set_tags
     report_time(logger) do
       if params[:tag_list].present?
@@ -151,12 +152,11 @@ class GraphsController < ApplicationController
       end
 
       limit = params[:limit].try(:to_i) || Settings.try(:tagcloud).try(:limit) || 400
-      @tags = @tags.order('name ASC')
       if limit > 0 # limit == 0 if param[:limit] is non-integer string such as "null"
         @tags_has_more = tags_size > limit
-        @tags = @tags.limit(limit)
+        @tags = @tags.order('count DESC, name ASC').limit(limit)
       end
-      @tags
+      @tags = @tags.sort_by(&:name)
     end
   end
 
