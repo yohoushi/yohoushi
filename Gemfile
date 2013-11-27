@@ -33,7 +33,7 @@ gem 'multiforecast-client'
 gem 'acts-as-taggable-on' # tagging
 gem 'ancestry', git: 'https://github.com/sonots/ancestry.git', branch: 'yohoushi' # tree structured model
 gem "kaminari" # paginator
-gem 'rack-streaming-proxy', git: 'https://github.com/fredngo/rack-streaming-proxy', require: 'rack/streaming_proxy'
+gem 'rack-streaming-proxy', git: 'https://github.com/sonots/rack-streaming-proxy', require: 'rack/streaming_proxy'
 
 group :serverengine do
   gem 'serverengine'

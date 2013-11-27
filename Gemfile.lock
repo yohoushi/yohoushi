@@ -1,18 +1,18 @@
 GIT
-  remote: https://github.com/fredngo/rack-streaming-proxy
-  revision: 5a276317f3eee097f1a4d539425646027e4818bc
-  specs:
-    rack-streaming-proxy (1.6.0)
-      rack (>= 1.4)
-      servolux (~> 0.10)
-
-GIT
   remote: https://github.com/sonots/ancestry.git
   revision: 7d2764c8d04793c11800a1223da0d4593612e8e7
   branch: yohoushi
   specs:
     ancestry (2.0.0)
       activerecord (>= 3.0.0)
+
+GIT
+  remote: https://github.com/sonots/rack-streaming-proxy
+  revision: 5a276317f3eee097f1a4d539425646027e4818bc
+  specs:
+    rack-streaming-proxy (1.6.0)
+      rack (>= 1.4)
+      servolux (~> 0.10)
 
 GEM
   remote: https://rubygems.org/
