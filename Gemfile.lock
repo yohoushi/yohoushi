@@ -7,8 +7,8 @@ GIT
       activerecord (>= 3.0.0)
 
 GIT
-  remote: https://github.com/sonots/rack-streaming-proxy
-  revision: 5a276317f3eee097f1a4d539425646027e4818bc
+  remote: https://github.com/yohoushi/rack-streaming-proxy
+  revision: d0aec1ebf2ff56ae4a520188e386497d2eb526ef
   specs:
     rack-streaming-proxy (1.6.0)
       rack (>= 1.4)
