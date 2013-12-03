@@ -1,3 +1,9 @@
+## 0.72.0 (2013/12/03)
+
+Fixes:
+
+* Fix yohoushi did not work with the GrowthForecast-head. Fix to support Transfer-Encoding: chunked (HTTP 1.1) by rack-streaming-proxy. 
+
 ## 0.62.4 (2013/10/02)
 
 Enhancement:
