@@ -1,3 +1,9 @@
+## 0.72.1 (2013/12/04)
+
+Enhancement:
+
+* Update rails to 4.0.2 for sercurity fix
+
 ## 0.72.0 (2013/12/03)
 
 Fixes:
