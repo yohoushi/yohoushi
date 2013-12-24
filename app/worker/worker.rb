@@ -11,6 +11,7 @@ module Worker
   end
 
   def run
+    @stop = false
     logger.info "Yohoushi worker started."
     until @stop
       @processor.process
