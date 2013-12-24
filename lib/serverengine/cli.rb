@@ -32,7 +32,7 @@ module ServerEngine
     def start
       Bundler.require(:serverengine, ENV['RAILS_ENV'])
       load_enviroment(options[:require]) # load rails only in start
-      opts = @options.symbolize_keys.except(:require, :config, :interval, :module_name)
+      opts = @options.symbolize_keys.except(:require, :config, :module_name)
 
       se = ServerEngine.create(nil, @options["module_name"].constantize, opts)
       se.run
