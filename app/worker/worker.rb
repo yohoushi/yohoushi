@@ -1,6 +1,8 @@
 require 'serverengine'
 
 module Worker
+  include ::Util
+
   def initialize
     reload
   end
@@ -14,8 +16,7 @@ module Worker
     @stop = false
     logger.info "Yohoushi worker started."
     until @stop
-      @processor.process
-      sleep @sleep
+      wait(@sleep) { @processor.process }
     end
     logger.info "Yohoushi worker stopped."
   end
