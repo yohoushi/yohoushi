@@ -4,7 +4,7 @@ Yohoushi is for all users who love graphs. Documents are avialable at [gh-pages]
 
 ## Ruby version
 
-* ruby 2.0.0
+* ruby >= 2.0.0
 
 ## System dependencies
 
