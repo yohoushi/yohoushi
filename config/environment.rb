@@ -3,6 +3,7 @@ require File.expand_path('../application', __FILE__)
 
 require File.expand_path("#{Rails.root}/lib/yohoushi/logger")
 Rails.logger = Yohoushi.logger(out: 'log/application.log', shift_age: 3) # shift_age: 0 to stop logrotate
+Rack::StreamingProxy::Proxy.logger = Rails.logger
 
 # Hack: Load production.rb as default if #{ENV['RAILS_ENV']}.rb does not exist
 unless %w[production development test].include?(ENV['RAILS_ENV'])
