@@ -171,6 +171,7 @@ class GraphsController < ApplicationController
       @graphs = []
     end
     if @graphs.present?
+      params[:per] ||= Kaminari.config.default_per_page # to show &per= parameter on linked url as default
       @graphs = @graphs.page(params[:page]).per(params[:per])
     end
   end
