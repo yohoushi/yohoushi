@@ -1,3 +1,18 @@
+## 0.72.2 (2014/02/20)
+
+Enhancement:
+
+* Show &per= parameter on linked url
+* Change default_per_page to 120 and max_per_page to 600 to suit with 3 columns
+* And some enhancements
+
+Fixes:
+
+* Fix a bug which rack-streaming-proxy responses a broken chunked image data to HTTP/1.0 client
+* Fix that interval sleep was not effectively working
+* Fix so that worker can reboot if it receives USR1 or HUP
+* Fix Go button of Tag page unescapes tag_list
+
 ## 0.72.1 (2013/12/04)
 
 Enhancement:

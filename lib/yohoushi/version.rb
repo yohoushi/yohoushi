@@ -1,3 +1,3 @@
 module Yohoushi
-  VERSION = "0.62.1"
+  VERSION = "0.72.1"
 end
