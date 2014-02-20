@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/yohoushi/rack-streaming-proxy
-  revision: 9ac167b15dd03edff1dff33220d8fc3099353471
+  revision: 7815874640edcdf88add239a1e18ad97e34990b5
   specs:
     rack-streaming-proxy (1.6.0)
       rack (>= 1.4)
