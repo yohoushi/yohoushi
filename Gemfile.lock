@@ -83,7 +83,7 @@ GEM
     formatador (0.2.4)
     gem-open (0.1.6)
     god (0.13.2)
-    growthforecast-client (0.62.3)
+    growthforecast-client (0.80.1)
       httpclient
       thor
     guard (1.8.1)
@@ -124,8 +124,8 @@ GEM
     mime-types (1.25.1)
     minitest (4.7.5)
     multi_json (1.8.2)
-    multiforecast-client (0.72.0.1)
-      growthforecast-client (~> 0.62.0)
+    multiforecast-client (0.80.0.1)
+      growthforecast-client (>= 0.62.0)
     mysql2 (0.3.12)
     polyglot (0.3.3)
     pry (0.9.12.2)
