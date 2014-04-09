@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 4.1.0'
 # gem 'sqlite3' # Use sqlite (>= 3.6.16) as the database
-gem 'mysql2' # Use myql as the database
+gem 'mysql2', '~> 0.3.13' # Use myql as the database
 
 # When used sass-rails 4.0.0 with Rails4.1.0, rake assets:precompile exited with "undefined method `environment' for nil:NilClass"
 # To fix this, I updated it's version ~> 4.0.2
