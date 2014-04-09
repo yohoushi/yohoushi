@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.0.0'
+gem 'rails', '~> 4.1.0'
 # gem 'sqlite3' # Use sqlite (>= 3.6.16) as the database
 gem 'mysql2' # Use myql as the database
 
