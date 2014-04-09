@@ -181,10 +181,11 @@ GEM
       rspec-mocks (~> 2.13.0)
     safe_yaml (0.9.3)
     sass (3.2.9)
-    sass-rails (4.0.0)
-      railties (>= 4.0.0.beta, < 5.0)
-      sass (>= 3.1.10)
-      sprockets-rails (~> 2.0.0)
+    sass-rails (4.0.3)
+      railties (>= 4.0.0, < 5.0)
+      sass (~> 3.2.0)
+      sprockets (~> 2.8, <= 2.11.0)
+      sprockets-rails (~> 2.0)
     serverengine (1.5.6)
       sigdump (~> 0.2.2)
     servolux (0.10.0)
@@ -200,7 +201,7 @@ GEM
       slim (~> 2.0)
     slop (3.4.5)
     spring (1.1.2)
-    sprockets (2.12.0)
+    sprockets (2.11.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
@@ -274,7 +275,7 @@ DEPENDENCIES
   rack-streaming-proxy
   rails (~> 4.0.0)
   rspec-rails
-  sass-rails (~> 4.0.0)
+  sass-rails (~> 4.0.2)
   serverengine
   settingslogic
   slim
