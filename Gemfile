@@ -56,7 +56,8 @@ group :development do
 end
 
 group :test do
-  gem 'rspec-rails' # rails g rspec:model
+  # c.f. http://stackoverflow.com/questions/16867707/rails-4-and-rspec-undefined-method-assertions-in-routing-spec
+  gem 'rspec-rails', '~> 2.14.2' # rails g rspec:model
   gem 'webmock', :require => false
   gem 'guard-rspec' # automatically run specs
 end
