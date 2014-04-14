@@ -35,12 +35,15 @@ gem 'bootstrap-datetimepicker-rails'
 gem 'font-awesome-rails' # Font-Awesome web fonts
 # gem 'newrelic_rpm'
 
+# With rails 4.1.0, master branch is required
+# c.f. https://github.com/mbleigh/acts-as-taggable-on/pull/457
+gem 'acts-as-taggable-on', git: 'https://github.com/mbleigh/acts-as-taggable-on' # tagging
+
 gem 'draper' # decorator(view-model)
 gem 'acts_as_parameter_object' # Introduce parameter object, cf. Refactoring: Ruby Edition
 gem "settingslogic"
 gem 'growthforecast-client'
 gem 'multiforecast-client'
-gem 'acts-as-taggable-on' # tagging
 gem 'ancestry', git: 'https://github.com/sonots/ancestry.git', branch: 'yohoushi' # tree structured model
 gem "kaminari" # paginator
 gem 'rack-streaming-proxy', require: 'rack/streaming_proxy'

@@ -1,4 +1,13 @@
 GIT
+  remote: https://github.com/mbleigh/acts-as-taggable-on
+  revision: ab537a5a9dea478fbb52368c76b93985d1abe7de
+  specs:
+    acts-as-taggable-on (3.2.0.alpha)
+      actionpack (>= 3, < 5)
+      activerecord (>= 3, < 5)
+      activesupport (>= 3, < 5)
+
+GIT
   remote: https://github.com/seyhunak/twitter-bootstrap-rails.git
   revision: 663760e67b80ee25adc293bf5f03debae28b5af9
   specs:
@@ -45,12 +54,10 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
-    acts-as-taggable-on (2.4.1)
-      rails (>= 3, < 5)
     acts_as_parameter_object (0.0.1)
       activemodel
     addressable (2.3.5)
-    arel (5.0.0)
+    arel (5.0.1.20140414130214)
     better_errors (0.9.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -140,7 +147,7 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.2)
     mime-types (1.25.1)
-    minitest (5.3.2)
+    minitest (5.3.3)
     multi_json (1.9.2)
     multiforecast-client (0.80.0.2)
       growthforecast-client (>= 0.62.0)
@@ -263,7 +270,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  acts-as-taggable-on
+  acts-as-taggable-on!
   acts_as_parameter_object
   ancestry!
   better_errors
