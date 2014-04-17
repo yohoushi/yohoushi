@@ -16,9 +16,6 @@ God.watch do |w|
   # TERM to graceful stop, QUIT to stop
   w.stop = "kill -TERM `cat #{PID_DIR}/serverengine.pid`"
 
-  # USR1 to graceful restart, HUP to restart
-  w.restart = "kill -USR1 `cat #{PID_DIR}/serverengine.pid`"
-
   w.start_grace = 10.seconds
   w.restart_grace = 10.seconds
   w.pid_file = "#{PID_DIR}/serverengine.pid"
