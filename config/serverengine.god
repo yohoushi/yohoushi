@@ -4,6 +4,8 @@ RAILS_ENV     ||= ENV['RAILS_ENV'] ||= 'production'
 RAILS_ROOT    ||= ENV['RAILS_ROOT'] = File.expand_path('../..', __FILE__)
 PID_DIR       ||= "#{RAILS_ROOT}/log"
 BIN_PATH      ||= "#{RAILS_ROOT}/bin"
+
+settings = YAML.load_file("#{ENV['RAILS_ROOT']}/config/application.yml")[ENV['RAILS_ENV']]['serverengine'] || {}
  
 God.watch do |w|
   w.name = "serverengine"
@@ -28,7 +30,7 @@ God.watch do |w|
   # restart if memory gets too high
   w.transition(:up, :restart) do |on|
     on.condition(:memory_usage) do |c|
-      c.above = 350.megabytes
+      c.above = (settings['mem_thresh'] || 350).megabytes
       c.times = 2
     end
   end
