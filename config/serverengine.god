@@ -27,15 +27,10 @@ God.watch do |w|
  
   w.behavior(:clean_pid_file)
 
-  if settings['restart_monitoring']
+  if settings['restart_memory_usage']
     w.restart_if do |restart|
       restart.condition(:memory_usage) do |c|
-        c.above = (settings['restart_memory_usage'] || 350).megabytes
-        c.times = [3, 5] # 3 out of 5 intervals
-      end
-
-      restart.condition(:cpu_usage) do |c|
-        c.above = (settings['restart_cpu_usage'] || 50).percent
+        c.above = settings['restart_memory_usage'].megabytes
         c.times = [3, 5] # 3 out of 5 intervals
       end
     end

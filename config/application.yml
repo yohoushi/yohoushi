@@ -11,9 +11,7 @@ defaults: &defaults
     link_to_tree_graph: true # if false, link sections to only list_graph, no link_to tree_graph
   serverengine:
     # interval: 60 # worker running interval. default: 60
-    # restart_monitoring: true # enable the restart monitoring. default: false
-    # restart_memory_usage: 350 # restart if memory usage exceeds (M bytes). default: 350
-    # restart_cpu_usage: 50 # restart if cpu usage exceeds (percentage). default: 50
+    restart_memory_usage: 700 # restart if memory usage exceeds (M bytes). default: null(off)
 
 production:
   <<: *defaults
