@@ -5,6 +5,8 @@ RAILS_ROOT    ||= ENV['RAILS_ROOT'] = File.expand_path('../..', __FILE__)
 PID_DIR       ||= "#{RAILS_ROOT}/log"
 BIN_PATH      ||= "#{RAILS_ROOT}/bin"
 
+settings = YAML.load_file("#{ENV['RAILS_ROOT']}/config/application.yml")[ENV['RAILS_ENV']]['unicorn'] || {}
+
 God.watch do |w|
   w.name = "unicorn"
   w.group = "yohoushi"
@@ -32,18 +34,6 @@ God.watch do |w|
     start.condition(:process_running) do |c|
       c.interval = 5.seconds
       c.running = false
-    end
-  end
- 
-  w.restart_if do |restart|
-    restart.condition(:memory_usage) do |c|
-      c.above = 300.megabytes
-      c.times = [3, 5] # 3 out of 5 intervals
-    end
- 
-    restart.condition(:cpu_usage) do |c|
-      c.above = 50.percent
-      c.times = 5
     end
   end
  

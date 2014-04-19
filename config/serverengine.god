@@ -27,11 +27,12 @@ God.watch do |w|
  
   w.behavior(:clean_pid_file)
 
-  # restart if memory gets too high
-  w.transition(:up, :restart) do |on|
-    on.condition(:memory_usage) do |c|
-      c.above = (settings['mem_thresh'] || 350).megabytes
-      c.times = 2
+  if settings['restart_memory_usage']
+    w.restart_if do |restart|
+      restart.condition(:memory_usage) do |c|
+        c.above = settings['restart_memory_usage'].megabytes
+        c.times = [3, 5] # 3 out of 5 intervals
+      end
     end
   end
 

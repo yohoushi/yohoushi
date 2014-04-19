@@ -9,6 +9,9 @@ defaults: &defaults
   accordion:
     initial_depth: 1
     link_to_tree_graph: true # if false, link sections to only list_graph, no link_to tree_graph
+  serverengine:
+    # interval: 60 # worker running interval. default: 60
+    restart_memory_usage: 700 # restart if memory usage exceeds (M bytes). default: null(off)
 
 production:
   <<: *defaults
