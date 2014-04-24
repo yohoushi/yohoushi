@@ -1,4 +1,12 @@
 // @reference http://coder.blog.uhuru.co.jp/js/easy_accordion
+
+// Stop propagating click event to parent items
+$(function() {
+  $(document).on("click", '.accordion-head a', function(e) {
+    e.stopPropagation();
+  })
+});
+
 $(function() {
   $(document).on("click", '.accordion-head', function() {
     // Add/Remove opened status
