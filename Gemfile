@@ -23,12 +23,6 @@ gem 'god' # a process monitoring framework in ruby
 gem 'slim', :require => 'slim-rails'
 gem "slim-rails"
 
-# With rails 4.1.0, twitter-bootstrap-rails(<=2.2.8)'s bootstrap_flash helper 
-# method does not work due to change for flash's key handleing.
-# To make this work with Rails 4.1.0, temporally source from github.
-# c.f. https://github.com/seyhunak/twitter-bootstrap-rails/pull/706
-gem 'twitter-bootstrap-rails', git: 'https://github.com/seyhunak/twitter-bootstrap-rails.git'
-
 gem 'bootstrap-sass' # http://d.hatena.ne.jp/sandmark/20120321/1332292995
 gem 'bootswatch-rails'
 gem 'bootstrap-datetimepicker-rails'
