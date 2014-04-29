@@ -2,7 +2,7 @@
 require 'yaml'
 ENV['RAILS_ENV'] ||= 'production'
 ENV['RAILS_ROOT'] ||= File.expand_path('../../..', __FILE__)
-Bundler.require(:bin, ENV['RAILS_ENV'])
+Bundler.require(:bin)
 
 module ServerEngine
   class CLI < Thor
@@ -30,7 +30,7 @@ module ServerEngine
     option :log_stdout,                      :type => :boolean
     option :log_stderr,                      :type => :boolean
     def start
-      Bundler.require(:serverengine, ENV['RAILS_ENV'])
+      Bundler.require(:serverengine)
       load_enviroment(options[:require]) # load rails only in start
       opts = @options.symbolize_keys.except(:require, :config, :module_name)
 
