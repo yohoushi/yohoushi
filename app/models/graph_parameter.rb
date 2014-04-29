@@ -1,8 +1,11 @@
 class GraphParameter < ApplicationParameter
-  attr_reader :t, :from, :to
+  attr_reader :t, :from, :to, :lower_limit, :upper_limit
   alias :term :t
 
   SHORTABLE_TERMS = %w(c h 4h n 8h d 3d)
+
+  Y_GRID_LIMIT_UNITS = %w(K M G T)
+  Y_GRID_LIMIT_REGEXP = /\A(-?\d+)([#{Y_GRID_LIMIT_UNITS.join}]?)\Z/i
 
   def valid?
     self.errors.empty?
@@ -14,7 +17,7 @@ class GraphParameter < ApplicationParameter
 
   def update(params = {})
     self.errors.clear
-    params = params.slice(:t, :from, :to, :size, :action)
+    params = params.slice(:t, :from, :to, :size, :action, :lower_limit, :upper_limit)
 
     @t = params[:t].presence || @t || 'd'
 
@@ -47,6 +50,19 @@ class GraphParameter < ApplicationParameter
       @list_width   = GraphSettings.sizes[@list_size]['width']
       @list_height  = GraphSettings.sizes[@list_size]['height']
       @list_notitle = (@list_size == 'thumbnail')
+    end
+
+    if params.has_key?(:lower_limit)
+      @lower_limit = params[:lower_limit]
+      if @lower_limit.present? && @lower_limit !~ Y_GRID_LIMIT_REGEXP
+        self.errors.add(:lower_limit, 'is invalid.')
+      end
+    end
+    if params.has_key?(:upper_limit)
+      @upper_limit = params[:upper_limit]
+      if @upper_limit.present? && @upper_limit !~ Y_GRID_LIMIT_REGEXP
+        self.errors.add(:upper_limit, 'is invalid.')
+      end
     end
 
     self
@@ -83,10 +99,12 @@ class GraphParameter < ApplicationParameter
     # Without || '', query parameters become like ?t=d&size=L
     # With || '', query parameters become like ?to=&from=&t=d&size=L
     {
-      't'      => @t || '',
-      'from'   => @from || '',
-      'to'     => @to || '',
-      'size'   => @view_size || '',
+      't'           => @t || '',
+      'from'        => @from || '',
+      'to'          => @to || '',
+      'size'        => @view_size || '',
+      'lower_limit' => @lower_limit || '',
+      'upper_limit' => @upper_limit || '',
     }
   end
 
@@ -97,6 +115,8 @@ class GraphParameter < ApplicationParameter
       'from'   => @from || '',
       'to'     => @to || '',
       'size'   => @list_size || '',
+      'lower_limit' => @lower_limit || '',
+      'upper_limit' => @upper_limit || '',
     }
   end
 
@@ -108,6 +128,8 @@ class GraphParameter < ApplicationParameter
       'to'     => @to,
       'width'  => width,
       'height' => height,
+      'lower_limit' => parse_limit(@lower_limit),
+      'upper_limit' => parse_limit(@upper_limit),
     }
     params['notitle'] = '1' if notitle
     params
@@ -119,4 +141,25 @@ class GraphParameter < ApplicationParameter
     short_metrics = Settings.multiforecast.try(:short_metrics).nil? || Settings.multiforecast.try(:short_metrics)
     (short_metrics && SHORTABLE_TERMS.include?(@t)) ? "s#{@t}" : @t
   end
+
+  def parse_limit(str)
+    return nil unless str =~ Y_GRID_LIMIT_REGEXP
+    num  = $1
+    unit = $2
+    if unit.present?
+      case unit.downcase
+      when 'k'
+        num.to_i * 1_000
+      when 'm'
+        num.to_i * 1_000_000
+      when 'g'
+        num.to_i * 1_000_000_000
+      when 't'
+        num.to_i * 1_000_000_000_000
+      end
+    else
+      return num.to_i
+    end
+  end
+
 end
