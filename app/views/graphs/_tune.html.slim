@@ -17,4 +17,4 @@
     = text_field_tag 'upper_limit', @graph_parameter.upper_limit, :class => "input-small", :placeholder => "upper limit"
 
     = button_tag 'Submit', :class => 'btn', :name => ''
-    span.help-block Date time is treated as localtime. Suffix #{GraphParameter::Y_GRID_LIMIT_UNITS.to_sentence} are available in the lower/upper limit field.
+    span.help-block Date time is treated as localtime. Suffix #{GraphParameter::Y_GRID_LIMIT_UNITS.to_sentence} are available as unit in the lower/upper limit field.
