@@ -7,7 +7,9 @@ class Graph < Node
   # @return [Graph] graph object
   def self.find_or_create(params)
     super.tap do |graph|
-      graph.tag_list.add params[:path].split('/')
+      if Settings.graph.auto_tagging
+        graph.tag_list.add params[:path].split('/')
+      end
       graph.save!
     end
   end

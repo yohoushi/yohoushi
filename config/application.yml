@@ -12,6 +12,8 @@ defaults: &defaults
   serverengine:
     # interval: 60 # worker running interval. default: 60
     restart_memory_usage: 700 # restart if memory usage exceeds (M bytes). default: null(off)
+  graph:
+    auto_tagging: true
 
 production:
   <<: *defaults
