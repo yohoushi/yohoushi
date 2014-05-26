@@ -2,33 +2,39 @@ require 'spec_helper'
 
 describe Graph do
   describe "#find_or_create" do
+    before(:each) do
+      Settings.stub(:auto_tagging).and_return(auto_tagging)
+      Object.class_eval { remove_const :Graph }
+      load 'app/models/graph.rb'
+    end
+
     context "auto_tagging" do
       let(:path) { 'a/b/c' }
-      before { Settings.graph.stub(:auto_tagging).and_return(true) }
-      subject { described_class.find_or_create(path: path) }
+      let(:auto_tagging) { true }
+      subject { Graph.find_or_create(path: path) }
       it { expect(subject.tag_list).to eq path.split('/') }
     end
 
     context "additional auto_tagging" do
       let(:path) { 'a/b/c' }
       let(:tag) { 'foo' }
-      before { Settings.graph.stub(:auto_tagging).and_return(true) }
-      subject { described_class.find_or_create(path: path, tag_list: tag) }
+      let(:auto_tagging) { true }
+      subject { Graph.find_or_create(path: path, tag_list: tag) }
       it { expect(subject.tag_list).to eq ([tag] + path.split('/')) }
     end
 
     context "no auto_tagging" do
       let(:path) { 'a/b/c' }
-      before { Settings.graph.stub(:auto_tagging).and_return(false) }
-      subject { described_class.find_or_create(path: path) }
+      let(:auto_tagging) { false }
+      subject { Graph.find_or_create(path: path) }
       it { expect(subject.tag_list).to eq [] }
     end
 
     context "no additional auto_tagging" do
       let(:path) { 'a/b/c' }
       let(:tag) { 'foo' }
-      before { Settings.graph.stub(:auto_tagging).and_return(false) }
-      subject { described_class.find_or_create(path: path, tag_list: tag) }
+      let(:auto_tagging) { false }
+      subject { Graph.find_or_create(path: path, tag_list: tag) }
       it { expect(subject.tag_list).to eq ([tag]) }
     end
   end

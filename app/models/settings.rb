@@ -5,4 +5,8 @@ class Settings < Settingslogic
   def proxy
     has_key?('proxy') ? fetch('proxy') : true # default: true
   end
+
+  def auto_tagging
+    has_key?('auto_tagging') ? fetch('auto_tagging') : true # default: true
+  end
 end

@@ -7,12 +7,10 @@ class Graph < Node
   # @return [Graph] graph object
   def self.find_or_create(params)
     super.tap do |graph|
-      if Settings.try(:graph).try(:auto_tagging)
-        graph.tag_list.add params[:path].split('/')
-      end
+      graph.tag_list.add params[:path].split('/')
       graph.save!
     end
-  end
+  end if Settings.auto_tagging
 
   # Find difference between given array of paths and paths stored in DB
   #
