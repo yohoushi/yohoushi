@@ -10,7 +10,7 @@ class Graph < Node
       graph.tag_list.add params[:path].split('/')
       graph.save!
     end
-  end
+  end if Settings.auto_tagging
 
   # Find difference between given array of paths and paths stored in DB
   #
