@@ -8,21 +8,6 @@ describe Graph do
       load 'app/models/graph.rb'
     end
 
-    context "auto_tagging" do
-      let(:path) { 'a/b/c' }
-      let(:auto_tagging) { true }
-      subject { Graph.find_or_create(path: path) }
-      it { expect(subject.tag_list).to eq path.split('/') }
-    end
-
-    context "auto_tagging, with a tag" do
-      let(:path) { 'a/b/c' }
-      let(:tag) { 'foo' }
-      let(:auto_tagging) { true }
-      subject { Graph.find_or_create(path: path, tag_list: tag) }
-      it { expect(subject.tag_list).to eq ([tag] + path.split('/')) }
-    end
-
     context "no auto_tagging" do
       let(:path) { 'a/b/c' }
       let(:auto_tagging) { false }
@@ -36,6 +21,21 @@ describe Graph do
       let(:auto_tagging) { false }
       subject { Graph.find_or_create(path: path, tag_list: tag) }
       it { expect(subject.tag_list).to eq ([tag]) }
+    end
+
+    context "auto_tagging" do
+      let(:path) { 'a/b/c' }
+      let(:auto_tagging) { true }
+      subject { Graph.find_or_create(path: path) }
+      it { expect(subject.tag_list).to eq path.split('/') }
+    end
+
+    context "auto_tagging, with a tag" do
+      let(:path) { 'a/b/c' }
+      let(:tag) { 'foo' }
+      let(:auto_tagging) { true }
+      subject { Graph.find_or_create(path: path, tag_list: tag) }
+      it { expect(subject.tag_list).to eq ([tag] + path.split('/')) }
     end
   end
 
