@@ -15,7 +15,7 @@ describe Graph do
       it { expect(subject.tag_list).to eq path.split('/') }
     end
 
-    context "additional auto_tagging" do
+    context "auto_tagging, with a tag" do
       let(:path) { 'a/b/c' }
       let(:tag) { 'foo' }
       let(:auto_tagging) { true }
@@ -30,7 +30,7 @@ describe Graph do
       it { expect(subject.tag_list).to eq [] }
     end
 
-    context "no additional auto_tagging" do
+    context "no auto_tagging, with a tag" do
       let(:path) { 'a/b/c' }
       let(:tag) { 'foo' }
       let(:auto_tagging) { false }
