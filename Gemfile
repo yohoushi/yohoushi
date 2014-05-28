@@ -29,9 +29,7 @@ gem 'bootstrap-datetimepicker-rails'
 gem 'font-awesome-rails' # Font-Awesome web fonts
 # gem 'newrelic_rpm'
 
-# With rails 4.1.0, master branch is required
-# c.f. https://github.com/mbleigh/acts-as-taggable-on/pull/457
-gem 'acts-as-taggable-on', git: 'https://github.com/mbleigh/acts-as-taggable-on' # tagging
+gem 'acts-as-taggable-on', '~> 3.2.5'
 
 gem 'draper' # decorator(view-model)
 gem 'acts_as_parameter_object' # Introduce parameter object, cf. Refactoring: Ruby Edition
