@@ -1,9 +1,14 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.0.0'
+gem 'rails', '~> 4.1.0'
 # gem 'sqlite3' # Use sqlite (>= 3.6.16) as the database
-gem 'mysql2' # Use myql as the database
-gem 'sass-rails', '~> 4.0.0'
+gem 'mysql2', '~> 0.3.13' # Use myql as the database
+
+# When used sass-rails 4.0.0 with Rails4.1.0, rake assets:precompile exited with "undefined method `environment' for nil:NilClass"
+# To fix this, I updated it's version ~> 4.0.2
+# c.f. http://stackoverflow.com/questions/22392862/undefined-method-environment-for-nilnilclass-when-importing-bootstrap
+gem 'sass-rails', '~> 4.0.2' 
+
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0' # compressor for JavaScript assets
 gem 'therubyracer', platforms: :ruby # Embeded V8 Javascript Interpreter (required for sprockets, asset pipeline)
@@ -17,19 +22,20 @@ gem 'god' # a process monitoring framework in ruby
 
 gem 'slim', :require => 'slim-rails'
 gem "slim-rails"
-gem 'twitter-bootstrap-rails'
+
 gem 'bootstrap-sass' # http://d.hatena.ne.jp/sandmark/20120321/1332292995
 gem 'bootswatch-rails'
 gem 'bootstrap-datetimepicker-rails'
 gem 'font-awesome-rails' # Font-Awesome web fonts
 # gem 'newrelic_rpm'
 
+gem 'acts-as-taggable-on', '~> 3.2.5'
+
 gem 'draper' # decorator(view-model)
 gem 'acts_as_parameter_object' # Introduce parameter object, cf. Refactoring: Ruby Edition
 gem "settingslogic"
 gem 'growthforecast-client'
 gem 'multiforecast-client'
-gem 'acts-as-taggable-on' # tagging
 gem 'ancestry', git: 'https://github.com/sonots/ancestry.git', branch: 'yohoushi' # tree structured model
 gem "kaminari" # paginator
 gem 'rack-streaming-proxy', require: 'rack/streaming_proxy'
@@ -51,7 +57,8 @@ group :development do
 end
 
 group :test do
-  gem 'rspec-rails' # rails g rspec:model
+  # c.f. http://stackoverflow.com/questions/16867707/rails-4-and-rspec-undefined-method-assertions-in-routing-spec
+  gem 'rspec-rails', '~> 2.14.2' # rails g rspec:model
   gem 'webmock', :require => false
   gem 'guard-rspec' # automatically run specs
 end

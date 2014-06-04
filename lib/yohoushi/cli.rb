@@ -146,6 +146,7 @@ begin
   else
     puts "Sending output to log file: #{File.expand_path('log/application.log', ENV['RAILS_ROOT'])}" # yohoushi custom
     system "#{File.expand_path('bin/rake', ENV['RAILS_ROOT'])} assets:precompile" # yohoushi custom
+    system "#{File.expand_path('bin/rake', ENV['RAILS_ROOT'])} db:migrate"        # yohoushi custom
     require 'god/cli/run'
     require File.expand_path('vendor/extensions/god/cli/run', ENV['RAILS_ROOT']) # yohoushi custom
     God::CLI::Run.new(options)
