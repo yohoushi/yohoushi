@@ -37,12 +37,6 @@ describe Graph do
       subject { Graph.find_or_create(path: path, tag_list: tag) }
       it { expect(subject.tag_list).to eq ([tag] + path.split('/')) }
     end
-
-    after(:all) do
-      Settings.stub(:auto_tagging).and_return(true)
-      Object.class_eval { remove_const :Graph }
-      load 'app/models/graph.rb'
-    end
   end
 
   describe "#find_diff" do
