@@ -1,9 +1,18 @@
+= bootstrap_flash
 p style="font-size:x-large"
   | Select Tags (AND)
 form class="form-search" id="tagselect-form"
   input type="text" name="tag_list" id="tagselect" class="span8" data-placeholder="Type Tag" data-tagselect=tagselect_graph_path value=params[:tag_list]
-  button type="submit" class="btn" id="tagselect-button"
-    | Go
+  div class="btn-group"
+    button type="submit" class="btn" id="tagselect-button" Go
+    button class="btn dropdown-toggle" data-toggle="dropdown" href="#"
+      | Action
+      span class="caret" /
+    ul class="dropdown-menu"
+      - if params[:tag_list].present?
+        li = link_to "Delete graphs associated with the selected tags", url_for(), method: :delete, confirm: 'Are you sure?'
+      - else
+        li class="disabled" Delete graphs associated with the selected tags
 div class="tagcloud"
   - @tags.each do |tag|
     = link_to tag.name, "#", :name => tag.name, :class => "label tag"

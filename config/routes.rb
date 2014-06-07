@@ -12,6 +12,7 @@ Yohoushi::Application.routes.draw do
   get 'list_graph/:path' => 'graphs#list_graph', :constraints => { :path => /.+/ }, :as => 'list_graph'
   get 'tag_graph' => 'graphs#tag_graph', :as => 'tag_graph_root'
   get 'tag_graph/:tag_list' => 'graphs#tag_graph', :constraints => { :tag_list => /.+/ }, :as => 'tag_graph'
+  delete 'tag_graph/:tag_list' => 'graphs#delete_tag_graph', :constraints => { :tag_list => /.+/ }, :as => 'delete_tag_graph'
   get 'autocomplete_graph' => 'graphs#autocomplete_graph', :as => 'autocomplete_graph'
   get 'tagselect_graph' => 'graphs#tagselect_graph', :as => 'tagselect_graph'
   get 'accordion_graph' => 'graphs#accordion_graph', :as => 'accordion_graph'

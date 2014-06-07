@@ -23,6 +23,7 @@ describe GraphsController do
     it "routes to #tag_graphh" do
       get("/tag_graph").should route_to("graphs#tag_graph")
       get("/tag_graph/tag_list").should route_to("graphs#tag_graph", :tag_list => "tag_list")
+      delete("/tag_graph/tag_list").should route_to("graphs#delete_tag_graph", :tag_list => "tag_list")
     end
 
     it "routes to #autocomplete_graph" do
