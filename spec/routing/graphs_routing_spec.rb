@@ -15,12 +15,12 @@ describe GraphsController do
       get("/setup_graph/path").should route_to("graphs#setup_graph", :path => "path")
     end
 
-    it "routes to #list_graphh" do
+    it "routes to #list_graph" do
       get("/list_graph").should route_to("graphs#list_graph")
       get("/list_graph/path").should route_to("graphs#list_graph", :path => "path")
     end
 
-    it "routes to #tag_graphh" do
+    it "routes to #tag_graph" do
       get("/tag_graph").should route_to("graphs#tag_graph")
       get("/tag_graph/tag_list").should route_to("graphs#tag_graph", :tag_list => "tag_list")
       delete("/tag_graph/tag_list").should route_to("graphs#delete_tag_graph", :tag_list => "tag_list")
