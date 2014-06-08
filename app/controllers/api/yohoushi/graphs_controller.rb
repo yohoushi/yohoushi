@@ -1,5 +1,4 @@
-module Api
-module Yohoushi
+module Api::Yohoushi
   class GraphsController < ApplicationController
     before_action :set_graph, only: [:show, :update]
 
@@ -33,5 +32,4 @@ module Yohoushi
     end
 
   end
-end
 end
