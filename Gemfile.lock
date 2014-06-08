@@ -42,6 +42,10 @@ GEM
       activemodel
     addressable (2.3.5)
     arel (5.0.1.20140414130214)
+    autodoc (0.3.6)
+      actionpack
+      activesupport (>= 3.0.0)
+      rspec
     better_errors (0.9.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -257,6 +261,7 @@ DEPENDENCIES
   acts-as-taggable-on (~> 3.2.5)
   acts_as_parameter_object
   ancestry!
+  autodoc
   better_errors
   binding_of_caller
   bootstrap-datetimepicker-rails
