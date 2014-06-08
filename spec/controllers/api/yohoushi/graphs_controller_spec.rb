@@ -32,7 +32,7 @@ describe Api::Yohoushi::GraphsController do
   describe "PUT update" do
     context "with valid params" do
       let(:new_description) { description + ' update' }
-      let(:new_tag_list) { 'a,b,c' }
+      let(:new_tag_list) { %w(a b c) }
       let(:new_visible) { false }
       let(:attr) { { "description" => new_description, "tag_list" => new_tag_list, "visible" => new_visible } }
       it "updates the requested graph" do

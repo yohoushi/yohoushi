@@ -62,7 +62,15 @@ Updates a graph.
 PUT /api/yohoushi/graphs/path/to/graph HTTP/1.1
 
 
-description=test+update&tag_list=a%2Cb%2Cc&visible=false
+{
+  "description": "test update",
+  "tag_list": [
+    "a",
+    "b",
+    "c"
+  ],
+  "visible": false
+}
 ```
 
 #### Response

@@ -45,11 +45,11 @@ describe "/api/yohoushi/graphs" do
  
   describe "PUT /api/yohoushi/graphs/path/to/graph" do
     let(:new_desc) { desc + ' update' }
-    let(:new_tag_list) { "a,b,c" }
+    let(:new_tag_list) { %w(a b c) }
     let(:new_visible) { false }
-    let(:attr) { { 'description' => new_desc, 'tag_list' => new_tag_list, 'visible' => new_visible } }
+    let(:json) { { 'description' => new_desc, 'tag_list' => new_tag_list, 'visible' => new_visible }.to_json }
     before do
-      put api_yohoushi_graphs_path + '/' + graph.path, attr
+      put api_yohoushi_graphs_path + '/' + graph.path, json, {'CONTENT_TYPE' => 'application/json' }
     end
     it "Updates a graph", autodoc: true do
       expect(response.status).to be 200
@@ -60,7 +60,7 @@ describe "/api/yohoushi/graphs" do
     it "response has expected params" do
       expect(parsed_body['path']).to eq path
       expect(parsed_body['description']).to eq new_desc
-      expect(parsed_body['tag_list']).to eq new_tag_list.split(/,/)
+      expect(parsed_body['tag_list']).to eq new_tag_list
       expect(parsed_body['visible']).to eq new_visible
     end
   end

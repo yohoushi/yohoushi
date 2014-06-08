@@ -29,7 +29,7 @@ module Yohoushi
     end
 
     def graph_params
-      params.permit(:description, :tag_list, :visible)
+      params.permit(:description, {tag_list: []}, :visible)
     end
 
   end
