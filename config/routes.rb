@@ -41,6 +41,15 @@ Yohoushi::Application.routes.draw do
         delete ':path' => 'complexes#destroy'
       end
     end
+
+    namespace :yohoushi do
+      resources :graphs, :only => %w[index], :constraints => { :path => /.+/ }, :defaults => {:format => 'json'}  do
+        collection do
+          get    ':path' => 'graphs#show'
+          put    ':path' => 'graphs#update'
+        end
+      end
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
