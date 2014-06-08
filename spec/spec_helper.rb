@@ -17,6 +17,10 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
+# autodoc
+Autodoc.configuration.suppressed_request_header = %w(Host Content-Length Content-Type Accept)
+Autodoc.configuration.suppressed_response_header = %w(Content-Length Cache-Control ETag X-Content-Type-Options X-Frame-Options X-Request-Id X-Runtime X-XSS-Protection)
+
 RSpec.configure do |config|
   # ## Mock Framework
   #

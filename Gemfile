@@ -61,6 +61,7 @@ group :test do
   gem 'rspec-rails', '~> 2.14.2' # rails g rspec:model
   gem 'webmock', :require => false
   gem 'guard-rspec' # automatically run specs
+  gem 'autodoc'
 end
 
 group :development, :test do
