@@ -7,7 +7,7 @@ form class="form-search" id="tagselect-form"
     button type="submit" class="btn" id="tagselect-button" Go
     - if params[:tag_list].present?
       = link_to  url_for(), method: :delete, confirm: 'Are you sure?' do
-        button class="btn btn-danger"  Delete tagged graphs
+        button class="btn" Delete tagged graphs
 div class="tagcloud"
   - @tags.each do |tag|
     = link_to tag.name, "#", :name => tag.name, :class => "label tag"
