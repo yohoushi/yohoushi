@@ -5,14 +5,9 @@ form class="form-search" id="tagselect-form"
   input type="text" name="tag_list" id="tagselect" class="span8" data-placeholder="Type Tag" data-tagselect=tagselect_graph_path value=params[:tag_list]
   div class="btn-group"
     button type="submit" class="btn" id="tagselect-button" Go
-    button class="btn dropdown-toggle" data-toggle="dropdown" href="#"
-      | Action
-      span class="caret" /
-    ul class="dropdown-menu"
-      - if params[:tag_list].present?
-        li = link_to "Delete tagged graphs", url_for(), method: :delete, confirm: 'Are you sure?'
-      - else
-        li class="disabled" Delete tagged graphs
+    - if params[:tag_list].present?
+      = link_to  url_for(), method: :delete, confirm: 'Are you sure?' do
+        button class="btn btn-danger"  Delete tagged graphs
 div class="tagcloud"
   - @tags.each do |tag|
     = link_to tag.name, "#", :name => tag.name, :class => "label tag"
