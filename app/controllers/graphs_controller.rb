@@ -40,7 +40,7 @@ class GraphsController < ApplicationController
     @graphs.each do |graph|
       $mfclient.delete_graph(graph.path) rescue nil
     end
-    @graphs.delete_all # NOTE: #delete_all does not invoke callbacks
+    # will not delete the entry in the yohoushi db here, yohoushi worker will delete it
     redirect_to tag_graph_root_path, notice: "Graphs tagged with #{tag_list.to_sentence} were successfully deleted."
   end
 
