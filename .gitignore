@@ -4,4 +4,6 @@ db/
 log/
 tmp/
 .rbenv-version
+.ruby-version
+public/
 vendor/
