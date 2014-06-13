@@ -92,6 +92,14 @@ header h2 {
   letter-spacing: 0;
 }
 
+header h1 a {
+  color: #fff;
+}
+
+header h1 a:hover {
+  color: #fff;
+}
+
 .inner {
   position: relative;
   width: 940px;
