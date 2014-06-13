@@ -12,3 +12,13 @@ a.tag:hover { color: #555; }
 .css2 { font-size: 1.2em; }
 .css3 { font-size: 1.4em; }
 .css4 { font-size: 1.6em; }
+
+// styles for the "delete tagged graphs" button
+.tagcloud { clear: both; }
+.delete-tagged-graphs { float: right; }
+.btn-delete-tagged-graphs {
+  // Make font-size, padding and line-heigt fit in with `.label`
+  font-size: 12.69px;
+  padding: 0 4px;
+  line-height: 14px
+}

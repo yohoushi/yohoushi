@@ -9,7 +9,7 @@ $(function() {
         singleFieldDelimiter: ","
     });
     $('.tagit').addClass('span8');
-    $(".tagcloud a").click(function(event){
+    $(".tagcloud > a").click(function(event){
         $("#tagselect").tagit("createTag", event.target.name);
         $('#tagselect-button').focus();
         return false;
