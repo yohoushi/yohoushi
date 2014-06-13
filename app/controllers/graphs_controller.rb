@@ -41,7 +41,7 @@ class GraphsController < ApplicationController
       $mfclient.delete_graph(graph.path) rescue nil
     end
     # will not delete the entry in the yohoushi db here, yohoushi worker will delete it
-    redirect_to tag_graph_root_path, notice: "Graphs tagged with #{tag_list.to_sentence} were successfully deleted."
+    redirect_to tag_graph_root_path, notice: "Graphs tagged with #{tag_list.to_sentence} will be deleted by worker soon."
   end
 
   # PATCH/PUT /update_graph
