@@ -10,7 +10,7 @@ div class="tagcloud"
     = " "
   - if params[:tag_list].present?
     div class="delete-tagged-graphs"
-      = link_to "Delete tagged graphs", url_for(), class: 'btn btn-delete-tagged-graphs', method: :delete, confirm: 'Are you sure?'
+      = link_to "Delete tagged graphs", url_for(), class: 'btn btn-danger btn-delete-tagged-graphs', method: :delete, confirm: 'Are you sure?'
 - if @tags_has_more
   div class="tagcloud-more"
     | Too many tags 
