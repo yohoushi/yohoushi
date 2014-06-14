@@ -3,7 +3,6 @@ ENV["RAILS_ENV"] ||= 'test'
 ENV['MOCK'] ||= 'on'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
-require 'rspec/autorun'
 require 'multiforecast-client'
 require 'multiforecast/shared_context'
 require 'webmock/rspec'
