@@ -60,6 +60,7 @@ group :test do
   # c.f. http://stackoverflow.com/questions/16867707/rails-4-and-rspec-undefined-method-assertions-in-routing-spec
   gem 'rspec-rails', '~> 2.99.0' # rails g rspec:model
   gem 'rspec-its'
+  gem 'rspec-activemodel-mocks'
   gem 'webmock', :require => false
   gem 'guard-rspec' # automatically run specs
   gem 'autodoc'
