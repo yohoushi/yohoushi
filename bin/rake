@@ -1,6 +1,10 @@
 #!/usr/bin/env ruby
+
+ENV['RAILS_ENV'] ||= "production"
 begin
-  load File.expand_path("../spring", __FILE__)
+  if ENV['RAILS_ENV'] == 'development' || ENV['RAILS_ENV'] == 'test'
+    load File.expand_path("../spring", __FILE__)
+  end
 rescue LoadError
 end
 require_relative '../config/boot'
