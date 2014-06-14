@@ -58,6 +58,11 @@ RSpec.configure do |config|
   #       # Equivalent to being in spec/controllers
   #     end
   config.infer_spec_type_from_file_location!
+ 
+  # Disable monkey-patched old should syntax             
+  config.expect_with :rspec do |c|
+    c.syntax = :expect
+  end                                                    
 end
 
 def mfclient
