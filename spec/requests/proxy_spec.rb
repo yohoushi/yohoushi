@@ -8,7 +8,7 @@ shared_examples_for "correct_proxy_graph" do
     stub_request(:get, expected).to_return(status: 200)
     get("graph/#{escaped_path}", params)
   end
-  it { should == 200 }
+  it { is_expected.to eq(200) }
 end
 
 shared_examples_for "correct_proxy_complex" do
@@ -18,7 +18,7 @@ shared_examples_for "correct_proxy_complex" do
     stub_request(:get, expected).to_return(status: 200)
     get("complex/#{escaped_path}", params)
   end
-  it { should == 200 }
+  it { is_expected.to eq(200) }
 end
 
 describe "proxy_graph" do

@@ -37,7 +37,7 @@ describe Debug::GraphsController do
     it "assigns all graphs as @graphs" do
       graph = Graph.create! valid_attributes
       get :index, {}, valid_session
-      assigns(:graphs).should eq([graph])
+      expect(assigns(:graphs)).to eq([graph])
     end
   end
 
@@ -45,14 +45,14 @@ describe Debug::GraphsController do
     it "assigns the requested graph as @graph" do
       graph = Graph.create! valid_attributes
       get :show, {:id => graph.to_param}, valid_session
-      assigns(:graph).should eq(graph)
+      expect(assigns(:graph)).to eq(graph)
     end
   end
 
   describe "GET new" do
     it "assigns a new graph as @graph" do
       get :new, {}, valid_session
-      assigns(:graph).should be_a_new(Graph)
+      expect(assigns(:graph)).to be_a_new(Graph)
     end
   end
 
@@ -60,7 +60,7 @@ describe Debug::GraphsController do
     it "assigns the requested graph as @graph" do
       graph = Graph.create! valid_attributes
       get :edit, {:id => graph.to_param}, valid_session
-      assigns(:graph).should eq(graph)
+      expect(assigns(:graph)).to eq(graph)
     end
   end
 
@@ -74,29 +74,29 @@ describe Debug::GraphsController do
 
       it "assigns a newly created graph as @graph" do
         post :create, {:graph => valid_attributes}, valid_session
-        assigns(:graph).should be_a(Graph)
-        assigns(:graph).should be_persisted
+        expect(assigns(:graph)).to be_a(Graph)
+        expect(assigns(:graph)).to be_persisted
       end
 
       it "redirects to the created graph" do
         post :create, {:graph => valid_attributes}, valid_session
-        response.should redirect_to(Graph.last)
+        expect(response).to redirect_to(Graph.last)
       end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved graph as @graph" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Graph.any_instance.stub(:save!).and_raise(ActiveRecord::StatementInvalid)
+        allow_any_instance_of(Graph).to receive(:save!).and_raise(ActiveRecord::StatementInvalid)
         post :create, {:graph => { "path" => "invalid value" }}, valid_session
-        assigns(:graph).should be_a_new(Graph)
+        expect(assigns(:graph)).to be_a_new(Graph)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Graph.any_instance.stub(:save!).and_raise(ActiveRecord::StatementInvalid)
+        allow_any_instance_of(Graph).to receive(:save!).and_raise(ActiveRecord::StatementInvalid)
         post :create, {:graph => { "path" => "invalid value" }}, valid_session
-        response.should render_template("new")
+        expect(response).to render_template("new")
       end
     end
   end
@@ -109,20 +109,20 @@ describe Debug::GraphsController do
         # specifies that the Graph created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Graph.any_instance.should_receive(:update).with({ "path" => "MyString" })
+        expect_any_instance_of(Graph).to receive(:update).with({ "path" => "MyString" })
         put :update, {:id => graph.to_param, :graph => { "path" => "MyString" }}, valid_session
       end
 
       it "assigns the requested graph as @graph" do
         graph = Graph.create! valid_attributes
         put :update, {:id => graph.to_param, :graph => valid_attributes}, valid_session
-        assigns(:graph).should eq(graph)
+        expect(assigns(:graph)).to eq(graph)
       end
 
       it "redirects to the graph" do
         graph = Graph.create! valid_attributes
         put :update, {:id => graph.to_param, :graph => valid_attributes}, valid_session
-        response.should redirect_to(graph)
+        expect(response).to redirect_to(graph)
       end
     end
 
@@ -130,17 +130,17 @@ describe Debug::GraphsController do
       it "assigns the graph as @graph" do
         graph = Graph.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Graph.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Graph).to receive(:save).and_return(false)
         put :update, {:id => graph.to_param, :graph => { "path" => "invalid value" }}, valid_session
-        assigns(:graph).should eq(graph)
+        expect(assigns(:graph)).to eq(graph)
       end
 
       it "re-renders the 'edit' template" do
         graph = Graph.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Graph.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Graph).to receive(:save).and_return(false)
         put :update, {:id => graph.to_param, :graph => { "path" => "invalid value" }}, valid_session
-        response.should render_template("edit")
+        expect(response).to render_template("edit")
       end
     end
   end
@@ -156,7 +156,7 @@ describe Debug::GraphsController do
     it "redirects to the graphs list" do
       graph = Graph.create! valid_attributes
       delete :destroy, {:id => graph.to_param}, valid_session
-      response.should redirect_to(graphs_url)
+      expect(response).to redirect_to(graphs_url)
     end
   end
 

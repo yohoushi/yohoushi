@@ -15,7 +15,7 @@ describe Api::GraphsController do
   describe "GET index" do
     it "assigns all graphs as @graphs" do
       get :index, {:format => 'json'}, valid_session
-      assigns(:graphs).should eq(graphs)
+      expect(assigns(:graphs)).to eq(graphs)
     end
   end
 
@@ -23,7 +23,7 @@ describe Api::GraphsController do
     it "assigns the requested graph as @graph" do
       get :show, {:path => graph["path"], :format => 'json'}, valid_session
       expected = mfclient.get_graph(graph['path'])
-      assigns(:graph).should eq(expected)
+      expect(assigns(:graph)).to eq(expected)
     end
   end
 
@@ -35,7 +35,7 @@ describe Api::GraphsController do
     describe "with valid params" do
       it "creates a new Graph" do
         post :create, {:path => graph["path"], :number => 0, :format => 'json'}, valid_session
-        response.should be_success
+        expect(response).to be_success
         mfclient.delete_graph(graph['path'])
       end
     end
@@ -49,7 +49,7 @@ describe Api::GraphsController do
     it "destroys the requested graph" do
       post :create, {:path => graph["path"], :number => 0, :format => 'json'}, valid_session
       delete :destroy, {:path => graph["path"], :format => 'json'}, valid_session
-      response.should be_success
+      expect(response).to be_success
     end
   end
 
@@ -65,7 +65,7 @@ describe Api::GraphsController do
       }
       it "assigns the requested graph as @graph" do
         put :update, {:path => graph['path'], :format => 'json'}.merge(params), valid_session
-        assigns(:graph).should eq({'error'=>0})
+        expect(assigns(:graph)).to eq({'error'=>0})
       end
     end
   end

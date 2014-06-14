@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Graph do
   describe "#find_or_create" do
     before(:each) do
-      Settings.stub(:auto_tagging).and_return(auto_tagging)
+      allow(Settings).to receive(:auto_tagging).and_return(auto_tagging)
       Object.class_eval { remove_const :Graph }
       load 'app/models/graph.rb'
     end

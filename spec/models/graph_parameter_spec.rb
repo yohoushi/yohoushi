@@ -166,7 +166,7 @@ describe GraphParameter do
     end
     context "short_metrics is true" do
       before do
-        Settings.multiforecast.stub(:short_metrics).and_return(true)
+        allow(Settings.multiforecast).to receive(:short_metrics).and_return(true)
       end
       SHORTABLE_TERMS.each do |t|
         context "params['t'] => #{t}" do
@@ -183,7 +183,7 @@ describe GraphParameter do
     end
     context "short_metrics is false" do
       before do
-        Settings.multiforecast.stub(:short_metrics).and_return(false)
+        allow(Settings.multiforecast).to receive(:short_metrics).and_return(false)
       end
       (SHORTABLE_TERMS + NORMAL_TERMS).each do |t|
         context "params['t'] => #{t}" do

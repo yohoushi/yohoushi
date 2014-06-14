@@ -10,6 +10,6 @@ describe "debug/graphs/show" do
   it "renders attributes in <p>" do
     render
     # Run the generator again with the --webrat flag if you want to use webrat matchers
-    rendered.should match(/Path/)
+    expect(rendered).to match(/Path/)
   end
 end
