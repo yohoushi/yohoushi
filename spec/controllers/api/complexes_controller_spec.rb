@@ -18,7 +18,7 @@ describe Api::ComplexesController do
           mfclient.delete_complex(to_complex['path']) rescue nil
           post :create, {:format => 'json'}.merge(to_complex).merge({'data'=>from_graphs}), valid_session
           mfclient.delete_complex(to_complex['path']) rescue nil
-          response.should be_success
+          expect(response).to be_success
         end
       end
     end
@@ -27,7 +27,7 @@ describe Api::ComplexesController do
       it "destroys the requested complex" do
         post :create, {:format => 'json'}.merge(to_complex).merge({'data'=>from_graphs}), valid_session
         delete :destroy, {:path => to_complex["path"], :format => 'json'}, valid_session
-        response.should be_success
+        expect(response).to be_success
       end
     end
   end
@@ -40,7 +40,7 @@ describe Api::ComplexesController do
       let(:complexes) { mfclient.list_complex }
       it "assigns all complexes as @complexes" do
         get :index, {:format => 'json'}, valid_session
-        assigns(:complexes).should eq(complexes)
+        expect(assigns(:complexes)).to eq(complexes)
       end
     end
 
@@ -49,7 +49,7 @@ describe Api::ComplexesController do
       let(:complex) { mfclient.get_complex(to_complex["path"]) }
       it "assigns the requested complex as @complex" do
         get :show, {:path => to_complex["path"], :format => 'json'}, valid_session
-        assigns(:complex).should eq(complex)
+        expect(assigns(:complex)).to eq(complex)
       end
     end
   end

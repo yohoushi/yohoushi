@@ -18,14 +18,14 @@ describe Api::Yohoushi::GraphsController do
   describe "GET index" do
     it "assigns all graphs as @graphs" do
       get :index, {}, valid_session
-      assigns(:graphs).should eq([graph])
+      expect(assigns(:graphs)).to eq([graph])
     end
   end
 
   describe "GET show" do
     it "assigns the requested graph as @graph" do
       get :show, {:path => graph.path}, valid_session
-      assigns(:graph).should eq(graph)
+      expect(assigns(:graph)).to eq(graph)
     end
   end
 
@@ -36,19 +36,19 @@ describe Api::Yohoushi::GraphsController do
       let(:new_visible) { false }
       let(:attr) { { "description" => new_description, "tag_list" => new_tag_list, "visible" => new_visible } }
       it "updates the requested graph" do
-        Graph.any_instance.should_receive(:update).with(attr)
+        expect_any_instance_of(Graph).to receive(:update).with(attr)
         put :update, {path: graph.path}.merge(attr), valid_session
       end
 
       it "assigns the requested graph as @graph" do
         put :update, {:path => graph.path}, valid_session
-        assigns(:graph).should eq(graph)
+        expect(assigns(:graph)).to eq(graph)
       end
     end
 
     context "Unprocessable entity" do
       before do
-        Graph.any_instance.stub(:update).and_return(false)
+        allow_any_instance_of(Graph).to receive(:update).and_return(false)
         put :update, {path: graph.path}, valid_session
       end
 
