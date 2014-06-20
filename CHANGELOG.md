@@ -18,6 +18,10 @@ Fixes:
 * Fix to restart serverengine by stop and start combo instead of USR1
 * Fix performance issue, add INDEX for (type, path)
 
+Others:
+
+* Change auto restart behavior for serverengine if memory usage exceeds behavior. Restart only if `restart_memory_usage` is explicitly specified in application.yml.
+
 ## 0.72.2 (2014/02/20)
 
 Enhancement:
