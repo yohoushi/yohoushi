@@ -1,3 +1,23 @@
+## 0.72.3 (2014/06/20)
+
+Enhancement:
+
+* Update Rails to 4.1.1, and also update related some gems
+* Memory usage thresh of serverengine is configurable
+* Worker interval is configurable
+* Introduce lower_limit and upper_limit for graph parameter
+* Add auto tagging option. Thanks @avvmoto !!!
+* Run rake db:migrate automatically in bin/yohoushi command
+* Add delete tagged graph button
+* New API /api/yohoushi/graphs, tag and description for graph can be updated
+* Update rspec to 3.0.1
+
+Fixes:
+
+* Fix form_to does not work when short_metrics: false
+* Fix to restart serverengine by stop and start combo instead of USR1
+* Fix performance issue, add INDEX for (type, path)
+
 ## 0.72.2 (2014/02/20)
 
 Enhancement:
