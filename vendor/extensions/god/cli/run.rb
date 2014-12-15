@@ -22,8 +22,6 @@ module God
             God::CLI::Command.new('terminate', @options, ['terminate'])
           end
           @trapped = true
-        else
-          raise 'Interrupted'
         end
       end
 
