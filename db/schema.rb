@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140528154712) do
+ActiveRecord::Schema.define(version: 20141216115735) do
 
   create_table "nodes", force: true do |t|
     t.string   "type"
@@ -25,7 +25,9 @@ ActiveRecord::Schema.define(version: 20140528154712) do
     t.integer  "ancestry_depth",             default: 0
   end
 
+  add_index "nodes", ["ancestry"], name: "index_nodes_on_ancestry", using: :btree
   add_index "nodes", ["path"], name: "index_nodes_on_path", length: {"path"=>255}, using: :btree
+  add_index "nodes", ["type", "ancestry"], name: "index_nodes_on_type_and_ancestry", using: :btree
   add_index "nodes", ["type", "path"], name: "index_nodes_on_type_and_path", length: {"type"=>nil, "path"=>255}, using: :btree
 
   create_table "taggings", force: true do |t|
