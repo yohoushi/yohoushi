@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141216115735) do
+ActiveRecord::Schema.define(version: 20141217115735) do
 
   create_table "nodes", force: true do |t|
     t.string   "type"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20141216115735) do
   end
 
   add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
+  add_index "taggings", ["taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "index_taggings_on_taggable_id", using: :btree
 
   create_table "tags", force: true do |t|
     t.string  "name"
