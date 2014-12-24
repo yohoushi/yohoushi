@@ -36,7 +36,7 @@ gem 'acts_as_parameter_object' # Introduce parameter object, cf. Refactoring: Ru
 gem "settingslogic"
 gem 'growthforecast-client'
 gem 'multiforecast-client'
-gem 'ancestry', git: 'https://github.com/sonots/ancestry.git', branch: 'yohoushi' # tree structured model
+gem 'ancestry', git: 'https://github.com/yohoushi/ancestry.git', branch: 'yohoushi' # tree structured model
 gem "kaminari" # paginator
 gem 'rack-streaming-proxy', require: 'rack/streaming_proxy'
 
