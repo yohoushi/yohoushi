@@ -50,7 +50,7 @@ end
 
 group :development do
   gem 'yard' # document genration
-  gem 'better_errors' # sophisticated error view
+  gem 'web-console', '~> 2.0' # sophisticated error view
   gem 'binding_of_caller' # add irb/pry on better_rails view
   gem 'bullet' # warn N+1 queries
   gem 'rack-mini-profiler' # simple profiler
