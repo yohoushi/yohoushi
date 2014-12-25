@@ -1,4 +1,4 @@
-Yohoushi::Application.routes.draw do
+Rails.application.routes.draw do
   root 'graphs#tree_graph'
 
   get 'tree_graph' => 'graphs#tree_graph', :as => 'tree_graph_root'
