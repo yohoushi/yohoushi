@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   get 'graph/:path' => 'graphs#proxy_graph', :constraints => { :path => /.+/ }, :as => 'proxy_graph'
   get 'complex/:path' => 'graphs#proxy_complex', :constraints => { :path => /.+/ }, :as => 'proxy_complex'
 
-  namespace :debug, :as => '', :path => '' do
+  namespace :debug, :as => nil, :path => '' do
     resources :graphs
   end
 
