@@ -6,6 +6,15 @@ GIT
     ancestry (2.0.0)
       activerecord (>= 3.0.0)
 
+GIT
+  remote: https://github.com/yohoushi/acts-as-taggable-on.git
+  revision: 317e04dfcc3a7969e5a135c0e67b6a7a479cbe46
+  branch: fix-for-rails-4.2.0-based-on-v3.2.5
+  specs:
+    acts-as-taggable-on (3.2.5)
+      actionpack (>= 3, < 5)
+      activerecord (>= 3, < 5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -44,9 +53,6 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    acts-as-taggable-on (3.2.5)
-      actionpack (>= 3, < 5)
-      activerecord (>= 3, < 5)
     acts_as_parameter_object (0.0.1)
       activemodel
     addressable (2.3.5)
@@ -145,7 +151,7 @@ GEM
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
     mime-types (2.4.3)
-    mini_portile (0.6.1)
+    mini_portile (0.6.2)
     minitest (5.5.0)
     multi_json (1.10.1)
     multiforecast-client (0.80.0.2)
@@ -294,7 +300,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  acts-as-taggable-on (~> 3.2.5)
+  acts-as-taggable-on!
   acts_as_parameter_object
   ancestry!
   autodoc

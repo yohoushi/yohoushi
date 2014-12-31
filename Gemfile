@@ -29,7 +29,7 @@ gem 'bootstrap-datetimepicker-rails'
 gem 'font-awesome-rails' # Font-Awesome web fonts
 # gem 'newrelic_rpm'
 
-gem 'acts-as-taggable-on', '~> 3.2.5'
+gem 'acts-as-taggable-on', git: 'https://github.com/yohoushi/acts-as-taggable-on.git', branch: 'fix-for-rails-4.2.0-based-on-v3.2.5' # will fix branch: 'yohoushi'
 
 gem 'draper' # decorator(view-model)
 gem 'acts_as_parameter_object' # Introduce parameter object, cf. Refactoring: Ruby Edition
