@@ -4,6 +4,7 @@ defaults: &defaults
       '': 'http://localhost:5125'
   unicorn:
     port: 4804
+    worker_processes: 4
   tagcloud:
     limit: 400
   accordion:
