@@ -8,8 +8,8 @@ GIT
 
 GIT
   remote: https://github.com/yohoushi/acts-as-taggable-on.git
-  revision: 317e04dfcc3a7969e5a135c0e67b6a7a479cbe46
-  branch: fix-for-rails-4.2.0-based-on-v3.2.5
+  revision: 4b95aa57b71d6e88a3412b55e9c334b35db1b17b
+  branch: yohoushi
   specs:
     acts-as-taggable-on (3.2.5)
       actionpack (>= 3, < 5)
