@@ -19,11 +19,4 @@ module Util
       $stderr.puts "#{e.class} #{e.message}"
     end
   end
-
-  def wait(time)
-    start_time = Time.now
-    yield
-    sleep_time = time - (Time.now - start_time)
-    sleep sleep_time if sleep_time > 0
-  end
 end

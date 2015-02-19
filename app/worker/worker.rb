@@ -24,4 +24,12 @@ module Worker
   def stop
     @stop = true
   end
+
+  def wait(time)
+    wait_until = Time.now + time
+    yield
+    while Time.now < wait_until and !@stop
+      sleep 0.1
+    end
+  end
 end
