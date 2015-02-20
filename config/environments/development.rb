@@ -1,4 +1,4 @@
-Yohoushi::Application.configure do
+Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -19,7 +19,7 @@ Yohoushi::Application.configure do
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
-  # Raise an error on page load if there are pending migrations
+  # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
 
   # Debug mode disables concatenation and preprocessing of assets.
@@ -27,16 +27,25 @@ Yohoushi::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  # Asset digests allow you to set far-future HTTP expiration dates on all assets,
+  # yet still be able to expire them through the digest params.
+  config.assets.digest = true
+
+  # Adds additional error checking when serving assets at runtime.
+  # Checks for improperly declared sprockets dependencies.
+  # Raises helpful error messages.
+  config.assets.raise_runtime_errors = true
+
+  # Raises error for missing translations
+  # config.action_view.raise_on_missing_translations = true
+
+  config.web_console.whitelisted_ips = %w(127.0.0.1 10.0.0.0/8 172.16.0.0/12 192.168.0.0/16)
+
   config.after_initialize do
     Bullet.enable = true # enable
     Bullet.alert = true # pop up a JavaScript alert in the browser
     Bullet.bullet_logger = true # log to the Bullet log file (Rails.root/log/bullet.log)
     Bullet.rails_logger = true # add warnings directly to the Rails log
     Bullet.console = true # log warnings to your browser's console.log
-
-    # allow all private ip ranges
-    BetterErrors::Middleware.allow_ip! '10.0.0.0/8'
-    BetterErrors::Middleware.allow_ip! '172.16.0.0/12'
-    BetterErrors::Middleware.allow_ip! '192.168.0.0/16'
   end
 end

@@ -12,4 +12,4 @@ unless %w[production development test].include?(ENV['RAILS_ENV'])
   end
 end
 # Initialize the Rails application.
-Yohoushi::Application.initialize!
+Rails.application.initialize!

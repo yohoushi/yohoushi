@@ -6,7 +6,7 @@ shared_examples_for "correct_proxy_graph" do
     escaped_path = URI::escape(path)
     expected = mfclient.get_graph_uri(path, params)
     stub_request(:get, expected).to_return(status: 200)
-    get("graph/#{escaped_path}", params)
+    get("/graph/#{escaped_path}", params)
   end
   it { is_expected.to eq(200) }
 end
@@ -16,7 +16,7 @@ shared_examples_for "correct_proxy_complex" do
     escaped_path = URI::escape(path)
     expected = mfclient.get_complex_uri(path, params)
     stub_request(:get, expected).to_return(status: 200)
-    get("complex/#{escaped_path}", params)
+    get("/complex/#{escaped_path}", params)
   end
   it { is_expected.to eq(200) }
 end
