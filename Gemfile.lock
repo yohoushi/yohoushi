@@ -1,12 +1,4 @@
 GIT
-  remote: https://github.com/yohoushi/ancestry.git
-  revision: 7d2764c8d04793c11800a1223da0d4593612e8e7
-  branch: yohoushi
-  specs:
-    ancestry (2.0.0)
-      activerecord (>= 3.0.0)
-
-GIT
   remote: https://github.com/yohoushi/acts-as-taggable-on.git
   revision: 4b95aa57b71d6e88a3412b55e9c334b35db1b17b
   branch: yohoushi
@@ -14,6 +6,14 @@ GIT
     acts-as-taggable-on (3.2.5)
       actionpack (>= 3, < 5)
       activerecord (>= 3, < 5)
+
+GIT
+  remote: https://github.com/yohoushi/ancestry.git
+  revision: 7d2764c8d04793c11800a1223da0d4593612e8e7
+  branch: yohoushi
+  specs:
+    ancestry (2.0.0)
+      activerecord (>= 3.0.0)
 
 GEM
   remote: https://rubygems.org/
@@ -137,7 +137,7 @@ GEM
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
-    kgio (2.8.0)
+    kgio (2.9.3)
     libv8 (3.11.8.17)
     listen (2.7.1)
       celluloid (>= 0.15.2)
@@ -157,7 +157,7 @@ GEM
     multiforecast-client (0.80.0.2)
       growthforecast-client (>= 0.62.0)
     mysql2 (0.3.15)
-    nio4r (1.0.0)
+    nio4r (1.1.0)
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
     pry (0.9.12.6)
@@ -199,7 +199,7 @@ GEM
       activesupport (= 4.2.0)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    raindrops (0.11.0)
+    raindrops (0.13.0)
     rake (10.4.2)
     rb-fsevent (0.9.4)
     rb-inotify (0.9.3)
