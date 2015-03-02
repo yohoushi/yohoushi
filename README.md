@@ -28,21 +28,21 @@ Database initialization
 
     RAILS_ENV=development bin/rake db:create db:migrate
 
-Run both a rails app and a serverengine worker; Use `-d` option to daemonize.
+Run a rails app only
 
-    RAILS_ENV=development bin/yohoushi -d
-
-Stop both the daemonized rails app and serverengine worker:
-
-    RAILS_ENV=development bin/yohoushi stop
+    RAILS_ENV=development bin/rails s
 
 Run a serverengine worker only
 
     RAILS_ENV=development bin/serverengine
 
-Run a rails app only
+Run both a rails app and a serverengine worker through `god`; Use `-d` option to daemonize.
 
-    RAILS_ENV=development bin/rails s
+    RAILS_ENV=development bin/yohoushi
+
+Stop both the daemonized rails app and serverengine worker:
+
+    RAILS_ENV=development bin/yohoushi stop
 
 ## How to run the test suite
 
