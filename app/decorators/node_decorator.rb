@@ -40,7 +40,11 @@ class NodeDecorator < ApplicationDecorator
   end
 
   def tag_graph_path(tag_list)
-    h.tag_graph_path(tag_list, graph_parameter_list_params)
+    if tag_list.present?
+      h.tag_graph_path(tag_list, graph_parameter_list_params)
+    else
+      h.tag_graph_root_path(graph_parameter_list_params)
+    end
   end
 
   def setup_graph_path
