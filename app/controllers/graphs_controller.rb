@@ -159,8 +159,8 @@ class GraphsController < ApplicationController
         @tags = @graphs.tag_counts_on(:tags)
         tags_size = @graphs.tags_on(:tags).size
       else
-        @tags = Graph.tag_counts_on(:tags)
-        tags_size = Tag.all.size # I did not like to post the above big query just for count(*). This was faster
+        @tags = Tag.all
+        tags_size = Tag.all.size
       end
 
       limit = params[:limit].try(:to_i) || Settings.try(:tagcloud).try(:limit) || 400
