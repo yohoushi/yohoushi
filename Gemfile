@@ -4,12 +4,13 @@ gem 'rails', '~> 4.2.0'
 # gem 'sqlite3' # Use sqlite (>= 3.6.16) as the database
 gem 'mysql2', '~> 0.3.13' # Use myql as the database
 
-# When used sass-rails 4.0.0 with Rails4.1.0, rake assets:precompile exited with "undefined method `environment' for nil:NilClass"
-# To fix this, I updated it's version ~> 4.0.2
-# c.f. http://stackoverflow.com/questions/22392862/undefined-method-environment-for-nilnilclass-when-importing-bootstrap
-gem 'sass-rails', '~> 5.0.0' 
+# On upgrading rails 4.2.4, e fixed sass-rails' version because we got an error
+# `NameError: uninitialized constant Sass::Script` on travis.
+# ref. https://github.com/rails/sass-rails/issues/315
+#      http://stackoverflow.com/questions/29716284/uninitialized-constant-sassscript-nameerror
+gem 'sass-rails', '~> 5.0.3'
 
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier', '~> 2.7.1'
 gem 'coffee-rails', '~> 4.1.0' # compressor for JavaScript assets
 gem 'therubyracer', platforms: :ruby # Embeded V8 Javascript Interpreter (required for sprockets, asset pipeline)
 gem 'jquery-rails'
