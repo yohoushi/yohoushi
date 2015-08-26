@@ -10,7 +10,7 @@ gem 'mysql2', '~> 0.3.13' # Use myql as the database
 #      http://stackoverflow.com/questions/29716284/uninitialized-constant-sassscript-nameerror
 gem 'sass-rails', '~> 5.0.3'
 
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier', '~> 2.7.1'
 gem 'coffee-rails', '~> 4.1.0' # compressor for JavaScript assets
 gem 'therubyracer', platforms: :ruby # Embeded V8 Javascript Interpreter (required for sprockets, asset pipeline)
 gem 'jquery-rails'
