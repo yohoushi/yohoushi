@@ -108,7 +108,7 @@ GEM
     gem-open (0.1.6)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
-    god (0.13.2)
+    god (0.13.6)
     growthforecast-client (0.80.1)
       httpclient
       thor
