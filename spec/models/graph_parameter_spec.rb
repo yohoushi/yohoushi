@@ -28,7 +28,6 @@ describe GraphParameter do
       its(:size) { should == 'thumbnail' }
       its(:lower_limit) { should be_nil }
       its(:upper_limit) { should be_nil }
-      its(:sumup) { should eq '0' }
     end
 
     context "valid" do

@@ -9,8 +9,4 @@ class Settings < Settingslogic
   def auto_tagging
     has_key?('auto_tagging') ? fetch('auto_tagging') : true # default: true
   end
-
-  def sumup
-    has_key?('sumup') ? fetch('sumup') : false # default: false
-  end
 end
