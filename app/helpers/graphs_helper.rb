@@ -6,13 +6,13 @@ module GraphsHelper
   def graph_uri_for(graph)
     if Settings.proxy
       if graph.complex
-        proxy_complex_path(graph.path, @graph_parameter.graph_uri_params)
+        proxy_complex_path(graph.path, @graph_parameter.complex_graph_uri_params)
       else
         proxy_graph_path(graph.path, @graph_parameter.graph_uri_params)
       end
     else
       if graph.complex
-        $mfclient.get_complex_uri(graph.path, @graph_parameter.graph_uri_params)
+        $mfclient.get_complex_uri(graph.path, @graph_parameter.complex_graph_uri_params)
       else
         $mfclient.get_graph_uri(graph.path, @graph_parameter.graph_uri_params)
       end

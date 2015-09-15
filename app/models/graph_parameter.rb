@@ -1,5 +1,5 @@
 class GraphParameter < ApplicationParameter
-  attr_reader :t, :from, :to, :lower_limit, :upper_limit
+  attr_reader :t, :from, :to, :lower_limit, :upper_limit, :sumup
   alias :term :t
 
   SHORTABLE_TERMS = %w(c h 4h n 8h d 3d)
@@ -12,6 +12,9 @@ class GraphParameter < ApplicationParameter
   end
 
   def initialize(params = {})
+    # @sumup only can be set from application.yml, can not be set from the
+    # query of uri so that the fixed value is set here.
+    @sumup = Settings.sumup ? '1' : '0'
     update(params)
   end
 
@@ -133,6 +136,13 @@ class GraphParameter < ApplicationParameter
     }
     params['notitle'] = '1' if notitle
     params
+  end
+
+  # query parameters passed to growthforecast's complex graph image uri
+  def complex_graph_uri_params
+    graph_uri_params.merge(
+      'sumup'  => @sumup || '',
+    )
   end
 
   private
