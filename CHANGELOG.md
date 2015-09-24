@@ -1,3 +1,25 @@
+## 0.72.4 (2015/09/25)
+
+Rails:
+
+* Upgrade rails 4.2.4 and related some gems
+
+Enhancement:
+
+* add ancestry index to nodes
+* Add option to change unicorn worker num
+
+Fixes:
+
+* Signal is trapped twice with sudo by some reasons.
+* fix serverengine to stop immediately
+* Fix Mysql2::Error: Got a packet bigger than 'max_allowed_packet' bytes
+* Support Ruby ~> 2.2.0
+
+Others:
+
+* Use forked acts-as-taggable-on
+
 ## 0.72.3 (2014/06/20)
 
 Enhancement:
