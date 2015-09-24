@@ -1,0 +1,13 @@
+.bundle
+db/sqlite3
+db/*.sqlite3
+db/sqlite3-journal
+db/*.sqlite3-journal
+log/*
+tmp/*
+.ruby-version
+public/assets
+vendor/bundle
+.DS_Store
+.ruby-version
+.git/
