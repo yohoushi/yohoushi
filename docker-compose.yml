@@ -1,0 +1,11 @@
+growthforecast:
+  image: kazeburo/growthforecast
+  ports:
+    - "5125:5125"
+
+yohoushi:
+  image: nikushi/yohoushi
+  ports:
+    - "4804:4804"
+  links:
+    - growthforecast:gf

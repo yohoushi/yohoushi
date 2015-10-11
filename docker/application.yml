@@ -1,0 +1,26 @@
+defaults: &defaults
+  multiforecast:
+    mapping:
+      '': <%= ENV['GF_URI'] || ENV['GF_PORT'].try(:sub, 'tcp', 'http') %>
+  unicorn:
+    port: 4804
+    worker_processes: 4
+  tagcloud:
+    limit: 400
+  accordion:
+    initial_depth: 1
+    link_to_tree_graph: true # if false, link sections to only list_graph, no link_to tree_graph
+  serverengine:
+    interval: 5 # worker running interval. default: 60
+    restart_memory_usage: 200 # restart if memory usage exceeds (M bytes). default: null(off)
+  auto_tagging: true # set tags generated from its path when a graph is created. default: true
+
+production:
+  <<: *defaults
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
