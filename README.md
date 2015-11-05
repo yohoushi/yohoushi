@@ -1,6 +1,6 @@
 # Yohoushi
 
-Yohoushi is for all users who love graphs. Documents are avialable at [gh-pages](http://yohoushi.github.io/yohoushi).
+Yohoushi is a graphing tool, which assembles [GrowthForecast](http://kazeburo.github.io/GrowthForecast). Documents are avialable at [gh-pages](http://yohoushi.github.io/yohoushi).
 
 ## Ruby version
 
