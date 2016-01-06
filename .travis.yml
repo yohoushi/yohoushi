@@ -10,6 +10,8 @@ gemfile:
 env:
   - RAILS_ENV=test
 bundler_args: --without development --path vendor/bundle
+before_install:
+  - gem update bundler
 script: 
   - bundle exec rake --trace db:create db:migrate
   - bundle exec rspec 
